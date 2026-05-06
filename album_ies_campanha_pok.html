@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Álbum de IES · Campanha POK Egressos 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #5123a4;
+    --purple-dark: #3a1878;
+    --purple-light: #7B4FCF;
+    --gold: #f1ce0a;
+    --gold-dark: #b89c00;
+    --bg: #F3EFF9;
+    --border: #D8CEF0;
+    --text: #1E1230;
+    --text-muted: #5E4E7A;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(81,35,164,0.1);
+    border: 1px solid rgba(81,35,164,0.2);
+    border-radius: 99px;
+    padding: 6px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 20px;
+  }
+  .header-eyebrow-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .header-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--purple-dark);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .header-title span { color: var(--gold-dark); }
+
+  .header-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .progress-count {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--purple);
+  }
+  .progress-count span {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .progress-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 5%; /* 1/20 */
+    background: linear-gradient(90deg, var(--purple) 0%, var(--gold) 100%);
+    border-radius: 99px;
+    transition: width 1s ease;
+  }
+
+  /* ── LEGENDA ── */
+  .legenda {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 32px 0 40px;
+    flex-wrap: wrap;
+  }
+  .legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .legenda-dot {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .legenda-dot.confirmed { background: var(--purple); }
+  .legenda-dot.pending { background: #D0C8E0; border: 1px solid #B8B0D0; }
+  .legenda-dot.empty { background: transparent; border: 2px dashed #C8C0D8; }
+
+  /* ── GRID ── */
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── FIGURINHA BASE ── */
+  .card {
+    aspect-ratio: 3/4;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 12px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+  }
+
+  /* ── CONFIRMADA ── */
+  .card.confirmed {
+    background: var(--purple);
+    box-shadow: 0 4px 20px rgba(81,35,164,0.25);
+  }
+  .card.confirmed:hover {
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 0 12px 32px rgba(81,35,164,0.35);
+  }
+  .card.confirmed .card-number {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+  }
+  .card.confirmed .card-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px; height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 900;
+    color: var(--purple-dark);
+  }
+  .card.confirmed .card-sigla {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .card.confirmed .card-name {
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .card.confirmed .card-credits {
+    position: absolute;
+    bottom: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .card.confirmed .card-credits span {
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  /* ── CONVIDADA (PENDENTE) ── */
+  .card.pending {
+    background: #EDE8F5;
+    border: 1.5px solid #C8C0DC;
+  }
+  .card.pending:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+  }
+  .card.pending .card-number {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(100,80,150,0.3);
+    letter-spacing: 0.1em;
+  }
+  .card.pending .card-sigla {
+    font-size: 20px;
+    font-weight: 800;
+    color: #C0B4D8;
+    letter-spacing: -0.02em;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .card.pending .card-name {
+    font-size: 9px;
+    font-weight: 500;
+    color: #C0B4D8;
+    text-align: center;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .card.pending .card-status {
+    position: absolute;
+    bottom: 10px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #C0B4D8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .card.pending .card-credits {
+    position: absolute;
+    bottom: 10px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #C0B4D8;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PLATAFORMA A (parceira) ── */
+  .card.partner {
+    background: linear-gradient(145deg, #f8f5ff 0%, #ede8f8 100%);
+    border: 1.5px solid var(--border);
+  }
+  .card.partner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(81,35,164,0.1);
+  }
+  .card.partner .card-number {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(81,35,164,0.3);
+    letter-spacing: 0.1em;
+  }
+  .card.partner .card-sigla {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--purple);
+    letter-spacing: -0.01em;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    opacity: 0.5;
+  }
+  .card.partner .card-sigla sup {
+    font-size: 10px;
+    color: var(--gold-dark);
+    font-weight: 900;
+    opacity: 1;
+  }
+  .card.partner .card-label {
+    font-size: 8px;
+    color: rgba(81,35,164,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-align: center;
+  }
+  .card.empty {
+    background: transparent;
+    border: 2px dashed #C8C0D8;
+  }
+  .card.empty .card-number {
+    font-size: 9px;
+    font-weight: 700;
+    color: #C8C0D8;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .card.empty .card-question {
+    font-size: 28px;
+    color: #D8D0E8;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .card.empty .card-label {
+    font-size: 9px;
+    color: #C8C0D8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .footer strong { color: var(--purple); }
+
+  /* Animação de entrada */
+  @keyframes popIn {
+    0% { opacity: 0; transform: scale(0.85) translateY(8px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .card { animation: popIn 0.4s ease both; }
+  .card:nth-child(1)  { animation-delay: 0.05s; }
+  .card:nth-child(2)  { animation-delay: 0.10s; }
+  .card:nth-child(3)  { animation-delay: 0.15s; }
+  .card:nth-child(4)  { animation-delay: 0.20s; }
+  .card:nth-child(5)  { animation-delay: 0.25s; }
+  .card:nth-child(6)  { animation-delay: 0.30s; }
+  .card:nth-child(7)  { animation-delay: 0.35s; }
+  .card:nth-child(8)  { animation-delay: 0.40s; }
+  .card:nth-child(9)  { animation-delay: 0.45s; }
+  .card:nth-child(10) { animation-delay: 0.50s; }
+  .card:nth-child(11) { animation-delay: 0.55s; }
+  .card:nth-child(12) { animation-delay: 0.60s; }
+  .card:nth-child(13) { animation-delay: 0.65s; }
+  .card:nth-child(14) { animation-delay: 0.70s; }
+  .card:nth-child(15) { animation-delay: 0.75s; }
+  .card:nth-child(16) { animation-delay: 0.80s; }
+  .card:nth-child(17) { animation-delay: 0.85s; }
+  .card:nth-child(18) { animation-delay: 0.90s; }
+  .card:nth-child(19) { animation-delay: 0.95s; }
+  .card:nth-child(20) { animation-delay: 1.00s; }
+
+  @media (max-width: 900px) {
+    .album-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 32px 16px; }
+    .album-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .header-title { font-size: 24px; }
+    .header-sub { font-size: 13px; }
+    .legenda { gap: 14px; }
+    .card.confirmed .card-sigla { font-size: 18px; }
+    .card.confirmed .card-name { font-size: 8px; }
+    .card.pending .card-sigla { font-size: 16px; }
+    .card.empty .card-question { font-size: 16px; }
+  }
+
+  @media (max-width: 380px) {
+    .album-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .header-title { font-size: 20px; }
+    .progress-count { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-eyebrow">
+    <div class="header-eyebrow-dot"></div>
+    Campanha Egressos e Empregabilidade 2026
+  </div>
+  <div class="header-title">Álbum das <span>20 Universidades</span></div>
+  <div class="header-sub">
+    Acompanhe as instituições que já fazem parte da campanha. Cada vaga preenchida é uma universidade reconectando seus egressos ao mercado.
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span class="progress-label">Vagas preenchidas</span>
+      <span class="progress-count">1 <span>de 20</span></span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGENDA -->
+<div class="legenda">
+  <div class="legenda-item">
+    <div class="legenda-dot confirmed"></div>
+    Confirmada
+  </div>
+  <div class="legenda-item">
+    <div class="legenda-dot pending"></div>
+    Convidada · aguardando
+  </div>
+  <div class="legenda-item">
+    <div class="legenda-dot empty"></div>
+    Vaga aberta
+  </div>
+</div>
+
+<!-- ÁLBUM -->
+<div class="album-grid">
+
+  <!-- 01 · CONFIRMADA -->
+  <div class="card confirmed">
+    <span class="card-number">#01</span>
+    <div class="card-badge">✓</div>
+    <div class="card-sigla">FGV<br>EESP</div>
+    <div class="card-name">Escola de<br>Economia<br>de São Paulo</div>
+    <div class="card-credits"><span>1.000</span> créditos</div>
+  </div>
+
+  <!-- 02 · CONVIDADA: Vitru -->
+  <div class="card pending">
+    <span class="card-number">#02</span>
+    <div class="card-sigla">Vitru</div>
+    <div class="card-name">Grupo Vitru</div>
+    <div class="card-credits"><span>5.000</span> créditos</div>
+  </div>
+
+  <!-- 03 · CONVIDADA: Ânima -->
+  <div class="card pending">
+    <span class="card-number">#03</span>
+    <div class="card-sigla">Ânima</div>
+    <div class="card-name">Grupo Ânima<br>Educação</div>
+    <div class="card-credits"><span>5.000</span> créditos</div>
+  </div>
+
+  <!-- 04 · CONVIDADA: FIA -->
+  <div class="card pending">
+    <span class="card-number">#04</span>
+    <div class="card-sigla">FIA</div>
+    <div class="card-name">Fund. Inst. de<br>Administração</div>
+    <div class="card-credits"><span>1.000</span> créditos</div>
+  </div>
+
+  <!-- 05–06 · CONVIDADAS -->
+  <div class="card pending">
+    <span class="card-number">#05</span>
+    <div class="card-sigla">Casper<br>Líbero</div>
+    <div class="card-name">Faculdade<br>Cásper Líbero</div>
+    <div class="card-credits"><span>1.000</span> créditos</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#06</span>
+    <div class="card-sigla">FMU</div>
+    <div class="card-name">Centro Univ.<br>FMU</div>
+    <div class="card-credits"><span>1.000</span> créditos</div>
+  </div>
+
+  <!-- 07–11 · PLATAFORMA A (parceira) -->
+  <div class="card pending">
+    <span class="card-number">#07</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Plataforma A</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#08</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Plataforma A</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#09</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Plataforma A</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#10</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Plataforma A</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#11</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Plataforma A</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#12</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Semesp</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#13</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Semesp</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#14</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Semesp</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#15</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Semesp</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card pending">
+    <span class="card-number">#16</span>
+    <div class="card-sigla">IES</div>
+    <div class="card-name">Semesp</div>
+    <div class="card-status">Aguardando</div>
+  </div>
+  <div class="card empty">
+    <div class="card-number">#17</div>
+    <div class="card-question" style="font-size:20px;color:#D8D0E8;font-weight:900;margin-bottom:6px;">IES</div>
+    <div class="card-label">Vaga aberta</div>
+  </div>
+  <div class="card empty">
+    <div class="card-number">#18</div>
+    <div class="card-question" style="font-size:20px;color:#D8D0E8;font-weight:900;margin-bottom:6px;">IES</div>
+    <div class="card-label">Vaga aberta</div>
+  </div>
+  <div class="card empty">
+    <div class="card-number">#19</div>
+    <div class="card-question" style="font-size:20px;color:#D8D0E8;font-weight:900;margin-bottom:6px;">IES</div>
+    <div class="card-label">Vaga aberta</div>
+  </div>
+  <div class="card empty">
+    <div class="card-number">#20</div>
+    <div class="card-question" style="font-size:20px;color:#D8D0E8;font-weight:900;margin-bottom:6px;">IES</div>
+    <div class="card-label">Vaga aberta</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>pok.tech</strong> · Campanha Egressos e Empregabilidade 2026
+</div>
+
+</body>
+</html>
