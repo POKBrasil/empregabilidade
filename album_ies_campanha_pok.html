@@ -68,7 +68,7 @@
   .header-sub {
     font-size: 14px;
     color: var(--text-muted);
-    max-width: 480px;
+    max-width: 620px;
     margin: 0 auto 28px;
     line-height: 1.7;
   }
@@ -357,7 +357,31 @@
   }
   .footer strong { color: var(--purple); }
 
-  /* Animação de entrada */
+  /* Credits bar */
+  .credits-wrap {
+    max-width: 480px;
+    margin: 16px auto 0;
+  }
+  .credits-segments {
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+    display: flex;
+  }
+  .credits-fill-confirmed {
+    height: 100%;
+    background: var(--purple);
+    border-radius: 99px 0 0 99px;
+    transition: width 1s ease;
+    flex-shrink: 0;
+  }
+  .credits-fill-pending {
+    height: 100%;
+    background: #C8BEE0;
+    transition: width 1s ease;
+    flex-shrink: 0;
+  }
   @keyframes popIn {
     0% { opacity: 0; transform: scale(0.85) translateY(8px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
@@ -417,7 +441,8 @@
   </div>
   <div class="header-title">Álbum das <span>20 Universidades</span></div>
   <div class="header-sub">
-    Acompanhe as instituições que já fazem parte da campanha. Cada vaga preenchida é uma universidade reconectando seus egressos ao mercado.
+    Acompanhe as instituições que já fazem parte da campanha.<br>
+    Cada vaga preenchida é uma universidade reconectando seus egressos ao mercado.
   </div>
   <div class="progress-wrap">
     <div class="progress-meta">
@@ -426,6 +451,23 @@
     </div>
     <div class="progress-bar">
       <div class="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- BARRA DE CRÉDITOS -->
+  <div class="credits-wrap">
+    <div class="progress-meta" style="margin-top:20px;">
+      <span class="progress-label">Créditos mobilizados</span>
+      <span class="progress-count">1.000 <span style="color:#C8BEE0;">+ 13.000 aguardando</span></span>
+    </div>
+    <div class="credits-segments">
+      <div class="credits-fill-confirmed" style="width:5%;"></div>
+      <div class="credits-fill-pending" style="width:65%;"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;">
+      <span style="font-size:10px;color:var(--purple);font-weight:600;">■ Confirmados: 1.000</span>
+      <span style="font-size:10px;color:#C0B4D8;font-weight:600;">■ Aguardando: 13.000</span>
+      <span style="font-size:10px;color:var(--border);font-weight:600;">Meta: ~20.000</span>
     </div>
   </div>
 </div>
