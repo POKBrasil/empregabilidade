@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>POK + IES · Campanha Egressos e Empregabilidade 2026 · Template</title>
+<title>UNIT · Campanha POK Egressos e Empregabilidade 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -24,9 +24,9 @@
     --gold-dark: #b89c00;
     --gold-light: #fdf7c3;
     --gold-ink: #5a4900;
-    /* Tom institucional para destaques de IES (case boxes etc) */
-    --fgv-blue: #0a3a6b;
-    --fgv-blue-light: #e6eef7;
+    /* Tom institucional para destaques da UNIT */
+    --unit-green: #155652;
+    --unit-green-light: #e1ecec;
     --sidebar-w: 290px;
   }
 
@@ -87,15 +87,16 @@
     font-size: 18px;
     font-weight: 300;
   }
-  .logo-ies {
+  .logo-unit {
     color: #fff;
     font-weight: 700;
     font-size: 14px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     padding: 5px 14px;
     border: 1px solid rgba(255,255,255,0.25);
     border-radius: 6px;
     background: rgba(255,255,255,0.06);
+    white-space: nowrap;
   }
 
   .sidebar-badge {
@@ -337,11 +338,11 @@
     padding: 4px 12px;
     border-radius: 6px;
   }
-  .parceiro-tag-ies {
+  .parceiro-tag-unit {
     font-size: 12px;
     font-weight: 600;
-    color: var(--accent);
-    background: var(--accent-light);
+    color: var(--unit-green);
+    background: var(--unit-green-light);
     padding: 4px 12px;
     border-radius: 6px;
   }
@@ -620,9 +621,9 @@
 
   /* ── CASE BOX (destaque institucional) ──────────────────── */
   .case-box {
-    background: linear-gradient(135deg, var(--fgv-blue-light) 0%, var(--surface) 100%);
+    background: linear-gradient(135deg, var(--unit-green-light) 0%, var(--surface) 100%);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--fgv-blue);
+    border-left: 4px solid var(--unit-green);
     border-radius: var(--radius-lg);
     padding: 1.5rem 1.75rem;
     margin-top: 1rem;
@@ -634,7 +635,7 @@
     margin-bottom: 0.75rem;
   }
   .case-mark {
-    background: var(--fgv-blue);
+    background: var(--unit-green);
     color: #fff;
     font-size: 11px;
     font-weight: 700;
@@ -648,7 +649,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--fgv-blue);
+    color: var(--unit-green);
   }
   .case-body {
     font-size: 13.5px;
@@ -1170,11 +1171,11 @@
     height: 44px;
     padding: 0;
     border-radius: 10px;
-    background: var(--fgv-blue);
+    background: var(--unit-green);
     color: #fff;
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1871,13 +1872,13 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-hidden="true"><path fill="#fff" d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg>
         </div>
         <div class="logo-x">×</div>
-        <div class="logo-ies">IES</div>
+        <div class="logo-unit">UNIT</div>
       </div>
     </div>
 
-    <span class="sidebar-badge">📘 Template IES</span>
-    <h2 class="sidebar-title">Como aplicar a campanha na sua instituição</h2>
-    <p class="sidebar-sub">Roteiro prático para o time de marketing da IES, do briefing inicial ao disparo final dos certificados.</p>
+    <span class="sidebar-badge">📘 UNIT</span>
+    <h2 class="sidebar-title">Roteiro de aplicação · UNIT</h2>
+    <p class="sidebar-sub">Roteiro prático para o time de marketing da UNIT, do briefing inicial ao disparo final dos certificados.</p>
 
     <div class="nav-label">Roteiro</div>
     <ul class="nav-list">
@@ -1886,7 +1887,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="#etapa-2"><span class="nav-num">2</span> IES escolhe o curso</a>
+        <a href="#etapa-2"><span class="nav-num">2</span> Curso escolhido</a>
       </li>
 
       <li class="nav-item">
@@ -1903,7 +1904,7 @@
       <li class="nav-item">
         <a href="#etapa-4"><span class="nav-num">4</span> Divulgação</a>
         <ul class="nav-sub">
-          <li><a href="#etapa-4a">4a · Canais POK + IES</a></li>
+          <li><a href="#etapa-4a">4a · Canais POK</a></li>
           <li><a href="#etapa-4b">4b · Canais da IES</a></li>
         </ul>
       </li>
@@ -1930,8 +1931,8 @@
     <!-- HEADER -->
     <header class="page-header">
       <div class="header-badge">📘 Template operacional · IES</div>
-      <h1 class="header-title">Passo a passo: como aplicar a <span class="gold">Campanha Egressos e Empregabilidade</span> na sua instituição</h1>
-      <p class="header-sub">Roteiro construído em parceria entre POK e o time de marketing da IES — do briefing visual ao disparo dos 1.000 certificados.</p>
+      <h1 class="header-title">Passo a passo: <span class="gold">Campanha Egressos e Empregabilidade</span> · UNIT</h1>
+      <p class="header-sub">Roteiro construído em parceria entre POK e o time de marketing da UNIT — do briefing visual ao disparo dos 1.000 certificados.</p>
     </header>
     <div class="gold-bar"></div>
 
@@ -1940,7 +1941,7 @@
       <span class="parceiros-lbl">Promovida por</span>
       <div class="parceiros-sep"></div>
       <span class="parceiro-tag">POK</span>
-      <span class="parceiro-tag-ies">IES</span>
+      <span class="parceiro-tag-unit">UNIT</span>
     </div>
 
     <!-- CONTENT -->
@@ -1950,7 +1951,7 @@
       <section id="etapa-1">
         <div class="section-label">Etapa 1 · Apresentação</div>
         <h2 class="section-h1"><span class="num">01</span> O que é a campanha</h2>
-        <p class="section-lead">A <strong>Campanha Egressos e Empregabilidade 2026</strong> é uma iniciativa da POK em parceria com a sua <strong>IES</strong> para reconectar a instituição aos seus egressos através de <strong>certificados digitais em blockchain</strong>, criando ao mesmo tempo um canal de coleta de dados reais sobre empregabilidade e trajetória profissional.</p>
+        <p class="section-lead">A <strong>Campanha Egressos e Empregabilidade 2026</strong> é uma iniciativa da POK em parceria com a <strong>UNIT</strong> para reconectar a instituição aos seus egressos através de <strong>certificados digitais em blockchain</strong>, criando ao mesmo tempo um canal de coleta de dados reais sobre empregabilidade e trajetória profissional.</p>
 
         <!-- O que é -->
         <div class="apres-block">
@@ -2006,7 +2007,7 @@
           <div class="apres-card">
             <div class="apres-card-num">05</div>
             <div class="apres-card-title">Custo zero nesta edição</div>
-            <div class="apres-card-desc">Os 1.000 créditos são gratuitos para as IES selecionadas. A participação não envolve custo financeiro — apenas mobilização interna e produção das peças.</div>
+            <div class="apres-card-desc">Os 1.000 créditos são gratuitos nesta edição da campanha. A participação não envolve custo financeiro — apenas mobilização interna e produção das peças.</div>
           </div>
 
           <div class="apres-card">
@@ -2031,8 +2032,8 @@
       <!-- ═══ ETAPA 2 ═══ -->
       <section id="etapa-2">
         <div class="section-label">Etapa 2 · Briefing inicial</div>
-        <h2 class="section-h1"><span class="num">02</span> A IES escolhe o curso</h2>
-        <p class="section-lead">A <strong>sua instituição</strong> seleciona um <strong>curso de graduação ou pós</strong> cujos egressos serão contemplados pela campanha. A escolha deve aproveitar uma base de egressos consolidada e abrir caminho natural para cross-sell com programas de pós-graduação ou educação continuada na mesma área.</p>
+        <h2 class="section-h1"><span class="num">02</span> O curso escolhido</h2>
+        <p class="section-lead">A <strong>UNIT</strong> definirá o <strong>curso ou programa</strong> que será recorte da campanha, contemplando egressos das turmas a serem selecionadas. A escolha deve aproveitar uma base de egressos consolidada e abrir caminho natural para cross-sell com outros programas da UNIT na mesma área.</p>
 
         <div class="info-card">
           <div class="info-card-head">
@@ -2041,7 +2042,7 @@
               Recorte da campanha
             </div>
             <div class="info-card-title">
-              <span class="ic-ies">Sua IES · Curso a definir</span>
+              <span class="ic-ies">UNIT · Curso a definir</span>
             </div>
           </div>
           <div class="info-card-grid">
@@ -2053,8 +2054,8 @@
             </div>
             <div class="info-stat">
               <div>
-                <div class="info-stat-label">Cross-sell</div>
-                <div class="info-stat-value">A definir pela IES</div>
+                <div class="info-stat-label">Cross-sell sugerido</div>
+                <div class="info-stat-value">Programa a definir</div>
               </div>
             </div>
             <div class="info-stat">
@@ -2264,11 +2265,11 @@
 
             <div class="case-box" style="margin-top:1rem;">
               <div class="case-head">
-                <span class="case-mark">Exemplo</span>
-                <span class="case-label">Lógica de cross-sell</span>
+                <span class="case-mark">UNIT</span>
+                <span class="case-label">Cross-sell sugerido</span>
               </div>
               <div class="case-body">
-                Egresso de uma <strong>graduação</strong> recebe um banner convidando-o para a <strong>pós-graduação correspondente</strong> (ou área correlata) da própria instituição. O caminho natural: quem certificou sua graduação valoriza dar continuidade na mesma instituição.
+                Egresso de um <strong>programa da UNIT</strong> recebe um banner convidando-o para outro programa correlato (graduação, pós, MBA, especialização ou educação continuada) da própria UNIT. O caminho natural: quem certificou sua formação valoriza dar continuidade na mesma instituição.
               </div>
             </div>
 
@@ -2324,7 +2325,7 @@
             <p style="margin-top: 1rem;">Cada banner deve contemplar:</p>
             <ul>
               <li>Cada banner leva a uma <strong>página externa ou aba específica</strong> da IES</li>
-              <li>Tom convidativo: "continue sua trajetória", "volte para a sua instituição"</li>
+              <li>Tom convidativo: "continue sua trajetória", "volte para a UNIT"</li>
               <li>CTA claro com link de destino definido</li>
             </ul>
           </div>
@@ -2387,8 +2388,8 @@
 
             <p style="margin-top: 1rem;">A imagem de capa deve contemplar:</p>
             <ul>
-              <li><strong>Identidade visual da IES</strong> — logo, paleta institucional e tipografia</li>
-              <li>Comunicação afetiva alinhada à conquista do egresso</li>
+              <li><strong>Identidade visual da UNIT</strong> — logo, paleta institucional e tipografia</li>
+              <li>Comunicação afetiva alinhada à conquista do egresso do programa selecionado</li>
               <li>Headline personalizada para o curso da campanha</li>
             </ul>
 
@@ -2413,34 +2414,34 @@
 
         <div class="channel-grid">
 
-          <!-- 4a · POK + IES -->
+          <!-- 4a · POK -->
           <div class="channel-card" id="etapa-4a">
             <div class="channel-head">
               <div class="channel-icon-pok">P</div>
               <div>
-                <div class="channel-title">4a · Canais POK + IES</div>
+                <div class="channel-title">4a · Canais POK</div>
                 <div class="channel-sub">Ativação institucional dos parceiros</div>
               </div>
             </div>
             <ul class="channel-list">
-              <li><span class="ic">in</span><div><strong>LinkedIn POK</strong> · posts orgânicos com case da IES, marcando a instituição parceira</div></li>
+              <li><span class="ic">in</span><div><strong>LinkedIn POK</strong> · posts orgânicos com case da UNIT, marcando a instituição parceira</div></li>
               <li><span class="ic">@</span><div><strong>E-mail marketing</strong> · disparo para a base institucional da POK e parceiros estratégicos</div></li>
-              <li><span class="ic">★</span><div><strong>Página da campanha</strong> · landing page principal com co-marca POK + IES</div></li>
+              <li><span class="ic">★</span><div><strong>Página da campanha</strong> · landing page principal com co-marca POK + UNIT</div></li>
             </ul>
           </div>
 
           <!-- 4b · IES -->
           <div class="channel-card" id="etapa-4b">
             <div class="channel-head">
-              <div class="channel-icon-ies">IES</div>
+              <div class="channel-icon-ies">UNIT</div>
               <div>
-                <div class="channel-title">4b · Canais da IES</div>
+                <div class="channel-title">4b · Canais da UNIT</div>
                 <div class="channel-sub">Ativação direta com egressos</div>
               </div>
             </div>
             <ul class="channel-list">
-              <li><span class="ic">in</span><div><strong>LinkedIn da IES</strong> · post institucional anunciando o benefício para egressos</div></li>
-              <li><span class="ic">@</span><div><strong>E-mail da IES</strong> · disparo para a base de egressos do curso selecionado</div></li>
+              <li><span class="ic">in</span><div><strong>LinkedIn da UNIT</strong> · post institucional anunciando o benefício para egressos</div></li>
+              <li><span class="ic">@</span><div><strong>E-mail da UNIT</strong> · disparo para a base de egressos do programa selecionado</div></li>
               <li><span class="ic">w</span><div><strong>WhatsApp</strong> · grupos de turmas, redes de relacionamento de egressos</div></li>
               <li><span class="ic">+</span><div><strong>Demais canais</strong> · newsletter, portal do egresso, redes sociais institucionais</div></li>
             </ul>
@@ -2456,7 +2457,7 @@
               Sugestão de sequência
             </div>
             <h3 class="comm-sequence-title">Comunicação com os egressos em 3 momentos</h3>
-            <p class="comm-sequence-sub">Estrutura recomendada para preparar, entregar e celebrar a certificação. Cada peça pode ser disparada pela POK e pela IES nos seus canais.</p>
+            <p class="comm-sequence-sub">Estrutura recomendada para preparar, entregar e celebrar a certificação. Cada peça pode ser disparada pela POK e pela UNIT nos seus canais.</p>
           </div>
 
           <div class="comm-cards">
@@ -2526,7 +2527,7 @@
                 <div class="tl-card">
                   <div class="tl-week">1ª semana de Maio</div>
                   <div class="tl-title">Briefing e escolha do curso</div>
-                  <div class="tl-desc">A IES envia à POK os ativos de identidade visual do <strong>curso escolhido</strong>: logos, paleta, tipografia, foto institucional.</div>
+                  <div class="tl-desc">A UNIT envia à POK os ativos de identidade visual do <strong>programa selecionado</strong>: logos, paleta, tipografia, foto institucional.</div>
                 </div>
               </div>
 
@@ -2553,7 +2554,7 @@
                 <div class="tl-card">
                   <div class="tl-week">4ª semana de Maio</div>
                   <div class="tl-title">Disparo de divulgação coordenado</div>
-                  <div class="tl-desc">POK e IES ativam seus canais (LinkedIn, e-mail, WhatsApp). Egressos recebem o convite e são direcionados à landing page para confirmação dos dados.</div>
+                  <div class="tl-desc">POK e UNIT ativam seus canais (LinkedIn, e-mail, WhatsApp). Egressos recebem o convite e são direcionados à landing page para confirmação dos dados.</div>
                 </div>
               </div>
 
@@ -2593,11 +2594,11 @@
           <div class="base-bar">
             <div class="base-content">
               <h3>5b · Base de alunos</h3>
-              <p>A IES é responsável por <strong>identificar e preparar a base de egressos</strong> do curso selecionado que será impactada pela campanha. A POK orienta o formato dos dados e garante a segurança da informação ao longo de todo o processo.</p>
+              <p>A <strong>UNIT</strong> é responsável por <strong>identificar e preparar a base de egressos</strong> do programa selecionado (turmas a definir) que será impactada pela campanha. A POK orienta o formato dos dados e garante a segurança da informação ao longo de todo o processo.</p>
             </div>
             <div class="base-stats">
               <span class="base-chip">1.000 vagas</span>
-              <span class="base-chip outline">Curso definido pela IES</span>
+              <span class="base-chip outline">Programa a definir</span>
             </div>
           </div>
         </div>
@@ -2622,7 +2623,7 @@
 
     <!-- FOOTER -->
     <footer class="page-footer">
-      <strong>POK · Campanha Egressos e Empregabilidade 2026</strong> &nbsp;·&nbsp; Template para IES
+      <strong>POK · Campanha Egressos e Empregabilidade 2026</strong> &nbsp;·&nbsp; UNIT
     </footer>
 
   </main>
