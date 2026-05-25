@@ -73,6 +73,38 @@
     line-height: 1.7;
   }
 
+  /* Botão da campanha */
+  .campanha-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--purple);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding: 13px 28px;
+    border-radius: 10px;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 6px 20px rgba(81,35,164,0.28);
+    margin-bottom: 32px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .campanha-btn:hover {
+    background: var(--purple-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(81,35,164,0.38);
+  }
+  .campanha-btn-arrow {
+    font-size: 16px;
+    color: var(--gold);
+    transition: transform 0.2s ease;
+  }
+  .campanha-btn:hover .campanha-btn-arrow {
+    transform: translateX(4px);
+  }
+
   /* Progress bar */
   .progress-wrap {
     max-width: 480px;
@@ -455,6 +487,10 @@
     Acompanhe as instituições que já fazem parte da campanha.<br>
     Cada vaga preenchida é uma universidade reconectando seus egressos ao mercado.
   </div>
+  <a class="campanha-btn" href="https://pokbrasil.github.io/marketing/pok_campanha_egressos.html" target="_blank" rel="noopener">
+    Conhecer a campanha
+    <span class="campanha-btn-arrow">→</span>
+  </a>
   <div class="progress-wrap">
     <div class="progress-meta">
       <span class="progress-label">Vagas preenchidas</span>
