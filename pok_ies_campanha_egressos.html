@@ -1627,7 +1627,7 @@
 
   /* Botão Ver exemplo full-width em mobile */
   @media (max-width: 600px) {
-    .cert-example-btn--centered { width: 100% !important; margin-left: 0 !important; }
+    .cert-example-btn--centered { width: fit-content !important; margin: 1rem auto 0 !important; }
   }
 
   /* Substep-head compacto */
@@ -1664,8 +1664,11 @@
 
   /* Parceiros strip wrap */
   @media (max-width: 600px) {
-    .parceiros-strip { flex-wrap: wrap; gap: 8px; padding: 0.75rem 1.25rem !important; }
+    .parceiros-strip { flex-wrap: wrap; gap: 8px 10px; padding: 0.75rem 1.25rem !important; }
     .parceiros-sep { display: none; }
+    .parceiros-lbl { flex-basis: 100%; margin-bottom: 2px; }
+    .parceiro-tag, .parceiro-tag-ies { font-size: 11px; padding: 4px 10px; }
+    .parceiro-plus { margin: 0 -2px; }
   }
 
   /* Apres stats (já têm regras existentes em 800/500, reforçar) */
