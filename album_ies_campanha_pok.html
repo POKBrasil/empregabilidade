@@ -461,32 +461,24 @@
 
   @media (max-width: 900px) {
     .album-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .header-title { font-size: 30px; }
   }
 
   @media (max-width: 600px) {
     body { padding: 32px 16px; }
     .album-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .header-title { font-size: 24px; }
-    .header-sub { font-size: 13px; max-width: 100%; }
-    .progress-wrap, .credits-wrap { max-width: 100%; }
-    .legenda { gap: 12px; flex-wrap: wrap; justify-content: center; }
-    .legenda-item { font-size: 11px; }
-    .card.confirmed .card-sigla { font-size: 16px; }
+    .header-sub { font-size: 13px; }
+    .legenda { gap: 14px; }
+    .card.confirmed .card-sigla { font-size: 18px; }
     .card.confirmed .card-name { font-size: 8px; }
-    .card.confirmed .card-credits span { font-size: 10px; }
-    .card.pending .card-sigla { font-size: 14px; }
-    .card.pending .card-credits span { font-size: 10px; }
+    .card.pending .card-sigla { font-size: 16px; }
     .card.empty .card-question { font-size: 16px; }
-    .progress-meta { flex-direction: column; gap: 4px; }
-    .progress-count { font-size: 16px; }
   }
 
   @media (max-width: 380px) {
     .album-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
     .header-title { font-size: 20px; }
-    .progress-count { font-size: 14px; }
-    .header-eyebrow { font-size: 9px; }
+    .progress-count { font-size: 15px; }
   }
 </style>
 </head>
@@ -521,16 +513,16 @@
   <div class="credits-wrap">
     <div class="progress-meta" style="margin-top:20px;">
       <span class="progress-label">Créditos mobilizados</span>
-      <span class="progress-count">17.000 <span style="color:#C8BEE0;">+ 18.000 aguardando</span></span>
+      <span class="progress-count">17,000 <span style="color:#C8BEE0;">+ 18,000 aguardando</span></span>
     </div>
     <div class="credits-segments">
       <div class="credits-fill-confirmed" style="width:49%;"></div>
       <div class="credits-fill-pending" style="width:51%;"></div>
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:6px;">
-      <span style="font-size:10px;color:var(--purple);font-weight:600;">■ Confirmados: 17.000</span>
-      <span style="font-size:10px;color:#C0B4D8;font-weight:600;">■ Aguardando: 18.000</span>
-      <span style="font-size:10px;color:var(--border);font-weight:600;">Total: 35.000</span>
+      <span style="font-size:10px;color:var(--purple);font-weight:600;">■ Confirmados: 17,000</span>
+      <span style="font-size:10px;color:#C0B4D8;font-weight:600;">■ Aguardando: 18,000</span>
+      <span style="font-size:10px;color:var(--border);font-weight:600;">Total: 35,000</span>
     </div>
   </div>
 
@@ -640,7 +632,7 @@
   <div class="card pending" onclick="window.open('https://pokbrasil.github.io/empregabilidade/pok_fiap_campanha_egresso.html','_blank')" style="cursor:pointer;">
     <span class="card-number">#12</span>
     <div class="card-sigla">FIAP</div>
-    <div class="card-name">Faculdade de<br>Informática e<br>Adm.</div>
+    <div class="card-name">Faculdade de<br>Informática</div>
     <div class="card-credits"><span>1.000</span> créditos</div>
   </div>
 
@@ -668,10 +660,6 @@
   <div class="card pending">
     <span class="card-number">#16</span>
     <div class="card-sigla">IES</div>
-    <div class="card-name">Via Plataforma A</div>
-    <div class="card-credits"><span>1.000</span> créditos</div>
-  </div>
-
     <div class="card-name">Via Plataforma A</div>
     <div class="card-credits"><span>1.000</span> créditos</div>
   </div>
@@ -704,6 +692,7 @@
     <div class="card-credits"><span>1.000</span> créditos</div>
   </div>
 
+</div>
 
 <!-- FOOTER -->
 <div class="footer">
