@@ -462,6 +462,28 @@
   }
   .apres-text strong { color: var(--ink); font-weight: 600; }
 
+  /* Título maior apenas no box "A iniciativa em uma frase" */
+  .apres-block .apres-h3 {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+  .apres-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.1rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .apres-cta:hover { background: var(--accent-dark); }
+
   .apres-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1987,6 +2009,7 @@
         <div class="apres-block">
           <h3 class="apres-h3">A iniciativa em uma frase</h3>
           <p class="apres-text">Cada IES participante recebe créditos gratuitos para emitir certificados em blockchain a uma turma de egressos. O certificado é um artefato digital reconhecido pelo mercado e, ao mesmo tempo, um <strong>ponto de re-entrada</strong> do egresso na vida institucional — abrindo caminho para pós-graduação, educação continuada, redes de relacionamento e dados de carreira.</p>
+          <a href="https://pokbrasil.github.io/marketing/pok_campanha_egressos.html" target="_blank" rel="noopener" class="apres-cta">Conheça a campanha →</a>
         </div>
 
         <!-- Condições de participação -->
