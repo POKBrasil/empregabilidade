@@ -1,0 +1,3306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow-up · Campanha Egressos e Empregabilidade 2026 · POK</title>
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://pokbrasil.github.io/content/pok_og_campanha_egressos.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:image" content="https://pokbrasil.github.io/content/pok_og_campanha_egressos.png">
+<meta property="og:title" content="Follow-up – Campanha Egressos e Empregabilidade 2026">
+<meta property="og:description" content="Acompanhamento das ações de cada instituição que aderiu à campanha: curso de egressos, cursos de cross-sell e planilha de egressos">
+<meta property="og:site_name" content="POK">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3EFF9;
+    --surface: #FFFFFF;
+    --surface-alt: #EDE6F6;
+    --ink: #1E1230;
+    --ink-muted: #5E4E7A;
+    --ink-faint: #A899C2;
+    --accent: #5123a4;
+    --accent-dark: #3a1878;
+    --accent-light: #e4dcf7;
+    --accent-mid: #7B4FCF;
+    --border: #D8CEF0;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --gold: #f1ce0a;
+    --gold-dark: #b89c00;
+    --gold-light: #fdf7c3;
+    --gold-ink: #5a4900;
+    --sidebar-w: 290px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT BASE ────────────────────────────────────────── */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ────────────────────────────────────────────── */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--accent);
+    color: #fff;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    padding: 2rem 1.5rem 1.5rem;
+    z-index: 10;
+  }
+  .sidebar-brand {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .brand-logos {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .logo-pok-slot {
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    /* Quando o SVG for inserido, ele herda o tamanho do container */
+  }
+  .logo-pok-slot svg {
+    height: 26px;
+    width: auto;
+    display: block;
+  }
+  .logo-x {
+    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .logo-anima {
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 5px 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.06);
+    white-space: nowrap;
+  }
+
+  .sidebar-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(241,206,10,0.15);
+    border: 1px solid rgba(241,206,10,0.3);
+    padding: 4px 10px;
+    border-radius: 99px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .sidebar-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .sidebar-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.4);
+    margin: 1.25rem 0 0.6rem;
+    padding-left: 12px;
+  }
+  .nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.12s, color 0.12s;
+  }
+  .nav-item a:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+  }
+  .nav-item a.active {
+    background: rgba(241,206,10,0.12);
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .nav-num {
+    font-size: 10px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.06);
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-item a.active .nav-num {
+    background: var(--gold);
+    color: var(--gold-ink);
+  }
+  .nav-sub {
+    list-style: none;
+    margin: 2px 0 6px 32px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    padding-left: 0;
+  }
+  .nav-sub li a {
+    font-size: 12px;
+    padding: 6px 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+  }
+  .nav-sub li a:hover { color: #fff; background: transparent; }
+  .nav-sub li a.active { color: var(--gold); background: transparent; font-weight: 600; }
+
+  .sidebar-foot {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+  }
+  .sidebar-foot strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+  /* ── MAIN ───────────────────────────────────────────────── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .page-header {
+    background: var(--accent);
+    color: #fff;
+    padding: 2.5rem 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(228,220,247,0.12);
+    pointer-events: none;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -70px; left: 28%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+  .header-logo {
+    display: none;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 16px;
+  }
+  .header-logo a { display: inline-block; line-height: 0; }
+  .header-logo svg { height: 32px; width: auto; display: block; }
+  .header-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(241,206,10,0.15);
+    border: 1px solid rgba(241,206,10,0.3);
+    padding: 4px 12px;
+    border-radius: 99px;
+    display: inline-block;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title {
+    font-size: clamp(22px, 3.2vw, 30px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #fff;
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title .gold { color: var(--gold); }
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 8px;
+    font-weight: 300;
+    max-width: 640px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .header-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 16px;
+    text-align: center;
+  }
+  .pill .val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold);
+    display: block;
+  }
+  .pill .lbl {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 1px;
+  }
+  .gold-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold) 0%, rgba(241,206,10,0.3) 100%);
+  }
+
+  /* ── PARCEIROS STRIP ─────────────────────────────────────── */
+  .parceiros-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .parceiros-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  .parceiros-sep {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .parceiro-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+  .case-tag {
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-left: auto;
+    font-weight: 400;
+  }
+  .case-tag strong { color: var(--ink); font-weight: 700; }
+
+  /* ── CONTENT WRAPPER ────────────────────────────────────── */
+  .content {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  section { scroll-margin-top: 24px; }
+
+  /* ── SECTION TITLES ─────────────────────────────────────── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .section-h1 {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .section-h1 .num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-dark);
+    background: var(--gold-light);
+    border: 1px solid rgba(241,206,10,0.4);
+    padding: 4px 10px;
+    border-radius: 8px;
+    letter-spacing: 0;
+  }
+  .section-lead {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    max-width: 720px;
+  }
+  .section-lead strong { color: var(--ink); font-weight: 600; }
+
+  /* ── APRESENTAÇÃO (etapa 1) ─────────────────────────────── */
+  .apres-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .apres-h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.85rem;
+  }
+  .apres-h3--top { margin-top: 1.5rem; }
+  .apres-text {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+  .apres-text strong { color: var(--ink); font-weight: 600; }
+
+  /* Título maior apenas no box "A iniciativa em uma frase" */
+  .apres-block .apres-h3 {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+  .apres-frase-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.1rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .apres-frase-cta:hover { background: var(--accent-dark); }
+
+  .apres-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+  .apres-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.25rem;
+    text-align: left;
+  }
+  .apres-stat--gold {
+    background: var(--gold-light);
+    border-color: rgba(241,206,10,0.4);
+  }
+  .apres-stat-num {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .apres-stat--gold .apres-stat-num { color: var(--gold-dark); }
+  .apres-stat-lbl {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.45;
+  }
+  .apres-stat-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--ink-muted);
+    opacity: 0.75;
+  }
+
+  .apres-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .apres-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .apres-card:hover {
+    border-color: var(--accent-light);
+    transform: translateY(-2px);
+  }
+  .apres-card-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold-dark);
+    background: var(--gold-light);
+    padding: 3px 8px;
+    border-radius: 6px;
+    align-self: flex-start;
+    letter-spacing: 0.04em;
+  }
+  .apres-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .apres-card-desc {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 800px) {
+    .apres-stats, .apres-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .apres-stats, .apres-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── CTA: Dashboard de Empregabilidade ───────────────────── */
+  .apres-cta {
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, var(--accent) 0%, #3a1878 100%);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .apres-cta-content {
+    flex: 1;
+    min-width: 260px;
+  }
+  .apres-cta-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .apres-cta-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+  .apres-cta-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.55;
+  }
+  .apres-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold);
+    color: var(--accent);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 13px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: transform 0.12s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+  .apres-cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(241, 206, 10, 0.3);
+  }
+
+  /* ── CARDS ──────────────────────────────────────────────── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .card-body {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+  .card-body p + p { margin-top: 0.7rem; }
+  .card-body strong { color: var(--ink); font-weight: 600; }
+
+  /* ── INTRO CARD ─────────────────────────────────────────── */
+  .intro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    border-left: 4px solid var(--gold);
+  }
+  .intro-card p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+  .intro-card p + p { margin-top: 0.75rem; }
+  .intro-card strong { color: var(--ink); font-weight: 600; }
+
+  /* ── INFO CARD (recorte da campanha) ────────────────────── */
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 1rem;
+    position: relative;
+  }
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(81,35,164,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .info-card-head {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #fff;
+    padding: 1.25rem 1.75rem;
+    position: relative;
+  }
+  .info-card-head::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .info-card-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .ic-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(241,206,10,0.18);
+  }
+  .info-card-title {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .ic-ies {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .ic-sep {
+    color: rgba(255,255,255,0.4);
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .ic-curso {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .info-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .info-stat {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .info-stat:last-child { border-right: none; }
+  .info-stat.highlight {
+    background: var(--gold-light);
+  }
+  .info-stat-icon {
+    font-size: 18px;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .info-stat.highlight .info-stat-icon {
+    background: rgba(241,206,10,0.3);
+  }
+  .info-stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .info-stat-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .info-stat-value strong {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin-right: 2px;
+  }
+  .info-stat.highlight .info-stat-value strong {
+    color: var(--gold-dark);
+  }
+  @media (max-width: 800px) {
+    .info-card-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .info-stat:nth-child(2n) { border-right: none; }
+    .info-stat:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 500px) {
+    .info-card-grid { grid-template-columns: 1fr; }
+    .info-stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .info-stat:last-child { border-bottom: none; }
+  }
+
+  /* ── STEPS (substeps 2a–2d) ─────────────────────────────── */
+  .substep {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .substep + .substep { margin-top: 1rem; }
+  .substep-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1.25rem 1.75rem;
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+  }
+  .substep-tag {
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .substep-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    flex: 1;
+  }
+  .substep-meta {
+    font-size: 11px;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .substep-body {
+    padding: 1.5rem 1.75rem;
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.75;
+  }
+  .substep-body p + p { margin-top: 0.7rem; }
+  .substep-body strong { color: var(--ink); font-weight: 600; }
+  .substep-body ul {
+    list-style: none;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .substep-body ul li {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    padding-left: 22px;
+    position: relative;
+  }
+  .substep-body ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold-dark);
+    font-weight: 800;
+    font-size: 12px;
+    background: var(--gold-light);
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── CERTIFICATE BLOCK (etapa 2a) ───────────────────────── */
+  .cert-block {
+    margin-top: 1.25rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.8fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .cert-specs,
+  .cert-preview {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .cert-specs-label,
+  .cert-preview-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .cert-preview-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .cert-example-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 13px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.12s;
+    border: 1px solid var(--accent);
+  }
+  .cert-example-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+  }
+  .cert-example-btn::after {
+    content: '↗';
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .cert-example-btn--block {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.85rem;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+  .spec-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-k {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .spec-v {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .cert-preview { padding: 1.25rem; }
+  .cert-placeholder {
+    flex: 1;
+    background: var(--surface);
+    border: 2px dashed var(--accent-light);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 2160 / 1699;
+    min-height: 180px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .cert-placeholder--head { aspect-ratio: 1440 / 336; }
+  .cert-placeholder--banner { aspect-ratio: 1280 / 672; }
+  /* Campos de texto a preencher (3b · Informações adicionais) */
+  .info-field {
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .info-field:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .info-field:first-of-type {
+    padding-top: 0;
+  }
+  .info-field-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .info-field-desc {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+  .cert-placeholder--logo {
+    aspect-ratio: auto;
+    min-height: 140px;
+    padding: 1.5rem;
+  }
+  /* Pair de specs lado a lado (sob a imagem do head) */
+  .cert-specs-pair {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  /* Botão "Ver exemplo" alinhado à direita, ajustado ao texto */
+  .cert-example-btn--centered {
+    display: flex;
+    width: fit-content;
+    padding: 8px 22px;
+    font-size: 11px;
+    margin: 1rem 0 0 auto;
+  }
+  @media (max-width: 700px) {
+    .cert-specs-pair { grid-template-columns: 1fr; }
+  }
+  /* Stacked variant: image on top, specs below (for very horizontal previews) */
+  .cert-block--stacked { grid-template-columns: 1fr; }
+  .cert-block--stacked .cert-specs-label { margin-bottom: 0.6rem; padding-bottom: 0.5rem; }
+  /* In stacked mode, let the image dictate height (no aspect-ratio, no min-height) */
+  .cert-block--stacked .cert-preview { padding: 0.6rem 0.85rem 0.85rem; }
+  .cert-block--stacked .cert-placeholder {
+    aspect-ratio: auto;
+    min-height: 0;
+    padding: 0;
+  }
+  .cert-block--stacked .cert-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  /* Email no stacked: limita largura porque a imagem é muito vertical */
+  .cert-block--stacked .cert-placeholder--email {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  /* Stacked specs: compact 3-column grid layout */
+  .cert-block--stacked .cert-specs {
+    padding: 1rem 1.25rem;
+  }
+  .cert-block--stacked .cert-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem 1.5rem;
+  }
+  .cert-block--stacked .spec-row {
+    padding: 0;
+    border-bottom: none;
+  }
+  .cert-block--stacked .cert-example-btn--block {
+    width: calc((100% - 3rem) / 3);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 700px) {
+    .cert-block--stacked .cert-specs-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .cert-placeholder--email { aspect-ratio: 1100 / 1996; max-width: 480px; margin: 0 auto; }
+  .cert-placeholder--filled {
+    border-style: solid;
+    border-color: var(--border);
+    padding: 0;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .cert-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .cert-placeholder:hover {
+    border-color: var(--accent-mid);
+    background: var(--surface-alt);
+  }
+  .cert-placeholder-inner {
+    text-align: center;
+    padding: 1rem;
+  }
+  .cert-placeholder-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+  .cert-placeholder-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .cert-placeholder-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 700px) {
+    .cert-block { grid-template-columns: 1fr; }
+  }
+
+  /* ── DIVULGAÇÃO COLUMNS ─────────────────────────────────── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .channel-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .channel-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .channel-icon-pok {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .channel-icon-ies {
+    width: 50px;
+    height: 50px;
+    padding: 0 4px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .channel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .channel-sub {
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 1px;
+  }
+  .channel-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .channel-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+  .channel-list .ic {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--surface-alt);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .channel-list strong { color: var(--ink); font-weight: 600; }
+
+  /* ── COMM SEQUENCE (3 momentos) ─────────────────────────── */
+  .comm-sequence {
+    margin-top: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .comm-sequence-head {
+    padding: 1.5rem 1.75rem 1.25rem;
+    background: linear-gradient(180deg, var(--surface-alt) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .comm-sequence-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .comm-sequence-eyebrow .ic-dot {
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(81,35,164,0.15);
+  }
+  .comm-sequence-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .comm-sequence-sub {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .comm-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .comm-card {
+    padding: 1.5rem 1.5rem 1.6rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .comm-card:last-child { border-right: none; }
+  .comm-card--highlight {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--surface) 100%);
+  }
+  .comm-card--highlight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .comm-card-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .comm-step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .comm-step-num--gold {
+    background: var(--gold);
+    color: var(--gold-ink);
+  }
+  .comm-step-when {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    background: var(--surface-alt);
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+  }
+  .comm-step-when--gold {
+    color: var(--gold-dark);
+    background: rgba(241,206,10,0.15);
+    border-color: rgba(241,206,10,0.4);
+  }
+  .comm-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .comm-card-desc {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .comm-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+  .comm-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 8px;
+    border-radius: 6px;
+    line-height: 1.3;
+  }
+  .comm-tag--gold {
+    color: var(--gold-dark);
+    background: rgba(241,206,10,0.18);
+  }
+  @media (max-width: 800px) {
+    .comm-cards { grid-template-columns: 1fr; }
+    .comm-card {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .comm-card:last-child { border-bottom: none; }
+    .comm-card--highlight::before {
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+  }
+
+  /* ── CRONOGRAMA / TIMELINE ──────────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--gold) 100%);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 1.25rem;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute;
+    left: -32px;
+    top: 4px;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent);
+    z-index: 1;
+  }
+  .tl-item.gold .tl-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--gold-ink);
+  }
+  .tl-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+  }
+  .tl-item.gold .tl-card {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-light);
+  }
+  .tl-week {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .tl-item.gold .tl-week { color: var(--gold-dark); }
+  .tl-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tl-desc {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .tl-desc strong { color: var(--ink); font-weight: 600; }
+
+  /* ── BASE DE ALUNOS BLOCK ───────────────────────────────── */
+  .base-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 2rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .base-bar .icon { font-size: 28px; flex-shrink: 0; }
+  .base-content { flex: 1; min-width: 240px; }
+  .base-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .base-content p {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .base-stats {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .base-chip {
+    background: var(--gold);
+    color: var(--gold-ink);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+  .base-chip.outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── FINAL CTA ──────────────────────────────────────────── */
+  .final-cta {
+    background: var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2.25rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .final-cta .ftxt { flex: 1; min-width: 240px; }
+  .final-cta h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .final-cta p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+  }
+  .final-cta a {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--gold-ink);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.12s;
+  }
+  .final-cta a:hover { transform: translateY(-1px); }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  .page-footer {
+    background: var(--accent-dark);
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 1.25rem 2rem;
+    font-size: 12px;
+  }
+  .page-footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .case-detail { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .content { padding: 1.5rem 1.25rem 3rem; }
+    .page-header { padding: 1.75rem 1.25rem 1.5rem; }
+    .parceiros-strip { padding: 0.75rem 1.25rem; }
+    .substep-head { padding: 1rem 1.25rem; flex-wrap: wrap; }
+    .substep-body { padding: 1.25rem; }
+    .case-detail { grid-template-columns: 1fr; }
+  }
+
+    /* ── MOBILE EXTRAS V2 ───────────────────────────────────── */
+  /* Anti-overflow global */
+  body, html { overflow-x: hidden; max-width: 100%; }
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* CRÍTICO: layout flex precisa virar coluna em mobile */
+  @media (max-width: 900px) {
+    .content { padding: 1.5rem 1.25rem 3rem !important; max-width: 100%; }
+    .channel-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* Header title em mobile */
+  @media (max-width: 600px) {
+    .header-title { font-size: 22px !important; line-height: 1.25 !important; }
+    .header-sub { font-size: 13px; }
+    .section-h1 { font-size: 22px; line-height: 1.2; }
+    .section-h1 .num { font-size: 14px; }
+    .section-lead { font-size: 14px; }
+    .page-header { padding: 1.5rem 1.25rem !important; }
+  }
+
+  /* Apres CTA em mobile */
+  @media (max-width: 700px) {
+    .apres-cta {
+      padding: 1.25rem;
+      gap: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .apres-cta-content { min-width: 0 !important; width: 100%; }
+    .apres-cta-title { font-size: 16px; }
+    .apres-cta-desc { font-size: 12px; }
+    .apres-cta-btn { width: 100%; justify-content: center; }
+  }
+
+  /* Cert-block sempre coluna em mobile */
+  @media (max-width: 700px) {
+    .cert-block { grid-template-columns: 1fr !important; }
+    .cert-specs-pair { grid-template-columns: 1fr !important; }
+  }
+
+  /* Cert-specs-grid: 3→2 em 600px, 1 coluna em 480px */
+  @media (max-width: 600px) {
+    .cert-block--stacked .cert-specs-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 460px) {
+    .cert-block--stacked .cert-specs-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* Botão Ver exemplo full-width em mobile */
+  @media (max-width: 600px) {
+    .cert-example-btn--centered { width: 100% !important; margin-left: 0 !important; }
+  }
+
+  /* Substep-head compacto */
+  @media (max-width: 600px) {
+    .substep-head { gap: 8px; padding: 1rem 1.25rem !important; flex-wrap: wrap; }
+    .substep-tag { font-size: 11px; padding: 4px 8px; }
+    .substep-title { font-size: 14px; line-height: 1.3; }
+    .substep-meta { font-size: 10px; }
+    .substep-body { padding: 1.25rem !important; }
+  }
+
+  /* Channel cards em mobile */
+  @media (max-width: 600px) {
+    .channel-card { padding: 1rem; }
+    .channel-icon-pok, .channel-icon-ies { width: 48px; height: 48px; font-size: 11px; }
+  }
+
+  /* Comm-sequence */
+  @media (max-width: 700px) {
+    .comm-sequence-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Final-cta wrap */
+  @media (max-width: 600px) {
+    .final-cta { flex-direction: column; padding: 1.25rem; gap: 1rem; }
+    .final-cta .ftxt { min-width: 0; }
+  }
+
+  /* Base-bar empilhado */
+  @media (max-width: 600px) {
+    .base-bar { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem; }
+    .base-stats { flex-wrap: wrap; }
+  }
+
+  /* Parceiros strip wrap */
+  @media (max-width: 600px) {
+    .parceiros-strip { flex-wrap: wrap; gap: 8px; padding: 0.75rem 1.25rem !important; }
+    .parceiros-sep { display: none; }
+  }
+
+  /* Apres stats (já têm regras existentes em 800/500, reforçar) */
+  @media (max-width: 600px) {
+    .apres-stats { grid-template-columns: 1fr 1fr !important; gap: 0.75rem; }
+  }
+
+  /* Info-card-grid (etapa 2) */
+  @media (max-width: 600px) {
+    .info-card-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 460px) {
+    .info-card-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* Timeline cronograma */
+  @media (max-width: 600px) {
+    .tl-marker { width: 36px; height: 36px; font-size: 12px; }
+    .tl-title { font-size: 14px; }
+    .tl-desc { font-size: 12.5px; }
+  }
+
+  
+  /* ── HAMBURGER MENU (mobile) ────────────────────────────── */
+  .menu-toggle {
+    display: none;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(81, 35, 164, 0.35);
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 18px;
+  }
+  .menu-toggle-bars span {
+    display: block;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .menu-overlay.active {
+    opacity: 1;
+  }
+
+  @media (max-width: 900px) {
+    .menu-toggle { display: flex; }
+    .header-logo { display: block; }
+    .menu-overlay { display: block; pointer-events: none; }
+    .menu-overlay.active { pointer-events: auto; }
+
+    /* Sidebar vira drawer lateral em mobile */
+    .layout { flex-direction: column; }
+    .sidebar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      bottom: 0 !important;
+      width: 280px !important;
+      max-width: 85vw;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      transform: translateX(-100%);
+      transition: transform 0.28s ease;
+      z-index: 95;
+      padding: 1.25rem 1.25rem 1rem !important;
+      overflow-y: auto;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+    }
+    .main {
+      margin-left: 0 !important;
+      width: 100%;
+    }
+  }
+
+
+/* ── BLOCO DE CONTATO ───────────────────────────────────── */
+  .contato-block {
+    margin-top: 2.5rem;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .contato-block::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(228, 220, 247, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .contato-block::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(241, 206, 10, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .contato-block-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 720px;
+  }
+  .contato-qr {
+    background: #fff;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    line-height: 0;
+  }
+  .contato-qr img {
+    width: 160px;
+    height: 160px;
+    display: block;
+    border-radius: 4px;
+  }
+  .contato-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .contato-cargo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .contato-info h3 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    letter-spacing: -0.5px;
+    margin: 0 0 6px 0;
+  }
+  .contato-email {
+    font-size: 17px;
+    color: var(--accent-light);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(228, 220, 247, 0.4);
+    align-self: flex-start;
+    transition: all 0.2s ease;
+    padding-bottom: 2px;
+  }
+  .contato-email:hover {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.7);
+  }
+  @media (max-width: 600px) {
+    .contato-block { padding: 1.75rem 1.25rem; }
+    .contato-block-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      justify-items: center;
+      text-align: center;
+    }
+    .contato-info { align-items: center; }
+    .contato-info h3 { font-size: 26px; }
+    .contato-email { font-size: 15px; align-self: center; }
+    .contato-qr img { width: 140px; height: 140px; }
+  }
+
+
+  /* ── BANNER DE CRÉDITOS (início de cada instituição) ─────── */
+  .cred-banner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.25rem; flex-wrap: wrap;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #fff; border-radius: var(--radius-lg);
+    padding: 1.25rem 1.75rem; margin-bottom: 1.75rem;
+    position: relative; overflow: hidden;
+  }
+  .cred-banner::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+  }
+  .cred-banner-text-wrap { min-width: 220px; }
+  .cred-banner-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
+  }
+  .cred-banner-desc {
+    font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.5;
+  }
+  .cred-amount {
+    font-size: 30px; font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
+  }
+  .cred-amount span {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55);
+    margin-left: 6px; letter-spacing: 0;
+  }
+
+  /* ── STATUS DA AÇÃO (substep-meta) ──────────────────────── */
+  .status-pendente {
+    color: var(--gold-dark); background: var(--gold-light);
+    border-color: rgba(241,206,10,0.45); font-weight: 700;
+  }
+  .status-feito {
+    color: #1c7c3f; background: #e6f4ea; border-color: #b6e0c4; font-weight: 700;
+  }
+
+  /* ── PLACEHOLDER DE CONTEÚDO ─────────────────────────────── */
+  .todo {
+    border: 1px dashed var(--border); border-radius: var(--radius);
+    padding: 1rem 1.25rem; background: var(--bg);
+    font-size: 13px; color: var(--ink-faint); font-style: italic;
+  }
+
+  /* ── GRUPO NO MENU (Ânima, Vitru) ───────────────────────── */
+  .nav-group {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px;
+    color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600;
+  }
+
+  /* ── CONTATO NA INSTITUIÇÃO ─────────────────────────────── */
+  .contato-ies {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.5rem 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+  .contato-ies-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.9rem; display: flex; align-items: center; gap: 8px;
+  }
+  .contato-ies-label::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 0 4px rgba(241,206,10,0.18);
+  }
+  .contato-ies-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem 1.5rem;
+  }
+  .contato-pessoa-nome {
+    font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px;
+  }
+  .contato-link {
+    display: block; font-size: 12.5px; color: var(--ink);
+    text-decoration: none; font-weight: 500; line-height: 1.7; word-break: break-word;
+  }
+  .contato-link:hover { text-decoration: underline; }
+  .contato-ies-todo {
+    font-size: 13px; color: var(--ink-faint); font-style: italic;
+  }
+
+  /* ── SELETOR DE IDIOMA (apenas apresentação) ────────────── */
+  .lang-switch {
+    display: inline-flex; gap: 0;
+    border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden; margin-bottom: 1.5rem;
+  }
+  .lang-btn {
+    font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; padding: 6px 16px; border: none;
+    background: var(--surface); color: var(--ink-muted); cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-btn + .lang-btn { border-left: 1px solid var(--border); }
+  .lang-btn.active { background: var(--accent); color: #fff; }
+  #apresentacao .i18n-es { display: none; }
+  #apresentacao.show-es .i18n-pt { display: none; }
+  #apresentacao.show-es .i18n-es { display: inline; }
+</style>
+</head>
+<body>
+
+<button id="menuToggle" class="menu-toggle" aria-label="Abrir menu" aria-controls="sidebar">
+  <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
+
+<div class="layout">
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logos">
+        <div class="logo-pok-slot" aria-label="Logo POK"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-hidden="true"><path fill="#fff" d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg></div>
+      </div>
+    </div>
+
+    <span class="sidebar-badge">Acompanhamento 2026</span>
+    <h2 class="sidebar-title">Follow-up por instituição</h2>
+    <p class="sidebar-sub">Acompanhe as ações de cada instituição que aderiu à campanha, do briefing ao disparo dos certificados.</p>
+
+    <div class="nav-label">Visão geral</div>
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="#apresentacao"><span class="nav-num">★</span> Apresentação da campanha</a>
+      </li>
+    </ul>
+
+    <div class="nav-label">Instituições</div>
+    <ul class="nav-list">
+      <li class="nav-item">
+        <div class="nav-group"><span class="nav-num">1</span> Ânima</div>
+        <ul class="nav-sub">
+          <li><a href="#ies-anhembi">Anhembi Morumbi</a></li>
+          <li><a href="#ies-saojudas">São Judas</a></li>
+          <li><a href="#ies-unifacs">Unifacs</a></li>
+          <li><a href="#ies-ibmr">IBMR</a></li>
+          <li><a href="#ies-una">Una</a></li>
+          <li><a href="#ies-unisul">Unisul</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <div class="nav-group"><span class="nav-num">2</span> Vitru</div>
+        <ul class="nav-sub">
+          <li><a href="#ies-uniasselvi">Uniasselvi</a></li>
+          <li><a href="#ies-unicesumar">Unicesumar</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#ies-fgv"><span class="nav-num">3</span> FGV</a>
+      </li>
+      <li class="nav-item">
+        <a href="#ies-unit"><span class="nav-num">4</span> Unit</a>
+      </li>
+      <li class="nav-item">
+        <a href="#ies-unirios"><span class="nav-num">5</span> UniRios</a>
+      </li>
+      <li class="nav-item">
+        <a href="#ies-fmu"><span class="nav-num">6</span> FMU</a>
+      </li>
+      <li class="nav-item">
+        <a href="#ies-unifase"><span class="nav-num">7</span> Unifase</a>
+      </li>
+      <li class="nav-item">
+        <a href="#ies-serratec"><span class="nav-num">8</span> Serratec</a>
+      </li>
+    </ul>
+
+    <div class="sidebar-foot">
+      <strong>Campanha Egressos e Empregabilidade 2026</strong><br>
+      Acompanhamento interno por instituição
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main">
+
+    <header class="page-header">
+      <div class="header-logo">
+        <a href="https://pok.tech" target="_blank" rel="noopener" aria-label="POK · pok.tech"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-hidden="true"><path fill="#fff" d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg></a>
+      </div>
+      <div class="header-badge">Acompanhamento por instituição</div>
+      <h1 class="header-title">Follow-up <span class="gold">Campanha Egressos e Empregabilidade</span> 2026</h1>
+      <p class="header-sub">Status das ações que cada instituição precisa concluir antes do disparo dos certificados.</p>
+    </header>
+    <div class="gold-bar"></div>
+
+    <div class="parceiros-strip">
+      <span class="parceiros-lbl">Promovida por</span>
+      <div class="parceiros-sep"></div>
+      <span class="parceiro-tag">POK</span>
+    </div>
+
+    <div class="content">
+
+      <!-- ═══ APRESENTAÇÃO DA CAMPANHA ═══ -->
+      <section id="apresentacao">
+        <div class="lang-switch">
+          <button type="button" class="lang-btn active" data-lang="pt" onclick="setApresLang('pt')">PT</button>
+          <button type="button" class="lang-btn" data-lang="es" onclick="setApresLang('es')">ES</button>
+        </div>
+
+        <h2 class="section-h1"><span class="i18n-pt">Por que a POK está fazendo esta campanha</span><span class="i18n-es">Por qué la POK está realizando esta campaña</span></h2>
+        <p class="section-lead"><span class="i18n-pt">Por que estamos conduzindo a Campanha Egressos e Empregabilidade 2026 e o que esperamos alcançar com ela.</span><span class="i18n-es">Por qué estamos llevando a cabo la Campaña Egresados y Empleabilidad 2026 y qué esperamos lograr con ella.</span></p>
+
+        <div class="base-bar">
+          <div class="icon">🎓</div>
+          <div class="base-content">
+            <h3><span class="i18n-pt">Uma emissão inédita em escala</span><span class="i18n-es">Una emisión inédita a escala</span></h3>
+            <p><span class="i18n-pt">Certificados em blockchain emitidos de uma só vez para aproximadamente 15 instituições parceiras, em agosto de 2026.</span><span class="i18n-es">Certificados en blockchain emitidos de una sola vez para aproximadamente 15 instituciones asociadas, en agosto de 2026.</span></p>
+          </div>
+          <div class="base-stats">
+            <span class="base-chip">60.000 certificados</span>
+            <span class="base-chip outline"><span class="i18n-pt">≈ 15 instituições</span><span class="i18n-es">≈ 15 instituciones</span></span>
+            <span class="base-chip outline">Agosto 2026</span>
+          </div>
+        </div>
+
+        <div class="apres-cta">
+          <div class="apres-cta-content">
+            <div class="apres-cta-eyebrow"><span class="i18n-pt">Contexto da campanha</span><span class="i18n-es">Contexto de la campaña</span></div>
+            <div class="apres-cta-title"><span class="i18n-pt">Campanha POK Egressos e Empregabilidade</span><span class="i18n-es">Campaña POK Egresados y Empleabilidad</span></div>
+            <div class="apres-cta-desc"><span class="i18n-pt">Iniciativa em parceria com instituições de ensino selecionadas, cujos resultados integram a Pesquisa de Empregabilidade conduzida junto a Semesp e Workalove.</span><span class="i18n-es">Iniciativa en alianza con instituciones de enseñanza seleccionadas, cuyos resultados integran la Investigación de Empleabilidad realizada junto a Semesp y Workalove.</span></div>
+          </div>
+          <a href="https://pokbrasil.github.io/marketing/pok_campanha_egressos.html" target="_blank" rel="noopener" class="apres-cta-btn"><span class="i18n-pt">Ver a campanha ↗</span><span class="i18n-es">Ver la campaña ↗</span></a>
+        </div>
+
+        <h3 style="font-size:18px;font-weight:800;color:var(--accent-dark);letter-spacing:-0.01em;margin:2.25rem 0 1.1rem;"><span class="i18n-pt">Objetivos da POK com a campanha</span><span class="i18n-es">Objetivos de la POK con la campaña</span></h3>
+
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot">1</div>
+            <div class="tl-card">
+              <div class="tl-week">Agosto 2026</div>
+              <div class="tl-title"><span class="i18n-pt">Emitir 60.000 certificados de uma só vez</span><span class="i18n-es">Emitir 60.000 certificados de una sola vez</span></div>
+              <div class="tl-desc"><span class="i18n-pt">Emitir, de uma só vez, <strong>60.000 certificados</strong> para várias IES, criando casos reais de uso e inundando o mercado com certificados POK.</span><span class="i18n-es">Emitir, de una sola vez, <strong>60.000 certificados</strong> para varias IES, creando casos reales de uso e inundando el mercado con certificados POK.</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot">2</div>
+            <div class="tl-card">
+              <div class="tl-title"><span class="i18n-pt">Levantar dados de empregabilidade em escala</span><span class="i18n-es">Levantar datos de empleabilidad a escala</span></div>
+              <div class="tl-desc"><span class="i18n-pt">Levantar dados da maior quantidade possível de certificados, mostrando como funciona o nosso <strong>módulo de empregabilidade</strong>. Para isso, é importante melhorar o módulo, aprimorando a captura de dados do LinkedIn e adicionando dados via CPF, em parceria com a Serasa, que não dependem de compartilhamento.</span><span class="i18n-es">Levantar datos de la mayor cantidad posible de certificados, mostrando cómo funciona nuestro <strong>módulo de empleabilidad</strong>. Para ello, es importante mejorar el módulo, perfeccionando la captura de datos de LinkedIn y agregando datos vía CPF, en alianza con Serasa, que no dependen de compartición.</span></div>
+              <div style="margin-top:0.9rem;">
+                <a href="https://pokbrasil.github.io/marketing/pok_apresentacao_geral.html" target="_blank" rel="noopener" class="cert-example-btn"><span class="i18n-pt">Ver dashboard de métricas</span><span class="i18n-es">Ver dashboard de métricas</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot">3</div>
+            <div class="tl-card">
+              <div class="tl-week"><span class="i18n-pt">Setembro 2026</span><span class="i18n-es">Septiembre 2026</span></div>
+              <div class="tl-title"><span class="i18n-pt">Apresentar o resultado no FNESP</span><span class="i18n-es">Presentar el resultado en el FNESP</span></div>
+              <div class="tl-desc"><span class="i18n-pt">O resultado será apresentado em setembro, no <strong>FNESP</strong>, em apresentação conjunta com Workalove e Semesp.</span><span class="i18n-es">El resultado se presentará en septiembre, en el <strong>FNESP</strong>, en una presentación conjunta con Workalove y Semesp.</span></div>
+            </div>
+          </div>
+
+          <div class="tl-item gold">
+            <div class="tl-dot">4</div>
+            <div class="tl-card">
+              <div class="tl-title"><span class="i18n-pt">Chamar a atenção do MEC</span><span class="i18n-es">Llamar la atención del MEC</span></div>
+              <div class="tl-desc"><span class="i18n-pt">Posicionar a POK como a camada de credenciais verificáveis que opera sobre a infraestrutura pública soberana e agrega portabilidade, empregabilidade e governança – com reconhecimento do ecossistema do MEC e atendendo às instituições.</span><span class="i18n-es">Posicionar a la POK como la capa de credenciales verificables que opera sobre la infraestructura pública soberana y agrega portabilidad, empleabilidad y gobernanza – con reconocimiento del ecosistema del MEC y atendiendo a las instituciones.</span></div>
+              <div style="margin-top:0.9rem;">
+                <a href="https://pokbrasil.github.io/marketing/pok_diploma_digital_arquitetura.html" target="_blank" rel="noopener" class="cert-example-btn"><span class="i18n-pt">Ver apresentação MEC</span><span class="i18n-es">Ver presentación MEC</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══ Anhembi Morumbi ═══ -->
+      <section id="ies-anhembi">
+        <div class="section-label">Grupo Ânima · Acompanhamento</div>
+        <h2 class="section-h1">Anhembi Morumbi</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">5.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luiz Souto</div>
+              <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
+              <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ São Judas ═══ -->
+      <section id="ies-saojudas">
+        <div class="section-label">Grupo Ânima · Acompanhamento</div>
+        <h2 class="section-h1">São Judas</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">5.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luiz Souto</div>
+              <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
+              <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Unifacs ═══ -->
+      <section id="ies-unifacs">
+        <div class="section-label">Grupo Ânima · Acompanhamento</div>
+        <h2 class="section-h1">Unifacs</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">5.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luiz Souto</div>
+              <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
+              <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ IBMR ═══ -->
+      <section id="ies-ibmr">
+        <div class="section-label">Grupo Ânima · Acompanhamento</div>
+        <h2 class="section-h1">IBMR</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">5.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luiz Souto</div>
+              <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
+              <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Una ═══ -->
+      <section id="ies-una">
+        <div class="section-label">Grupo Ânima · Acompanhamento</div>
+        <h2 class="section-h1">Una</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">5.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luiz Souto</div>
+              <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
+              <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Unisul ═══ -->
+      <section id="ies-unisul">
+        <div class="section-label">Grupo Ânima · Acompanhamento</div>
+        <h2 class="section-h1">Unisul</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">5.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luiz Souto</div>
+              <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
+              <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Uniasselvi ═══ -->
+      <section id="ies-uniasselvi">
+        <div class="section-label">Grupo Vitru · Acompanhamento</div>
+        <h2 class="section-h1">Uniasselvi</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">10.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luciano Santana Pereira</div>
+              <a class="contato-link" href="mailto:luciano.santana@vitru.com.br">luciano.santana@vitru.com.br</a>
+              <a class="contato-link" href="https://wa.me/5544999167953" target="_blank" rel="noopener">WhatsApp · 44 9 9916 7953</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Thuinie Medeiros Vilela Daros</div>
+              <a class="contato-link" href="mailto:thuinie.daros@vitru.com.br">thuinie.daros@vitru.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Milena B. Alves Moretti</div>
+              <a class="contato-link" href="mailto:milena.moretti@vitru.com.br">milena.moretti@vitru.com.br</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Unicesumar ═══ -->
+      <section id="ies-unicesumar">
+        <div class="section-label">Grupo Vitru · Acompanhamento</div>
+        <h2 class="section-h1">Unicesumar</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">10.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Luciano Santana Pereira</div>
+              <a class="contato-link" href="mailto:luciano.santana@vitru.com.br">luciano.santana@vitru.com.br</a>
+              <a class="contato-link" href="https://wa.me/5544999167953" target="_blank" rel="noopener">WhatsApp · 44 9 9916 7953</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Thuinie Medeiros Vilela Daros</div>
+              <a class="contato-link" href="mailto:thuinie.daros@vitru.com.br">thuinie.daros@vitru.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Milena B. Alves Moretti</div>
+              <a class="contato-link" href="mailto:milena.moretti@vitru.com.br">milena.moretti@vitru.com.br</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FGV ═══ -->
+      <section id="ies-fgv">
+        <div class="section-label">Instituição · Acompanhamento</div>
+        <h2 class="section-h1">FGV</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">1.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Adriana Jacoto Unger</div>
+              <a class="contato-link" href="mailto:adriana.unger@fgv.br">adriana.unger@fgv.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Amanda Silva de Jesus</div>
+              <a class="contato-link" href="mailto:amanda.jesus@fgv.br">amanda.jesus@fgv.br</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
+          </div>
+          <div class="substep-body">
+            <p>Graduação em Economia e egressos de 2023, 2024 e 2025, que cursaram a disciplina de projetos</p>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
+          </div>
+          <div class="substep-body">
+            <p>Conta criada · wallet número: xxxxx</p>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Unit ═══ -->
+      <section id="ies-unit">
+        <div class="section-label">Instituição · Acompanhamento</div>
+        <h2 class="section-h1">Unit</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">3.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Paulo Eduardo</div>
+              <a class="contato-link" href="mailto:paulo_eduardo@unit.br">paulo_eduardo@unit.br</a>
+              <a class="contato-link" href="https://wa.me/5516981630925" target="_blank" rel="noopener">WhatsApp · 16 9 8163 0925</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Janaina Machado</div>
+              <a class="contato-link" href="mailto:janaina_machado@unit.br">janaina_machado@unit.br</a>
+              <a class="contato-link" href="https://wa.me/557999440272" target="_blank" rel="noopener">WhatsApp · 79 9944 0272</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ UniRios ═══ -->
+      <section id="ies-unirios">
+        <div class="section-label">Instituição · Acompanhamento</div>
+        <h2 class="section-h1">UniRios</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">1.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-todo">Contato a ser inserido</div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FMU ═══ -->
+      <section id="ies-fmu">
+        <div class="section-label">Instituição · Acompanhamento</div>
+        <h2 class="section-h1">FMU</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">1.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Regina Tavares</div>
+              <a class="contato-link" href="mailto:regina.santos@fmu.br">regina.santos@fmu.br</a>
+              <a class="contato-link" href="https://wa.me/5511947200000" target="_blank" rel="noopener">WhatsApp · 11 94720-0000</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Unifase ═══ -->
+      <section id="ies-unifase">
+        <div class="section-label">Instituição · Acompanhamento</div>
+        <h2 class="section-h1">Unifase</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">1.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-todo">Contato a ser inserido</div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Serratec ═══ -->
+      <section id="ies-serratec">
+        <div class="section-label">Instituição · Acompanhamento</div>
+        <h2 class="section-h1">Serratec</h2>
+        <div class="cred-banner">
+          <div class="cred-banner-text-wrap">
+            <div class="cred-banner-label">Créditos da campanha</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+          </div>
+          <div class="cred-amount">1.000<span>créditos</span></div>
+        </div>
+        <div class="contato-ies">
+          <div class="contato-ies-label">Contato na instituição</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Daniel Franco</div>
+              <a class="contato-link" href="mailto:daniel.franco@serratec.org">daniel.franco@serratec.org</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Cicília Paraquett</div>
+              <a class="contato-link" href="mailto:cicilia.paraquett@serratec.org">cicilia.paraquett@serratec.org</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Ian Ferreira</div>
+              <a class="contato-link" href="mailto:ian.ferreira@serratec.org">ian.ferreira@serratec.org</a>
+            </div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">1</span>
+            <span class="substep-title">Escolher o curso de egressos a certificar</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">2</span>
+            <span class="substep-title">Escolher os cursos de cross-sell</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">3</span>
+            <span class="substep-title">Criação e verificação da conta na POK</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
+          </div>
+          <div class="substep-body">
+            <p>Conta criada · wallet número: xxxxx</p>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">4</span>
+            <span class="substep-title">Preparar material para campanha</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <ul>
+              <li>Definição de Competências</li>
+              <li>Design de Certificado</li>
+              <li>Design de Banners cross-sell</li>
+              <li>Links de Banners cross-sell</li>
+              <li>Texto de e-mail</li>
+            </ul>
+          </div>
+        </div>
+        <div class="substep">
+          <div class="substep-head">
+            <span class="substep-tag">5</span>
+            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-meta status-pendente">Pendente</span>
+          </div>
+          <div class="substep-body">
+            <div class="todo">Conteúdo a ser inserido</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="page-footer">
+      <strong>POK · Campanha Egressos e Empregabilidade 2026</strong> &nbsp;·&nbsp; Acompanhamento por instituição
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // Marca o link ativo do menu lateral conforme a seção visível
+  const sections = document.querySelectorAll('section[id], div[id^="etapa-"]');
+  const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+
+  function updateActive() {
+    let currentId = '';
+    const scrollPos = window.scrollY + 80;
+
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) {
+        currentId = sec.id;
+      }
+    });
+
+    navLinks.forEach(l => l.classList.remove('active'));
+    if (currentId) {
+      const active = document.querySelector(`.sidebar a[href="#${currentId}"]`);
+      if (active) active.classList.add('active');
+    }
+  }
+
+  window.addEventListener('scroll', updateActive);
+  updateActive();
+</script>
+
+<script>
+  function setApresLang(lang){
+    var sec = document.getElementById('apresentacao');
+    if(!sec) return;
+    sec.classList.toggle('show-es', lang === 'es');
+    sec.querySelectorAll('.lang-btn').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+  }
+</script>
+
+<script>
+  (function() {
+    const btn = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('menuOverlay');
+    if (!btn || !sidebar || !overlay) return;
+
+    function setOpen(open) {
+      btn.classList.toggle('open', open);
+      sidebar.classList.toggle('open', open);
+      overlay.classList.toggle('active', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    btn.addEventListener('click', () => setOpen(!sidebar.classList.contains('open')));
+    overlay.addEventListener('click', () => setOpen(false));
+
+    // Fecha ao clicar num link da nav
+    sidebar.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 900px)').matches) setOpen(false);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
