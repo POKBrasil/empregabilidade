@@ -1930,6 +1930,20 @@
   #apresentacao .i18n-es { display: none; }
   #apresentacao.show-es .i18n-pt { display: none; }
   #apresentacao.show-es .i18n-es { display: inline; }
+
+  /* ── DESTAQUE NO CARD DO TIMELINE (ex.: Serasa) ─────────── */
+  .tl-highlight {
+    margin-top: 0.9rem;
+    background: var(--gold-light);
+    border: 1px solid rgba(241,206,10,0.5);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .tl-highlight strong { color: var(--ink); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -2076,7 +2090,8 @@
             <div class="tl-dot">2</div>
             <div class="tl-card">
               <div class="tl-title"><span class="i18n-pt">Levantar dados de empregabilidade em escala</span><span class="i18n-es">Levantar datos de empleabilidad a escala</span></div>
-              <div class="tl-desc"><span class="i18n-pt">Levantar dados da maior quantidade possível de certificados, mostrando como funciona o nosso <strong>módulo de empregabilidade</strong>. Para isso, é importante melhorar o módulo, aprimorando a captura de dados do LinkedIn e adicionando dados via CPF, em parceria com a Serasa, que não dependem de compartilhamento.</span><span class="i18n-es">Levantar datos de la mayor cantidad posible de certificados, mostrando cómo funciona nuestro <strong>módulo de empleabilidad</strong>. Para ello, es importante mejorar el módulo, perfeccionando la captura de datos de LinkedIn y agregando datos vía CPF, en alianza con Serasa, que no dependen de compartición.</span></div>
+              <div class="tl-desc"><span class="i18n-pt">Levantar dados da maior quantidade possível de certificados, mostrando como funciona o nosso <strong>módulo de empregabilidade</strong>. Para isso, é importante melhorar o módulo, aprimorando a captura de dados do LinkedIn.</span><span class="i18n-es">Levantar datos de la mayor cantidad posible de certificados, mostrando cómo funciona nuestro <strong>módulo de empleabilidad</strong>. Para ello, es importante mejorar el módulo, perfeccionando la captura de datos de LinkedIn.</span></div>
+              <div class="tl-highlight"><span class="i18n-pt">E também vamos adicionar dados via <strong>CPF, em parceria com a Serasa</strong>, que não dependem de compartilhamento. Com a campanha, a <strong>Serasa passará a incluir os certificados POK na Carteira Digital Serasa</strong>. A Carteira Digital Serasa faz parte da base de mais de <strong>100 milhões de usuários</strong> cadastrados na plataforma Serasa. No mercado geral, pesquisas da própria instituição revelam que <strong>63% dos brasileiros</strong> já utilizam carteiras digitais no dia a dia.</span><span class="i18n-es">Y también vamos a agregar datos vía <strong>CPF, en alianza con Serasa</strong>, que no dependen de compartición. Con la campaña, <strong>Serasa pasará a incluir los certificados POK en la Carteira Digital Serasa</strong>. La Carteira Digital Serasa forma parte de la base de más de <strong>100 millones de usuarios</strong> registrados en la plataforma Serasa. En el mercado general, investigaciones de la propia institución revelan que el <strong>63% de los brasileños</strong> ya utiliza billeteras digitales en el día a día.</span></div>
               <div style="margin-top:0.9rem;">
                 <a href="https://pokbrasil.github.io/marketing/pok_apresentacao_geral.html" target="_blank" rel="noopener" class="cert-example-btn"><span class="i18n-pt">Ver dashboard de métricas</span><span class="i18n-es">Ver dashboard de métricas</span></a>
               </div>
