@@ -1944,6 +1944,23 @@
     line-height: 1.6;
   }
   .tl-highlight strong { color: var(--ink); font-weight: 700; }
+
+  /* ── LISTA DE CURSOS COM CONTAGEM ───────────────────────── */
+  .curso-lista { margin-top: 0.7rem; font-size: 12px; }
+  .curso-lista .ci {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding: 4px 0; border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .curso-lista .ci .n {
+    font-weight: 700; color: var(--ink);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .curso-lista .ci.total {
+    border-bottom: none; border-top: 1px solid var(--border);
+    margin-top: 2px; padding-top: 6px; color: var(--ink); font-weight: 600;
+  }
+  .curso-lista .ci.total .n { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -2628,10 +2645,15 @@
           <div class="substep-head">
             <span class="substep-tag">1</span>
             <span class="substep-title">Escolher o curso de egressos a certificar</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Egressos por curso</p>
+            <div class="curso-lista">
+              <div class="ci"><span>Administração</span><span class="n">4.306</span></div>
+              <div class="ci"><span>Pedagogia</span><span class="n">7.165</span></div>
+              <div class="ci total"><span>Total</span><span class="n">11.470</span></div>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2715,10 +2737,15 @@
           <div class="substep-head">
             <span class="substep-tag">1</span>
             <span class="substep-title">Escolher o curso de egressos a certificar</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Egressos por curso</p>
+            <div class="curso-lista">
+              <div class="ci"><span>Administração</span><span class="n">3.554</span></div>
+              <div class="ci"><span>Pedagogia</span><span class="n">4.800</span></div>
+              <div class="ci total"><span>Total</span><span class="n">8.353</span></div>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2735,10 +2762,10 @@
           <div class="substep-head">
             <span class="substep-tag">3</span>
             <span class="substep-title">Criação e verificação da conta na POK</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Conta criada · wallet número: <span style="font-family:monospace; word-break:break-all;">0xca8d1aacc718b348b8046b73bc56470d8cff93cb</span></p>
           </div>
         </div>
         <div class="substep">
@@ -2820,7 +2847,7 @@
             <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <p>Conta criada · wallet número: xxxxx</p>
+            <p>Conta criada · wallet número: <span style="font-family:monospace; word-break:break-all;">0x0c613047812c1770ff2c5f5092d625546c5f2d00</span></p>
           </div>
         </div>
         <div class="substep">
@@ -2948,36 +2975,57 @@
         </div>
         <div class="contato-ies">
           <div class="contato-ies-label">Contato na instituição</div>
-          <div class="contato-ies-todo">Contato a ser inserido</div>
+          <div class="contato-ies-list">
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Josmarina Maria Dantas Cavalcante</div>
+              <a class="contato-link" href="mailto:josmarina.dantas@unirios.edu.br">josmarina.dantas@unirios.edu.br</a>
+            </div>
+          </div>
         </div>
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">1</span>
             <span class="substep-title">Escolher o curso de egressos a certificar</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Egressos de vários cursos de 30/05/2026</p>
+            <div class="curso-lista">
+              <div class="ci"><span>Bacharelado em Administração</span><span class="n">16</span></div>
+              <div class="ci"><span>Bacharelado em Biomedicina</span><span class="n">50</span></div>
+              <div class="ci"><span>Bacharelado em Direito</span><span class="n">149</span></div>
+              <div class="ci"><span>Bacharelado em Enfermagem</span><span class="n">72</span></div>
+              <div class="ci"><span>Bacharelado em Farmácia</span><span class="n">22</span></div>
+              <div class="ci"><span>Bacharelado em Fisioterapia</span><span class="n">45</span></div>
+              <div class="ci"><span>Bacharelado em Odontologia</span><span class="n">96</span></div>
+              <div class="ci"><span>Bacharelado em Psicologia</span><span class="n">83</span></div>
+              <div class="ci"><span>Bacharelado em Sistema de Informação</span><span class="n">39</span></div>
+              <div class="ci"><span>EAD - Bacharelado em Administração</span><span class="n">10</span></div>
+              <div class="ci"><span>EAD - Bacharelado em Educação Física</span><span class="n">25</span></div>
+              <div class="ci"><span>Bacharelado em Educação Física</span><span class="n">2</span></div>
+              <div class="ci"><span>Licenciatura em Educação Física</span><span class="n">2</span></div>
+              <div class="ci total"><span>Total</span><span class="n">611</span></div>
+            </div>
           </div>
         </div>
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">2</span>
             <span class="substep-title">Escolher os cursos de cross-sell</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Fórum, Congressos</p>
           </div>
         </div>
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">3</span>
             <span class="substep-title">Criação e verificação da conta na POK</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Conta criada · wallet número <span style="font-family:monospace; word-break:break-all;">0x364158512bfa1593cc0691c0293b1c4693a3d669</span></p>
           </div>
         </div>
         <div class="substep">
@@ -3186,26 +3234,37 @@
               <div class="contato-pessoa-nome">Ian Ferreira</div>
               <a class="contato-link" href="mailto:ian.ferreira@serratec.org">ian.ferreira@serratec.org</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Corrêa</div>
+              <a class="contato-link" href="mailto:douglas.correa@serratec.org">douglas.correa@serratec.org</a>
+            </div>
           </div>
         </div>
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">1</span>
             <span class="substep-title">Escolher o curso de egressos a certificar</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Egressos entre 2022 e 2025</p>
+            <div class="curso-lista">
+              <div class="ci"><span>Software</span><span class="n">864</span></div>
+              <div class="ci"><span>Infraestrutura</span><span class="n">52</span></div>
+              <div class="ci"><span>Dados</span><span class="n">18</span></div>
+              <div class="ci"><span>Gestão de projetos</span><span class="n">25</span></div>
+              <div class="ci total"><span>Total</span><span class="n">959</span></div>
+            </div>
           </div>
         </div>
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">2</span>
             <span class="substep-title">Escolher os cursos de cross-sell</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Formação Low Code Salesforce</p>
           </div>
         </div>
         <div class="substep">
@@ -3215,7 +3274,7 @@
             <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <p>Conta criada · wallet número: xxxxx</p>
+            <p>Conta criada · wallet número: <span style="font-family:monospace; word-break:break-all;">0xf850f4cd1f445859650bb531439c948d26fb636f</span></p>
           </div>
         </div>
         <div class="substep">
