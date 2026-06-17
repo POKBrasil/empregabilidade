@@ -29,7 +29,7 @@
     --surface: #FFFFFF;
     --surface-alt: #EDE6F6;
     --ink: #1E1230;
-    --ink-muted: #5E4E7A;
+    --ink-muted: #000000;
     --ink-faint: #A899C2;
     --accent: #5123a4;
     --accent-dark: #3a1878;
@@ -42,9 +42,10 @@
     --gold-dark: #b89c00;
     --gold-light: #fdf7c3;
     --gold-ink: #5a4900;
-    /* Tom institucional para destaques da Vitru */
-    --vitru-green: #155652;
-    --vitru-green-light: #e1ecec;
+    /* Cor institucional da Vitru */
+    --vitru-green: #F6BE29;
+    --vitru-green-light: #fdf1cd;
+    --vitru-ink: #6b5200;
     --sidebar-w: 290px;
   }
 
@@ -291,7 +292,7 @@
   .header-title .gold { color: var(--gold); }
   .header-sub {
     font-size: 14px;
-    color: rgba(255,255,255,0.6);
+    color: #fff;
     margin-top: 8px;
     font-weight: 300;
     max-width: 640px;
@@ -367,7 +368,7 @@
   .parceiro-tag-vitru {
     font-size: 12px;
     font-weight: 600;
-    color: var(--vitru-green);
+    color: var(--vitru-ink);
     background: var(--vitru-green-light);
     padding: 4px 12px;
     border-radius: 6px;
@@ -684,7 +685,7 @@
   }
   .case-mark {
     background: var(--vitru-green);
-    color: #fff;
+    color: var(--vitru-ink);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -697,7 +698,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--vitru-green);
+    color: var(--vitru-ink);
   }
   .case-body {
     font-size: 13.5px;
@@ -1220,7 +1221,7 @@
     padding: 0;
     border-radius: 10px;
     background: var(--vitru-green);
-    color: #fff;
+    color: var(--vitru-ink);
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -1510,7 +1511,7 @@
   }
   .base-content p {
     font-size: 13px;
-    color: rgba(255,255,255,0.65);
+    color: #fff;
     line-height: 1.55;
   }
   .base-stats {
@@ -1936,7 +1937,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="#etapa-2"><span class="nav-num">2</span> Curso escolhido</a>
+        <a href="#etapa-2"><span class="nav-num">2</span> Curso escolhido<span style="margin-left:auto; display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:#34c759; color:#fff; font-size:11px; font-weight:800; flex-shrink:0;">✓</span></a>
       </li>
 
       <li class="nav-item">
@@ -2021,7 +2022,7 @@
           </div>
           <div class="apres-stat apres-stat--gold">
             <div class="apres-stat-num">20.000</div>
-            <div class="apres-stat-lbl">Créditos gratuitos no total da campanha <span class="apres-stat-note">(10.000 por IES participante)</span></div>
+            <div class="apres-stat-lbl">Créditos gratuitos no total da campanha</div>
           </div>
           <div class="apres-stat">
             <div class="apres-stat-num">3 meses</div>
@@ -2074,18 +2075,18 @@
         <!-- CTA · Dashboard de empregabilidade -->
         <div class="apres-cta">
           <div class="apres-cta-content">
-            <div class="apres-cta-eyebrow">Conheça o panorama</div>
-            <div class="apres-cta-title">Dashboard de Empregabilidade POK</div>
+            <div class="apres-cta-eyebrow">Métricas POK</div>
+            <div class="apres-cta-title">Painel de Métricas de Empregabilidade POK</div>
             <div class="apres-cta-desc">Veja como os dados captados em campanhas de egressos se transformam em inteligência institucional sobre trajetória profissional, recolocação e cross-sell.</div>
           </div>
-          <a href="https://pokbrasil.github.io/marketing/pok_empregabilidade_dashboard.html" target="_blank" rel="noopener" class="apres-cta-btn">Acessar dashboard ↗</a>
+          <a href="https://pokbrasil.github.io/marketing/pok_empregabilidade_dashboard.html" target="_blank" rel="noopener" class="apres-cta-btn">Acessar o Painel ↗</a>
         </div>
       </section>
 
       <!-- ═══ ETAPA 2 ═══ -->
       <section id="etapa-2">
         <div class="section-label">Etapa 2 · Briefing inicial</div>
-        <h2 class="section-h1"><span class="num">02</span> O curso escolhido</h2>
+        <h2 class="section-h1"><span class="num">02</span> Os cursos escolhidos<span style="margin-left:auto; align-self:center; display:inline-flex; align-items:center; gap:5px; background:#e3f6ea; color:#1a7f3c; font-size:12px; font-weight:700; padding:5px 13px; border-radius:99px; border:1px solid #b7e6c7;">✓ Concluído</span></h2>
         <p class="section-lead">Cada uma das <strong>2 instituições do grupo Vitru</strong> definirá o <strong>curso ou programa</strong> que será recorte da campanha, contemplando egressos das turmas a serem selecionadas. A escolha deve aproveitar uma base de egressos consolidada e abrir caminho natural para cross-sell com outros programas da Vitru na mesma área.</p>
 
         <div class="info-card">
@@ -2108,7 +2109,7 @@
             <div class="info-stat">
               <div>
                 <div class="info-stat-label">Instituições</div>
-                <div class="info-stat-value"><strong>2</strong> IES · 10.000 cada</div>
+                <div class="info-stat-value"><strong>2</strong> IES</div>
               </div>
             </div>
             <div class="info-stat">
@@ -2132,13 +2133,25 @@
           <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.15rem 1.3rem;">
             <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Santa Catarina</div>
             <div style="font-size:16px; font-weight:800; color:var(--accent); letter-spacing:-0.01em; margin-bottom:10px;">Uniasselvi</div>
-            <div style="font-size:13px; font-weight:600; color:var(--ink);"><strong style="font-size:20px; font-weight:800; color:var(--gold-dark); margin-right:3px;">10.000</strong>créditos</div>
+            <div style="font-size:13px; font-weight:600; color:var(--ink);"><strong style="font-size:20px; font-weight:800; color:var(--gold-dark); margin-right:3px;">11.470</strong>créditos</div>
+            <div style="margin-top:12px; padding-top:12px; border-top:1px dashed var(--border);">
+              <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:8px;">Egressos por curso</div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--ink); padding:5px 0; border-bottom:1px solid var(--border);"><span>Administração</span><strong style="font-weight:700;">4.306</strong></div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--ink); padding:5px 0; border-bottom:1px solid var(--border);"><span>Pedagogia</span><strong style="font-weight:700;">7.165</strong></div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; padding:7px 0 0;"><strong style="color:var(--ink); font-weight:700;">Total</strong><strong style="color:var(--accent); font-weight:800;">11.470</strong></div>
+            </div>
           </div>
 
           <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.15rem 1.3rem;">
             <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;">Paraná</div>
             <div style="font-size:16px; font-weight:800; color:var(--accent); letter-spacing:-0.01em; margin-bottom:10px;">Unicesumar</div>
-            <div style="font-size:13px; font-weight:600; color:var(--ink);"><strong style="font-size:20px; font-weight:800; color:var(--gold-dark); margin-right:3px;">10.000</strong>créditos</div>
+            <div style="font-size:13px; font-weight:600; color:var(--ink);"><strong style="font-size:20px; font-weight:800; color:var(--gold-dark); margin-right:3px;">8.353</strong>créditos</div>
+            <div style="margin-top:12px; padding-top:12px; border-top:1px dashed var(--border);">
+              <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:8px;">Egressos por curso</div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--ink); padding:5px 0; border-bottom:1px solid var(--border);"><span>Administração</span><strong style="font-weight:700;">3.554</strong></div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--ink); padding:5px 0; border-bottom:1px solid var(--border);"><span>Pedagogia</span><strong style="font-weight:700;">4.800</strong></div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; padding:7px 0 0;"><strong style="color:var(--ink); font-weight:700;">Total</strong><strong style="color:var(--accent); font-weight:800;">8.353</strong></div>
+            </div>
           </div>
 
         </div>
@@ -2668,7 +2681,7 @@
             </div>
             <div class="base-stats">
               <span class="base-chip">20.000 vagas</span>
-              <span class="base-chip outline">2 IES · 10.000 cada</span>
+              <span class="base-chip outline">2 IES</span>
             </div>
           </div>
         </div>
