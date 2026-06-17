@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de Dados de Empregabilidade · POK × Insper</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #5123a4;
+    --purple-dark: #3a1878;
+    --purple-light: #e4dcf7;
+    --purple-faint: #F3EFF9;
+    --ink: #1E1230;
+    --ink-muted: #5E4E7A;
+    --ink-faint: #A899C2;
+    --border: #D8CEF0;
+    --white: #fff;
+    --radius-lg: 20px;
+    --gold: #f1ce0a;
+    --gold-dark: #b89c00;
+    --gold-light: #fdf7c3;
+    --gold-ink: #5a4900;
+
+    --gov-bg: #E6F1FB;
+    --gov-border: #B5D4F4;
+    --gov-text: #0C447C;
+
+    --priv-bg: #EEEDFE;
+    --priv-border: #AFA9EC;
+    --priv-text: #3C3489;
+
+    --semi-bg: #EAF3DE;
+    --semi-border: #97C459;
+    --semi-text: #27500A;
+
+    --serasa-bg: #E1F5EE;
+    --serasa-border: #5DCAA5;
+    --serasa-text: #085041;
+
+    --blue: #3B82F6;
+    --blue-light: #DBEAFE;
+    --blue-dark: #1E40AF;
+    --green: #1D9E75;
+    --green-light: #E2F4EB;
+    --green-dark: #0f6e56;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  [id^="sec-"] { scroll-margin-top: 64px; }
+  body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); color: var(--ink); min-height: 100vh; }
+  .topnav { position: sticky; top: 0; z-index: 50; background: var(--purple-dark); border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .topnav-inner { display: flex; align-items: center; gap: 6px; padding: 11px 64px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .topnav-inner::-webkit-scrollbar { display: none; }
+  .topnav a { color: #fff; font-size: 13px; font-weight: 400; text-decoration: none; padding: 7px 15px; border-radius: 8px; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+  .topnav a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  .hero { background: var(--purple-dark); padding: 52px 64px 44px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 380px; height: 380px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: -100px; left: 20%; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+  .hero-inner { max-width: 960px; position: relative; z-index: 1; }
+  .hero-logo { width: 92px; height: auto; display: block; margin-bottom: 22px; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(228,220,247,0.15); border: 1px solid rgba(228,220,247,0.2); border-radius: 99px; padding: 5px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
+  .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: #a78bf0; display: inline-block; }
+  .hero-title { font-size: clamp(22px, 3.2vw, 36px); font-weight: 900; line-height: 1.15; color: #fff; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .hero-title em { color: var(--purple-light); font-style: normal; }
+  .hero-sub { font-size: 14px; color: #fff; line-height: 1.6; max-width: 600px; }
+
+  .gold-bar { height: 4px; background: linear-gradient(90deg, var(--gold) 0%, rgba(241,206,10,0.3) 100%); }
+
+  .intro-strip { background: var(--white); border-bottom: 1px solid var(--border); padding: 22px 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .intro-text h2 { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .intro-text p { font-size: 13px; color: #000; line-height: 1.5; }
+  .intro-logos { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .intro-logo-pok { background: var(--purple); color: #fff; font-size: 14px; font-weight: 800; padding: 8px 18px; border-radius: 10px; display: flex; align-items: center; gap: 7px; text-decoration: none; }
+  .intro-logo-pok svg { width: 16px; height: 16px; }
+  .intro-plus { font-size: 18px; color: var(--ink-faint); font-weight: 300; }
+  .intro-logo-serasa { background: #f5f5f5; border: 1px solid var(--border); color: var(--ink); font-size: 13px; font-weight: 700; padding: 8px 18px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; }
+
+  .summary-strip { background: var(--purple-faint); border-bottom: 1px solid var(--border); padding: 28px 64px; }
+  .summary-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .summary-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .summary-box { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; border-left: 4px solid var(--gold); }
+  .summary-box p { font-size: 14px; color: #000; line-height: 1.8; }
+  .summary-box strong { color: var(--ink); font-weight: 600; }
+  .research-highlight { background: var(--gold-light); border: 1px solid rgba(241,206,10,0.4); border-radius: 8px; padding: 12px 16px; margin-top: 14px; font-size: 13px; color: var(--gold-ink); display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+  .research-highlight .icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+  .research-highlight strong { font-weight: 700; color: var(--gold-dark); }
+
+  .legend-strip { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 64px; display: flex; align-items: center; gap: 6px 20px; flex-wrap: wrap; }
+  .legend-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-right: 4px; white-space: nowrap; }
+  .legend-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+  .pill-gov    { background: var(--gov-bg); color: var(--gov-text); border: 1px solid var(--gov-border); }
+  .pill-semi   { background: var(--semi-bg); color: var(--semi-text); border: 1px solid var(--semi-border); }
+  .pill-priv   { background: var(--priv-bg); color: var(--priv-text); border: 1px solid var(--priv-border); }
+  .pill-serasa { background: var(--serasa-bg); color: var(--serasa-text); border: 1px solid var(--serasa-border); }
+
+  .content { padding: 48px 64px 80px; }
+
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; margin-top: 52px; }
+  .section-header:first-child { margin-top: 0; }
+  .section-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .icon-gov    { background: var(--gov-bg); }
+  .icon-semi   { background: var(--semi-bg); }
+  .icon-priv   { background: var(--priv-bg); }
+  .icon-serasa { background: var(--purple-light); }
+  .section-title-block h2 { font-size: 20px; font-weight: 800; color: var(--ink); }
+  .section-title-block p { font-size: 13px; color: #000; margin-top: 2px; }
+
+  .cards-list { display: flex; flex-direction: column; gap: 14px; }
+
+  .base-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 18px 22px 20px; }
+  .base-card-name { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .base-card-desc { font-size: 13px; color: #000; line-height: 1.6; }
+
+  .origin-badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; padding: 3px 10px; border-radius: 99px; white-space: nowrap; margin-bottom: 8px; }
+  .badge-gov    { background: var(--gov-bg); color: var(--gov-text); border: 1px solid var(--gov-border); }
+  .badge-semi   { background: var(--semi-bg); color: var(--semi-text); border: 1px solid var(--semi-border); }
+  .badge-priv   { background: var(--priv-bg); color: var(--priv-text); border: 1px solid var(--priv-border); }
+  .badge-pok    { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple); }
+  .badge-serasa { background: var(--serasa-bg); color: var(--serasa-text); border: 1px solid var(--serasa-border); }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 6px; background: var(--purple-faint); color: var(--ink-muted); border: 1px solid var(--border); }
+
+  .lgpd-box { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--purple); border-radius: 16px; padding: 20px 24px; margin-top: 48px; display: flex; gap: 16px; }
+  .lgpd-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .lgpd-body h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .lgpd-body p { font-size: 13px; color: #000; line-height: 1.7; }
+  .lgpd-body p + p { margin-top: 8px; }
+  .lgpd-body strong { color: var(--ink); font-weight: 600; }
+
+  .pres-footer { text-align: center; padding: 40px 32px 52px; border-top: 1px solid var(--border); margin-top: 56px; }
+  .pres-footer .logo-area { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
+  .footer-logo-icon { width: 30px; height: 30px; border: 2px solid var(--purple); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+  .footer-logo-text { font-size: 20px; font-weight: 800; color: var(--purple); }
+  .pres-footer p { font-size: 13px; color: var(--ink-faint); }
+  .pres-footer a { color: var(--purple); text-decoration: none; font-weight: 600; }
+
+  .kit-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
+
+  .leituras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 22px; }
+  .leitura-box { background: var(--purple-dark); border: 1px solid var(--purple-dark); border-radius: var(--radius-lg); padding: 26px 30px; position: relative; overflow: hidden; }
+  .leitura-box::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+  .leitura-hoje::before { background: linear-gradient(90deg, var(--purple) 0%, #8b5cf6 100%); }
+  .leitura-serasa::before { background: linear-gradient(90deg, #5DCAA5 0%, #1D9E75 100%); }
+  .leitura-tag { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 4px 11px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .leitura-hoje .leitura-tag { background: rgba(228,220,247,0.2); color: var(--purple-light); border: 1px solid rgba(228,220,247,0.35); }
+  .leitura-serasa .leitura-tag { background: rgba(29,158,117,0.2); color: #5DCAA5; border: 1px solid rgba(93,202,165,0.4); }
+  .leitura-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .leitura-hoje .leitura-tag .dot { background: var(--purple-light); }
+  .leitura-serasa .leitura-tag .dot { background: #5DCAA5; }
+  .leitura-box h4 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 8px; line-height: 1.3; letter-spacing: -0.01em; }
+  .leitura-box p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .cert-cta-wrap { display: flex; justify-content: center; margin-top: 28px; }
+  .cert-cta { display: inline-flex; align-items: center; gap: 11px; background: var(--purple); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 700; letter-spacing: 0.01em; text-decoration: none; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
+  .cert-cta:hover { background: var(--purple-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(81,35,164,0.25); }
+  .cert-cta svg:first-child { width: 18px; height: 18px; }
+  .cert-cta svg:last-child { width: 15px; height: 15px; transition: transform 0.18s; }
+  .cert-cta:hover svg:last-child { transform: translateX(3px); }
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .section-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-label.on-dark { color: var(--purple-light); }
+  .section-label.on-dark .dot { background: var(--purple-light); }
+  .section-label.on-dark::after { background: rgba(228,220,247,0.25); }
+  .markets { margin-bottom: 36px; }
+  .markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .market-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 38px 36px; position: relative; overflow: hidden; transition: transform 0.18s, box-shadow 0.18s; cursor: default; text-decoration: none; color: inherit; display: flex; flex-direction: column; -webkit-user-select: text; user-select: text; }
+  .market-card::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+  .market-card.superior::before { background: linear-gradient(90deg, var(--purple) 0%, #8b5cf6 100%); }
+  .market-card.corporativo::before { background: linear-gradient(90deg, var(--blue) 0%, var(--green) 100%); }
+  .market-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(81,35,164,0.12); }
+  .market-card.superior:hover { border-color: var(--purple); }
+  .market-card.corporativo:hover { border-color: var(--blue); }
+  .market-card-icon { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .market-card.superior .market-card-icon { background: var(--purple-faint); color: var(--purple); border: 1px solid var(--purple-light); }
+  .market-card.corporativo .market-card-icon { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+  .market-card-icon svg { width: 32px; height: 32px; }
+  .market-card-pill { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; align-self: flex-start; }
+  .market-card.superior .market-card-pill { background: var(--purple-faint); color: var(--purple); border: 1px solid var(--purple-light); }
+  .market-card-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .market-card.superior .market-card-pill .dot { background: var(--purple); }
+  .market-card-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .market-card-pills .market-card-pill { margin-bottom: 0; }
+  .market-card.corporativo .market-card-pill.pill-capital { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+  .market-card.corporativo .market-card-pill.pill-capital .dot { background: var(--blue); }
+  .market-card.corporativo .market-card-pill.pill-compliance { background: var(--green-light); color: var(--green-dark); border: 1px solid #c5e4d6; }
+  .market-card.corporativo .market-card-pill.pill-compliance .dot { background: var(--green); }
+  .market-card h3 { font-size: 18px; font-weight: 800; color: #000; margin-bottom: 8px; line-height: 1.25; letter-spacing: -0.01em; }
+  .market-card-subtitle { font-size: 11px; font-weight: 700; color: #000; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; }
+  .market-card.superior .market-card-subtitle { color: var(--purple); }
+  .market-card.corporativo .market-card-subtitle { color: var(--blue-dark); }
+  .market-card-desc { font-size: 13px; color: #000; line-height: 1.65; margin-bottom: 22px; }
+  .market-card-features { list-style: none; padding: 0; margin: 0 0 28px; }
+  .market-card-features li { font-size: 12.5px; color: #000; padding: 8px 0; padding-left: 24px; position: relative; line-height: 1.5; border-bottom: 1px solid var(--border); }
+  .market-card-features li:last-child { border-bottom: none; }
+  .market-card-features li::before { content: ''; position: absolute; left: 6px; top: 16px; width: 6px; height: 6px; border-radius: 50%; }
+  .market-card.superior .market-card-features li::before { background: var(--purple); }
+  .market-card.corporativo .market-card-features li::before { background: var(--blue); }
+  .market-card.corporativo .market-card-features li.feat-compliance::before { background: var(--green); }
+  .market-card-cta { font-family: 'Poppins', sans-serif; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; border: none; cursor: pointer; transition: all 0.18s; align-self: flex-start; margin-top: auto; text-decoration: none; }
+  .market-card.superior .market-card-cta { background: #f1ce0a; color: var(--ink); }
+  .market-card.superior .market-card-cta:hover { background: #d9b800; }
+  .market-card.corporativo .market-card-cta { background: var(--blue-dark); color: #fff; }
+  .market-card.corporativo .market-card-cta:hover { background: #1538a0; }
+  .market-card-cta svg { width: 14px; height: 14px; transition: transform 0.18s; }
+  .market-card:hover .market-card-cta svg { transform: translateX(3px); }
+  .campaign-box { position: relative; overflow: hidden; background: var(--purple-dark); border-radius: var(--radius-lg); padding: 44px 46px; margin-top: 48px; }
+  .campaign-box::before { content: ''; position: absolute; top: -90px; right: -90px; width: 340px; height: 340px; border-radius: 50%; background: rgba(123,79,207,0.28); pointer-events: none; }
+  .campaign-box::after { content: ''; position: absolute; bottom: -110px; left: 30%; width: 260px; height: 260px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+  .campaign-box > * { position: relative; z-index: 1; }
+  .campaign-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(241,206,10,0.12); border: 1px solid rgba(241,206,10,0.4); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 14px; border-radius: 99px; margin-bottom: 20px; }
+  .campaign-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+  .campaign-box h2 { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px; }
+  .campaign-intro { font-size: 14px; color: #fff; line-height: 1.7; max-width: 780px; margin-bottom: 24px; }
+  .campaign-intro strong { color: #fff; font-weight: 700; }
+  .campaign-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+  .campaign-stat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 22px 26px; }
+  .campaign-stat-num { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .campaign-stat-label { font-size: 12px; color: #fff; }
+  .campaign-opp { display: flex; gap: 14px; background: linear-gradient(120deg, rgba(241,206,10,0.10), rgba(241,206,10,0.03)); border: 1px solid rgba(241,206,10,0.3); border-radius: 14px; padding: 22px 26px; margin-bottom: 28px; }
+  .campaign-opp .spark { color: var(--gold); font-size: 15px; flex-shrink: 0; line-height: 1.4; }
+  .campaign-opp-body h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .campaign-opp-body p { font-size: 13px; color: #fff; line-height: 1.65; }
+  .campaign-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--ink); padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
+  .campaign-cta:hover { background: #d9b800; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(241,206,10,0.25); }
+  .campaign-cta svg { width: 15px; height: 15px; transition: transform 0.18s; }
+  .campaign-cta:hover svg { transform: translateX(3px); }
+  .cta-final { position: relative; overflow: hidden; background: var(--purple-dark); border-radius: var(--radius-lg); padding: 48px 46px; margin-top: 56px; text-align: center; }
+  .cta-final::before { content: ''; position: absolute; top: -90px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(123,79,207,0.28); pointer-events: none; }
+  .cta-final::after { content: ''; position: absolute; bottom: -110px; left: 12%; width: 240px; height: 240px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+  .cta-final-inner { position: relative; z-index: 2; }
+  .cta-contact-card { display: inline-flex; flex-direction: row; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 22px 28px; gap: 22px; text-align: left; }
+  .cta-contact-qr { width: 96px; height: 96px; flex-shrink: 0; background: #fff; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; }
+  .cta-contact-qr img { width: 100%; height: 100%; display: block; }
+  .cta-contact-info { display: flex; flex-direction: column; gap: 4px; }
+  .cta-contact-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+  .cta-contact-name { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+  .cta-contact-email { font-size: 14px; font-weight: 500; color: var(--purple-light); text-decoration: none; transition: color 0.18s; word-break: break-all; }
+  .cta-contact-email:hover { color: #fff; }
+  .bases-intro { margin-bottom: 4px; }
+  .bases-intro-title { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.22; margin: 6px 0 12px; }
+  .bases-intro p { font-size: 14px; color: #000; line-height: 1.7; max-width: 840px; }
+  @media (max-width: 800px) {
+    .hero { padding: 36px 24px 32px; }
+    .topnav-inner { padding: 10px 16px; }
+    .intro-strip { padding: 20px 24px; }
+    .legend-strip { padding: 14px 24px; }
+    .summary-strip { padding: 24px; }
+    .leituras-grid { grid-template-columns: 1fr; gap: 14px; }
+    .markets-grid { grid-template-columns: 1fr; }
+    .campaign-box { padding: 32px 24px; }
+    .campaign-stats { grid-template-columns: 1fr; }
+    .cta-final { padding: 36px 22px; }
+    .cta-contact-card { padding: 18px 22px; flex-direction: column; gap: 16px; text-align: center; }
+    .cta-contact-qr { width: 110px; height: 110px; }
+    .content { padding: 32px 24px 56px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#sec-pok">O que é a POK</a>
+    <a href="#sec-eixos">Os dois eixos de atuação</a>
+    <a href="#sec-contexto">Contexto da pesquisa</a>
+    <a href="#sec-bases">Bases de pesquisa</a>
+    <a href="#sec-campanha">Caso Real de Aplicação</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <a href="https://pok.tech/" target="_blank" style="display: block; width: fit-content;" aria-label="POK – pok.tech">
+      <svg class="hero-logo" viewBox="0 0 600 197.3" xmlns="http://www.w3.org/2000/svg" aria-label="POK">
+      <path fill="#fff" d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/>
+    </svg>
+    </a>
+    <div class="hero-eyebrow"><span></span> Pesquisa sobre empregabilidade</div>
+    <h1 class="hero-title">POK Microcredenciais, Certificação e Empregabilidade</h1>
+    <p class="hero-sub">Mapeamento de fontes para enriquecer a ferramenta de empregabilidade da POK</p>
+  </div>
+</header>
+
+<div class="intro-strip">
+  <div class="intro-logos">
+    <a href="https://www.pok.tech/pt" target="_blank" class="intro-logo-pok">pok</a>
+    <span class="intro-plus">×</span>
+    <a href="https://www.insper.edu.br" target="_blank" class="intro-logo-serasa">Insper</a>
+  </div>
+</div>
+
+<div class="gold-bar"></div>
+
+<div class="summary-strip">
+  <div class="section-label" id="sec-pok"><span class="dot"></span> O que é a POK</div>
+  <div class="summary-box" style="margin-bottom: 20px; border-left-color: #5123a4;">
+    <p>A <strong>POK</strong> é uma infraestrutura de emissão de certificados, micro-credenciais e badges com tecnologia blockchain. Cada certificado emitido é único, verificável e vinculado ao CPF do portador – garantindo autenticidade e rastreabilidade ao longo de toda a trajetória profissional e acadêmica do indivíduo. A POK adota <strong>todos os padrões internacionais de interoperabilidade</strong>, como <strong>Open Badge 3.0</strong> e <strong>ELM Europass</strong>, garantindo que os certificados sejam reconhecidos e lidos por sistemas de credenciais em todo o mundo.</p>
+    <p style="margin-top: 10px;">Além da emissão de certificados, a POK oferece ferramentas para a <strong>criação de trilhas micro-certificadas por competências</strong> – permitindo que instituições estruturem percursos formativos modulares – e ferramentas de <strong>leitura e análise de dados de empregabilidade</strong>, que cruzam os certificados emitidos com a trajetória profissional real dos portadores.</p>
+    <p style="margin-top: 10px;">Esta apresentação integra a <strong>conversa estratégica entre POK e Insper</strong> para explorar como o <strong>Instituto de Pesquisa Insper</strong> pode enriquecer essa infraestrutura, ampliando o valor dos certificados para portadores, instituições e empresas.</p>
+  </div>
+  <div class="markets">
+    <div class="section-label" id="sec-eixos"><span class="dot"></span> Os dois eixos de atuação</div>
+    <div class="markets-grid">
+
+      <div class="market-card superior">
+        <div class="market-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <span class="market-card-pill"><span class="dot"></span> Educacional</span>
+        <h3>Empregabilidade de alunos e egressos</h3>
+        <div class="market-card-subtitle">Universidades, faculdades e escolas técnicas</div>
+        <p class="market-card-desc">Instituições de ensino passam a oferecer aos próprios alunos certificados, microcredenciais e trilhas formativas micro-certificadas em blockchain – verificáveis publicamente, portáveis e ligados ao LinkedIn. A POK, em paralelo, levanta dados de empregabilidade dos cursos através da certificação, gerando evidências que valorizam a formação perante MEC, mercado e candidatos.</p>
+        <ul class="market-card-features">
+          <li>Certificação digital em blockchain integrada ao seu ecossistema</li>
+          <li>Microcredenciais e trilhas formativas micro-certificadas por competências</li>
+          <li>Dados de empregabilidade dos cursos levantados através da certificação</li>
+          <li>Evidência viva para indicadores MEC e ranking institucional</li>
+        </ul>
+        <a class="market-card-cta" href="https://pokbrasil.github.io/marketing/pok_empregabilidade_dashboard_publico.html" target="_blank">
+          Ver métricas de empregabilidade
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="market-card corporativo">
+        <div class="market-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="7" x2="11" y2="7"/><line x1="13" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="11" y2="11"/><line x1="13" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="11" y2="15"/><line x1="13" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <div class="market-card-pills">
+          <span class="market-card-pill pill-capital"><span class="dot"></span> Capital humano</span>
+          <span class="market-card-pill pill-compliance"><span class="dot"></span> Compliance</span>
+        </div>
+        <h3>Capital humano, compliance e ESG</h3>
+        <div class="market-card-subtitle">Empresas, RH e programas de desenvolvimento humano</div>
+        <p class="market-card-desc">Empresas passam a oferecer aos colaboradores certificados, microcredenciais e trilhas formativas micro-certificadas em blockchain. Através da certificação, a POK mede o impacto real da formação: internalização de habilidades, mobilidade interna, retenção e auditabilidade regulatória – conectando-se diretamente ao pilar Social do ESG e aos programas de sustentabilidade corporativa.</p>
+        <ul class="market-card-features">
+          <li>Certificação digital em blockchain integrada ao seu ecossistema</li>
+          <li>Microcredenciais e trilhas formativas micro-certificadas por competências</li>
+          <li>Dados de desenvolvimento humano e mobilidade interna levantados através da certificação</li>
+          <li class="feat-compliance">Compliance: vigência e categorias regulatórias auditáveis</li>
+        </ul>
+        <a class="market-card-cta" href="https://pokbrasil.github.io/marketing/pok_corporativo_dashboard_publico.html" target="_blank">
+          Ver métricas corporativas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cert-cta-wrap">
+    <a class="cert-cta" href="https://certificates.the-world-university.com/c/5b7dd714-80e5-4c21-8beb-13130c3d0478" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5"/></svg>
+      Conheça o certificado POK
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <div class="section-label" id="sec-contexto" style="margin-top: 20px;"><span class="dot"></span> Contexto da pesquisa</div>
+  <div class="leituras-grid">
+    <div class="leitura-box leitura-hoje">
+      <span class="leitura-tag"><span class="dot"></span> Hoje · Leitura via LinkedIn</span>
+      <h4>Métricas levantadas através da certificação</h4>
+      <p>Hoje, a ferramenta de empregabilidade da POK lê informações públicas do LinkedIn a partir do momento em que o portador compartilha o certificado – empregos conquistados, promoções e mobilidade profissional.</p>
+    </div>
+    <div class="leitura-box leitura-serasa">
+      <span class="leitura-tag"><span class="dot"></span> Em breve · Parceria Serasa Experian</span>
+      <h4>Leitura por CPF, sem depender do compartilhamento</h4>
+      <p>O CPF gravado no certificado permitirá uma segunda fonte de leitura – vínculo formal, renda estimada e trajetória de mercado via base Serasa Experian –, sempre em formato agregado e anonimizado.</p>
+    </div>
+  </div>
+</div>
+
+<main class="content">
+
+  <div class="bases-intro">
+    <div class="section-label" id="sec-bases"><span class="dot"></span> Bases de pesquisa</div>
+    <h2 class="bases-intro-title">As bases que a POK quer integrar ao painel de métricas</h2>
+    <p>As fontes mapeadas a seguir são as bases de dados de empregabilidade que a POK gostaria de adicionar ao seu painel de métricas, em parceria de pesquisa com o Insper, combinando bases governamentais, semi-públicas e privadas.</p>
+  </div>
+
+  <!-- BLOCO 1 -->
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>1. Bases governamentais – emprego formal CLT</h2>
+      <p>Controladas pelo Ministério do Trabalho, INSS e Receita Federal. Cobertura nacional obrigatória.</p>
+    </div>
+  </div>
+
+  <div class="cards-list">
+
+    <div class="base-card">
+      <div class="origin-badge badge-gov">Governamental</div>
+      <div class="base-card-name">CAGED – Cadastro Geral de Empregados e Desempregados</div>
+      <div class="base-card-desc">Registro mensal de admissões e demissões de trabalhadores regidos pela CLT, gerido pelo Ministério do Trabalho. Informa setor (CNAE), cargo (CBO), salário, município e tipo de movimentação a cada evento. Passou a ser alimentado via eSocial em 2020.</div>
+      <div class="tag-row">
+        <span class="tag">Atualização mensal</span>
+        <span class="tag">Nível individual por CPF</span>
+        <span class="tag">Vínculo CLT</span>
+        <span class="tag">Via eSocial desde 2020</span>
+      </div>
+    </div>
+
+    <div class="base-card">
+      <div class="origin-badge badge-gov">Governamental</div>
+      <div class="base-card-name">RAIS – Relação Anual de Informações Sociais</div>
+      <div class="base-card-desc">Declaração anual obrigatória de empregadores. Contém remuneração histórica, jornada de trabalho, escolaridade, tempo de emprego e CBO por trabalhador. Cobre CLT e servidores públicos.</div>
+      <div class="tag-row">
+        <span class="tag">Periodicidade anual</span>
+        <span class="tag">CPF identificado</span>
+        <span class="tag">Cobre CLT + servidores</span>
+        <span class="tag">Histórico desde 1975</span>
+        <span class="tag">Dados de escolaridade</span>
+      </div>
+    </div>
+
+    <div class="base-card">
+      <div class="origin-badge badge-gov">Governamental – INSS</div>
+      <div class="base-card-name">CNIS – Cadastro Nacional de Informações Sociais</div>
+      <div class="base-card-desc">Base do INSS que consolida vínculos previdenciários, remunerações e contribuições por CPF. É a fonte que popula a Carteira de Trabalho Digital (CTPS Digital). Cobre CLT, autônomos contribuintes individuais e servidores.</div>
+      <div class="tag-row">
+        <span class="tag">CPF como chave</span>
+        <span class="tag">Cobre CLT + autônomos</span>
+        <span class="tag">Histórico desde 1994</span>
+        <span class="tag">Base da CTPS Digital</span>
+      </div>
+    </div>
+
+    <div class="base-card">
+      <div class="origin-badge badge-gov">Governamental – MTE + Receita Federal</div>
+      <div class="base-card-name">eSocial</div>
+      <div class="base-card-desc">Sistema unificado que absorveu o CAGED e parte da RAIS. Registra em tempo quase real admissões, demissões, férias, afastamentos, salário e jornada. É a fonte primária de dados trabalhistas no Brasil hoje – a mais completa e atualizada.</div>
+      <div class="tag-row">
+        <span class="tag">Quase tempo real</span>
+        <span class="tag">CLT + doméstico + MEI</span>
+        <span class="tag">Fonte primária atual</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BLOCO 2 -->
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>2. Bases semi-públicas – intermediação e estágios</h2>
+      <p>Entidades conveniadas com o poder público ou sistemas nacionais de intermediação de mão de obra.</p>
+    </div>
+  </div>
+
+  <div class="cards-list">
+
+    <div class="base-card">
+      <div class="origin-badge badge-semi">Semi-pública – MTE</div>
+      <div class="base-card-name">SINE / Portal Emprega Brasil</div>
+      <div class="base-card-desc">Sistema Nacional de Emprego. Cadastro de trabalhadores e vagas mantido pelo Ministério do Trabalho. Registra perfil do trabalhador – formação, experiência declarada, pretensão salarial, candidaturas e encaminhamentos para vagas.</div>
+      <div class="tag-row">
+        <span class="tag">CPF como chave</span>
+        <span class="tag">Cobre trabalhadores sem vínculo ativo</span>
+        <span class="tag">Dados autoinformados</span>
+        <span class="tag">Perfil + histórico declarado</span>
+      </div>
+    </div>
+
+    <div class="base-card">
+      <div class="origin-badge badge-semi">Semi-pública – CNPq / MCTI</div>
+      <div class="base-card-name">Plataforma Lattes – CNPq</div>
+      <div class="base-card-desc">Sistema de currículo acadêmico e científico do CNPq, adotado por todas as instituições de ensino superior e agências de fomento do Brasil. Registra formação, vínculos institucionais, produção científica, orientações, projetos e bolsas. Especialmente relevante para o público da POK – egressos de graduação e pós-graduação têm Lattes como documento de identidade profissional no mundo acadêmico.</div>
+      <div class="tag-row">
+        <span class="tag">CPF como identificador</span>
+        <span class="tag">Formação acadêmica completa</span>
+        <span class="tag">Vínculos institucionais</span>
+        <span class="tag">Produção científica</span>
+        <span class="tag">Bolsas e financiamentos</span>
+        <span class="tag">API pública disponível</span>
+      </div>
+    </div>
+
+    <div class="base-card">
+      <div class="origin-badge badge-semi">Semi-pública – entidade conveniada</div>
+      <div class="base-card-name">CIEE / IEL / Nube e outros centros de integração</div>
+      <div class="base-card-desc">Entidades que registram contratos de estágio, área de atuação, instituição de ensino e empresa contratante. Cobrem o segmento de estagiários, que não têm vínculo CLT mas estão inseridos no mercado. Especialmente relevante para o público universitário da POK.</div>
+      <div class="tag-row">
+        <span class="tag">Contratos de estágio</span>
+        <span class="tag">CPF do estudante</span>
+        <span class="tag">Vincula empresa + curso + instituição</span>
+        <span class="tag">Complementar ao histórico CLT</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BLOCO 3 -->
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>3. Bases privadas – mercado e qualificação</h2>
+      <p>Plataformas com dados ricos e atualizados, via parcerias e consentimento do usuário.</p>
+    </div>
+  </div>
+
+  <div class="cards-list">
+
+    <div class="base-card">
+      <div class="origin-badge badge-priv">Privada</div>
+      <div class="base-card-name">Plataformas de recrutamento – Catho, Infojobs, Vagas.com, Gupy</div>
+      <div class="base-card-desc">Currículos, candidaturas, histórico de empregos declarado, pretensão salarial e formação. Cobertura ampla de trabalhadores que buscam recolocação – perfil complementar ao do LinkedIn.</div>
+      <div class="tag-row">
+        <span class="tag">CPF opcional no cadastro</span>
+        <span class="tag">Dados autoinformados</span>
+        <span class="tag">Cobre CLT e informais</span>
+        <span class="tag">Pretensão salarial</span>
+        <span class="tag">Complementa LinkedIn</span>
+      </div>
+    </div>
+
+    <div class="base-card">
+      <div class="origin-badge badge-priv">Privada / Institucional</div>
+      <div class="base-card-name">Plataformas de cursos e certificações – Coursera, Alura, Fundação Bradesco, Senai, Sebrae</div>
+      <div class="base-card-desc">Registro de cursos concluídos, certificações, trilhas de qualificação e carga horária. Dados de upskilling que complementam a empregabilidade com informações sobre desenvolvimento profissional contínuo – especialmente relevante para o contexto da POK.</div>
+      <div class="tag-row">
+        <span class="tag">CPF como chave possível</span>
+        <span class="tag">Certificações e cursos</span>
+        <span class="tag">Complementa certificados POK</span>
+        <span class="tag">Trilhas de qualificação</span>
+        <span class="tag">Cobre informais e autônomos</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LGPD -->
+  <div class="lgpd-box">
+    <div class="lgpd-icon">⚖️</div>
+    <div class="lgpd-body">
+      <h3>LGPD e consentimento do titular</h3>
+      <p>Todos os dados atrelados ao CPF de uma pessoa física são <strong>dados pessoais</strong> sob a LGPD. Para consultar qualquer base em nome do portador do certificado, é obrigatório o <strong>consentimento explícito, informado e específico</strong> do titular.</p>
+      <p>O certificado POK já contém o CPF – e o <strong>fluxo de consentimento pode ser embutido</strong> no momento em que o portador ativa ou compartilha o certificado, tornando o processo transparente e legal.</p>
+    </div>
+  </div>
+
+  <!-- CAMPANHA -->
+  <div class="section-label" id="sec-campanha" style="margin-top: 56px;"><span class="dot"></span> Caso Real de Aplicação</div>
+  <div class="campaign-box" style="margin-top: 0;">
+    <span class="campaign-eyebrow"><span class="dot"></span> Campanha em andamento</span>
+    <h2>POK Egressos e Empregabilidade 2026</h2>
+    <p class="campaign-intro">A POK está em execução de uma <strong>campanha nacional de pesquisa de empregabilidade</strong> junto a instituições de ensino superior. A pesquisa acompanha a trajetória profissional de aproximadamente <strong>30 mil egressos</strong>, e seus resultados serão apresentados no <strong>FNESP – Fórum Nacional do Ensino Superior Particular, em setembro de 2026.</strong></p>
+    <div class="campaign-stats">
+      <div class="campaign-stat">
+        <div class="campaign-stat-num">~30 mil</div>
+        <div class="campaign-stat-label">egressos acompanhados na pesquisa</div>
+      </div>
+      <div class="campaign-stat">
+        <div class="campaign-stat-num">FNESP · Set 2026</div>
+        <div class="campaign-stat-label">apresentação dos resultados</div>
+      </div>
+    </div>
+    <div class="campaign-opp">
+      <span class="spark">✦</span>
+      <div class="campaign-opp-body">
+        <h4>A oportunidade POK + Insper</h4>
+        <p>A inclusão de dados acessíveis via CPF permitiria à POK enriquecer esta pesquisa nacional ainda antes de sua apresentação no FNESP – agregando às leituras hoje obtidas por compartilhamento em rede social as leituras por CPF, com peso estatístico e profundidade significativamente superiores. A base de 30 mil egressos é também o terreno ideal para um primeiro estudo conjunto POK × Insper em escala.</p>
+      </div>
+    </div>
+    <a class="campaign-cta" href="#" target="_blank">
+      Conheça a campanha
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <!-- CONTATO -->
+  <div class="section-label" id="sec-contato" style="margin-top: 56px;"><span class="dot"></span> Contato</div>
+  <div class="cta-final" style="margin-top: 0;">
+    <div class="cta-final-inner">
+      <div class="cta-contact-card">
+        <div class="cta-contact-qr">
+          <img src="data:image/png;base64,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" alt="QR Code de contato – Carolina Ferrés">
+        </div>
+        <div class="cta-contact-info">
+          <div class="cta-contact-label">Contato POK</div>
+          <div class="cta-contact-name">Carolina Ferrés</div>
+          <a href="mailto:carolina@pok.tech" class="cta-contact-email">carolina@pok.tech</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="pres-footer">
+  <p>Muito mais que certificados digitais · <a href="https://pok.tech" target="_blank">pok.tech</a></p>
+</footer>
+
+</body>
+</html>
