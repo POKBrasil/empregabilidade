@@ -21,7 +21,7 @@
     --bg: #F3EFF9;
     --surface: #FFFFFF;
     --surface-alt: #EDE6F6;
-    --ink: #1E1230;
+    --ink: #000000;
     --ink-muted: #5E4E7A;
     --ink-faint: #A899C2;
     --accent: #5123a4;
@@ -129,7 +129,7 @@
   }
   .sidebar-sub {
     font-size: 12px;
-    color: rgba(255,255,255,0.55);
+    color: #fff;
     font-weight: 300;
     line-height: 1.55;
     margin-bottom: 1.5rem;
@@ -140,7 +140,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.4);
+    color: #fff;
     margin: 1.25rem 0 0.6rem;
     padding-left: 12px;
   }
@@ -156,7 +156,7 @@
     gap: 10px;
     padding: 9px 12px;
     border-radius: 8px;
-    color: rgba(255,255,255,0.78);
+    color: #fff;
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
@@ -174,8 +174,8 @@
   .nav-num {
     font-size: 10px;
     font-weight: 800;
-    color: rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.06);
+    color: var(--gold-ink);
+    background: var(--gold);
     width: 22px; height: 22px;
     border-radius: 6px;
     display: flex;
@@ -196,7 +196,7 @@
   .nav-sub li a {
     font-size: 12px;
     padding: 6px 12px;
-    color: rgba(255,255,255,0.55);
+    color: #fff;
     font-weight: 400;
   }
   .nav-sub li a:hover { color: #fff; background: transparent; }
@@ -207,10 +207,10 @@
     padding-top: 1.25rem;
     border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 10px;
-    color: rgba(255,255,255,0.35);
+    color: #fff;
     line-height: 1.6;
   }
-  .sidebar-foot strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+  .sidebar-foot strong { color: #fff; font-weight: 600; }
 
   /* ── MAIN ───────────────────────────────────────────────── */
   .main {
@@ -281,7 +281,7 @@
   .header-title .gold { color: var(--gold); }
   .header-sub {
     font-size: 14px;
-    color: rgba(255,255,255,0.6);
+    color: #fff;
     margin-top: 8px;
     font-weight: 300;
     max-width: 640px;
@@ -400,6 +400,9 @@
     display: flex;
     align-items: baseline;
     gap: 14px;
+  }
+  .section-h1.sub {
+    font-weight: 600;
   }
   .section-h1 .num {
     font-size: 14px;
@@ -847,22 +850,22 @@
   }
   .substep-body ul li {
     font-size: 13px;
-    color: var(--ink-muted);
+    color: #000;
     line-height: 1.6;
     padding-left: 22px;
     position: relative;
   }
   .substep-body ul li::before {
-    content: '✓';
+    content: '·';
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--gold-dark);
+    color: var(--ink-muted);
     font-weight: 800;
-    font-size: 12px;
-    background: var(--gold-light);
+    font-size: 16px;
+    background: none;
     width: 16px; height: 16px;
-    border-radius: 4px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1410,7 +1413,7 @@
     color: var(--ink);
     line-height: 1.6;
   }
-  .tl-desc strong { color: var(--ink); font-weight: 600; }
+  .tl-desc strong { color: var(--ink); font-weight: 400; }
 
   /* ── BASE DE ALUNOS BLOCK ───────────────────────────────── */
   .base-bar {
@@ -1480,7 +1483,7 @@
   }
   .final-cta p {
     font-size: 13px;
-    color: rgba(255,255,255,0.65);
+    color: #fff;
     line-height: 1.6;
   }
   .final-cta a {
@@ -1501,12 +1504,12 @@
   /* ── FOOTER ─────────────────────────────────────────────── */
   .page-footer {
     background: var(--accent-dark);
-    color: rgba(255,255,255,0.45);
+    color: #fff;
     text-align: center;
     padding: 1.25rem 2rem;
     font-size: 12px;
   }
-  .page-footer strong { color: rgba(255,255,255,0.8); }
+  .page-footer strong { color: #fff; }
 
   /* ── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 900px) {
@@ -1845,14 +1848,14 @@
     text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
   }
   .cred-banner-desc {
-    font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.5;
+    font-size: 12.5px; color: #fff; line-height: 1.5;
   }
   .cred-amount {
     font-size: 30px; font-weight: 800; color: #fff;
     letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
   }
   .cred-amount span {
-    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55);
+    font-size: 13px; font-weight: 600; color: #fff;
     margin-left: 6px; letter-spacing: 0;
   }
 
@@ -1876,7 +1879,7 @@
   .nav-group {
     display: flex; align-items: center; gap: 10px;
     padding: 9px 12px; border-radius: 8px;
-    color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600;
+    color: #fff; font-size: 13px; font-weight: 600;
   }
 
   /* ── CONTATO NA INSTITUIÇÃO ─────────────────────────────── */
@@ -1893,8 +1896,7 @@
     margin-bottom: 0.9rem; display: flex; align-items: center; gap: 8px;
   }
   .contato-ies-label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--gold); box-shadow: 0 0 0 4px rgba(241,206,10,0.18);
+    content: none;
   }
   .contato-ies-list {
     display: grid;
@@ -1989,6 +1991,9 @@
       <li class="nav-item">
         <a href="#apresentacao"><span class="nav-num">★</span> Apresentação da campanha</a>
       </li>
+      <li class="nav-item">
+        <a href="#cronograma"><span class="nav-num">📅</span> Cronograma</a>
+      </li>
     </ul>
 
     <div class="nav-label">Instituições</div>
@@ -1996,6 +2001,7 @@
       <li class="nav-item">
         <div class="nav-group"><span class="nav-num">1</span> Ânima</div>
         <ul class="nav-sub">
+          <li><a href="#contrato-anima">Contrato</a></li>
           <li><a href="#ies-anhembi">Anhembi Morumbi</a></li>
           <li><a href="#ies-saojudas">São Judas</a></li>
           <li><a href="#ies-unifacs">Unifacs</a></li>
@@ -2007,21 +2013,34 @@
       <li class="nav-item">
         <div class="nav-group"><span class="nav-num">2</span> Vitru</div>
         <ul class="nav-sub">
+          <li><a href="#contrato-vitru">Contrato</a></li>
           <li><a href="#ies-uniasselvi">Uniasselvi</a></li>
           <li><a href="#ies-unicesumar">Unicesumar</a></li>
+          <li><a href="#ies-conecta">Conecta</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <a href="#ies-unit"><span class="nav-num">3</span> Unit</a>
       </li>
       <li class="nav-item">
-        <a href="#ies-unirios"><span class="nav-num">4</span> UniRios</a>
+        <div class="nav-group"><span class="nav-num">3</span> UniRios</div>
+        <ul class="nav-sub">
+          <li><a href="#ies-unirios">Contrato</a></li>
+          <li><a href="#ies-unirios">Acompanhamento</a></li>
+        </ul>
       </li>
       <li class="nav-item">
-        <a href="#ies-fmu"><span class="nav-num">5</span> FMU</a>
+        <div class="nav-group"><span class="nav-num">4</span> FMU</div>
+        <ul class="nav-sub">
+          <li><a href="#ies-fmu">Contrato</a></li>
+          <li><a href="#ies-fmu">Acompanhamento</a></li>
+        </ul>
       </li>
       <li class="nav-item">
-        <a href="#ies-serratec"><span class="nav-num">6</span> Serratec</a>
+        <div class="nav-group"><span class="nav-num">5</span> Serratec</div>
+        <ul class="nav-sub">
+          <li><a href="#ies-serratec">Contrato</a></li>
+          <li><a href="#ies-serratec">Acompanhamento</a></li>
+        </ul>
       </li>
     </ul>
 
@@ -2066,34 +2085,25 @@
           <div class="icon">🎓</div>
           <div class="base-content">
             <h3><span class="i18n-pt">Uma emissão inédita em escala</span><span class="i18n-es">Una emisión inédita a escala</span></h3>
-            <p><span class="i18n-pt">Certificados em blockchain emitidos de uma só vez para aproximadamente 15 instituições parceiras, em agosto de 2026.</span><span class="i18n-es">Certificados en blockchain emitidos de una sola vez para aproximadamente 15 instituciones asociadas, en agosto de 2026.</span></p>
+            <p><span class="i18n-pt">Certificados em blockchain emitidos de uma só vez para 12 instituições parceiras, entre julho e setembro de 2026.</span><span class="i18n-es">Certificados en blockchain emitidos de una sola vez para 12 instituciones asociadas, entre julio y septiembre de 2026.</span></p>
           </div>
           <div class="base-stats">
-            <span class="base-chip">50.000 certificados</span>
-            <span class="base-chip outline"><span class="i18n-pt">≈ 15 instituições</span><span class="i18n-es">≈ 15 instituciones</span></span>
-            <span class="base-chip outline">Agosto 2026</span>
+            <span class="base-chip">65.000 certificados</span>
+            <span class="base-chip outline"><span class="i18n-pt">12 instituições</span><span class="i18n-es">12 instituciones</span></span>
+            <span class="base-chip outline">Jul/Ago/Set 2026</span>
           </div>
         </div>
 
-        <div class="apres-cta">
-          <div class="apres-cta-content">
-            <div class="apres-cta-eyebrow"><span class="i18n-pt">Contexto da campanha</span><span class="i18n-es">Contexto de la campaña</span></div>
-            <div class="apres-cta-title"><span class="i18n-pt">Campanha POK Egressos e Empregabilidade</span><span class="i18n-es">Campaña POK Egresados y Empleabilidad</span></div>
-            <div class="apres-cta-desc"><span class="i18n-pt">Iniciativa em parceria com instituições de ensino selecionadas, cujos resultados integram a Pesquisa de Empregabilidade conduzida junto a Semesp e Workalove.</span><span class="i18n-es">Iniciativa en alianza con instituciones de enseñanza seleccionadas, cuyos resultados integran la Investigación de Empleabilidad realizada junto a Semesp y Workalove.</span></div>
-          </div>
-          <a href="https://pokbrasil.github.io/marketing/pok_campanha_egressos.html" target="_blank" rel="noopener" class="apres-cta-btn"><span class="i18n-pt">Ver a campanha ↗</span><span class="i18n-es">Ver la campaña ↗</span></a>
-        </div>
-
-        <h3 style="font-size:18px;font-weight:800;color:var(--accent-dark);letter-spacing:-0.01em;margin:2.25rem 0 1.1rem;"><span class="i18n-pt">Objetivos da POK com a campanha</span><span class="i18n-es">Objetivos de POK con la campaña</span></h3>
+        <h3 style="font-size:18px;font-weight:800;color:#1E1230;letter-spacing:-0.01em;margin:2.25rem 0 1.1rem;"><span class="i18n-pt">Objetivos da POK com a campanha</span><span class="i18n-es">Objetivos de POK con la campaña</span></h3>
 
         <div class="timeline">
 
           <div class="tl-item">
             <div class="tl-dot">1</div>
             <div class="tl-card">
-              <div class="tl-week">Agosto 2026</div>
-              <div class="tl-title"><span class="i18n-pt">Emitir 50.000 certificados de uma só vez</span><span class="i18n-es">Emitir 50.000 certificados de una sola vez</span></div>
-              <div class="tl-desc"><span class="i18n-pt">Emitir, de uma só vez, <strong>50.000 certificados</strong> para várias IES, criando casos reais de uso e inundando o mercado com certificados POK.</span><span class="i18n-es">Emitir, de una sola vez, <strong>50.000 certificados</strong> para varias IES, creando casos reales de uso e inundando el mercado con certificados POK.</span></div>
+              <div class="tl-week">Jul–Set 2026</div>
+              <div class="tl-title"><span class="i18n-pt">Emitir 65.000 certificados de uma só vez</span><span class="i18n-es">Emitir 65.000 certificados de una sola vez</span></div>
+              <div class="tl-desc"><span class="i18n-pt">Emitir, de uma só vez, <strong>65.000 certificados</strong> para várias IES, criando casos reais de uso e inundando o mercado com certificados POK.</span><span class="i18n-es">Emitir, de una sola vez, <strong>65.000 certificados</strong> para varias IES, creando casos reales de uso e inundando el mercado con certificados POK.</span></div>
             </div>
           </div>
 
@@ -2101,10 +2111,9 @@
             <div class="tl-dot">2</div>
             <div class="tl-card">
               <div class="tl-title"><span class="i18n-pt">Levantar dados de empregabilidade em escala</span><span class="i18n-es">Levantar datos de empleabilidad a escala</span></div>
-              <div class="tl-desc"><span class="i18n-pt">Levantar dados da maior quantidade possível de certificados, mostrando como funciona o nosso <strong>módulo de empregabilidade</strong>. Para isso, é importante melhorar o módulo, aprimorando a captura de dados do LinkedIn.</span><span class="i18n-es">Levantar datos de la mayor cantidad posible de certificados, mostrando cómo funciona nuestro <strong>módulo de empleabilidad</strong>. Para ello, es importante mejorar el módulo, perfeccionando la captura de datos de LinkedIn.</span></div>
-              <div class="tl-highlight"><span class="i18n-pt">E também vamos adicionar dados via <strong>CPF, em parceria com a Serasa</strong>, que não dependem de compartilhamento. Com a campanha, a <strong>Serasa passará a incluir os certificados POK na Carteira Digital Serasa</strong>. A Carteira Digital Serasa faz parte da base de mais de <strong>100 milhões de usuários</strong> cadastrados na plataforma Serasa. No mercado geral, pesquisas da própria instituição revelam que <strong>63% dos brasileiros</strong> já utilizam carteiras digitais no dia a dia.</span><span class="i18n-es">Y también vamos a agregar datos vía <strong>CPF, en alianza con Serasa</strong>, que no dependen de compartición. Con la campaña, <strong>Serasa pasará a incluir los certificados POK en la Carteira Digital Serasa</strong>. La Carteira Digital Serasa forma parte de la base de más de <strong>100 millones de usuarios</strong> registrados en la plataforma Serasa. En el mercado general, investigaciones de la propia institución revelan que el <strong>63% de los brasileños</strong> ya utiliza billeteras digitales en el día a día.</span></div>
+              <div class="tl-desc"><span class="i18n-pt">Levantar dados da maior quantidade possível de certificados, mostrando como funciona o nosso <strong>módulo de empregabilidade</strong>.</span><span class="i18n-es">Levantar datos de la mayor cantidad posible de certificados, mostrando cómo funciona nuestro <strong>módulo de empleabilidad</strong>.</span></div>
               <div style="margin-top:0.9rem;">
-                <a href="https://pokbrasil.github.io/marketing/pok_apresentacao_geral.html" target="_blank" rel="noopener" class="cert-example-btn"><span class="i18n-pt">Ver dashboard de métricas</span><span class="i18n-es">Ver dashboard de métricas</span></a>
+                <a href="https://pokbrasil.github.io/marketing/pok_empregabilidade_dashboard_publico.html" target="_blank" rel="noopener" class="cert-example-btn"><span class="i18n-pt">Painel de Empregabilidade</span><span class="i18n-es">Painel de Empregabilidade</span></a>
               </div>
             </div>
           </div>
@@ -2115,16 +2124,17 @@
               <div class="tl-week"><span class="i18n-pt">Setembro 2026</span><span class="i18n-es">Septiembre 2026</span></div>
               <div class="tl-title"><span class="i18n-pt">Apresentar o resultado no FNESP</span><span class="i18n-es">Presentar el resultado en el FNESP</span></div>
               <div class="tl-desc"><span class="i18n-pt">O resultado será apresentado em setembro, no <strong>FNESP</strong>, em apresentação conjunta com Workalove e Semesp.</span><span class="i18n-es">El resultado se presentará en septiembre, en el <strong>FNESP</strong>, en una presentación conjunta con Workalove y Semesp.</span></div>
+              <div style="margin-top:0.9rem;"><a href="https://pokbrasil.github.io/marketing/pok_campanha_egressos.html" target="_blank" rel="noopener" class="cert-example-btn">Campanha de Empregabilidade</a></div>
             </div>
           </div>
 
-          <div class="tl-item gold">
+          <div class="tl-item">
             <div class="tl-dot">4</div>
             <div class="tl-card">
               <div class="tl-title"><span class="i18n-pt">Chamar a atenção do MEC</span><span class="i18n-es">Llamar la atención del MEC</span></div>
               <div class="tl-desc"><span class="i18n-pt">Posicionar a POK como a camada de credenciais verificáveis que opera sobre a infraestrutura pública soberana e agrega portabilidade, empregabilidade e governança – com reconhecimento do ecossistema do MEC e atendendo às instituições.</span><span class="i18n-es">Posicionar a POK como la capa de credenciales verificables que opera sobre la infraestructura pública soberana y agrega portabilidad, empleabilidad y gobernanza – con reconocimiento del ecosistema del MEC y atendiendo a las instituciones.</span></div>
               <div style="margin-top:0.9rem;">
-                <a href="https://pokbrasil.github.io/marketing/pok_diploma_digital_arquitetura.html" target="_blank" rel="noopener" class="cert-example-btn"><span class="i18n-pt">Ver apresentação MEC</span><span class="i18n-es">Ver presentación MEC</span></a>
+                <a href="https://pokbrasil.github.io/empregabilidade/pok-credencial-egressos-empregabilidade.html" target="_blank" rel="noopener" class="cert-example-btn">Apresentação MEC</a>
               </div>
             </div>
           </div>
@@ -2132,10 +2142,58 @@
         </div>
       </section>
 
+      <!-- ═══ Cronograma ═══ -->
+      <section id="cronograma">
+        <div class="section-label">Visão geral · Acompanhamento</div>
+        <h2 class="section-h1">Cronograma</h2>
+
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot">1</div>
+            <div class="tl-card">
+              <div class="tl-week">Da assinatura até 30 de julho de 2026</div>
+              <div class="tl-title">Fase de Preparação</div>
+              <div class="tl-desc">Entrega das bases de egressos por parte da Ânima, configuração da plataforma e preparação das emissões pela POK.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot">2</div>
+            <div class="tl-card">
+              <div class="tl-week">1º a 15 de agosto de 2026</div>
+              <div class="tl-title">Fase de Disparo</div>
+              <div class="tl-desc">Disponibilização dos créditos, emissão e disparo dos 30.000 Certificados Digitais em Blockchain.</div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot">3</div>
+            <div class="tl-card">
+              <div class="tl-week">16 de agosto a 15 de setembro de 2026</div>
+              <div class="tl-title">Fase de Empregabilidade</div>
+              <div class="tl-desc">Acompanhamento das publicações em redes sociais profissionais, coleta de dados de carreira e empregabilidade, e consolidação dos dados para elaboração da Pesquisa de Empregabilidade da POK, a ser apresentada no evento FNESP nos dias 16 e 17 de setembro de 2026.</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══ Ânima ═══ -->
+      <div id="contrato-anima" style="margin-bottom:0.75rem;scroll-margin-top:24px;">
+        <div class="section-label">Grupo · Acompanhamento</div>
+        <h2 class="section-h1" style="margin-bottom:0.75rem;">Grupo Ânima</h2>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.5rem;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+          <div>
+            <div style="font-size:13.5px;color:#000;">Contrato de Adesão à Campanha.</div>
+          </div>
+          <a href="https://docs.google.com/document/d/1mnnNNYhcmGEuYhq2WZjKKCtlA26u-nOnfe7GwLXJl0A/edit?usp=sharing" target="_blank" rel="noopener" class="cert-example-btn" style="background:var(--surface);color:var(--accent);border:1.5px solid var(--accent);">Ver contrato</a>
+        </div>
+      </div>
+
       <!-- ═══ Anhembi Morumbi ═══ -->
       <section id="ies-anhembi">
-        <div class="section-label">Grupo Ânima · Acompanhamento</div>
-        <h2 class="section-h1">Anhembi Morumbi</h2>
+        <h2 class="section-h1 sub">Anhembi Morumbi</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2151,6 +2209,18 @@
               <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
               <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Priscila Luiza Rodrigues de Siqueira</div>
+              <a class="contato-link" href="mailto:priscila.siqueira@animaeducacao.com.br">priscila.siqueira@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Clarice da Cunha Mesquita Corso</div>
+              <a class="contato-link" href="mailto:fernanda.corso@animaeducacao.com.br">fernanda.corso@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Sudre Souza</div>
+              <a class="contato-link" href="mailto:douglas.sudre@animaeducacao.com.br">douglas.sudre@animaeducacao.com.br</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2161,6 +2231,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_anima_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Ânima</a></div>
           </div>
         </div>
         <div class="substep">
@@ -2213,8 +2284,7 @@
 
       <!-- ═══ São Judas ═══ -->
       <section id="ies-saojudas">
-        <div class="section-label">Grupo Ânima · Acompanhamento</div>
-        <h2 class="section-h1">São Judas</h2>
+        <h2 class="section-h1 sub">São Judas</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2230,6 +2300,18 @@
               <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
               <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Priscila Luiza Rodrigues de Siqueira</div>
+              <a class="contato-link" href="mailto:priscila.siqueira@animaeducacao.com.br">priscila.siqueira@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Clarice da Cunha Mesquita Corso</div>
+              <a class="contato-link" href="mailto:fernanda.corso@animaeducacao.com.br">fernanda.corso@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Sudre Souza</div>
+              <a class="contato-link" href="mailto:douglas.sudre@animaeducacao.com.br">douglas.sudre@animaeducacao.com.br</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2240,6 +2322,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_anima_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Ânima</a></div>
           </div>
         </div>
         <div class="substep">
@@ -2292,8 +2375,7 @@
 
       <!-- ═══ Unifacs ═══ -->
       <section id="ies-unifacs">
-        <div class="section-label">Grupo Ânima · Acompanhamento</div>
-        <h2 class="section-h1">Unifacs</h2>
+        <h2 class="section-h1 sub">Unifacs</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2309,6 +2391,18 @@
               <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
               <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Priscila Luiza Rodrigues de Siqueira</div>
+              <a class="contato-link" href="mailto:priscila.siqueira@animaeducacao.com.br">priscila.siqueira@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Clarice da Cunha Mesquita Corso</div>
+              <a class="contato-link" href="mailto:fernanda.corso@animaeducacao.com.br">fernanda.corso@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Sudre Souza</div>
+              <a class="contato-link" href="mailto:douglas.sudre@animaeducacao.com.br">douglas.sudre@animaeducacao.com.br</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2319,6 +2413,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_anima_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Ânima</a></div>
           </div>
         </div>
         <div class="substep">
@@ -2371,8 +2466,7 @@
 
       <!-- ═══ IBMR ═══ -->
       <section id="ies-ibmr">
-        <div class="section-label">Grupo Ânima · Acompanhamento</div>
-        <h2 class="section-h1">IBMR</h2>
+        <h2 class="section-h1 sub">IBMR</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2388,6 +2482,18 @@
               <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
               <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Priscila Luiza Rodrigues de Siqueira</div>
+              <a class="contato-link" href="mailto:priscila.siqueira@animaeducacao.com.br">priscila.siqueira@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Clarice da Cunha Mesquita Corso</div>
+              <a class="contato-link" href="mailto:fernanda.corso@animaeducacao.com.br">fernanda.corso@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Sudre Souza</div>
+              <a class="contato-link" href="mailto:douglas.sudre@animaeducacao.com.br">douglas.sudre@animaeducacao.com.br</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2398,6 +2504,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_anima_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Ânima</a></div>
           </div>
         </div>
         <div class="substep">
@@ -2450,8 +2557,7 @@
 
       <!-- ═══ Una ═══ -->
       <section id="ies-una">
-        <div class="section-label">Grupo Ânima · Acompanhamento</div>
-        <h2 class="section-h1">Una</h2>
+        <h2 class="section-h1 sub">Una</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2467,6 +2573,18 @@
               <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
               <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Priscila Luiza Rodrigues de Siqueira</div>
+              <a class="contato-link" href="mailto:priscila.siqueira@animaeducacao.com.br">priscila.siqueira@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Clarice da Cunha Mesquita Corso</div>
+              <a class="contato-link" href="mailto:fernanda.corso@animaeducacao.com.br">fernanda.corso@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Sudre Souza</div>
+              <a class="contato-link" href="mailto:douglas.sudre@animaeducacao.com.br">douglas.sudre@animaeducacao.com.br</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2477,6 +2595,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_anima_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Ânima</a></div>
           </div>
         </div>
         <div class="substep">
@@ -2529,8 +2648,7 @@
 
       <!-- ═══ Unisul ═══ -->
       <section id="ies-unisul">
-        <div class="section-label">Grupo Ânima · Acompanhamento</div>
-        <h2 class="section-h1">Unisul</h2>
+        <h2 class="section-h1 sub">Unisul</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2546,6 +2664,18 @@
               <a class="contato-link" href="mailto:luiz.souto@animaeducacao.com.br">luiz.souto@animaeducacao.com.br</a>
               <a class="contato-link" href="https://wa.me/5511971108043" target="_blank" rel="noopener">WhatsApp · 11 97110 8043</a>
             </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Priscila Luiza Rodrigues de Siqueira</div>
+              <a class="contato-link" href="mailto:priscila.siqueira@animaeducacao.com.br">priscila.siqueira@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Clarice da Cunha Mesquita Corso</div>
+              <a class="contato-link" href="mailto:fernanda.corso@animaeducacao.com.br">fernanda.corso@animaeducacao.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Douglas Sudre Souza</div>
+              <a class="contato-link" href="mailto:douglas.sudre@animaeducacao.com.br">douglas.sudre@animaeducacao.com.br</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2556,6 +2686,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_anima_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Ânima</a></div>
           </div>
         </div>
         <div class="substep">
@@ -2606,16 +2737,27 @@
         </div>
       </section>
 
+      <!-- ═══ Vitru ═══ -->
+      <div id="contrato-vitru" style="margin-bottom:0.75rem;scroll-margin-top:24px;">
+        <div class="section-label">Grupo · Acompanhamento</div>
+        <h2 class="section-h1" style="margin-bottom:0.75rem;">Grupo Vitru</h2>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.5rem;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+          <div>
+            <div style="font-size:13.5px;color:#000;">Contrato de Adesão à Campanha.</div>
+          </div>
+          <span style="font-size:13px;color:var(--ink-muted);font-style:italic;">Link a ser inserido</span>
+        </div>
+      </div>
+
       <!-- ═══ Uniasselvi ═══ -->
       <section id="ies-uniasselvi">
-        <div class="section-label">Grupo Vitru · Acompanhamento</div>
-        <h2 class="section-h1">Uniasselvi</h2>
+        <h2 class="section-h1 sub">Uniasselvi</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
             <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
           </div>
-          <div class="cred-amount">10.000<span>créditos</span></div>
+          <div class="cred-amount">11.470<span>créditos</span></div>
         </div>
         <div class="contato-ies">
           <div class="contato-ies-label">Contato na instituição</div>
@@ -2647,6 +2789,9 @@
               <div class="ci"><span>Administração</span><span class="n">4.306</span></div>
               <div class="ci"><span>Pedagogia</span><span class="n">7.165</span></div>
               <div class="ci total"><span>Total</span><span class="n">11.470</span></div>
+            </div>
+            <div style="margin-top:1rem;">
+              <a href="https://pokbrasil.github.io/empregabilidade/pok_vitru_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Uniasselvi</a>
             </div>
           </div>
         </div>
@@ -2700,14 +2845,13 @@
 
       <!-- ═══ Unicesumar ═══ -->
       <section id="ies-unicesumar">
-        <div class="section-label">Grupo Vitru · Acompanhamento</div>
-        <h2 class="section-h1">Unicesumar</h2>
+        <h2 class="section-h1 sub">Unicesumar</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
             <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
           </div>
-          <div class="cred-amount">10.000<span>créditos</span></div>
+          <div class="cred-amount">8.353<span>créditos</span></div>
         </div>
         <div class="contato-ies">
           <div class="contato-ies-label">Contato na instituição</div>
@@ -2739,6 +2883,9 @@
               <div class="ci"><span>Administração</span><span class="n">3.554</span></div>
               <div class="ci"><span>Pedagogia</span><span class="n">4.800</span></div>
               <div class="ci total"><span>Total</span><span class="n">8.353</span></div>
+            </div>
+            <div style="margin-top:1rem;">
+              <a href="https://pokbrasil.github.io/empregabilidade/pok_vitru_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Unicesumar</a>
             </div>
           </div>
         </div>
@@ -2790,40 +2937,126 @@
         </div>
       </section>
 
-      <!-- ═══ Unit ═══ -->
-      <section id="ies-unit">
-        <div class="section-label">Instituição · Acompanhamento</div>
-        <h2 class="section-h1">Unit</h2>
+      <!-- ═══ Conecta ═══ -->
+      <section id="ies-conecta">
+        <h2 class="section-h1 sub">Conecta</h2>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
-            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos egressos desta instituição</div>
+            <div class="cred-banner-desc">Certificados em blockchain disponíveis para emissão aos participantes deste evento</div>
           </div>
-          <div class="cred-amount">3.000<span>créditos</span></div>
+          <div class="cred-amount">12.000<span>créditos</span></div>
         </div>
         <div class="contato-ies">
           <div class="contato-ies-label">Contato na instituição</div>
           <div class="contato-ies-list">
             <div class="contato-pessoa">
-              <div class="contato-pessoa-nome">Paulo Eduardo</div>
-              <a class="contato-link" href="mailto:paulo_eduardo@unit.br">paulo_eduardo@unit.br</a>
-              <a class="contato-link" href="https://wa.me/5516981630925" target="_blank" rel="noopener">WhatsApp · 16 9 8163 0925</a>
+              <div class="contato-pessoa-nome">Luciano Santana Pereira</div>
+              <a class="contato-link" href="mailto:luciano.santana@vitru.com.br">luciano.santana@vitru.com.br</a>
+              <a class="contato-link" href="https://wa.me/554499167953" target="_blank" rel="noopener">WhatsApp · 44 9 9916 7953</a>
             </div>
             <div class="contato-pessoa">
-              <div class="contato-pessoa-nome">Janaina Machado</div>
-              <a class="contato-link" href="mailto:janaina_machado@unit.br">janaina_machado@unit.br</a>
-              <a class="contato-link" href="https://wa.me/557999440272" target="_blank" rel="noopener">WhatsApp · 79 9944 0272</a>
+              <div class="contato-pessoa-nome">Thuinie Medeiros Vilela Daros</div>
+              <a class="contato-link" href="mailto:thuinie.daros@vitru.com.br">thuinie.daros@vitru.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Milena B. Alves Moretti</div>
+              <a class="contato-link" href="mailto:milena.moretti@vitru.com.br">milena.moretti@vitru.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Elisabeth Penzlien Tafner</div>
+              <a class="contato-link" href="mailto:elisabeth.tafner@vitru.com.br">elisabeth.tafner@vitru.com.br</a>
+            </div>
+            <div class="contato-pessoa">
+              <div class="contato-pessoa-nome">Fernanda Lodi Vendruscolo</div>
+              <a class="contato-link" href="mailto:fernanda.lodi@vitru.com.br">fernanda.lodi@vitru.com.br</a>
             </div>
           </div>
         </div>
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">1</span>
-            <span class="substep-title">Escolher o curso de egressos a certificar</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-title">Escolher trilha formativa a certificar</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Trilha Formativa escolhida foi <strong>Conecta Vitru 2026</strong>, com 8 badges intermediárias + certificado final:</p>
+
+            <!-- Trilha Conecta Vitru 2026 -->
+            <div style="margin-top:1.25rem;">
+
+              <!-- Header da trilha -->
+              <div style="margin-bottom:1rem;">
+                <span style="font-size:14px;font-weight:700;color:var(--ink);">Trilha Conecta Vitru 2026</span>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:1rem;">
+
+                <!-- Módulo 1 -->
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;">
+                    <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c0533a;background:#fdf0ec;border:1px solid #f0ded8;border-radius:6px;padding:3px 10px;">Módulo 1</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--ink);">Pré-Abertura</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:0.4rem;">
+                    <div style="display:flex;align-items:baseline;gap:8px;font-size:13.5px;color:var(--ink);"><span><strong>Competência:</strong> Avaliações Discursivas Para Mobilização da Aprendizagem</span><span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:0.08em;color:#888;background:#f5f5f5;border:1px solid #ddd;border-radius:6px;padding:2px 8px;white-space:nowrap;">OPCIONAL</span></div>
+                    <div style="display:flex;align-items:baseline;gap:8px;font-size:13.5px;color:var(--ink);padding-top:0.2rem;"><span><strong>Competência:</strong> Boas Práticas em Gestão e Docência</span><span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:0.08em;color:#888;background:#f5f5f5;border:1px solid #ddd;border-radius:6px;padding:2px 8px;white-space:nowrap;">OPCIONAL</span></div>
+                  </div>
+                </div>
+
+
+                <!-- Módulo 2 -->
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;">
+                    <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c0533a;background:#fdf0ec;border:1px solid #f0ded8;border-radius:6px;padding:3px 10px;">Módulo 2</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--ink);">Abertura</span>
+                  </div>
+                  <div style="display:flex;align-items:baseline;gap:8px;font-size:13.5px;color:var(--ink);"><span><strong>Competência:</strong> Como Ensinamos Quando Entendemos Como se Aprende</span><span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:0.08em;color:#1c7c3f;background:#e6f4ea;border:1px solid #b6e0c4;border-radius:6px;padding:2px 8px;white-space:nowrap;">OBRIGATÓRIO</span></div>
+                </div>
+
+
+                <!-- Módulo 3 -->
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;">
+                    <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c0533a;background:#fdf0ec;border:1px solid #f0ded8;border-radius:6px;padding:3px 10px;">Módulo 3</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--ink);">Oficinas e Mercado</span>
+                    <span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#1c7c3f;background:#e6f4ea;border:1px solid #b6e0c4;border-radius:6px;padding:2px 8px;white-space:nowrap;">MÍNIMO 3 OBRIGATÓRIO</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:0.4rem;">
+                    <div style="font-size:13.5px;color:var(--ink);"><strong>Competência:</strong> Google Cloud e Educação</div>
+                    <div style="font-size:13.5px;color:var(--ink);"><strong>Competência:</strong> Uso Prático dos Recursos do Microsoft Teams para Potencializar os Estudos e a Interação com os Alunos</div>
+                    <div style="font-size:13.5px;color:var(--ink);"><strong>Competência:</strong> Masp: Laboratório de Observação</div>
+                    <div style="display:flex;align-items:baseline;gap:8px;font-size:13.5px;color:var(--ink);"><span><strong>Competência:</strong> Novo Enade, Novas Perspectivas: Aprendizagem, Competências e Desempenho</span><span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:0.08em;color:#1c7c3f;background:#e6f4ea;border:1px solid #b6e0c4;border-radius:6px;padding:2px 8px;white-space:nowrap;">OBRIGATÓRIO</span></div>
+                  </div>
+                </div>
+
+
+                <!-- Módulo 4 -->
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;">
+                    <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c0533a;background:#fdf0ec;border:1px solid #f0ded8;border-radius:6px;padding:3px 10px;">Módulo 4</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--ink);">Pesquisa e Inovação</span>
+                  </div>
+                  <div style="display:flex;align-items:baseline;gap:8px;font-size:13.5px;color:var(--ink);"><span><strong>Competência:</strong> 3º Encontro de Pesquisa e Inovação</span><span style="margin-left:auto;font-size:10px;font-weight:700;letter-spacing:0.08em;color:#1c7c3f;background:#e6f4ea;border:1px solid #b6e0c4;border-radius:6px;padding:2px 8px;white-space:nowrap;">OBRIGATÓRIO</span></div>
+                </div>
+
+
+                <!-- Certificação Final -->
+                <div>
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.4rem;">
+                    <span style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c0533a;background:#fdf0ec;border:1px solid #f0ded8;border-radius:6px;padding:3px 10px;">Certificação Final</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--ink);">Certificado · Conecta Vitru 2026</span>
+                  </div>
+                  <div style="font-size:13px;color:var(--ink);">Emitido na conclusão da trilha, reunindo as competências certificadas ao longo dos quatro módulos.</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Botão -->
+            <div style="margin-top:0.75rem;">
+              <a href="https://pokbrasil.github.io/empregabilidade/pok_trilha_competencias_vitru.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo · Conecta Vitru 2026</a>
+            </div>
           </div>
         </div>
         <div class="substep">
@@ -2840,10 +3073,10 @@
           <div class="substep-head">
             <span class="substep-tag">3</span>
             <span class="substep-title">Criação e verificação da conta na POK</span>
-            <span class="substep-meta status-pendente">Pendente</span>
+            <span class="substep-meta status-feito">✓ Concluído</span>
           </div>
           <div class="substep-body">
-            <div class="todo">Conteúdo a ser inserido</div>
+            <p>Conta criada · wallet número <span style="font-family:monospace; word-break:break-all;">0x8d1f4ebd55a8b5725ee72d4549364e1b1783ce21</span></p>
           </div>
         </div>
         <div class="substep">
@@ -2854,8 +3087,8 @@
           </div>
           <div class="substep-body">
             <ul>
-              <li>Definição de Competências</li>
-              <li>Design de Certificado</li>
+              <li style="color:#000;">Definição de Competências <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#e6f4ea;border:1px solid #b6e0c4;border-radius:6px;color:#1c7c3f;font-size:11px;font-weight:700;margin-left:6px;">✓</span></li>
+              <li style="color:#000;">Design de Certificado <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#e6f4ea;border:1px solid #b6e0c4;border-radius:6px;color:#1c7c3f;font-size:11px;font-weight:700;margin-left:6px;">✓</span></li>
               <li>Design de Banners cross-sell</li>
               <li>Links de Banners cross-sell</li>
               <li>Texto de e-mail</li>
@@ -2865,7 +3098,7 @@
         <div class="substep">
           <div class="substep-head">
             <span class="substep-tag">5</span>
-            <span class="substep-title">Separar a planilha de egressos a receber o certificado (com CPF)</span>
+            <span class="substep-title">Separar a planilha de participantes a receber o certificado</span>
             <span class="substep-meta status-pendente">Pendente</span>
           </div>
           <div class="substep-body">
@@ -2878,6 +3111,12 @@
       <section id="ies-unirios">
         <div class="section-label">Instituição · Acompanhamento</div>
         <h2 class="section-h1">UniRios</h2>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.5rem;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
+          <div>
+            <div style="font-size:13.5px;color:#000;">Contrato de Adesão à Campanha.</div>
+          </div>
+          <span style="font-size:13px;color:var(--ink-muted);font-style:italic;">Link a ser inserido</span>
+        </div>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2917,6 +3156,9 @@
               <div class="ci"><span>Bacharelado em Educação Física</span><span class="n">2</span></div>
               <div class="ci"><span>Licenciatura em Educação Física</span><span class="n">2</span></div>
               <div class="ci total"><span>Total</span><span class="n">611</span></div>
+            </div>
+            <div style="margin-top:1rem;">
+              <a href="https://pokbrasil.github.io/empregabilidade/pok_unirios_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo UniRios</a>
             </div>
           </div>
         </div>
@@ -2972,6 +3214,12 @@
       <section id="ies-fmu">
         <div class="section-label">Instituição · Acompanhamento</div>
         <h2 class="section-h1">FMU</h2>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.5rem;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
+          <div>
+            <div style="font-size:13.5px;color:#000;">Contrato de Adesão à Campanha.</div>
+          </div>
+          <span style="font-size:13px;color:var(--ink-muted);font-style:italic;">Link a ser inserido</span>
+        </div>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -2997,6 +3245,7 @@
           </div>
           <div class="substep-body">
             <div class="todo">Conteúdo a ser inserido</div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_fmu_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo FMU</a></div>
           </div>
         </div>
         <div class="substep">
@@ -3051,6 +3300,12 @@
       <section id="ies-serratec">
         <div class="section-label">Instituição · Acompanhamento</div>
         <h2 class="section-h1">Serratec</h2>
+        <div style="border:1.5px solid var(--border);border-radius:12px;padding:1rem 1.5rem;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
+          <div>
+            <div style="font-size:13.5px;color:#000;">Contrato de Adesão à Campanha.</div>
+          </div>
+          <span style="font-size:13px;color:var(--ink-muted);font-style:italic;">Link a ser inserido</span>
+        </div>
         <div class="cred-banner">
           <div class="cred-banner-text-wrap">
             <div class="cred-banner-label">Créditos da campanha</div>
@@ -3094,6 +3349,7 @@
               <div class="ci"><span>Gestão de projetos</span><span class="n">25</span></div>
               <div class="ci total"><span>Total</span><span class="n">959</span></div>
             </div>
+            <div style="margin-top:1rem;"><a href="https://pokbrasil.github.io/empregabilidade/pok_serratec_campanha_egresso.html" target="_blank" rel="noopener" class="cert-example-btn">Passo a passo Serratec</a></div>
           </div>
         </div>
         <div class="substep">
