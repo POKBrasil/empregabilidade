@@ -1363,6 +1363,72 @@
   }
 
   /* ── DIVULGAÇÃO COLUMNS ─────────────────────────────────── */
+  /* Box · Comunicações com o aluno */
+  .comms-intro {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    margin: 0 0 1.35rem;
+    max-width: 720px;
+  }
+  .comms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .comms-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.15rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .comms-card-num {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+  }
+  .comms-card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.45rem;
+  }
+  .comms-card-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 1rem;
+    flex: 1;
+  }
+  .comms-card .cert-example-btn { align-self: flex-start; }
+  .comms-card-wrap { margin-bottom: 14px; }
+  .comms-soon {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--surface-alt);
+    border: 1px dashed var(--border);
+    padding: 5px 11px;
+    border-radius: 8px;
+  }
+  @media (max-width: 760px) {
+    .comms-grid { grid-template-columns: 1fr; }
+  }
   .channel-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2139,8 +2205,9 @@
       <li class="nav-item">
         <a href="#etapa-4"><span class="nav-num">4</span> Divulgação</a>
         <ul class="nav-sub">
-          <li><a href="#etapa-4a">4a · Canais POK</a></li>
-          <li><a href="#etapa-4b">4b · Canais da Vitru</a></li>
+          <li><a href="#etapa-4a">4a · Comunicação com o aluno</a></li>
+          <li><a href="#etapa-4b">4b · Canais POK</a></li>
+          <li><a href="#etapa-4c">4c · Canais da Vitru</a></li>
         </ul>
       </li>
 
@@ -2951,14 +3018,46 @@
         <h2 class="section-h1"><span class="num">04</span> Divulgação coordenada</h2>
         <p class="section-lead">A divulgação é <strong>conjunta</strong>: POK e Vitru ativam seus próprios canais em paralelo, ampliando alcance e reforçando a legitimidade institucional da trilha.</p>
 
+        <!-- 4a · Comunicação com o aluno -->
+        <div class="channel-card comms-card-wrap" id="etapa-4a">
+          <div class="channel-head">
+            <div class="channel-icon-pok">P</div>
+            <div>
+              <div class="channel-title">4a · Comunicação com o aluno</div>
+              <div class="channel-sub">O que a POK comunica ao aluno</div>
+            </div>
+          </div>
+          <p class="comms-intro">Ao longo da jornada, a POK apresenta ao aluno uma série de páginas que reforçam o valor da credencial e mostram como aproveitá-la, inicialmente através do e-mail onde ele recebe o certificado, e que podem ser trabalhadas em outros materiais, tanto pela POK quanto pela instituição:</p>
+          <div class="comms-grid">
+            <div class="comms-card">
+              <span class="comms-card-num">1</span>
+              <h5 class="comms-card-title">Por que compartilhar no LinkedIn</h5>
+              <p class="comms-card-desc">Mostra ao aluno por que vale a pena divulgar o certificado no LinkedIn e como isso dá visibilidade à sua conquista, fortalece o perfil profissional e amplia oportunidades de carreira.</p>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn">Ver landing</a>
+            </div>
+            <div class="comms-card">
+              <span class="comms-card-num">2</span>
+              <h5 class="comms-card-title">A carteira digital POK Holder</h5>
+              <p class="comms-card-desc">Apresenta a POK Holder, onde o aluno reúne, acessa e compartilha todas as suas credenciais em um só lugar – em versão web e aplicativo.</p>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn">Ver landing</a>
+            </div>
+            <div class="comms-card">
+              <span class="comms-card-num">3</span>
+              <h5 class="comms-card-title">Open Badge, NFT e padronização internacional</h5>
+              <p class="comms-card-desc">Mostra como a credencial segue padrões internacionais – Open Badge, blockchain e NFT –, garantindo verificação e reconhecimento em qualquer lugar do mundo.</p>
+              <span class="comms-soon">Em breve</span>
+            </div>
+          </div>
+        </div>
+
         <div class="channel-grid">
 
-          <!-- 4a · POK -->
-          <div class="channel-card" id="etapa-4a">
+          <!-- 4b · POK -->
+          <div class="channel-card" id="etapa-4b">
             <div class="channel-head">
               <div class="channel-icon-pok">P</div>
               <div>
-                <div class="channel-title">4a · Canais POK</div>
+                <div class="channel-title">4b · Canais POK</div>
                 <div class="channel-sub">Ativação institucional dos parceiros</div>
               </div>
             </div>
@@ -2969,12 +3068,12 @@
             </ul>
           </div>
 
-          <!-- 4b · Vitru -->
-          <div class="channel-card" id="etapa-4b">
+          <!-- 4c · Vitru -->
+          <div class="channel-card" id="etapa-4c">
             <div class="channel-head">
               <div class="channel-icon-ies">Vitru</div>
               <div>
-                <div class="channel-title">4b · Canais da Vitru</div>
+                <div class="channel-title">4c · Canais da Vitru</div>
                 <div class="channel-sub">Ativação direta com os portadores</div>
               </div>
             </div>
