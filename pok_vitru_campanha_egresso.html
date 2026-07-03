@@ -1028,6 +1028,95 @@
     padding: 8px 14px;
     font-size: 11px;
   }
+  /* Box · Comunicações com o egresso */
+  .comms-box {
+    margin-top: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.6rem;
+  }
+  .comms-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .comms-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin: 0 0 0.6rem;
+  }
+  .comms-intro {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    margin: 0 0 1.35rem;
+    max-width: 720px;
+  }
+  .comms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .comms-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.15rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .comms-card-num {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+  }
+  .comms-card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.45rem;
+  }
+  .comms-card-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 1rem;
+    flex: 1;
+  }
+  .comms-card .cert-example-btn { align-self: flex-start; }
+  .comms-card-wrap { margin-bottom: 14px; }
+  .comms-soon {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--surface-alt);
+    border: 1px dashed var(--border);
+    padding: 5px 11px;
+    border-radius: 8px;
+  }
+  @media (max-width: 760px) {
+    .comms-grid { grid-template-columns: 1fr; }
+  }
   .spec-row {
     display: flex;
     flex-direction: column;
@@ -1971,8 +2060,9 @@
       <li class="nav-item">
         <a href="#etapa-4"><span class="nav-num">4</span> Divulgação</a>
         <ul class="nav-sub">
-          <li><a href="#etapa-4a">4a · Canais POK</a></li>
-          <li><a href="#etapa-4b">4b · Canais da IES</a></li>
+          <li><a href="#etapa-4a">4a · Comunicação com o egresso</a></li>
+          <li><a href="#etapa-4b">4b · Canais POK</a></li>
+          <li><a href="#etapa-4c">4c · Canais da IES</a></li>
         </ul>
       </li>
 
@@ -2014,12 +2104,12 @@
       <section id="etapa-1">
         <div class="section-label">Etapa 1 · Apresentação</div>
         <h2 class="section-h1"><span class="num">01</span> O que é a campanha</h2>
-        <p class="section-lead">A <strong>Campanha Egressos e Empregabilidade 2026</strong> é uma iniciativa da POK em parceria com a <strong>Vitru</strong> para reconectar a instituição aos seus egressos através de <strong>certificados digitais em blockchain</strong>, criando ao mesmo tempo um canal de coleta de dados reais sobre empregabilidade e trajetória profissional.</p>
+        <p class="section-lead">A Campanha Egressos e Empregabilidade 2026 é uma iniciativa da POK em parceria com a Vitru para reconectar a instituição aos seus egressos através de certificados digitais em blockchain, criando ao mesmo tempo um canal de coleta de dados reais sobre empregabilidade e trajetória profissional.</p>
 
         <!-- O que é -->
         <div class="apres-block">
           <h3 class="apres-h3">A iniciativa em uma frase</h3>
-          <p class="apres-text">Cada IES participante recebe créditos gratuitos para emitir certificados em blockchain a uma turma de egressos. O certificado é um artefato digital reconhecido pelo mercado e, ao mesmo tempo, um <strong>ponto de re-entrada</strong> do egresso na vida institucional – abrindo caminho para pós-graduação, educação continuada, redes de relacionamento e dados de carreira.</p>
+          <p class="apres-text">Cada IES participante recebe créditos gratuitos para emitir certificados em blockchain a uma turma de egressos. O certificado é um artefato digital reconhecido pelo mercado e, ao mesmo tempo, um ponto de re-entrada do egresso na vida institucional – abrindo caminho para pós-graduação, educação continuada, redes de relacionamento e dados de carreira.</p>
           <a href="https://pokbrasil.github.io/marketing/pok_campanha_egressos_semesp_workalove.html" target="_blank" rel="noopener" class="apres-frase-cta">Conheça a campanha →</a>
         </div>
 
@@ -2097,7 +2187,7 @@
       <section id="etapa-2">
         <div class="section-label">Etapa 2 · Briefing inicial</div>
         <h2 class="section-h1"><span class="num">02</span> Os cursos escolhidos</h2>
-        <p class="section-lead">Cada uma das <strong>2 instituições do grupo Vitru</strong> definirá o <strong>curso ou programa</strong> que será recorte da campanha, contemplando egressos das turmas a serem selecionadas. A escolha deve aproveitar uma base de egressos consolidada e abrir caminho natural para cross-sell com outros programas da Vitru na mesma área.</p>
+        <p class="section-lead">Cada uma das 2 instituições do grupo Vitru definirá o curso ou programa que será recorte da campanha, contemplando egressos das turmas a serem selecionadas. A escolha deve aproveitar uma base de egressos consolidada e abrir caminho natural para cross-sell com outros programas da Vitru na mesma área.</p>
 
         <div class="info-card">
           <div class="info-card-head">
@@ -2171,7 +2261,7 @@
       <section id="etapa-3">
         <div class="section-label">Etapa 3 · Criação da campanha</div>
         <h2 class="section-h1"><span class="num">03</span> Passo a passo da criação</h2>
-        <p class="section-lead">A IES produz <strong>quatro peças visuais centrais</strong>, todas com sua identidade institucional. A <strong>POK fornece as especificações técnicas</strong> de cada peça e <strong>valida o material final</strong>. Cada peça abaixo é uma sub-etapa com escopo, entregáveis e responsáveis claros.</p>
+        <p class="section-lead">A IES produz quatro peças visuais centrais, todas com sua identidade institucional. A POK fornece as especificações técnicas de cada peça e valida o material final. Cada peça abaixo é uma sub-etapa com escopo, entregáveis e responsáveis claros.</p>
 
         <!-- 3a · Certificado -->
         <div class="substep" id="etapa-3a">
@@ -2243,7 +2333,7 @@
             <span class="substep-title">Informações adicionais do certificado</span>
           </div>
                     <div class="substep-body">
-            <p>Além do design visual do certificado, a IES preenche <strong>três campos de texto</strong> que descrevem o conteúdo formativo. Essas informações compõem o <strong>verso digital do certificado</strong> e ficam disponíveis para verificação pública na blockchain – agregando contexto pedagógico ao reconhecimento da conquista.</p>
+            <p>Além do design visual do certificado, a IES preenche três campos de texto que descrevem o conteúdo formativo. Essas informações compõem o verso digital do certificado e ficam disponíveis para verificação pública na blockchain – agregando contexto pedagógico ao reconhecimento da conquista.</p>
 
             <div class="cert-block cert-block--stacked">
               <!-- Modelo visual -->
@@ -2276,7 +2366,7 @@
             <span class="substep-title">Design do head da landing page com identidade da instituição</span>
           </div>
                               <div class="substep-body">
-            <p>O cabeçalho da landing page é a primeira impressão que o portador terá ao clicar no e-mail ou link de divulgação. A Instituição produz dois arquivos separados – o logotipo institucional e a imagem de capa – incorporando sua identidade visual. A POK fornece as especificações técnicas.</p>
+            <p>O cabeçalho da landing page é a primeira impressão que o egresso terá ao clicar no e-mail ou link de divulgação. A Instituição produz dois arquivos separados – o logotipo institucional e a imagem de capa – incorporando sua identidade visual. A POK fornece as especificações técnicas.</p>
 
             <!-- Modelo do head (imagem completa) -->
             <div class="cert-block cert-block--stacked cert-block--no-specs">
@@ -2347,7 +2437,7 @@
             <span class="substep-title">Banners da landing page · cross-sell de cursos</span>
           </div>
           <div class="substep-body">
-            <p>Os banners convidam o portador a retornar à instituição – seja para um novo programa, evento, ou conteúdo exclusivo. Funcionam como pontes entre o reconhecimento (certificado da graduação) e a oferta atual da instituição (pós, MBA, extensão). A Instituição produz os banners e a POK fornece as especificações técnicas.</p>
+            <p>Os banners convidam o egresso a retornar à instituição – seja para um novo programa, evento, ou conteúdo exclusivo. Funcionam como pontes entre o reconhecimento (certificado da graduação) e a oferta atual da instituição (pós, MBA, extensão). A Instituição produz os banners e a POK fornece as especificações técnicas.</p>
 
             <div class="case-box" style="margin-top:1rem;">
               <div class="case-head">
@@ -2355,7 +2445,7 @@
                 <span class="case-label">Cross-sell sugerido</span>
               </div>
               <div class="case-body">
-                Portador de um <strong>programa da instituição</strong> recebe um banner convidando-o para outro programa correlato (graduação, pós, MBA, especialização ou educação continuada) da própria instituição.
+                Portador de um programa da instituição recebe um banner convidando-o para outro programa correlato (graduação, pós, MBA, especialização ou educação continuada) da própria instituição.
               </div>
             </div>
 
@@ -2418,7 +2508,7 @@
             <span class="substep-title">Design do e-mail com identidade visual da instituição</span>
           </div>
                     <div class="substep-body">
-            <p>O e-mail é o principal canal de ativação dos portadores. A Instituição produz apenas a imagem de capa incorporando sua identidade visual – o restante do e-mail (corpo, blocos de LinkedIn, POK Holder e rodapé) vem pronto da POK. A POK fornece as especificações técnicas.</p>
+            <p>O e-mail é o principal canal de ativação dos egressos. A Instituição produz apenas a imagem de capa incorporando sua identidade visual – o restante do e-mail (corpo, blocos de LinkedIn, POK Holder e rodapé) vem pronto da POK. A POK fornece as especificações técnicas.</p>
 
             <div class="cert-block cert-block--stacked">
               <!-- Modelo visual -->
@@ -2475,7 +2565,7 @@
             <span class="substep-title">Mensagem personalizada de compartilhamento no LinkedIn</span>
           </div>
           <div class="substep-body">
-            <p>A mensagem de compartilhamento é o texto que aparece pré-preenchido quando o portador compartilha sua credencial no LinkedIn. A instituição define esse texto na POK para reforçar sua marca, aumentar a visibilidade e potencializar o alcance de cada conquista compartilhada. A menção à POK é obrigatória, e a tag Nome da instituição funciona como menção ativa quando a conta é conectada com o Organization ID.</p>
+            <p>A mensagem de compartilhamento é o texto que aparece pré-preenchido quando o egresso compartilha sua credencial no LinkedIn. A instituição define esse texto na POK para reforçar sua marca, aumentar a visibilidade e potencializar o alcance de cada conquista compartilhada. A menção à POK é obrigatória, e a tag Nome da instituição funciona como menção ativa quando a conta é conectada com o Organization ID.</p>
 
             <div class="cert-block cert-block--stacked cert-block--no-specs">
               <div class="cert-preview">
@@ -2627,7 +2717,7 @@
             <span class="substep-title">POK Holder · carteira de credenciais digitais</span>
           </div>
                               <div class="substep-body">
-            <p>O cabeçalho da POK Holder é a primeira impressão que o portador terá ao entrar na carteira digital da POK (POK Holder). A Instituição produz dois arquivos separados – o logotipo institucional e a imagem de capa – incorporando sua identidade visual. A POK fornece as especificações técnicas. O mesmo material criado para a landing page pode ser usado na POK Holder.</p>
+            <p>O cabeçalho da POK Holder é a primeira impressão que o egresso terá ao entrar na carteira digital da POK (POK Holder). A Instituição produz dois arquivos separados – o logotipo institucional e a imagem de capa – incorporando sua identidade visual. A POK fornece as especificações técnicas. O mesmo material criado para a landing page pode ser usado na POK Holder.</p>
 
             <!-- Modelo do head (imagem completa) -->
             <div class="cert-block cert-block--stacked cert-block--no-specs">
@@ -2696,16 +2786,48 @@
       <section id="etapa-4">
         <div class="section-label">Etapa 4 · Divulgação</div>
         <h2 class="section-h1"><span class="num">04</span> Divulgação coordenada</h2>
-        <p class="section-lead">A divulgação é <strong>conjunta</strong>: POK e IES ativam seus próprios canais em paralelo, ampliando alcance e reforçando a legitimidade institucional da campanha.</p>
+        <p class="section-lead">A divulgação é conjunta: POK e IES ativam seus próprios canais em paralelo, ampliando alcance e reforçando a legitimidade institucional da campanha.</p>
+
+        <!-- 4a · Comunicação com o egresso -->
+        <div class="channel-card comms-card-wrap" id="etapa-4a">
+          <div class="channel-head">
+            <div class="channel-icon-pok">P</div>
+            <div>
+              <div class="channel-title">4a · Comunicação com o egresso</div>
+              <div class="channel-sub">O que a POK comunica ao egresso</div>
+            </div>
+          </div>
+          <p class="comms-intro">Ao longo da jornada, a POK apresenta ao dono do certificado (aluno ou egresso) uma série de páginas que reforçam o valor da credencial e mostram como aproveitá-la. Estas são as comunicações que fazemos com cada egresso:</p>
+          <div class="comms-grid">
+            <div class="comms-card">
+              <span class="comms-card-num">1</span>
+              <h5 class="comms-card-title">Por que compartilhar no LinkedIn</h5>
+              <p class="comms-card-desc">Mostra ao egresso por que vale a pena divulgar o certificado no LinkedIn e como isso dá visibilidade à sua conquista, fortalece o perfil profissional e amplia oportunidades de carreira.</p>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn">Ver landing</a>
+            </div>
+            <div class="comms-card">
+              <span class="comms-card-num">2</span>
+              <h5 class="comms-card-title">A carteira digital POK Holder</h5>
+              <p class="comms-card-desc">Apresenta a POK Holder, onde o egresso reúne, acessa e compartilha todas as suas credenciais em um só lugar – em versão web e aplicativo.</p>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn">Ver landing</a>
+            </div>
+            <div class="comms-card">
+              <span class="comms-card-num">3</span>
+              <h5 class="comms-card-title">Open Badge, NFT e padronização internacional</h5>
+              <p class="comms-card-desc">Mostra como a credencial segue padrões internacionais – Open Badge, blockchain e NFT –, garantindo verificação e reconhecimento em qualquer lugar do mundo.</p>
+              <span class="comms-soon">Em breve</span>
+            </div>
+          </div>
+        </div>
 
         <div class="channel-grid">
 
-          <!-- 4a · POK -->
-          <div class="channel-card" id="etapa-4a">
+          <!-- 4b · POK -->
+          <div class="channel-card" id="etapa-4b">
             <div class="channel-head">
               <div class="channel-icon-pok">P</div>
               <div>
-                <div class="channel-title">4a · Canais POK</div>
+                <div class="channel-title">4b · Canais POK</div>
                 <div class="channel-sub">Ativação institucional dos parceiros</div>
               </div>
             </div>
@@ -2716,12 +2838,12 @@
             </ul>
           </div>
 
-          <!-- 4b · IES -->
-          <div class="channel-card" id="etapa-4b">
+          <!-- 4c · IES -->
+          <div class="channel-card" id="etapa-4c">
             <div class="channel-head">
               <div class="channel-icon-ies">Vitru</div>
               <div>
-                <div class="channel-title">4b · Canais da Vitru</div>
+                <div class="channel-title">4c · Canais da Vitru</div>
                 <div class="channel-sub">Ativação direta com egressos</div>
               </div>
             </div>
@@ -2742,7 +2864,7 @@
               <span class="ic-dot"></span>
               Sugestão de sequência
             </div>
-            <h3 class="comm-sequence-title">Comunicação com os portadores em 3 momentos</h3>
+            <h3 class="comm-sequence-title">Comunicação com os egressos em 3 momentos</h3>
             <p class="comm-sequence-sub">Estrutura recomendada para preparar, entregar e celebrar a certificação. Cada peça pode ser disparada pela POK e pela Vitru nos seus canais.</p>
           </div>
 
@@ -2796,13 +2918,13 @@
       <section id="etapa-5">
         <div class="section-label">Etapa 5 · Cronograma e execução</div>
         <h2 class="section-h1"><span class="num">05</span> Cronograma de ação</h2>
-        <p class="section-lead">A campanha concentra a <strong>produção e a divulgação em junho de 2026</strong>, com o disparo final dos certificados na primeira semana de agosto. A linha do tempo abaixo organiza esses marcos.</p>
+        <p class="section-lead">A campanha concentra a produção e a divulgação em junho de 2026, com o disparo final dos certificados na primeira semana de agosto. A linha do tempo abaixo organiza esses marcos.</p>
 
         <!-- 5a · Junho → Agosto -->
         <div id="etapa-5a">
           <div class="card" style="padding: 1.5rem 1.75rem;">
             <div class="card-title">5a · Junho → Agosto 2026</div>
-            <p class="card-body" style="margin-bottom: 1.5rem;">Na <strong>primeira semana de agosto</strong> a POK realiza o <strong>disparo dos 20.000 certificados</strong> para os egressos cadastrados. Os marcos abaixo organizam o caminho até esse evento.</p>
+            <p class="card-body" style="margin-bottom: 1.5rem;">Na primeira semana de agosto a POK realiza o disparo dos 20.000 certificados para os egressos cadastrados. Os marcos abaixo organizam o caminho até esse evento.</p>
 
             <div class="timeline">
 
@@ -2811,7 +2933,7 @@
                 <div class="tl-card">
                   <div class="tl-week">1ª semana de Junho</div>
                   <div class="tl-title">Briefing e escolha do curso</div>
-                  <div class="tl-desc">A Vitru envia à POK os ativos de identidade visual do <strong>programa selecionado</strong>: logos, paleta, tipografia, foto institucional.</div>
+                  <div class="tl-desc">A Vitru envia à POK os ativos de identidade visual do programa selecionado: logos, paleta, tipografia, foto institucional.</div>
                 </div>
               </div>
 
@@ -2820,7 +2942,7 @@
                 <div class="tl-card">
                   <div class="tl-week">2ª semana de Junho</div>
                   <div class="tl-title">Produção das peças (etapa 2)</div>
-                  <div class="tl-desc">A IES produz <strong>certificado, head da landing page, banners e e-mail</strong> com base nas especificações técnicas. A POK valida cada peça antes da finalização.</div>
+                  <div class="tl-desc">A IES produz certificado, head da landing page, banners e e-mail com base nas especificações técnicas. A POK valida cada peça antes da finalização.</div>
                 </div>
               </div>
 
@@ -2829,7 +2951,7 @@
                 <div class="tl-card">
                   <div class="tl-week">3ª semana de Junho</div>
                   <div class="tl-title">Produção da campanha</div>
-                  <div class="tl-desc">POK e Vitru desenham a <strong>campanha de marketing</strong> em torno da entrega: e-mail para toda a base antes do envio do certificado, banners nos sites das instituições, e-mail pós-envio do certificado e possíveis ações por WhatsApp.</div>
+                  <div class="tl-desc">POK e Vitru desenham a campanha de marketing em torno da entrega: e-mail para toda a base antes do envio do certificado, banners nos sites das instituições, e-mail pós-envio do certificado e possíveis ações por WhatsApp.</div>
                 </div>
               </div>
 
@@ -2838,7 +2960,7 @@
                 <div class="tl-card">
                   <div class="tl-week">4ª semana de Junho</div>
                   <div class="tl-title">Tratamento da base de alunos</div>
-                  <div class="tl-desc">Tratar a <strong>base de alunos</strong> para que o xlsx fique certinho (extração, limpeza e formatação dos dados) – etapa que pode ser feita lá no final, mais perto do disparo.</div>
+                  <div class="tl-desc">Tratar a base de alunos para que o xlsx fique certinho (extração, limpeza e formatação dos dados) – etapa que pode ser feita lá no final, mais perto do disparo.</div>
                 </div>
               </div>
 
@@ -2865,7 +2987,7 @@
                 <div class="tl-card">
                   <div class="tl-week">1ª semana de Agosto</div>
                   <div class="tl-title">Disparo dos 20.000 certificados</div>
-                  <div class="tl-desc">Marco principal da campanha: a POK realiza a <strong>emissão e disparo dos 20.000 certificados em blockchain</strong> para os egressos confirmados. Encerra-se o ciclo de execução; começa o ciclo de empregabilidade (publicação no LinkedIn, coleta de dados de carreira).</div>
+                  <div class="tl-desc">Marco principal da campanha: a POK realiza a emissão e disparo dos 20.000 certificados em blockchain para os egressos confirmados. Encerra-se o ciclo de execução; começa o ciclo de empregabilidade (publicação no LinkedIn, coleta de dados de carreira).</div>
                 </div>
               </div>
 
@@ -2878,7 +3000,7 @@
           <div class="base-bar">
             <div class="base-content">
               <h3>5b · Base de alunos</h3>
-              <p>A <strong>Vitru</strong> é responsável por <strong>identificar e preparar a base de egressos</strong> do programa selecionado (turmas a definir) que será impactada pela campanha. A POK orienta o formato dos dados e garante a segurança da informação ao longo de todo o processo.</p>
+              <p>A Vitru é responsável por identificar e preparar a base de egressos do programa selecionado (turmas a definir) que será impactada pela campanha. A POK orienta o formato dos dados e garante a segurança da informação ao longo de todo o processo.</p>
             </div>
             <div class="base-stats">
               <span class="base-chip">20.000 vagas</span>
