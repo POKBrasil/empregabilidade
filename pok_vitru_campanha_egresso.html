@@ -1675,6 +1675,28 @@
     color: var(--ink-muted);
     line-height: 1.6;
   }
+  .tl-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tl-list li {
+    position: relative;
+    padding-left: 15px;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 5px;
+  }
+  .tl-list li:last-child { margin-bottom: 0; }
+  .tl-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .tl-item.gold .tl-list li::before { color: var(--gold-dark); }
   .tl-desc strong { color: var(--ink); font-weight: 600; }
 
   /* ── BASE DE ALUNOS BLOCK ───────────────────────────────── */
@@ -2156,7 +2178,7 @@
       <li class="nav-item">
         <a href="#etapa-6"><span class="nav-num">6</span> Cronograma de ação</a>
         <ul class="nav-sub">
-          <li><a href="#etapa-6a">6a · Julho → Agosto</a></li>
+          <li><a href="#etapa-6a">6a · Julho → Setembro</a></li>
           <li><a href="#etapa-6b">6b · Base de alunos</a></li>
         </ul>
       </li>
@@ -2213,7 +2235,7 @@
           </div>
           <div class="apres-stat">
             <div class="apres-stat-num">3 meses</div>
-            <div class="apres-stat-lbl">Período de execução · Junho → Agosto 2026</div>
+            <div class="apres-stat-lbl">Período de execução · Julho → Setembro 2026</div>
           </div>
         </div>
 
@@ -3039,12 +3061,12 @@
       <section id="etapa-6">
         <div class="section-label">Etapa 6 · Cronograma e execução</div>
         <h2 class="section-h1"><span class="num">06</span> Cronograma de ação</h2>
-        <p class="section-lead">A campanha concentra a produção e a divulgação em junho de 2026, com o disparo final dos certificados na primeira semana de agosto. A linha do tempo abaixo organiza esses marcos.</p>
+        <p class="section-lead">A campanha concentra a produção e a divulgação em julho de 2026, com o disparo dos certificados na primeira semana de agosto e o ciclo de leitura de empregabilidade na sequência. A linha do tempo abaixo organiza esses marcos.</p>
 
-        <!-- 6a · Junho → Agosto -->
+        <!-- 6a · Julho → Setembro -->
         <div id="etapa-6a">
           <div class="card" style="padding: 1.5rem 1.75rem;">
-            <div class="card-title">6a · Junho → Agosto 2026</div>
+            <div class="card-title">6a · Julho → Setembro 2026</div>
             <p class="card-body" style="margin-bottom: 1.5rem;">Na primeira semana de agosto a POK realiza o disparo dos 20.000 certificados para os egressos cadastrados. Os marcos abaixo organizam o caminho até esse evento.</p>
 
             <div class="timeline">
@@ -3054,7 +3076,10 @@
                 <div class="tl-card">
                   <div class="tl-week">de 06 a 10 de Julho</div>
                   <div class="tl-title">Briefing e escolha do curso</div>
-                  <div class="tl-desc">Vitru envia à POK os cursos selecionados para a campanha. Vitru envia ativos de identidade visual do programa selecionado: logos, paleta, tipografia, foto institucional.</div>
+                  <ul class="tl-list">
+                    <li>Vitru envia à POK os cursos selecionados para a campanha.</li>
+                    <li>Vitru envia ativos de identidade visual do programa selecionado: logos, paleta, tipografia, foto institucional.</li>
+                  </ul>
                 </div>
               </div>
 
@@ -3063,7 +3088,11 @@
                 <div class="tl-card">
                   <div class="tl-week">de 13 a 17 de Julho</div>
                   <div class="tl-title">Produção das peças</div>
-                  <div class="tl-desc">POK produz certificado, head da landing page, banners e e-mail com base nas especificações técnicas. Vitru valida cada peça antes da finalização.<br>POK e Vitru desenham a campanha de marketing em torno da entrega: e-mail para toda a base antes do envio do certificado, banners nos sites das instituições, e-mail pós-envio do certificado e possíveis ações por WhatsApp.</div>
+                  <ul class="tl-list">
+                    <li>POK produz certificado, head da landing page, banners e e-mail com base nas especificações técnicas.</li>
+                    <li>Vitru valida cada peça antes da finalização.</li>
+                    <li>Vitru escolhe cursos cross-sell para landing page(s).</li>
+                  </ul>
                 </div>
               </div>
 
@@ -3072,7 +3101,9 @@
                 <div class="tl-card">
                   <div class="tl-week">de 20 a 24 de Julho</div>
                   <div class="tl-title">Produção da campanha</div>
-                  <div class="tl-desc">POK e Vitru desenham a campanha de marketing em torno da entrega: e-mail para toda a base antes do envio do certificado, banners nos sites das instituições, e-mail pós-envio do certificado e possíveis ações por WhatsApp.</div>
+                  <ul class="tl-list">
+                    <li>POK e Vitru desenham a campanha de marketing em torno da entrega: e-mail para toda a base antes do envio do certificado, banners nos sites das instituições, e-mail pós-envio do certificado e possíveis ações por WhatsApp.</li>
+                  </ul>
                 </div>
               </div>
 
@@ -3081,16 +3112,28 @@
                 <div class="tl-card">
                   <div class="tl-week">de 27 a 31 de Julho</div>
                   <div class="tl-title">Tratamento da base de alunos</div>
-                  <div class="tl-desc">Tratar a base de alunos para que o xlsx fique correto (extração, limpeza e formatação dos dados).</div>
+                  <ul class="tl-list">
+                    <li>Vitru trata a base de alunos para que o xlsx fique correto (extração, limpeza e formatação dos dados).</li>
+                  </ul>
                 </div>
               </div>
 
               <div class="tl-item gold">
                 <div class="tl-dot">★</div>
                 <div class="tl-card">
-                  <div class="tl-week">1ª semana de Agosto</div>
+                  <div class="tl-week">de 03 a 07 de agosto</div>
                   <div class="tl-title">Disparo dos 20.000 certificados</div>
-                  <div class="tl-desc">Marco principal da campanha: a POK realiza a emissão e disparo dos 20.000 certificados em blockchain para os egressos confirmados. Encerra-se o ciclo de execução; começa o ciclo de empregabilidade (publicação no LinkedIn, coleta de dados de carreira).</div>
+                  <ul class="tl-list">
+                    <li>POK realiza a emissão e disparo dos 20.000 certificados em blockchain para os egressos confirmados.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="tl-item">
+                <div class="tl-dot">5</div>
+                <div class="tl-card">
+                  <div class="tl-week">de 10 a 31 de agosto</div>
+                  <div class="tl-title">Ciclo de leitura de empregabilidade</div>
                 </div>
               </div>
 
