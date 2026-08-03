@@ -1269,6 +1269,18 @@
     font-size: 11px;
     margin: 1rem 0 0 auto;
   }
+  /* Linha com mais de um botão, alinhada à direita */
+  .cert-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .cert-btn-row .cert-example-btn--centered { margin: 1rem 0 0 0; }
+  @media (max-width: 600px) {
+    .cert-btn-row { flex-direction: column; gap: 0; }
+    .cert-btn-row .cert-example-btn--centered { margin-top: 0.75rem; }
+  }
   @media (max-width: 700px) {
     .cert-specs-pair { grid-template-columns: 1fr; }
   }
@@ -2402,6 +2414,7 @@
 
               <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; padding:9px 0 0; margin-top:6px; border-top:1px solid var(--border);"><strong style="color:var(--ink); font-weight:700;">Total</strong><strong style="color:var(--accent); font-weight:800; font-size:15px;">12.111</strong></div>
             </div>
+            <a href="https://drive.google.com/drive/folders/1LSojySx8Yo8Cch7rwTD2xCRK41Bmiv2H?usp=drive_link" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver PPCs Uniasselvi</a>
           </div>
 
           <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.15rem 1.3rem;">
@@ -2424,6 +2437,7 @@
 
               <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:13px; padding:9px 0 0; margin-top:6px; border-top:1px solid var(--border);"><strong style="color:var(--ink); font-weight:700;">Total</strong><strong style="color:var(--accent); font-weight:800; font-size:15px;">9.370</strong></div>
             </div>
+            <a href="https://drive.google.com/drive/folders/1NmL5DpX3o5yodlV5UShqpRugeDVkVVLc?usp=drive_link" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver PPCs Unicesumar</a>
           </div>
 
         </div>
@@ -2485,7 +2499,10 @@
               </div>
             </div>
 
-            <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            <div class="cert-btn-row">
+              <a href="https://uniasselvi01.sharepoint.com/sites/CriaoVitru2/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FCriaoVitru2%2FDocumentos%20Compartilhados%2FUNIASSELVI%2F2026%2F4%2EGRADUA%C3%87%C3%83O%20EAD%2FACAD%C3%8AMICO%2FPROJETO%20DE%20MICROCREDENCIAMENTO%20POK%2FDESDOBRES&amp;p=true&amp;ga=1" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver material enviado Uniasselvi</a>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            </div>
 
             <p style="margin-top: 1rem;">O Certificado deve ter:</p>
             <ul>
@@ -2637,7 +2654,10 @@
               </div>
             </div>
 
-            <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            <div class="cert-btn-row">
+              <a href="https://uniasselvi01.sharepoint.com/sites/CriaoVitru2/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FCriaoVitru2%2FDocumentos%20Compartilhados%2FUNIASSELVI%2F2026%2F4%2EGRADUA%C3%87%C3%83O%20EAD%2FACAD%C3%8AMICO%2FPROJETO%20DE%20MICROCREDENCIAMENTO%20POK%2FDESDOBRES&amp;p=true&amp;ga=1" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver material enviado Uniasselvi</a>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            </div>
           </div>
         </div>
 
@@ -2708,7 +2728,10 @@
               </div>
             </div>
 
-            <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            <div class="cert-btn-row">
+              <a href="https://uniasselvi01.sharepoint.com/sites/CriaoVitru2/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FCriaoVitru2%2FDocumentos%20Compartilhados%2FUNIASSELVI%2F2026%2F4%2EGRADUA%C3%87%C3%83O%20EAD%2FACAD%C3%8AMICO%2FPROJETO%20DE%20MICROCREDENCIAMENTO%20POK%2FDESDOBRES&amp;p=true&amp;ga=1" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver material enviado Uniasselvi</a>
+              <a href="https://view.pok.tech/c/e11dd50d-a265-44db-81e0-698e65e0b79d" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            </div>
           </div>
         </div>
 
@@ -2765,7 +2788,10 @@
               </div>
             </div>
 
-            <a href="https://pokbrasil.github.io/clientes/vitru-email.png" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            <div class="cert-btn-row">
+              <a href="https://uniasselvi01.sharepoint.com/sites/CriaoVitru2/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FCriaoVitru2%2FDocumentos%20Compartilhados%2FUNIASSELVI%2F2026%2F4%2EGRADUA%C3%87%C3%83O%20EAD%2FACAD%C3%8AMICO%2FPROJETO%20DE%20MICROCREDENCIAMENTO%20POK%2FDESDOBRES&amp;p=true&amp;ga=1" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver material enviado Uniasselvi</a>
+              <a href="https://pokbrasil.github.io/clientes/vitru-email.png" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver exemplo</a>
+            </div>
           </div>
         </div>
 
@@ -3028,6 +3054,9 @@
               </div>
             </div>
 
+            <div class="cert-btn-row">
+              <a href="https://uniasselvi01.sharepoint.com/sites/CriaoVitru2/Documentos%20Compartilhados/Forms/AllItems.aspx?id=%2Fsites%2FCriaoVitru2%2FDocumentos%20Compartilhados%2FUNIASSELVI%2F2026%2F4%2EGRADUA%C3%87%C3%83O%20EAD%2FACAD%C3%8AMICO%2FPROJETO%20DE%20MICROCREDENCIAMENTO%20POK%2FDESDOBRES&amp;p=true&amp;ga=1" target="_blank" rel="noopener" class="cert-example-btn cert-example-btn--centered">Ver material enviado Uniasselvi</a>
+            </div>
           </div>
         </div>
 
