@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniasselvi · Material da campanha POK Egressos 2026</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Campanha Uniasselvi · POK Egressos 2026">
+<meta property="og:description" content="Peças visuais produzidas pela Uniasselvi para a campanha de credenciais digitais POK – certificado, landing page, banners e e-mail.">
+<meta property="og:site_name" content="POK">
+<meta property="og:locale" content="pt_BR">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3EFF9;
+    --surface: #FFFFFF;
+    --surface-alt: #EDE6F6;
+    --ink: #1E1230;
+    --ink-muted: #4a3d5e;
+    --ink-faint: #A899C2;
+    --accent: #5123a4;
+    --accent-dark: #3a1878;
+    --accent-light: #e4dcf7;
+    --border: #D8CEF0;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --gold: #f1ce0a;
+    --gold-light: #fdf7c3;
+    --gold-ink: #5a4900;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+  /* ── Header ─────────────────────────────── */
+  .page-header {
+    background: var(--accent);
+    color: #fff;
+    padding: 3rem 0 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-header .wrap { padding-bottom: 0; }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* ── Índice ─────────────────────────────── */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+  }
+  .toc-break { flex-basis: 100%; height: 0; }
+  .toc-label {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    padding-right: 2px;
+  }
+  .toc a {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 16px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .toc a:hover, .toc a:focus-visible { background: var(--accent); color: #fff; }
+
+  /* ── Peça ───────────────────────────────── */
+  .piece { margin-bottom: 3rem; scroll-margin-top: 1.5rem; }
+
+  .piece-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 0.9rem;
+  }
+  .piece-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--gold-ink);
+    background: var(--gold-light);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
+  .piece-title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .piece-note {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 720px;
+    margin-bottom: 1.25rem;
+  }
+
+  .piece-body {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  /* grid de arquivos */
+  .files {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .files--single { grid-template-columns: 1fr; }
+  .files--two { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .files--stack { grid-template-columns: 1fr; gap: 1.75rem; }
+  .file--logo .file-frame { max-width: 340px; }
+  .file--logo .file-frame--checker { display: flex; justify-content: flex-start; }
+  .file--logo .file-frame--checker img { padding: 1.1rem 1.4rem; max-height: 90px; width: auto; }
+
+  .file { display: flex; flex-direction: column; }
+
+  .file-frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0;
+    cursor: zoom-in;
+    overflow: hidden;
+    line-height: 0;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .file-frame:hover, .file-frame:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 4px 18px rgba(81,35,164,0.14);
+  }
+  .file-frame img { width: 100%; height: auto; display: block; }
+  .file-frame--checker { background:
+      linear-gradient(45deg, #e4dcf7 25%, transparent 25%),
+      linear-gradient(-45deg, #e4dcf7 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e4dcf7 75%),
+      linear-gradient(-45deg, transparent 75%, #e4dcf7 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  }
+  .file-frame--checker img { padding: 1.75rem; }
+
+  .file-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    margin-top: 0.7rem;
+    word-break: break-all;
+  }
+  .file-flag {
+    display: inline-block;
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #06331a;
+    background: #05e65a;
+    border: 1px solid #05e65a;
+    border-radius: 5px;
+    padding: 2px 8px;
+    vertical-align: 1px;
+    word-break: normal;
+  }
+  .file-flag--luciano {
+    color: #33430a;
+    background: #b7f412;
+    border-color: #b7f412;
+  }
+  .file-flag--rafael {
+    color: #40290a;
+    background: #eea20f;
+    border-color: #eea20f;
+  }
+  .flag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+  .flag-row .file-flag { margin-left: 0; }
+  .piece-body > .flag-row { margin-bottom: 1rem; }
+  .file-meta {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-top: 5px;
+  }
+  .file-meta .file-flag { margin-left: 0; margin-top: 5px; }
+  .file-specs {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .file-links { display: flex; gap: 14px; margin-top: 0.6rem; }
+  .file-links a {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 1px;
+  }
+  .file-links a:hover, .file-links a:focus-visible { border-bottom-color: var(--accent); }
+
+  /* ── Rodapé ─────────────────────────────── */
+  /* ── Cronograma ───────────────────────────── */
+  .crono-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  @media (max-width: 760px) {
+    .crono-grid { grid-template-columns: 1fr; }
+  }
+  .crono-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.15rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .crono-card--marco {
+    background: var(--gold-light);
+    border-color: var(--gold);
+  }
+  .crono-num {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+  }
+  .crono-card--marco .crono-num { background: var(--gold); color: var(--gold-ink); }
+  .crono-data {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .crono-card--marco .crono-data { color: var(--gold-ink); }
+  .crono-titulo {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .crono-intro {
+    font-size: 0.74rem;
+    line-height: 1.55;
+    color: #000;
+    margin-bottom: 0.45rem;
+  }
+  .crono-lista { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .crono-lista li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 0.74rem;
+    line-height: 1.55;
+    color: #000;
+  }
+  .crono-lista li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .crono-card--marco .crono-lista li::before { background: var(--gold-ink); }
+
+  .pend-head {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+  .pend-lista {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
+  .pend-lista .file-flag { margin-left: 0; }
+  .crono-card--full { grid-column: 1 / -1; }
+  .crono-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+  @media (max-width: 700px) {
+    .crono-cols { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  /* ── Sequência de comunicação ─────────────── */
+  .comm-sequence {
+    margin-top: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .comm-sequence-head {
+    padding: 1.5rem 1.75rem 1.25rem;
+    background: linear-gradient(180deg, var(--surface-alt) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .comm-sequence-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .ic-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(241,206,10,0.18);
+  }
+  .comm-sequence-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .comm-sequence-sub {
+    font-size: 13px;
+    color: #000000;
+    line-height: 1.6;
+  }
+  .comm-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .comm-card {
+    padding: 1.5rem 1.5rem 1.6rem;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .comm-card--highlight {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--surface) 100%);
+  }
+  .comm-card-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .comm-step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .comm-step-num--gold {
+    background: var(--gold);
+    color: var(--gold-ink);
+  }
+  .comm-step-when {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    background: var(--surface-alt);
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+  }
+  .comm-step-when--gold {
+    color: var(--gold-dark);
+    background: rgba(241,206,10,0.15);
+    border-color: rgba(241,206,10,0.4);
+  }
+  .comm-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .comm-card-desc {
+    font-size: 12.5px;
+    color: #000000;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .comm-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+  .comm-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 8px;
+    border-radius: 6px;
+    line-height: 1.3;
+  }
+  .comm-tag--gold {
+    color: var(--gold-dark);
+    background: rgba(241,206,10,0.18);
+  }
+  @media (max-width: 760px) {
+    .comm-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ── Landings de apoio ────────────────────── */
+  .comms-head {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 1.75rem;
+  }
+  .comms-intro {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #000000;
+    margin-top: 0.5rem;
+  }
+  .comms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .comms-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.15rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .comms-card-num {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+  }
+  .comms-card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 0.45rem;
+  }
+  .comms-card-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 1rem;
+    flex: 1;
+  }
+  .comms-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    transition: background 0.15s, transform 0.12s;
+  }
+  .comms-btn::after { content: '↗'; font-size: 11px; font-weight: 700; }
+  .comms-btn:hover, .comms-btn:focus-visible {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+  }
+
+  /* ── Certificados prontos ─────────────────── */
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .cred-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-decoration: none;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .cred-card:hover, .cred-card:focus-visible {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    box-shadow: 0 4px 18px rgba(81,35,164,0.28);
+  }
+  .cred-curso {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #fff;
+  }
+  .cred-acao {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+
+  .foot {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  /* ── Lightbox ───────────────────────────── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(30,18,48,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.5rem 4rem;
+    z-index: 50;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff;
+  }
+  .lightbox-label {
+    position: absolute;
+    bottom: 1.4rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #E4DCF7;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 1.5rem;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 26px; }
+    .page-header { padding: 2.25rem 0 2rem; }
+    .piece-body { padding: 1.1rem; }
+    .piece-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .files--two { grid-template-columns: 1fr; }
+    .comms-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="wrap">
+    <div class="eyebrow">Campanha POK Egressos 2026</div>
+    <h1>Campanha Uniasselvi</h1>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc" aria-label="Índice das peças">
+    <a href="https://www.canva.com/design/DAHPSAGq4pw/a-Lqvdrxkb-XBWLoi968nA/edit" target="_blank" rel="noopener">Planejamento ↗</a>
+    <a href="#certificados-prontos">Certificados prontos</a>
+    <a href="#cronograma">Cronograma de execução</a>
+    <span class="toc-break" aria-hidden="true"></span>
+    <span class="toc-label">Materiais:</span>
+    <a href="#certificado">Certificado</a>
+    <a href="#head">Landing Page e POK Holder</a>
+    <a href="#banners">Banners cross-sell</a>
+    <a href="#email">E-mail</a>
+    <a href="#whatsapp">WhatsApp</a>
+    <a href="#linkedin">LinkedIn</a>
+  </nav>
+
+  <!-- ═══ Certificados prontos ═══ -->
+  <section class="piece" id="certificados-prontos">
+    <div class="piece-head">
+      <span class="piece-tag">Resultado</span>
+      <h2 class="piece-title">Certificados prontos (12.111 certificados)</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="cred-grid">
+        <a class="cred-card" href="https://view.pok.tech/c/d54b9ee7-e4d0-4630-98c1-e5aa7c157ce5" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Administração</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/89f40900-7cb5-4f75-bf29-d15d48247d61" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Biomedicina</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/6adf28e8-7e20-4d86-999c-8aa14e25074d" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Farmácia</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/378d6448-3709-4b50-b727-6c7e1073371e" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Nutrição</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/8c92edb3-070e-4704-b03a-90dcacdcbe07" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Terapia Ocupacional</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/2d38d4b3-1b4a-4f48-a312-3984b7eea057" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Estética e Cosmética</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/ad6e5ae1-ccb3-46a7-9053-c79572b3ba00" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Podologia</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/058a244e-cd61-46f6-91b1-5643093c8951" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Terapias Integrativas e Complementares</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+
+        <a class="cred-card" href="https://view.pok.tech/c/b66a7b38-4092-4539-bb35-0420981575d4" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Radiologia</span>
+          <span class="cred-acao">Ver credencial ↗</span>
+        </a>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:1.1rem;">
+        <a href="https://drive.google.com/drive/folders/1LSojySx8Yo8Cch7rwTD2xCRK41Bmiv2H?usp=drive_link" target="_blank" rel="noopener" class="comms-btn">Ver PPCs Uniasselvi</a>
+        <span class="flag-row">
+          <span class="file-flag file-flag--luciano">Luciano Santana, revisar certificados</span>
+          <span class="file-flag file-flag--luciano">Luciano Santana, enviar base de alunos com: nome completo, e-mail e CPF</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Cronograma ═══ -->
+  <section class="piece" id="cronograma">
+    <div class="piece-head">
+      <span class="piece-tag">Execução</span>
+      <h2 class="piece-title">Cronograma de execução</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="crono-grid">
+        <div class="crono-card crono-card--full">
+          <span class="crono-num">1</span>
+          <div class="crono-data">de 03 a 12 de agosto</div>
+          <div class="crono-titulo">Produção da campanha</div>
+          <div class="crono-cols">
+            <div>
+          <p class="crono-intro">POK e Vitru desenham a campanha de marketing em torno da entrega:</p>
+          <ul class="crono-lista">
+            <li>Certificados</li>
+            <li>Landing pages</li>
+            <li>Banners cross-sell</li>
+            <li>E-mail de envio</li>
+            <li>Peças WhatsApp</li>
+            <li>Peças LinkedIn</li>
+          </ul>
+            </div>
+
+            <div>
+          <h3 class="pend-head" style="margin-top:0;">Pendências:</h3>
+          <div class="pend-lista">
+          <span class="file-flag file-flag--luciano">Luciano Santana, revisar certificados</span>
+          <span class="file-flag file-flag--luciano">Luciano Santana, enviar base de alunos com: nome completo, e-mail e CPF</span>
+          <span class="file-flag">Lídia Fleming, readaptar tamanho imagem landing page</span>
+          <span class="file-flag">Lídia Fleming, verificar links dos banners cross-sell</span>
+          <span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e links de banners Masterclass</span>
+          <span class="file-flag">Lídia Fleming, criar peças gráficas de banners Masterclass</span>
+          <span class="file-flag">Lídia Fleming, revisar texto inicial de e-mails e e-mail de contato</span>
+          <span class="file-flag">Lídia Fleming, enviar peças de WhatsApp e LinkedIn</span>
+          </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="crono-card">
+          <span class="crono-num">2</span>
+          <div class="crono-data">01 dia após envio das pendências</div>
+          <div class="crono-titulo">Tratamento da base de alunos</div>
+          <ul class="crono-lista">
+            <li>POK trata a base de alunos para que o xlsx fique correto (extração, limpeza e formatação dos dados).</li>
+          </ul>
+        </div>
+
+        <div class="crono-card crono-card--marco">
+          <span class="crono-num">★</span>
+          <div class="crono-data">02 dias após envio das bases de alunos</div>
+          <div class="crono-titulo">Disparo dos certificados · Uniasselvi</div>
+          <ul class="crono-lista">
+            <li>POK realiza a emissão e disparo dos certificados em blockchain para os egressos confirmados da Uniasselvi.</li>
+          </ul>
+        </div>
+
+        <div class="crono-card">
+          <span class="crono-num">3</span>
+          <div class="crono-data">02 dias após envio de certificados</div>
+          <div class="crono-titulo">Ciclo de leitura de empregabilidade</div>
+        </div>
+      </div>
+  <!-- Sequência sugerida de comunicação -->
+  <div class="comm-sequence">
+    <div class="comm-sequence-head">
+      <div class="comm-sequence-eyebrow">
+        <span class="ic-dot"></span>
+        Sugestão de sequência
+      </div>
+      <h3 class="comm-sequence-title">Comunicação com os egressos em 3 momentos</h3>
+      <p class="comm-sequence-sub">Estrutura recomendada para preparar, entregar e celebrar a certificação. Cada peça pode ser disparada pela POK e pela Vitru nos seus canais.</p>
+    </div>
+
+    <div class="comm-cards">
+
+      <div class="comm-card">
+        <div class="comm-card-step">
+          <span class="comm-step-num">1</span>
+          <span class="comm-step-when">3 dias antes</span>
+        </div>
+        <div class="comm-card-title">Pré-certificado</div>
+        <div class="comm-card-desc">Preparar o egresso para a chegada do certificado. Anunciar a iniciativa e criar expectativa.</div>
+        <div class="comm-card-tags">
+          <span class="comm-tag">Teaser</span>
+          <span class="comm-tag">Reconexão</span>
+        </div>
+      </div>
+
+      <div class="comm-card comm-card--highlight">
+        <div class="comm-card-step">
+          <span class="comm-step-num comm-step-num--gold">2</span>
+          <span class="comm-step-when comm-step-when--gold">Dia do envio</span>
+        </div>
+        <div class="comm-card-title">Envio do certificado</div>
+        <div class="comm-card-desc">O egresso recebe o certificado em blockchain. Comunicação por e-mail com link para o certificado e instruções de uso.</div>
+        <div class="comm-card-tags">
+          <span class="comm-tag comm-tag--gold">Envio de certificado por e-mail</span>
+          <span class="comm-tag comm-tag--gold">Landing page</span>
+        </div>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-step">
+          <span class="comm-step-num">3</span>
+          <span class="comm-step-when">4 dias depois</span>
+        </div>
+        <div class="comm-card-title">Pós-Certificado</div>
+        <div class="comm-card-desc">Estimular o uso da credencial e o engajamento contínuo. Convidar para publicar no LinkedIn e acessar a carteira digital.</div>
+        <div class="comm-card-tags">
+          <span class="comm-tag">Carteira digital</span>
+          <span class="comm-tag">LinkedIn</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ Certificado ═══ -->
+  <section class="piece" id="certificado">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 1</span>
+      <h2 class="piece-title">Design do certificado</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="files">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" data-label="certificado-final-Uniasselvi.png · certificado com arte aplicada">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" alt="Certificado Uniasselvi com arte aplicada" loading="lazy">
+          </button>
+          <div class="file-name">certificado-final-Uniasselvi.png</div>
+          <div class="file-specs">2000 × 1539 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" data-label="Certificado-Limpo.png · base sem dados variáveis">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" alt="Certificado Uniasselvi em versão limpa, sem dados variáveis" loading="lazy">
+          </button>
+          <div class="file-name">Certificado-Limpo.png</div>
+          <div class="file-specs">2000 × 1539 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" download>Baixar</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flag-row" style="margin-top:1rem;">
+        <span class="file-flag file-flag--luciano">Luciano Santana, verificar assinatura de certificado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Head da landing page ═══ -->
+  <section class="piece" id="head">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 2</span>
+      <h2 class="piece-title">Landing Page e POK Holder</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="files files--stack">
+
+        <div class="file file--logo">
+          <button class="file-frame file-frame--checker" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Logo-Uniasselvi.png" data-label="Logo-Uniasselvi.png · logotipo institucional">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Logo-Uniasselvi.png" alt="Logotipo institucional da Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">Logo-Uniasselvi.png</div>
+          <div class="file-specs">PNG com fundo transparente</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Logo-Uniasselvi.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Logo-Uniasselvi.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" data-label="Capa da landing page e do POK Holder">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" alt="Imagem de capa da landing page e do POK Holder da Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">Capa-LPePOKHolder-2880x320.png<span class="file-flag">Lídia Fleming, readaptar tamanho imagem</span></div>
+          <div class="file-specs">2880 × 320 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" download>Baixar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Banners ═══ -->
+  <section class="piece" id="banners">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 3</span>
+      <h2 class="piece-title">Banners cross-sell</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="files files--two">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" data-label="Banner540x236px-1.png · banner 1 de 4">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" alt="Banner 1 da landing page Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">Banner540x236px-1.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" data-label="Banner540x236px-2.png · banner 2 de 4">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" alt="Banner 2 da landing page Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">Banner540x236px-2.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" data-label="Banner540x236px-3.png · banner 3 de 4">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" alt="Banner 3 da landing page Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">Banner540x236px-3.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" data-label="Banner540x236px-4.png · banner 4 de 4">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" alt="Banner 4 da landing page Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">Banner540x236px-4.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" data-label="banner_masterclass_vitru.png · banner 5 de 6">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" alt="Banner 5 da landing page Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">banner_masterclass_vitru.png<span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e link</span><span class="file-flag">Lídia Fleming, criar peça gráfica</span></div>
+          <div class="file-meta">
+            <strong>Masterclass Curso de Administração</strong><br>
+            Grupo Renner - 17/09
+          </div>
+          <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" data-label="banner_masterclass_vitru.png · banner 6 de 6">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" alt="Banner 6 da landing page Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">banner_masterclass_vitru.png<span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e link</span><span class="file-flag">Lídia Fleming, criar peça gráfica</span></div>
+          <div class="file-meta">
+            <strong>Masterclass Cursos de Saúde</strong><br>
+            Hospital Albert Einstein - data a definir
+          </div>
+          <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" download>Baixar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ E-mail ═══ -->
+  <section class="piece" id="email">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 4</span>
+      <h2 class="piece-title">E-mail</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="files files--single">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/TopodeE-mailPOK.png" data-label="TopodeE-mailPOK.png · head do e-mail">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/TopodeE-mailPOK.png" alt="Head do e-mail da campanha Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">TopodeE-mailPOK.png</div>
+          <div class="file-specs">PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/TopodeE-mailPOK.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/TopodeE-mailPOK.png" download>Baixar</a>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 class="comms-head">E-mails montagem POK</h3>
+
+      <div class="files files--two" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Email-uniasselvi-aceitacao.png" data-label="E-mail aceitação">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Email-uniasselvi-aceitacao.png" alt="E-mail de aceitação da campanha Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">E-mail aceitação</div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Email-uniasselvi-emissao.png" data-label="E-mail emissão">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Email-uniasselvi-emissao.png" alt="E-mail de emissão da campanha Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">E-mail emissão</div>
+        </div>
+
+      </div>
+
+      <div class="flag-row" style="margin-top:1rem;">
+        <span class="file-flag">Lídia Fleming, revisar texto inicial de e-mails e e-mail de contato</span>
+      </div>
+
+      <h3 class="comms-head">Comunicação com o Egresso:</h3>
+      <p class="comms-intro">A POK apresenta ao egresso uma série de páginas que reforçam o valor da credencial e mostram como aproveitá-la, inicialmente pelo e-mail onde ele recebe o certificado, e que podem ser trabalhadas em outros materiais, tanto pela POK quanto pela instituição:</p>
+
+      <div class="comms-grid">
+        <div class="comms-card">
+          <span class="comms-card-num">1</span>
+          <h5 class="comms-card-title">Por que compartilhar no LinkedIn</h5>
+          <p class="comms-card-desc">Mostra ao egresso por que vale a pena divulgar o certificado no LinkedIn e como isso dá visibilidade à sua conquista, fortalece o perfil profissional e amplia oportunidades de carreira.</p>
+          <a href="https://pokbrasil.github.io/marketing/pok_linkedin_landing.html" target="_blank" rel="noopener" class="comms-btn">Ver landing</a>
+        </div>
+        <div class="comms-card">
+          <span class="comms-card-num">2</span>
+          <h5 class="comms-card-title">A carteira digital POK Holder</h5>
+          <p class="comms-card-desc">Apresenta a POK Holder, onde o egresso reúne, acessa e compartilha todas as suas credenciais em um só lugar – em versão web e aplicativo.</p>
+          <a href="https://pokbrasil.github.io/marketing/pok_holder_landing.html" target="_blank" rel="noopener" class="comms-btn">Ver landing</a>
+        </div>
+        <div class="comms-card">
+          <span class="comms-card-num">3</span>
+          <h5 class="comms-card-title">Open Badge, NFT e padronização internacional</h5>
+          <p class="comms-card-desc">Mostra como a credencial segue padrões internacionais – Open Badge, blockchain e NFT –, garantindo verificação e reconhecimento em qualquer lugar do mundo.</p>
+          <a href="https://pokbrasil.github.io/marketing/pok_credencial_valor_landing.html" target="_blank" rel="noopener" class="comms-btn">Ver landing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WhatsApp ═══ -->
+  <section class="piece" id="whatsapp">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 5</span>
+      <h2 class="piece-title">WhatsApp</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="flag-row">
+        <span class="file-flag">Lídia Fleming, enviar peças de WhatsApp e LinkedIn</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LinkedIn ═══ -->
+  <section class="piece" id="linkedin">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 6</span>
+      <h2 class="piece-title">LinkedIn</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="flag-row">
+        <span class="file-flag">Lídia Fleming, enviar peças de WhatsApp e LinkedIn</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">POK • muito mais que certificados digitais</div>
+
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização em tamanho real">
+  <button class="lightbox-close" type="button" id="lightboxClose">Fechar</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-label" id="lightboxLabel"></div>
+</div>
+
+<script>
+(function () {
+  var box = document.getElementById('lightbox');
+  var img = document.getElementById('lightboxImg');
+  var label = document.getElementById('lightboxLabel');
+  var closeBtn = document.getElementById('lightboxClose');
+  var lastFocus = null;
+
+  function open(src, text) {
+    lastFocus = document.activeElement;
+    img.src = src;
+    img.alt = text;
+    label.textContent = text;
+    box.classList.add('open');
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove('open');
+    img.src = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.file-frame').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      open(btn.dataset.src, btn.dataset.label);
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && box.classList.contains('open')) close();
+  });
+})();
+</script>
+
+</body>
+</html>
