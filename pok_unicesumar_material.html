@@ -210,6 +210,14 @@
     margin-top: 5px;
   }
   .file-specs { font-size: 11px; color: var(--ink-faint); margin-top: 2px; font-weight: 500; }
+  .file-destino { font-size: 11px; margin-top: 4px; font-weight: 500; color: var(--ink-faint); }
+  .file-destino a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.18);
+    word-break: break-all;
+  }
+  .file-destino a:hover, .file-destino a:focus-visible { border-bottom-color: var(--accent); }
   .file-links { display: flex; gap: 14px; margin-top: 0.6rem; }
   .file-links a {
     font-size: 11px;
@@ -347,6 +355,96 @@
     color: var(--ink);
     margin-top: 1.75rem;
   }
+  /* ── Textos dos e-mails ───────────────────── */
+  .mail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .mail-col { display: flex; flex-direction: column; gap: 10px; }
+  .mail-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .mail-card-head {
+    padding: 1rem 1.35rem;
+    background: linear-gradient(180deg, var(--surface-alt) 0%, var(--surface) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .mail-card-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .mail-card-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .mail-body { padding: 1.35rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .mail-body p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #000000;
+  }
+  .mail-body p.mail-greet { font-weight: 700; }
+  .mail-body a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.18); }
+  .mail-body a:hover, .mail-body a:focus-visible { border-bottom-color: var(--accent); }
+  .mail-var {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+  /* estado: e-mail já em uso */
+  .mail-card--usado { background: var(--surface-alt); border-color: #ded3ee; }
+  .mail-card--usado .mail-card-head { background: transparent; border-bottom-color: #ded3ee; }
+  .mail-card--usado .mail-card-eyebrow { color: #8f79b8; }
+  .mail-card--usado .mail-card-title { color: #6a5a86; }
+  .mail-card--usado .mail-body p { color: #6a5a86; }
+  .mail-card--usado .mail-var { color: #8f79b8; background: #e3daf1; }
+  .mail-card--usado .mail-btn { background: #b9a9d6; border-color: #b9a9d6; color: #fff; }
+  .mail-card--usado .mail-body a { color: #8f79b8; }
+
+  .mail-btn {
+    align-self: flex-start;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+  }
+  @media (max-width: 760px) {
+    .mail-grid { grid-template-columns: 1fr; }
+  }
+
+  .info-linha {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #000000;
+    margin-top: 1rem;
+  }
+  .info-linha strong { font-weight: 700; }
+  .info-linha a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.18);
+  }
+  .info-linha a:hover, .info-linha a:focus-visible { border-bottom-color: var(--accent); }
   .comms-intro {
     font-size: 13px;
     line-height: 1.7;
@@ -691,45 +789,49 @@
 
     <div class="piece-body">
       <div class="cred-grid">
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Administração</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/b74e4fd5-fe20-456f-beef-4287ca005967" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Administração</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
 
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Biomedicina</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/b22ef068-1c61-4a49-a476-95b6a65d0125" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Biomedicina</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
 
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Nutrição</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/a8d23930-b384-4c9e-8e45-c642f33e3f41" target="_blank" rel="noopener">
+          <span class="cred-curso">Bacharel em Nutrição</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
 
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Estética e cosmética</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/e5af1cec-ab66-49a4-bbd0-e03aa5eeaaef" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Estética e Cosmética</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
 
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Gerontologia</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/9a4a48e2-bbde-40d4-90b2-79ad51da42dd" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Gerontologia</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
 
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Podologia</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/b3adee2e-2fea-4149-95cc-dcb44df49f73" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Podologia</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
 
-        <div class="cred-card cred-card--pendente">
-          <span class="cred-curso">Terapias integrativas</span>
-          <span class="cred-acao">Aguardando link</span>
-        </div>
+        <a class="cred-card" href="https://view.pok.tech/c/a60d8904-dba0-4b27-a356-43a12b76bd72" target="_blank" rel="noopener">
+          <span class="cred-curso">Tecnólogo em Terapias Integrativas e Complementares</span>
+          <span class="cred-acao">Ver certificado ↗</span>
+        </a>
+      </div>
+
+      <div class="flag-row" style="margin-top:1.1rem;">
+        <span class="file-flag file-flag--luciano">Luciano Santana, revisar certificados</span>
+        <span class="file-flag file-flag--luciano">Luciano Santana, enviar base de alunos com: nome completo, e-mail e CPF</span>
       </div>
 
       <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-start; margin-top:1.1rem;">
         <a href="https://drive.google.com/drive/folders/1NmL5DpX3o5yodlV5UShqpRugeDVkVVLc?usp=drive_link" target="_blank" rel="noopener" class="comms-btn">Ver PPCs Unicesumar</a>
-        <a href="https://view.pok.tech/c/a17ae06e-326c-4923-b179-b80f2fefd0c3" target="_blank" rel="noopener" class="comms-btn">Ver exemplo</a>
       </div>
     </div>
   </section>
@@ -765,12 +867,7 @@
           <div class="pend-lista">
           <span class="file-flag file-flag--luciano">Luciano Santana, revisar certificados</span>
           <span class="file-flag file-flag--luciano">Luciano Santana, enviar base de alunos com: nome completo, e-mail e CPF</span>
-          <span class="file-flag">Rafaela Freire, readaptar tamanho imagem landing page</span>
-          <span class="file-flag">Rafaela Freire, verificar links dos banners cross-sell</span>
-          <span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e links de banners Masterclass</span>
-          <span class="file-flag">Rafaela Freire, criar peças gráficas de banners Masterclass</span>
-          <span class="file-flag">Rafaela Freire, revisar texto inicial de e-mails e e-mail de contato</span>
-          <span class="file-flag">Rafaela Freire, enviar peças de WhatsApp e LinkedIn</span>
+          <span class="file-flag">Rafaela Freire, criar peça gráfica de banner Masterclass</span>
           </div>
             </div>
           </div>
@@ -864,7 +961,7 @@
   <section class="piece" id="email">
     <div class="piece-head">
       <span class="piece-tag">Peça 4</span>
-      <h2 class="piece-title">E-mail</h2>
+      <h2 class="piece-title">E-mails de disparo da POK</h2>
     </div>
 
     <div class="piece-body">
@@ -904,9 +1001,7 @@
 
       </div>
 
-      <div class="flag-row" style="margin-top:1rem;">
-        <span class="file-flag">Rafaela Freire, revisar texto inicial de e-mails e e-mail de retorno</span>
-      </div>
+      <p class="info-linha"><strong>E-mail de retorno da Unicesumar:</strong> <a href="mailto:secretaria@unicesumar.edu.br">secretaria@unicesumar.edu.br</a></p>
 
       <h3 class="comms-head">Comunicação com o Egresso:</h3>
       <p class="comms-intro">A POK apresenta ao egresso uma série de páginas que reforçam o valor da credencial e mostram como aproveitá-la, inicialmente pelo e-mail onde ele recebe o certificado, e que podem ser trabalhadas em outros materiais, tanto pela POK quanto pela instituição:</p>
@@ -930,6 +1025,153 @@
           <p class="comms-card-desc">Mostra como a credencial segue padrões internacionais – Open Badge, blockchain e NFT –, garantindo verificação e reconhecimento em qualquer lugar do mundo.</p>
           <a href="https://pokbrasil.github.io/marketing/pok_credencial_valor_landing.html" target="_blank" rel="noopener" class="comms-btn">Ver landing</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Textos dos e-mails ═══ -->
+  <section class="piece" id="textos-email">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 5</span>
+      <h2 class="piece-title">E-mails de reforço</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="mail-grid">
+
+        <div class="mail-col">
+        <div class="mail-card mail-card--usado">
+          <div class="mail-card-head">
+            <div class="mail-card-eyebrow">Disparo 1</div>
+            <div class="mail-card-title">E-mail de aceitação</div>
+          </div>
+          <div class="mail-body">
+            <p class="mail-greet">Olá, <span class="mail-var">[NOME]</span>!</p>
+            <p>Você recebeu uma credencial verificável da UniCesumar.</p>
+            <p>A UniCesumar enviou a você uma credencial verificável no padrão Open Badge 3.0, registrada em blockchain: uma nova forma de apresentar sua formação, destacando as competências que você adquiriu e que podem ser compartilhadas no LinkedIn, no currículo ou em processos seletivos.</p>
+            <p>Sua credencial é autêntica, verificável e pode ser validada por empregadores de forma rápida e segura.</p>
+            <p>Emita sua credencial para que ela seja registrada em blockchain:</p>
+            <span class="mail-btn">Emita sua credencial</span>
+            <p>Compartilhe seus certificados e badges no LinkedIn e aumente a sua visibilidade profissional.</p>
+            <span class="mail-btn">Saiba mais sobre o compartilhamento no LinkedIn</span>
+            <p>Se você tiver alguma dúvida ou preocupação, entre em contato com a gente pelo e-mail <a href="mailto:secretaria@unicesumar.edu.br">secretaria@unicesumar.edu.br</a>.</p>
+            <p>Obrigada.</p>
+          </div>
+        </div>
+        <div class="flag-row">
+          <span class="file-flag">Rafaela, este texto foi adicionado ao e-mail de aceitação.</span>
+        </div>
+        </div>
+
+        <div class="mail-col">
+        <div class="mail-card mail-card--usado">
+          <div class="mail-card-head">
+            <div class="mail-card-eyebrow">Disparo 2</div>
+            <div class="mail-card-title">E-mail de emissão</div>
+          </div>
+          <div class="mail-body">
+            <p class="mail-greet">Olá, <span class="mail-var">[NOME]</span>!</p>
+            <p>Sua credencial de graduação de Teste Email está pronta!</p>
+            <p>A credencial verificável, no padrão Open Badge 3.0 e registrada em blockchain, chega até você com as informações públicas. Ao acessá-la, você poderá escolher se deseja mantê-la pública ou torná-la privada. Caso opte pela privacidade, será possível definir uma palavra-chave que deverá ser informada pelos visitantes para visualizar o conteúdo através do link da credencial.</p>
+            <span class="mail-btn">Veja sua credencial</span>
+            <p>Compartilhe seus certificados e badges no LinkedIn e aumente a sua visibilidade profissional.</p>
+            <span class="mail-btn">Saiba mais sobre o compartilhamento no LinkedIn</span>
+            <p>Se você tiver alguma dúvida ou preocupação, entre em contato com a gente pelo e-mail <a href="mailto:secretaria@unicesumar.edu.br">secretaria@unicesumar.edu.br</a>.</p>
+            <p>Obrigada.</p>
+          </div>
+        </div>
+        <div class="flag-row">
+          <span class="file-flag">Rafaela, este texto foi adicionado ao e-mail de emissão.</span>
+        </div>
+        </div>
+
+      </div>
+
+      <h3 class="comms-head">Peças dos e-mails de reforço</h3>
+
+      <div class="files files--two" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor.png" data-label="E-mail1-ReforcodeValor.png · Reforço de valor – versão A">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor.png" alt="Reforço de valor – versão A" loading="lazy">
+          </button>
+          <div class="file-name">E-mail1-ReforcodeValor.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor-B.png" data-label="E-mail1-ReforcodeValor-B.png · Reforço de valor – versão B">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor-B.png" alt="Reforço de valor – versão B" loading="lazy">
+          </button>
+          <div class="file-name">E-mail1-ReforcodeValor-B.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor-B.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail1-ReforcodeValor-B.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail2POKHolder.png" data-label="E-mail2POKHolder.png · POK Holder">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail2POKHolder.png" alt="POK Holder" loading="lazy">
+          </button>
+          <div class="file-name">E-mail2POKHolder.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail2POKHolder.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail2POKHolder.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacional.png" data-label="E-mail3PadraoInternacional.png · Padrão internacional – versão A">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacional.png" alt="Padrão internacional – versão A" loading="lazy">
+          </button>
+          <div class="file-name">E-mail3PadraoInternacional.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacional.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacional.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacionalB.png" data-label="E-mail3PadraoInternacionalB.png · Padrão internacional – versão B">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacionalB.png" alt="Padrão internacional – versão B" loading="lazy">
+          </button>
+          <div class="file-name">E-mail3PadraoInternacionalB.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacionalB.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/E-mail3PadraoInternacionalB.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Homem.png" data-label="Email-KV-Homem.png · Key visual – homem">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Homem.png" alt="Key visual – homem" loading="lazy">
+          </button>
+          <div class="file-name">Email-KV-Homem.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Homem.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Homem.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Mulher.png" data-label="Email-KV-Mulher.png · Key visual – mulher">
+            <img src="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Mulher.png" alt="Key visual – mulher" loading="lazy">
+          </button>
+          <div class="file-name">Email-KV-Mulher.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Mulher.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Unicesumar/Email-KV-Mulher.png" download>Baixar</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flag-row" style="margin-top:1.1rem;">
+        <span class="file-flag">Rafaela, estes e-mails precisam ser disparados pelos serviços de disparos da Unicesumar</span>
       </div>
     </div>
   </section>
@@ -968,7 +1210,7 @@ var PECAS = [
     layout: "files files--stack",
     arquivos: [
       { nome: "LogoUnicesumar-cabecalho.png",    specs: "PNG com fundo transparente", logo: true },
-      { nome: "CabecalhoLPLogo2880x320px.png",   specs: "2880 × 320 px · PNG · RGB", flag: "Rafaela Freire, readaptar tamanho imagem" }
+      { nome: "CabecalhoLPLogo2880x320px.png",   specs: "2880 × 320 px · PNG · RGB" }
     ]
   },
   {
@@ -977,21 +1219,18 @@ var PECAS = [
     titulo: "Banners cross-sell",
     layout: "files files--two",
     arquivos: [
-      { nome: "Banner540x236px-1.png", specs: "540 × 236 px · PNG · RGB", flag: "Rafaela Freire, verificar link" },
-      { nome: "Banner540x236px-2.png", specs: "540 × 236 px · PNG · RGB", flag: "Rafaela Freire, verificar link" },
-      { nome: "Banner540x236px-3.png", specs: "540 × 236 px · PNG · RGB", flag: "Rafaela Freire, verificar link" },
-      { nome: "Banner540x236px-4.png", specs: "540 × 236 px · PNG · RGB", flag: "Rafaela Freire, verificar link" },
+      { nome: "Banner540x236px-1.png", specs: "540 × 236 px · PNG · RGB", destino: "https://inscricoes.unicesumar.edu.br/pos-graduacao/" },
+      { nome: "Banner540x236px-2.png", specs: "540 × 236 px · PNG · RGB", destino: "https://inscricoes.unicesumar.edu.br/pos-graduacao/" },
+      { nome: "Banner540x236px-3.png", specs: "540 × 236 px · PNG · RGB", flag: "Rafaela, ver se não fica bom colocar dois com mulher", destino: "https://inscricoes.unicesumar.edu.br/pos-graduacao/" },
+      { nome: "Banner540x236px-4.png", specs: "540 × 236 px · PNG · RGB", flag: "Rafaela, ver se não fica bom colocar dois com mulher", destino: "https://inscricoes.unicesumar.edu.br/pos-graduacao/" },
       { nome: "banner_masterclass_vitru.png", specs: "540 × 236 px · PNG · RGB",
-        flags: [{ t: "Rafael Gasparoto conteúdo e link", cor: "rafael" }, { t: "Rafaela Freire, criar peça gráfica" }],
-        meta: "<strong>Masterclass Curso de Administração</strong><br>Petrobrás - 15/09" },
-      { nome: "banner_masterclass_vitru.png", specs: "540 × 236 px · PNG · RGB",
-        flags: [{ t: "Rafael Gasparoto conteúdo e link", cor: "rafael" }, { t: "Rafaela Freire, criar peça gráfica" }],
-        meta: "<strong>Masterclass Cursos de Saúde</strong><br>Hospital Albert Einstein - 20/10" }
+        flags: [{ t: "Rafaela Freire, criar peça gráfica" }],
+        meta: "<strong>Masterclass</strong>" }
     ]
   },
   {
     id: "whatsapp",
-    tag: "Peça 5",
+    tag: "Peça 6",
     titulo: "WhatsApp",
     layout: "files files--two",
     arquivos: [
@@ -1003,8 +1242,19 @@ var PECAS = [
     ]
   },
   {
+    id: "polos",
+    tag: "Peça 7",
+    titulo: "Polos",
+    layout: "files files--two",
+    arquivos: [
+      { nome: "E-mail-4-Polos-DivulgacaoProjeto.png",  specs: "Divulgação do projeto – versão A" },
+      { nome: "E-mail-4-Polos-DivulgacaoProjetoB.png", specs: "Divulgação do projeto – versão B" },
+      { nome: "E-mail-5-PolosPosCertificado.png",      specs: "Pós-certificado" }
+    ]
+  },
+  {
     id: "linkedin",
-    tag: "Peça 6",
+    tag: "Peça 8",
     titulo: "LinkedIn",
     layout: "files files--two",
     arquivos: [
@@ -1034,14 +1284,19 @@ var PECAS = [
   var toc = document.getElementById('toc');
   var hostPre = document.getElementById('pieces-pre');
   var hostPost = document.getElementById('pieces-post');
-  var POST = ['whatsapp', 'linkedin'];
+  var POST = ['whatsapp', 'polos', 'linkedin'];
 
   PECAS.forEach(function (peca) {
     if (peca.id === 'whatsapp') {
       var e = document.createElement('a');
       e.href = '#email';
-      e.textContent = 'E-mail';
+      e.textContent = 'E-mails de disparo da POK';
       toc.appendChild(e);
+
+      var t = document.createElement('a');
+      t.href = '#textos-email';
+      t.textContent = 'E-mails de reforço';
+      toc.appendChild(t);
     }
 
     var a = document.createElement('a');
@@ -1087,6 +1342,7 @@ var PECAS = [
           }).join('') + '</div>' +
         (arq.meta ? '<div class="file-meta">' + arq.meta + '</div>' : '') +
         '<div class="file-specs">' + esc(arq.specs) + '</div>' +
+        (arq.destino ? '<div class="file-destino">Link de destino: <a href="' + arq.destino + '" target="_blank" rel="noopener">' + arq.destino.replace(/^https?:\/\//, '') + '</a></div>' : '') +
         links + '</div>';
     });
 

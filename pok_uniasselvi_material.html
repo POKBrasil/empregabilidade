@@ -99,8 +99,40 @@
   }
   .toc a:hover, .toc a:focus-visible { background: var(--accent); color: #fff; }
 
+  .toc a.toc-fase {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .toc a.toc-fase:hover, .toc a.toc-fase:focus-visible {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+  }
+
   /* ── Peça ───────────────────────────────── */
   .piece { margin-bottom: 3rem; scroll-margin-top: 1.5rem; }
+
+  .fase-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 3.5rem 0 2rem;
+    scroll-margin-top: 1.5rem;
+  }
+  .fase-head h2 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .fase-head::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--accent-light);
+  }
 
   .piece-head {
     display: flex;
@@ -242,6 +274,29 @@
     margin-top: 2px;
     font-weight: 500;
   }
+  .file-dest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 11px;
+    margin-top: 0.45rem;
+  }
+  .file-dest-label {
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .file-dest a {
+    color: var(--ink-muted);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    word-break: break-all;
+  }
+  .file-dest a:hover, .file-dest a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+
   .file-links { display: flex; gap: 14px; margin-top: 0.6rem; }
   .file-links a {
     font-size: 11px;
@@ -254,6 +309,253 @@
     padding-bottom: 1px;
   }
   .file-links a:hover, .file-links a:focus-visible { border-bottom-color: var(--accent); }
+
+  /* ── Peças de WhatsApp ────────────────────── */
+  .wpp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .wpp-copy {
+    position: relative;
+    z-index: 0;
+    padding: 1rem 1.1rem 1.1rem;
+    margin-top: 0.9rem;
+  }
+  .wpp-copy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    z-index: -1;
+  }
+  .wpp-copy-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .wpp-text {
+    position: relative;
+    z-index: 0;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    white-space: pre-line;
+  }
+  .wpp-text strong { font-weight: 700; }
+  .wpp-token {
+    position: relative;
+    color: var(--gold-ink);
+    font-weight: 600;
+    padding: 1px 6px;
+  }
+  .wpp-token::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    border-radius: 4px;
+    z-index: -1;
+  }
+  .wpp-flag {
+    display: block;
+    margin-top: 0.8rem;
+    line-height: 1.55;
+    white-space: normal;
+    padding: 6px 10px;
+  }
+  .wpp-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wpp-grid--side { grid-template-columns: 1fr; }
+  .wpp-grid--side .file {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: start;
+  }
+  .wpp-grid--side .file-frame { grid-column: 1; grid-row: 1; }
+  .wpp-grid--side .file-name  { grid-column: 1; grid-row: 2; }
+  .wpp-grid--side .file-links { grid-column: 1; grid-row: 3; }
+  .wpp-grid--side .wpp-copy   { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
+  @media (max-width: 760px) {
+    .wpp-grid--side .file { grid-template-columns: 1fr; }
+    .wpp-grid--side .file-frame,
+    .wpp-grid--side .file-name,
+    .wpp-grid--side .file-links,
+    .wpp-grid--side .wpp-copy { grid-column: 1; grid-row: auto; }
+    .wpp-grid--side .wpp-copy { margin-top: 0.9rem; }
+  }
+  @media (max-width: 900px) {
+    .wpp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .wpp-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── E-mails de reforço ───────────────── */
+  .mail-list { display: grid; gap: 1.5rem; }
+  .mail-card {
+    position: relative;
+    z-index: 0;
+    padding: 1.4rem 1.5rem 1.5rem;
+  }
+  .mail-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    z-index: -1;
+  }
+  .mail-card--usado .mail-corpo,
+  .mail-card--usado .mail-topo,
+  .mail-card--usado .mail-meta-value,
+  .mail-card--usado .mail-nota,
+  .mail-card--usado .mail-lista li { color: #8b7aa8; }
+  .mail-card--usado .mail-corpo strong,
+  .mail-card--usado .mail-lista strong { color: #7a6796; }
+  .mail-card--usado .mail-fase {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  .mail-card--usado .mail-cta {
+    background: #c8b8e4;
+    color: #fff;
+  }
+  .mail-card--usado .mail-token { color: var(--accent); }
+  .mail-card--usado .mail-token::before { background: var(--accent-light); }
+  .mail-fase {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  .mail-meta { display: grid; gap: 4px; margin-bottom: 1rem; }
+  .mail-meta-row { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; line-height: 1.55; }
+  .mail-meta-label {
+    flex: 0 0 88px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 3px;
+  }
+  .mail-meta-value { flex: 1 1 240px; color: var(--ink); font-weight: 500; }
+  .mail-block { margin-top: 1rem; }
+  .mail-block-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.4rem;
+  }
+  .mail-topo { white-space: pre-line; font-weight: 400; }
+  .mail-preheader { font-weight: 400; }
+  .mail-corpo { position: relative; z-index: 0; font-size: 13px; line-height: 1.75; color: var(--ink); white-space: pre-line; }
+  .mail-corpo strong { font-weight: 700; }
+  .mail-lista {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin: 0.7rem 0;
+  }
+  .mail-lista li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .mail-lista li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .mail-lista--num { counter-reset: mailnum; }
+  .mail-lista--num li::before {
+    counter-increment: mailnum;
+    content: counter(mailnum);
+    background: none;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    top: 0;
+  }
+  .mail-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0.9rem 0;
+  }
+  .mail-cta-row .mail-cta { margin: 0; }
+  .mail-cta-row .file-flag {
+    margin-left: 0;
+    flex-shrink: 1;
+    white-space: normal;
+    line-height: 1.55;
+    padding: 6px 10px;
+  }
+  .mail-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin: 0.9rem 0;
+  }
+  .mail-nota {
+    font-size: 11.5px;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    border-left: 2px solid var(--border);
+    padding-left: 11px;
+    margin-top: 1rem;
+  }
+  .mail-nota--forte { color: var(--ink); }
+  .mail-token {
+    position: relative;
+    color: var(--gold-ink);
+    font-weight: 600;
+    padding: 1px 6px;
+  }
+  .mail-token::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    border-radius: 4px;
+    z-index: -1;
+  }
+  @media (max-width: 640px) {
+    .mail-card { padding: 1.15rem 1.15rem 1.25rem; }
+    .mail-meta-label { flex: 0 0 100%; padding-top: 0; }
+  }
 
   /* ── Rodapé ─────────────────────────────── */
   /* ── Cronograma ───────────────────────────── */
@@ -496,6 +798,7 @@
     color: var(--ink);
     margin-top: 1.75rem;
   }
+  .piece-body > .comms-head:first-child { margin-top: 0; }
   .comms-intro {
     font-size: 13px;
     line-height: 1.7;
@@ -696,8 +999,15 @@
     <a href="#certificado">Certificado</a>
     <a href="#head">Landing Page e POK Holder</a>
     <a href="#banners">Banners cross-sell</a>
-    <a href="#email">E-mail</a>
+    <a href="#email">E-mails de disparo da POK</a>
+    <a class="toc-fase" href="#fase-nutricao">Fase de nutrição</a>
+    <a href="#emails-comunicacao">E-mails de reforço</a>
     <a href="#whatsapp">WhatsApp</a>
+    <a href="#polos">Polos</a>
+    <a class="toc-fase" href="#fase-lancamento">Fase de lançamento</a>
+    <a href="#emails-comunicacao-lancamento">E-mails de reforço</a>
+    <a href="#whatsapp-lancamento">WhatsApp</a>
+    <a href="#polos-lancamento">Polos</a>
     <a href="#linkedin">LinkedIn</a>
   </nav>
 
@@ -710,47 +1020,47 @@
 
     <div class="piece-body">
       <div class="cred-grid">
-        <a class="cred-card" href="https://view.pok.tech/c/d54b9ee7-e4d0-4630-98c1-e5aa7c157ce5" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/159b8989-aef6-409c-b271-bd29cbdf472d" target="_blank" rel="noopener">
           <span class="cred-curso">Bacharel em Administração</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/89f40900-7cb5-4f75-bf29-d15d48247d61" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/746a243d-4d3f-4fea-b644-2b7fca5939e6" target="_blank" rel="noopener">
           <span class="cred-curso">Bacharel em Biomedicina</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/6adf28e8-7e20-4d86-999c-8aa14e25074d" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/57290b8a-e022-49f2-98e0-18dc5a194992" target="_blank" rel="noopener">
           <span class="cred-curso">Bacharel em Farmácia</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/378d6448-3709-4b50-b727-6c7e1073371e" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/bddc858b-b198-4529-b4d6-c257086b7215" target="_blank" rel="noopener">
           <span class="cred-curso">Bacharel em Nutrição</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/8c92edb3-070e-4704-b03a-90dcacdcbe07" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/4f64f03b-a5ec-4a59-9b09-7caa4cdc22c8" target="_blank" rel="noopener">
           <span class="cred-curso">Bacharel em Terapia Ocupacional</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/2d38d4b3-1b4a-4f48-a312-3984b7eea057" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/435bd676-5500-40e3-ab87-ede0604e8613" target="_blank" rel="noopener">
           <span class="cred-curso">Tecnólogo em Estética e Cosmética</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/ad6e5ae1-ccb3-46a7-9053-c79572b3ba00" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/01ca74e6-fbfc-466b-9d7e-67b646b08e4e" target="_blank" rel="noopener">
           <span class="cred-curso">Tecnólogo em Podologia</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/058a244e-cd61-46f6-91b1-5643093c8951" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/85c7f379-6faa-4827-9062-09378aa533ab" target="_blank" rel="noopener">
           <span class="cred-curso">Tecnólogo em Terapias Integrativas e Complementares</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
-        <a class="cred-card" href="https://view.pok.tech/c/b66a7b38-4092-4539-bb35-0420981575d4" target="_blank" rel="noopener">
+        <a class="cred-card" href="https://view.pok.tech/c/8abd7293-8f2f-4200-850b-99a7c5516f22" target="_blank" rel="noopener">
           <span class="cred-curso">Tecnólogo em Radiologia</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
@@ -797,12 +1107,8 @@
           <div class="pend-lista">
           <span class="file-flag file-flag--luciano">Luciano Santana, revisar certificados</span>
           <span class="file-flag file-flag--luciano">Luciano Santana, enviar base de alunos com: nome completo, e-mail e CPF</span>
-          <span class="file-flag">Lídia Fleming, readaptar tamanho imagem landing page</span>
-          <span class="file-flag">Lídia Fleming, verificar links dos banners cross-sell</span>
-          <span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e links de banners Masterclass</span>
-          <span class="file-flag">Lídia Fleming, criar peças gráficas de banners Masterclass</span>
-          <span class="file-flag">Lídia Fleming, revisar texto inicial de e-mails e e-mail de contato</span>
-          <span class="file-flag">Lídia Fleming, enviar peças de WhatsApp e LinkedIn</span>
+          <span class="file-flag">Lídia Fleming, criar peça gráfica de banner Masterclass</span>
+          <span class="file-flag file-flag--luciano">Luciano Santana, revisar e-mail de contato</span>
           </div>
             </div>
           </div>
@@ -958,7 +1264,7 @@
           <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" data-label="Capa da landing page e do POK Holder">
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" alt="Imagem de capa da landing page e do POK Holder da Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">Capa-LPePOKHolder-2880x320.png<span class="file-flag">Lídia Fleming, readaptar tamanho imagem</span></div>
+          <div class="file-name">Capa-LPePOKHolder-2880x320.png</div>
           <div class="file-specs">2880 × 320 px · PNG · RGB</div>
           <div class="file-links">
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Capa-LPePOKHolder-2880x320.png" target="_blank" rel="noopener">Abrir</a>
@@ -981,11 +1287,15 @@
       <div class="files files--two">
 
         <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" data-label="Banner540x236px-1.png · banner 1 de 4">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" data-label="Banner540x236px-1.png · banner 1 de 5">
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" alt="Banner 1 da landing page Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">Banner540x236px-1.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-name">Banner540x236px-1.png</div>
           <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-dest">
+            <span class="file-dest-label">Destino</span>
+            <a href="https://portal.uniasselvi.com.br/cursos/pos-graduacao" target="_blank" rel="noopener">portal.uniasselvi.com.br/cursos/pos-graduacao</a>
+          </div>
           <div class="file-links">
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" target="_blank" rel="noopener">Abrir</a>
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-1.png" download>Baixar</a>
@@ -993,11 +1303,15 @@
         </div>
 
         <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" data-label="Banner540x236px-2.png · banner 2 de 4">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" data-label="Banner540x236px-2.png · banner 2 de 5">
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" alt="Banner 2 da landing page Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">Banner540x236px-2.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-name">Banner540x236px-2.png</div>
           <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-dest">
+            <span class="file-dest-label">Destino</span>
+            <a href="https://portal.uniasselvi.com.br/cursos/cursolivre" target="_blank" rel="noopener">portal.uniasselvi.com.br/cursos/cursolivre</a>
+          </div>
           <div class="file-links">
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" target="_blank" rel="noopener">Abrir</a>
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-2.png" download>Baixar</a>
@@ -1005,11 +1319,15 @@
         </div>
 
         <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" data-label="Banner540x236px-3.png · banner 3 de 4">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" data-label="Banner540x236px-3.png · banner 3 de 5">
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" alt="Banner 3 da landing page Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">Banner540x236px-3.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-name">Banner540x236px-3.png</div>
           <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-dest">
+            <span class="file-dest-label">Destino</span>
+            <a href="https://portal.uniasselvi.com.br/cursos/pos-graduacao" target="_blank" rel="noopener">portal.uniasselvi.com.br/cursos/pos-graduacao</a>
+          </div>
           <div class="file-links">
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" target="_blank" rel="noopener">Abrir</a>
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-3.png" download>Baixar</a>
@@ -1017,11 +1335,15 @@
         </div>
 
         <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" data-label="Banner540x236px-4.png · banner 4 de 4">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" data-label="Banner540x236px-4.png · banner 4 de 5">
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" alt="Banner 4 da landing page Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">Banner540x236px-4.png<span class="file-flag">Lídia Fleming, verificar link</span></div>
+          <div class="file-name">Banner540x236px-4.png</div>
           <div class="file-specs">540 × 236 px · PNG · RGB</div>
+          <div class="file-dest">
+            <span class="file-dest-label">Destino</span>
+            <a href="https://portal.uniasselvi.com.br/cursos/pos-graduacao" target="_blank" rel="noopener">portal.uniasselvi.com.br/cursos/pos-graduacao</a>
+          </div>
           <div class="file-links">
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" target="_blank" rel="noopener">Abrir</a>
             <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Banner540x236px-4.png" download>Baixar</a>
@@ -1029,29 +1351,12 @@
         </div>
 
         <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" data-label="banner_masterclass_vitru.png · banner 5 de 6">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" data-label="banner_masterclass_vitru.png · banner 5 de 5">
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" alt="Banner 5 da landing page Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">banner_masterclass_vitru.png<span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e link</span><span class="file-flag">Lídia Fleming, criar peça gráfica</span></div>
+          <div class="file-name">banner_masterclass_vitru.png<span class="file-flag">Lídia Fleming, criar peça gráfica</span></div>
           <div class="file-meta">
-            <strong>Masterclass Curso de Administração</strong><br>
-            Grupo Renner - 17/09
-          </div>
-          <div class="file-specs">540 × 236 px · PNG · RGB</div>
-          <div class="file-links">
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" target="_blank" rel="noopener">Abrir</a>
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" download>Baixar</a>
-          </div>
-        </div>
-
-        <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" data-label="banner_masterclass_vitru.png · banner 6 de 6">
-            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" alt="Banner 6 da landing page Uniasselvi" loading="lazy">
-          </button>
-          <div class="file-name">banner_masterclass_vitru.png<span class="file-flag file-flag--rafael">Rafael Gasparoto conteúdo e link</span><span class="file-flag">Lídia Fleming, criar peça gráfica</span></div>
-          <div class="file-meta">
-            <strong>Masterclass Cursos de Saúde</strong><br>
-            Hospital Albert Einstein - data a definir
+            <strong>Masterclass</strong>
           </div>
           <div class="file-specs">540 × 236 px · PNG · RGB</div>
           <div class="file-links">
@@ -1068,7 +1373,7 @@
   <section class="piece" id="email">
     <div class="piece-head">
       <span class="piece-tag">Peça 4</span>
-      <h2 class="piece-title">E-mail</h2>
+      <h2 class="piece-title">E-mails de disparo da POK</h2>
     </div>
 
     <div class="piece-body">
@@ -1104,12 +1409,13 @@
             <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Email-uniasselvi-emissao.png" alt="E-mail de emissão da campanha Uniasselvi" loading="lazy">
           </button>
           <div class="file-name">E-mail emissão</div>
+          <span class="file-flag wpp-flag">Lídia, aqui podemos trocar a imagem do topo do e-mail, porque é o e-mail que o egresso recebe após emitir a credencial</span>
         </div>
 
       </div>
 
       <div class="flag-row" style="margin-top:1rem;">
-        <span class="file-flag">Lídia Fleming, revisar texto inicial de e-mails e e-mail de contato</span>
+        <span class="file-flag file-flag--luciano">Luciano Santana, revisar e-mail de contato</span>
       </div>
 
       <h3 class="comms-head">Comunicação com o Egresso:</h3>
@@ -1138,16 +1444,780 @@
     </div>
   </section>
 
+  <div class="fase-head" id="fase-nutricao">
+    <h2>Fase de nutrição</h2>
+  </div>
+
+  <!-- ═══ E-mails de reforço ═══ -->
+  <section class="piece" id="emails-comunicacao">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 5</span>
+      <h2 class="piece-title">E-mails de reforço</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="mail-list">
+
+        <div class="mail-card">
+          <span class="mail-fase">Fase 1</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Tem uma nova conquista esperando por você.</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Seu diploma continua rendendo!
+A sua história com a UNIASSELVI
+não terminou na formatura</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto</span>
+              <span class="mail-meta-value">Sua história com a UNIASSELVI continua 💛</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Olá, <span class="mail-token">[NOME]</span>!
+
+Você se formou, construiu uma carreira e conquistou espaço no mercado.
+Foram anos de dedicação, desafios superados e aprendizados que ajudaram você a chegar até aqui.
+Por isso, em parceria com a POK, preparamos uma novidade para reconhecer a trajetória de alguns de nossos alunos.
+Nos próximos dias, você vai descobrir como transformar essa conquista em algo que o mercado pode ver, verificar e valorizar.
+Fica de olho no seu e-mail. Sua próxima conquista está chegando.</div>
+            <div class="mail-cta-row">
+              <span class="mail-cta">Quero saber mais</span>
+              <span class="file-flag file-flag--luciano">Luciano, precisamos definir para onde vai este link</span>
+            </div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail precisa ser disparado pelo serviço de disparos da Uniasselvi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mail-card mail-card--usado">
+          <span class="mail-fase">Fase 2</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Emita seu certificado digital, reconhecido no Brasil e fora dele.</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Seu diploma continua rendendo!
+Emita grátis seu certificado digital e
+mostre ao mercado até onde você já chegou</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto</span>
+              <span class="mail-meta-value">Seu diploma tem história pra contar! 🎓</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Olá, <span class="mail-token">[NOME]</span>!
+Você já fez a parte mais importante: concluiu sua Graduação e conquistou seu diploma.
+Agora, essa conquista pode ganhar uma nova forma de reconhecimento.
+A UNIASSELVI, em parceria com a POK, disponibilizou uma credencial digital gratuita, verificável e pronta para ser compartilhada para alguns alunos selecionados.
+Você foi um deles! E acabou de ganhar:</div>
+
+            <ul class="mail-lista">
+              <li>A emissão gratuita de um certificado digital reconhecido internacionalmente.</li>
+            </ul>
+
+            <div class="mail-corpo"><strong>O que isso significa pra você?</strong>
+
+🌎 Seu currículo ganha respaldo internacional:
+O certificado segue o padrão Open Badges 3.0, reconhecido dentro e fora do Brasil.
+
+🎓 Ninguém duvida da sua conquista:
+Registrado em blockchain, o certificado é autêntico e não pode ser falsificado ou alterado.
+
+🚀 Você aparece mais pro mercado
+Dá pra colocar direto no seu perfil do LinkedIn, mostrando na hora o que você é capaz de fazer.
+
+💰 Não custa nada!
+Nesta edição piloto, a emissão é 100% gratuita pra você.</div>
+
+            <span class="mail-cta">Quero meu certificado grátis</span>
+
+            <div class="mail-corpo">Mais do que um certificado de conclusão de curso, essa é uma prova de que a sua trajetória profissional continua em movimento! 🚀
+Você já fez a parte mais difícil, que foi se formar. Agora é só levantar a mão e a gente cuida do resto.</div>
+
+            <span class="mail-cta">Quero minha credencial agora</span>
+
+            <p class="mail-nota mail-nota--forte">Importante: a credencial não substitui seu diploma ou seus documentos acadêmicos oficiais. Ela oferece uma nova maneira de apresentar e comprovar digitalmente a formação que você já concluiu.</p>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail foi inserido no e-mail de disparo da POK (aceitação). Ele pode ter apenas um botão, que ficou: Quero emitir minha credencial agora</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mail-card mail-card--usado">
+          <span class="mail-fase">Fase 3</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Veja como usar sua credencial no LinkedIn, no currículo e em seleções.</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Seu diploma continua rendendo!
+Agora, faça essa conquista aparecer</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto</span>
+              <span class="mail-meta-value">Coloque sua conquista para trabalhar pela sua carreira!</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Olá, <span class="mail-token">[NOME]</span>!
+Sua trajetória merece ser vista.
+Seu certificado digital já está disponível. Mas o valor dele não está só em ter, está em mostrar.
+Veja como fazer sua credencial trabalhar por você:</div>
+
+            <ul class="mail-lista">
+              <li><strong>No LinkedIn:</strong> adicione o certificado direto na seção de licenças e certificações do seu perfil. Em poucos cliques, quem visitar seu perfil já vê a prova da sua qualificação.</li>
+              <li><strong>No currículo:</strong> anexe o link de verificação junto da sua formação. Qualquer recrutador confere a autenticidade na hora, te dando muito mais credibilidade.</li>
+              <li><strong>Em processos seletivos:</strong> use a credencial como argumento concreto de que você continua se atualizando, mesmo depois de formado.</li>
+            </ul>
+
+            <span class="mail-cta">Acessar meu certificado</span>
+
+            <div class="mail-corpo">Você chegou até aqui com dedicação. Agora, dê visibilidade ao caminho que construiu! 💛
+E se essa conquista te deu vontade de ir além, a UNIASSELVI tem mais de 260 cursos de Pós-graduação esperando por você pra continuar evoluindo.</div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail foi inserido no e-mail de disparo da POK (emissão)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ WhatsApp ═══ -->
   <section class="piece" id="whatsapp">
     <div class="piece-head">
-      <span class="piece-tag">Peça 5</span>
+      <span class="piece-tag">Peça 6</span>
       <h2 class="piece-title">WhatsApp</h2>
     </div>
 
     <div class="piece-body">
-      <div class="flag-row">
-        <span class="file-flag">Lídia Fleming, enviar peças de WhatsApp e LinkedIn</span>
+      <div class="wpp-grid">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-1.png" data-label="whatsapp-1.png · peça 1 de 3">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-1.png" alt="Peça 1 de WhatsApp da campanha Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">whatsapp-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-1.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 1</div>
+            <div class="wpp-text"><strong>Sua história com a UNIASSELVI continua.</strong> 💛
+
+Você se formou, se esforçou e dedicou seu tempo, mas sua conquista não precisa parar por aí!
+👉 Em parceria com a POK, a UNIASSELVI preparou uma novidade pra reconhecer a sua trajetória até aqui.
+
+A próxima fase do seu progresso está chegando, fique de olho! 🤫🎓</div>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-2.png" data-label="whatsapp-2.png · peça 2 de 3">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-2.png" alt="Peça 2 de WhatsApp da campanha Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">whatsapp-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-2.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 2</div>
+            <div class="wpp-text"><strong>Seu diploma segue rendendo!</strong> 📈
+
+<strong>Emita grátis o seu certificado digital</strong>, com reconhecimento internacional e registro em blockchain.
+👉 A UNIASSELVI, em parceria com a POK, disponibilizou gratuitamente uma credencial digital para reconhecer a sua formação.
+<strong>Com ela, você pode:</strong>
+
+✅ Compartilhar no LinkedIn
+✅ Comprovar digitalmente a sua conquista
+✅ Adicionar um link de verificação ao currículo
+✅ Permitir a consulta da autenticidade das informações
+
+A credencial utiliza tecnologia blockchain e segue o padrão internacional Open Badges 3.0, criado para facilitar a verificação e o compartilhamento de conquistas acadêmicas.
+👉 Emita gratuitamente a sua credencial: <span class="wpp-token">[link]</span></div>
+          </div>
+          <span class="file-flag wpp-flag">Lídia, nesta fase do projeto ainda não conseguimos fazer a emissão via WhatsApp, ela acontece apenas pelo e-mail. Numa futura integração pode rolar</span>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-3.png" data-label="whatsapp-3.png · peça 3 de 3">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-3.png" alt="Peça 3 de WhatsApp da campanha Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">whatsapp-3.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-3.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 3</div>
+            <div class="wpp-text"><strong>Seu certificado já tá pronto</strong> ✅
+Agora já pode ajudar a contar sua história profissional. Após emiti-lo, você pode colocar no LinkedIn e no currículo pra todo mundo ver até onde você chegou.
+👉 Acesse sua credencial: <span class="wpp-token">[link]</span>
+E lembre-se: quando quiser dar o próximo passo na sua formação, a UNIASSELVI continua com você. 💛</div>
+          </div>
+          <span class="file-flag wpp-flag">Lídia, nesta fase do projeto ainda não conseguimos fazer a emissão via WhatsApp, ela acontece apenas pelo e-mail. Numa futura integração pode rolar</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ Polos ═══ -->
+  <section class="piece" id="polos">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 7</span>
+      <h2 class="piece-title">Polos</h2>
+    </div>
+
+    <div class="piece-body">
+      <h3 class="comms-head">E-mails de reforço</h3>
+
+      <div class="mail-list" style="margin-top:0.9rem;">
+
+        <div class="mail-card">
+          <span class="mail-fase">Fase 1</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Entenda o projeto!</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Uma nova forma de reconhecer
+a trajetória dos nossos egressos
+UNIASSELVI + POK</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto</span>
+              <span class="mail-meta-value">Chegou o Microcredenciamento POK, sua equipe faz parte dele!</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Olá, equipe!
+A relação da UNIASSELVI com seus estudantes não termina na formatura.
+Por isso, em parceria com a POK, lançamos o projeto piloto de Microcredenciamento: emissão gratuita de certificados digitais verificáveis, em blockchain, para egressos das áreas de Saúde e Administração.
+
+<strong>Por que isso importa:</strong>
+Além de reconhecer oficialmente a trajetória acadêmica desses egressos, o projeto fortalece o vínculo deles com a Instituição e abre espaço pra conversas sobre educação continuada.
+
+<strong>Quem participa deste piloto:</strong>
+Egressos dos cursos de Administração, Nutrição, Biomedicina, Farmácia, Radiologia, Estética e Imagem Pessoal, Terapias Integrativas e Complementares e Podologia.
+
+<strong>O que o egresso ganha:</strong>
+Um certificado digital gratuito, com padrão internacional Open Badge 3.0, verificável e pronto pra usar no LinkedIn e em processos seletivos.
+
+<strong>E o papel do seu polo?</strong>
+Nas próximas semanas, sua equipe vai receber todo o material e a capacitação necessária pra apoiar os egressos durante a campanha, desde tirar dúvidas até incentivar o resgate do certificado.</div>
+
+            <div class="mail-cta-row">
+              <span class="mail-cta">Conhecer o projeto</span>
+              <span class="file-flag file-flag--luciano">Luciano, precisamos definir para onde vai este link</span>
+            </div>
+
+            <div class="mail-corpo">Fique de olho: o próximo e-mail traz a capacitação completa.</div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail precisa ser disparado pelo serviço de disparos da Uniasselvi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mail-card">
+          <span class="mail-fase">Fase 2</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Aprenda tudo sobre a campanha de Microcredenciamento.</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Capacitação Microcredenciamento POK
+Tudo o que sua equipe
+precisa saber para apoiar os egressos</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto</span>
+              <span class="mail-meta-value">Microcredenciamento: prepare-se para orientar seus egressos!</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Olá, equipe!
+Pra ajudar você a apoiar os egressos durante a campanha, preparamos um resumo rápido dos principais conceitos e do fluxo completo.
+
+<strong>O que é blockchain, em resumo:</strong>
+Uma tecnologia que registra informações de forma que não podem ser apagadas ou alteradas. É isso que garante que o certificado do egresso seja autêntico e verificável por qualquer empregador.
+
+<strong>O que é Open Badge?</strong>
+Um padrão internacional de certificação digital, que faz o certificado ser reconhecido e lido em qualquer plataforma que siga esse mesmo padrão, inclusive fora do Brasil.
+
+<strong>Como funciona a plataforma POK:</strong>
+O egresso recebe o convite pra emitir o certificado, acessa a plataforma, confirma seus dados e emite o certificado, gratuitamente, em poucos minutos.
+
+<strong>Fluxo da campanha:</strong></div>
+
+            <ol class="mail-lista mail-lista--num">
+              <li>Egresso recebe o convite por e-mail e WhatsApp.</li>
+              <li>Egresso emite o certificado na plataforma POK.</li>
+              <li>Egresso é orientado a usar a credencial no LinkedIn e no currículo.</li>
+            </ol>
+
+            <div class="mail-corpo"><strong>Perguntas frequentes:</strong>
+
+<strong>1 – "O egresso paga alguma coisa?"</strong>
+Não, a emissão é 100% gratuita nesta edição piloto.
+
+<strong>2 – "O certificado tem validade legal de diploma?"</strong>
+O certificado não substitui o diploma, é um reconhecimento complementar da trajetória profissional.
+
+<strong>3 – "Precisa de conhecimento técnico pra emitir?"</strong>
+Não, o processo é simples e guiado.
+
+<strong>Boas práticas de atendimento:</strong>
+Ao falar com o egresso, use linguagem simples: fale em "certificado digital verificável" em vez de detalhar termos técnicos de blockchain. Reforce que é gratuito, rápido e vale a pena usar no LinkedIn.</div>
+
+            <div class="mail-cta-row">
+              <span class="mail-cta">Acesse material completo</span>
+              <span class="file-flag file-flag--luciano">Luciano, precisamos definir para onde vai este link</span>
+            </div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail precisa ser disparado pelo serviço de disparos da Uniasselvi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 class="comms-head" style="margin-top:1.6rem;">WhatsApp</h3>
+      <div class="wpp-grid wpp-grid--two" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-1.png" data-label="polo-whatsapp-1.png · peça 1 de 2">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-1.png" alt="Peça 1 de WhatsApp dos polos Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">polo-whatsapp-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-1.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 1</div>
+            <div class="wpp-text"><strong>Novidade chegando!</strong> 🎓
+<strong>A UNIASSELVI lança o Microcredenciamento POK:</strong> certificados digitais gratuitos pra egressos de Saúde e Administração.
+Em breve, sua equipe recebe toda a capacitação pra apoiar essa campanha.</div>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-2.png" data-label="polo-whatsapp-2.png · peça 2 de 2">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-2.png" alt="Peça 2 de WhatsApp dos polos Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">polo-whatsapp-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-2.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 2</div>
+            <div class="wpp-text"><strong>Capacitação Microcredenciamento POK</strong> 🎓
+Preparamos um material para ajudar sua equipe a orientar os egressos durante a campanha.
+<strong>Confira os principais conceitos:</strong>
+🔗 Blockchain
+🌐 Open Badge
+✨ E descubra como funciona
+Ao atender um egresso, priorize uma linguagem simples e reforce que o certificado é gratuito, verificável e pode ser utilizado para valorizar o perfil profissional.
+👉 <strong>Mais informações? Confira no seu e-mail!</strong></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="fase-head" id="fase-lancamento">
+    <h2>Fase de lançamento</h2>
+  </div>
+
+  <section class="piece" id="emails-comunicacao-lancamento">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 8</span>
+      <h2 class="piece-title">E-mails de reforço</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="mail-list">
+
+        <div class="mail-card">
+          <span class="mail-fase">Fase 1</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header A</span>
+              <span class="mail-meta-value mail-preheader">Resgate grátis a sua conquista na plataforma POK.</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header B</span>
+              <span class="mail-meta-value mail-preheader">Emita grátis sua credencial digital em poucos minutos.</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Seu certificado digital já está disponível!
+LOGO UNIASSELVI | LOGO POK</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto A</span>
+              <span class="mail-meta-value">🎓 Chegou! Sua credencial digital já está disponível</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Assunto B</span>
+              <span class="mail-meta-value">Esta é a prova do que você conquistou depois de formar</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo"><span class="mail-token">[NOME]</span>, já emitiu seu certificado?
+Você estudou, se dedicou, concluiu sua formação e construiu uma história que merece continuar sendo reconhecida.
+E, agora, ganhou uma nova maneira de mostrar tudo isso!
+Sua credencial digital UNIASSELVI + POK já está disponível para resgate.</div>
+
+            <span class="mail-cta">Quero resgatar grátis</span>
+
+            <div class="mail-corpo">Essa credencial é registrada em blockchain, à prova de fraude e pronta pra colocar como um link de verificação no seu currículo, no LinkedIn ou como um argumento concreto da sua constante evolução em processos seletivos.
+
+🚀 100% gratuito
+🚀 Mais visibilidade para seu currículo
+🚀 Mais segurança contra alteração ou falsificação
+🚀 Mais reconhecimento dentro e fora do Brasil!</div>
+
+            <span class="mail-cta">Quero meu certificado agora</span>
+
+            <div class="mail-corpo">Dê mais visibilidade ao caminho que você construiu! 💛</div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, a POK envia dois e-mails aos egressos: um e-mail de aceitação e um e-mail de emissão. São os que definimos na etapa de nutrição. Então não temos como ter um terceiro e-mail com texto diferente. Caso o egresso não tenha emitido o certificado, após 7 dias a plataforma reenvia o e-mail, mas é o mesmo modelo de e-mail. Isso acontece 3X automaticamente</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mail-card">
+          <span class="mail-fase">Fase 2</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header A</span>
+              <span class="mail-meta-value mail-preheader">Sua credencial pode ajudar a contar essa história.</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header B</span>
+              <span class="mail-meta-value mail-preheader">Mostre ao mundo até onde a sua dedicação te levou.</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Você sabe o quanto batalhou pra chegar até aqui
+Agora, deixe sua rede saber também
+LOGO UNIASSELVI | LOGO POK</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto A</span>
+              <span class="mail-meta-value">Quem olha seu perfil já sabe tudo o que você conquistou?</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Assunto B</span>
+              <span class="mail-meta-value">Tem gente que ainda duvida que dá certo. Prove que dá. 💛</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Oi, <span class="mail-token">[NOME]</span>!
+Por trás de um diploma, sempre tem muita história.
+Tem trabalho conciliado com estudo.
+Tem prova depois de um dia corrido.
+Tem dúvida superada.
+Tem aprendizado.
+Tem persistência.
+E tem aquela sensação boa de olhar pra trás e pensar:
+"Eu consegui!" 💛
+Sua credencial digital é mais uma forma de levar essa história com você.
+Por isso, que tal compartilhar sua conquista no LinkedIn?
+Você pode contar sobre sua formação, lembrar um pouco da sua trajetória e adicionar sua credencial à publicação.</div>
+
+            <div class="mail-cta-row">
+              <span class="mail-cta">Compartilhar minha conquista</span>
+              <span class="file-flag file-flag--luciano">Luciano, precisamos definir para onde vai este link</span>
+            </div>
+
+            <div class="mail-corpo">📌 <strong>Dica:</strong> não precisa escrever um "textão" 😅.
+Algo simples já funciona, veja um exemplo:</div>
+
+            <p class="mail-nota">"Mais uma forma de levar comigo uma conquista importante da minha trajetória. Minha formação na UNIASSELVI agora também conta com uma credencial digital verificável, emitida em parceria com a POK."</p>
+
+            <div class="mail-corpo">E não esqueça de marcar a UNIASSELVI!
+Sua conquista é sua. Mas a gente sempre vai ter orgulho de ter feito parte dela.</div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail precisa ser disparado pelo serviço de disparos da Uniasselvi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mail-card">
+          <span class="mail-fase">Fase 3</span>
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Conheça as vantagens de continuar conectado com a UNIASSELVI.</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Seu diploma continua rendendo!
+E a sua história continua sendo construída
+LOGO UNIASSELVI | LOGO POK</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto A</span>
+              <span class="mail-meta-value">Você chegou longe. E ainda pode ir muito além 💛</span>
+            </div>
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Assunto B</span>
+              <span class="mail-meta-value">Ainda temos muito pra construir juntos</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">Oi, <span class="mail-token">[NOME]</span>!
+✔️ Formação concluída.
+✔️ Diploma conquistado.
+✔️ Credencial digital emitida.
+Parece o fim de uma jornada?
+Pra gente, parece mais o começo de uma nova fase. 💫
+O mercado muda. Novas oportunidades aparecem. Novos interesses surgem. E continuar aprendendo pode abrir caminhos que você talvez nem imaginasse quando começou sua Graduação.
+Por isso, mesmo depois da formatura, a UNIASSELVI continua do seu lado. 💛
+Se chegou a hora de desenvolver uma nova habilidade, aprofundar seus conhecimentos ou buscar novos caminhos profissionais, você encontra diferentes possibilidades com a gente.
+
+<strong>Pós-graduação</strong>
+Para você aprofundar seu conhecimento e se destacar na sua área. Especialização com conclusão a partir de 6 meses, 100% online e início imediato.
+
+<strong>Cursos Livres</strong>
+Certificação com carga horária de 10h a 40h, direcionada pra quem quer se atualizar mais rapidamente.
+
+<strong>Programa de Indicação Premiada</strong>
+Pra você levar essa experiência pra quem também merece evoluir.
+
+Sua história já mudou muito desde o primeiro dia de aula.
+Agora, imagine onde o próximo passo pode levar você.</div>
+
+            <div class="mail-cta-row">
+              <span class="mail-cta">Conhecer novas possibilidades</span>
+              <span class="file-flag file-flag--luciano">Luciano, precisamos definir para onde vai este link</span>
+            </div>
+
+            <div class="mail-corpo">Sua trajetória com a gente não terminou. Ela só ganhou um novo capítulo.</div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail precisa ser disparado pelo serviço de disparos da Uniasselvi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="piece" id="whatsapp-lancamento">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 9</span>
+      <h2 class="piece-title">WhatsApp</h2>
+    </div>
+
+    <div class="piece-body">
+      <div class="wpp-grid">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-1.png" data-label="whatsapp-lancamento-1.png · peça 1 de 3">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-1.png" alt="Peça 1 de WhatsApp da fase de lançamento Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">whatsapp-lancamento-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-1.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 1</div>
+            <div class="wpp-text"><span class="wpp-token">[NOME]</span>, já emitiu seu certificado digital? 👀
+Essa credencial é um presente da UNIASSELVI, em parceria com a POK, para você ganhar ainda mais credibilidade e se destacar no mercado de trabalho!
+🚀 100% gratuito
+🚀 Mais visibilidade para seu currículo
+🚀 Mais segurança contra alteração ou falsificação
+🚀 Mais reconhecimento dentro e fora do Brasil!
+
+👉 Acesse sua credencial: <span class="wpp-token">[link]</span>
+
+📌 Tem dúvidas de como fazer? Responde aqui que a gente te manda o passo a passo pra emitir sua credencial!</div>
+          </div>
+          <span class="file-flag wpp-flag">Lídia, nesta fase do projeto ainda não conseguimos fazer a emissão via WhatsApp, ela acontece apenas pelo e-mail. Numa futura integração pode rolar</span>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-2.png" data-label="whatsapp-lancamento-2.png · peça 2 de 3">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-2.png" alt="Peça 2 de WhatsApp da fase de lançamento Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">whatsapp-lancamento-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-2.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 2</div>
+            <div class="wpp-text"><span class="wpp-token">[NOME]</span>, lembra de quando você começou? Do primeiro dia de aula, das noites estudando depois do trabalho, das vezes que você até pensou em desistir?
+
+Muita gente que está nessa fase agora só precisa ver que dá certo. E você é a prova viva disso. 💫
+Hoje, você tem uma credencial digital que prova, com tecnologia blockchain, tudo que você construiu até aqui.
+✅ O mercado vê que você está pronto pra próxima oportunidade.
+✅ Sua rede reconhece o tanto que você evoluiu.
+✅ E alguém, em algum lugar, decide que também pode chegar lá.
+
+Então, que tal compartilhar essa conquista?!
+👉 Acesse sua credencial: <span class="wpp-token">[link]</span>
+Ah! E marca a gente no post! A gente adora repostar histórias como a sua. 💛</div>
+          </div>
+          <span class="file-flag wpp-flag">Lídia, nesta fase do projeto ainda não conseguimos fazer a emissão via WhatsApp, ela acontece apenas pelo e-mail. Numa futura integração pode rolar</span>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-3.png" data-label="whatsapp-lancamento-3.png · peça 3 de 3">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-3.png" alt="Peça 3 de WhatsApp da fase de lançamento Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">whatsapp-lancamento-3.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/whatsapp-lancamento-3.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto da Fase 3</div>
+            <div class="wpp-text">Você conquistou seu diploma, recebeu sua credencial e já tem muita história pra contar. 💛
+Mas sua jornada profissional não precisa parar aqui.
+Quando quiser aprender algo novo, aprofundar seus conhecimentos ou buscar novas oportunidades, a UNIASSELVI continua do seu lado.
+🎓 Conheça nossos cursos de pós-graduação e cursos livres e descubra qual pode ser o seu próximo passo.
+👉 <span class="wpp-token">[link]</span></div>
+          </div>
+          <span class="file-flag wpp-flag">Lídia, nesta fase do projeto ainda não conseguimos fazer a emissão via WhatsApp, ela acontece apenas pelo e-mail. Numa futura integração pode rolar</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="piece" id="polos-lancamento">
+    <div class="piece-head">
+      <span class="piece-tag">Peça 10</span>
+      <h2 class="piece-title">Polos</h2>
+    </div>
+
+    <div class="piece-body">
+      <h3 class="comms-head">E-mails</h3>
+
+      <div class="mail-list" style="margin-top:0.9rem;">
+
+        <div class="mail-card">
+
+          <div class="mail-meta">
+            <div class="mail-meta-row">
+              <span class="mail-meta-label">Pré-header</span>
+              <span class="mail-meta-value mail-preheader">Reforce a campanha de Microcredenciamento no seu polo.</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Topo</span>
+              <span class="mail-meta-value mail-topo">Ajude nossos egressos a resgatar sua credencial</span>
+            </div>
+            <div class="mail-meta-row" style="margin-top:0.7rem;">
+              <span class="mail-meta-label">Assunto</span>
+              <span class="mail-meta-value">Cada resgate conta: vamos mobilizar nossos egressos?</span>
+            </div>
+          </div>
+
+          <div class="mail-block">
+            <div class="mail-block-label">Corpo</div>
+            <div class="mail-corpo">A campanha de Microcredenciamento já está acontecendo e contamos com vocês para fazer essa oportunidade chegar a ainda mais egressos. 💛
+A credencial digital ajuda nossos ex-alunos a dar visibilidade à formação que conquistaram e cria um novo ponto de contato entre eles e a UNIASSELVI.
+Por isso, sempre que tiver oportunidade, reforce:
+
+🎓 A credencial já está disponível
+💰 A emissão é gratuita nesta edição piloto
+📱 O processo é simples e digital
+💼 Ela pode ser compartilhada no LinkedIn e no currículo
+🔗 A autenticidade pode ser verificada digitalmente
+
+E, se o egresso já tiver emitido sua credencial, incentive o próximo passo: compartilhar a conquista e marcar a UNIASSELVI.</div>
+
+            <div class="mail-cta-row">
+              <span class="mail-cta">Acessar materiais de apoio</span>
+              <span class="file-flag file-flag--luciano">Luciano, precisamos definir para onde vai este link</span>
+            </div>
+
+            <div class="mail-corpo">Mais do que apoiar um resgate, estamos mostrando ao egresso que ele continua fazendo parte da nossa história.
+Contamos com seu polo! 💛</div>
+            <div class="mail-cta-row">
+              <span class="file-flag">Lídia, este e-mail precisa ser disparado pelo serviço de disparos da Uniasselvi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h3 class="comms-head" style="margin-top:1.6rem;">WhatsApp</h3>
+      <div class="wpp-grid wpp-grid--side" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-lancamento.png" data-label="polo-whatsapp-lancamento.png · peça única">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-lancamento.png" alt="Peça de WhatsApp dos polos na fase de lançamento Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">polo-whatsapp-lancamento.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-lancamento.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/polo-whatsapp-lancamento.png" download>Baixar</a>
+          </div>
+          <div class="wpp-copy">
+            <div class="wpp-copy-head">Texto</div>
+            <div class="wpp-text">Vamos continuar movimentando o Microcredenciamento POK? 🚀
+Ao conversar com um egresso, reforce:
+✅ A emissão do certificado é gratuita
+✅ O processo simples
+✅ É uma credencial digital verificável
+✅ Há possibilidade de usar no LinkedIn e currículo
+E pra quem já resgatou: incentive a compartilhar a conquista e marcar a UNIASSELVI.
+Cada contato ajuda a manter nossos egressos mais próximos da gente. 💛
+Em caso de dúvida, acesse seu e-mail e confira mais informações. 😉</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1155,14 +2225,12 @@
   <!-- ═══ LinkedIn ═══ -->
   <section class="piece" id="linkedin">
     <div class="piece-head">
-      <span class="piece-tag">Peça 6</span>
+      <span class="piece-tag">Peça 11</span>
       <h2 class="piece-title">LinkedIn</h2>
     </div>
 
     <div class="piece-body">
-      <div class="flag-row">
-        <span class="file-flag">Lídia Fleming, enviar peças de WhatsApp e LinkedIn</span>
-      </div>
+      <p class="comms-intro" style="margin:0;">Comunicações serão produzidas na fase de lançamento, o time de Social estará responsável por essa parte.</p>
     </div>
   </section>
 
