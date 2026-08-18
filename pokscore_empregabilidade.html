@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="pok-build" content="bilingual-pt-es-v3">
+<title>POK Score · Empregabilidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{
+  --purple:#5123a4;--purple-dark:#3a1878;--purple-mid:#6b45bb;--purple-light:#e4dcf7;
+  --purple-faint:#f3eff9;--ink:#000;--muted:#000;--faint:#000;--border:#d8cef0;
+  --white:#fff;--yellow:#ffd600;--green:#1d9e75;--green-light:#e2f4eb;--blue:#0a66c2;
+  --red:#b42318;--shadow:0 12px 32px rgba(58,24,120,.08);--radius-lg:20px;--radius-md:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',Arial,sans-serif;background:var(--purple-faint);color:var(--ink);min-height:100vh}
+[hidden]{display:none!important}
+button,select,input{font:inherit}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid rgba(81,35,164,.25);outline-offset:2px}
+.home-view{min-height:100vh;background:linear-gradient(145deg,var(--purple-dark) 0%,var(--purple) 58%,#7451c3 100%);color:#fff;position:relative;overflow:hidden;padding:34px}
+.home-view:before,.home-view:after{content:'';position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:36px;transform:rotate(18deg)}
+.home-view:before{width:460px;height:460px;right:-180px;top:-220px}
+.home-view:after{width:330px;height:330px;left:-170px;bottom:-190px}
+.home-shell{max-width:1180px;margin:0 auto;min-height:calc(100vh - 68px);display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;position:relative;z-index:1}
+.home-copy{padding:30px 0}
+.home-topline{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:54px}
+.home-brand{margin-bottom:0}
+.home-event{display:inline-flex;align-items:center;gap:8px;color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:18px}
+.home-event:before{content:'';width:26px;height:2px;background:var(--yellow)}
+.home-copy h1{font-size:clamp(38px,5vw,66px);line-height:1.04;letter-spacing:-.045em;margin-bottom:18px;max-width:720px}
+.home-copy h1 span{color:var(--yellow)}
+.home-copy>p{font-size:14px;line-height:1.8;color:#fff;max-width:650px;margin-bottom:28px}
+.home-actions{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.home-primary{border:0;border-radius:99px;background:var(--yellow);color:var(--purple-dark);padding:13px 22px;font-size:12px;font-weight:800;cursor:pointer}
+.home-primary:hover{background:#ffe23f}
+.home-note{font-size:9px;color:#fff}
+.home-menu{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.home-menu-card{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:#fff;border-radius:18px;padding:20px;text-align:left;cursor:pointer;min-height:150px;backdrop-filter:blur(8px);transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.home-menu-card:hover{transform:translateY(-3px);background:rgba(255,255,255,.16);border-color:rgba(255,214,0,.5)}
+.home-menu-card svg{width:24px;height:24px;color:var(--yellow);margin-bottom:22px}
+.home-menu-card strong{display:block;font-size:13px;margin-bottom:6px}
+.home-menu-card span{display:block;font-size:9px;line-height:1.55;color:#fff}
+.home-proof{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:13px 15px;border-top:1px solid rgba(255,255,255,.18);font-size:9px;color:#fff}
+.home-proof .origin-icon{background:var(--yellow);color:var(--purple-dark)}
+.hero{background:var(--purple-dark);padding:38px 64px 34px;position:relative;overflow:hidden;color:#fff}
+.hero:before{content:'';position:absolute;right:-90px;top:-110px;width:390px;height:390px;border-radius:50%;background:rgba(137,100,214,.24)}
+.hero:after{content:'';position:absolute;left:26%;bottom:-150px;width:290px;height:290px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:1}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:26px}
+.brand{display:flex;align-items:center;gap:10px;font-size:30px;font-weight:800;letter-spacing:-.04em}
+.brand-logo{height:34px;width:auto;display:block;fill:currentColor}
+.demo-pill{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,214,0,.45);background:rgba(255,214,0,.13);color:var(--yellow);padding:6px 13px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.demo-pill:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--yellow)}
+.hero-actions{display:flex;align-items:center;gap:9px}
+.language-switch{display:inline-flex;align-items:center;padding:3px;border:1px solid rgba(255,255,255,.35);border-radius:99px;background:rgba(255,255,255,.08);gap:2px}
+.language-button{border:0;border-radius:99px;background:transparent;color:#fff;min-width:34px;padding:4px 8px;font-size:9px;font-weight:800;letter-spacing:.05em;cursor:pointer}
+.language-button[aria-pressed="true"]{background:var(--yellow);color:var(--purple-dark)}
+.language-button:hover{color:#fff}
+.language-button[aria-pressed="true"]:hover{color:var(--purple-dark)}
+.home-link{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:99px;padding:6px 12px;font-size:10px;font-weight:700;cursor:pointer}
+.home-link:hover{background:rgba(255,255,255,.1)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,214,0,.34);background:rgba(255,214,0,.13);color:var(--yellow);padding:5px 13px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.08;letter-spacing:-.035em;margin-bottom:10px}
+.hero h1 span{color:var(--yellow)}
+.hero p{max-width:900px;font-size:13px;line-height:1.75;color:#fff}
+.filters-shell{background:#fff;border-bottom:1px solid var(--border);position:static;z-index:30;box-shadow:0 7px 22px rgba(58,24,120,.06)}
+.filters{max-width:1180px;margin:0 auto;padding:18px 32px}
+.filters-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.filters-heading-copy{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:1}
+.filters-heading strong{font-size:14px}
+.filters-heading span{font-size:10px;color:var(--faint)}
+.mobile-filter-toggle{display:none;border:1.5px solid var(--border);border-radius:99px;background:#fff;color:var(--purple);padding:8px 13px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap}
+.filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.field label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--muted);margin:0 0 5px 4px}
+.field-control{display:flex;align-items:center;gap:6px}
+.field-control select{flex:1;min-width:0}
+.help{position:relative;flex:0 0 auto;width:17px;height:17px;padding:0;border:0;border-radius:50%;background:#000;color:#fff;font-size:10px;font-weight:700;line-height:1;display:grid;place-items:center;cursor:pointer}
+.help:hover{background:#333}
+.help .tip{display:none;position:absolute;right:-3px;left:auto;top:calc(100% + 7px);width:214px;background:#000;color:#fff;text-align:left;text-transform:none;letter-spacing:0;font-size:9px;font-weight:400;line-height:1.55;padding:9px 11px;border-radius:8px;box-shadow:0 10px 26px rgba(0,0,0,.28);z-index:60}
+.help .tip:before{content:'';position:absolute;right:6px;top:-5px;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:5px solid #000}
+.help:hover .tip,.help:focus-visible .tip,.help.is-open .tip{display:block}
+.funnel-bar .help{position:absolute;top:7px;right:7px}
+.method-note .help{display:inline-grid;vertical-align:-5px;margin-left:6px}
+.help-lime{background:#c6f032;color:#1b2b00}
+.help-lime:hover{background:#d4f95c}
+.help-lime .tip{background:#c6f032;color:#1b2b00;box-shadow:0 10px 26px rgba(58,24,120,.22)}
+.help-up .tip{top:auto;bottom:calc(100% + 7px)}
+.help-up .tip:before{top:auto;bottom:-5px;border-bottom:0;border-top:5px solid #c6f032}
+.field select,.field input{width:100%;min-height:38px;border:1.5px solid var(--border);border-radius:99px;background:#fff;color:var(--ink);font-size:11px;padding:7px 13px}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235123a4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:32px}
+.filter-actions{display:flex;align-items:end;gap:8px}
+.filter-actions .btn{flex:1;min-height:38px;display:inline-flex;align-items:center;justify-content:center}
+.btn{border:1.5px solid var(--border);border-radius:99px;background:#fff;color:var(--purple);padding:9px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--purple);background:var(--purple-faint)}
+.btn-primary{background:var(--purple);color:#fff;border-color:var(--purple)}
+.btn-primary:hover{background:var(--purple-dark)}
+.active-filter-summary{margin-top:11px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:10px;color:var(--muted)}
+.active-filter-summary strong{color:var(--purple)}
+.content{max-width:1180px;margin:0 auto;padding:20px 32px 70px}
+.notice{display:flex;align-items:flex-start;gap:10px;background:#fff8cc;border:1px solid #f0d85a;border-radius:var(--radius-md);padding:13px 16px;font-size:11px;line-height:1.65;margin-bottom:24px}
+.notice strong{color:#000}
+.module-legend{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:9px;line-height:1.5;margin:-9px 0 19px 1px}
+.origin-icon{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;background:var(--purple);color:#fff;flex:0 0 auto}
+.origin-icon svg{width:11px;height:11px;stroke:currentColor;stroke-width:2.3;fill:none}
+.content>.section-label:first-child{margin-top:0}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:26px 0 13px;display:flex;align-items:center;gap:10px;scroll-margin-top:20px}
+.section-label:after{content:'';height:1px;flex:1;background:var(--border)}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}
+.card-header h2{font-size:16px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.card-header h2 .help{font-weight:700}
+.card-header p{font-size:11px;color:var(--muted);line-height:1.65;max-width:none}
+.source-chip{display:inline-flex;align-items:center;gap:6px;background:#e8f4fd;color:var(--blue);border:1px solid #c2dff7;border-radius:99px;padding:5px 10px;font-size:9px;font-weight:700;white-space:nowrap}
+.source-chip:before{content:'in';display:grid;place-items:center;width:17px;height:17px;background:var(--blue);color:#fff;border-radius:4px;font-size:9px}
+.kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.kpi{padding:18px;min-height:126px;position:relative}
+.kpi.highlight{border-left:4px solid var(--purple)}
+.kpi-value{font-size:27px;font-weight:800;letter-spacing:-.04em;color:var(--purple);line-height:1.1;margin-bottom:7px}
+.kpi-label{font-size:10px;font-weight:600;line-height:1.45}
+.kpi-context{font-size:9px;color:var(--faint);line-height:1.45;margin-top:8px}
+.funnel{padding:26px}
+.funnel-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:start}
+.funnel-step{text-align:center}
+.funnel-bar{min-height:62px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:800;position:relative}
+.funnel-label{font-size:9px;font-weight:600;line-height:1.35;margin-top:8px}
+.funnel-pct{font-size:9px;color:var(--faint);margin-top:3px}
+.dashboard-grid{display:grid;grid-template-columns:1.45fr .85fr;gap:16px;margin-top:16px}
+.dashboard-grid>*{min-width:0}
+.chart-card{padding:26px}
+.chart-wrap{position:relative;height:300px;min-width:0;width:100%}
+.chart-wrap canvas{max-width:100%!important}
+.chart-wrap.tall{height:340px}
+.start-marker{display:inline-flex;align-items:center;gap:7px;background:var(--purple-faint);border:1px solid var(--purple-light);color:var(--purple);border-radius:99px;padding:6px 11px;font-size:9px;font-weight:700;margin-bottom:12px}
+.start-marker:before{content:'0';display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--purple);color:#fff}
+.method-note{font-size:9px;line-height:1.6;color:var(--muted);background:var(--purple-faint);border-radius:10px;padding:10px 12px;margin-top:14px}
+.method-note strong{color:var(--purple)}
+.split-card{padding:26px}
+.split-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.split-stat{border:1px solid var(--border);border-radius:var(--radius-md);padding:14px}
+.split-stat strong{display:block;font-size:24px;color:var(--purple);line-height:1.1}
+.split-stat span{font-size:9px;color:var(--muted)}
+.rank-group{margin-top:18px}
+.rank-group h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:9px}
+.rank-row{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:10px;align-items:center;margin:8px 0}
+.rank-main{min-width:0}
+.rank-label{display:flex;justify-content:space-between;gap:8px;font-size:9px;margin-bottom:4px}
+.rank-label span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-track{height:7px;background:var(--purple-faint);border-radius:99px;overflow:hidden}
+.rank-fill{height:100%;background:var(--purple);border-radius:99px}
+.rank-value{text-align:right;font-size:10px;font-weight:700;color:var(--purple)}
+.insights-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.insight{padding:18px;min-height:155px}
+.insight-number{font-size:9px;color:var(--yellow);background:var(--purple);display:inline-flex;border-radius:99px;padding:4px 8px;font-weight:700;margin-bottom:11px}
+.insight h3{font-size:12px;line-height:1.4;margin-bottom:6px}
+.insight p{font-size:11px;color:var(--muted);line-height:1.6}
+.quality-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.quality{padding:18px}
+.quality strong{display:block;font-size:24px;color:var(--purple);margin-bottom:3px}
+.quality span{font-size:11px;color:var(--muted);line-height:1.5}
+.table-card{overflow:hidden}
+.table-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 18px;background:var(--purple-faint);border-bottom:1px solid var(--border)}
+.table-toolbar input{flex:1;min-width:220px;border:1.5px solid var(--border);border-radius:99px;padding:8px 13px;font-size:10px;background:#fff}
+.table-toolbar select{border:1.5px solid var(--border);border-radius:99px;padding:8px 34px 8px 13px;font-size:10px;background:#fff;color:var(--ink)}
+.table-toolbar .check-label{display:inline-flex;align-items:center;gap:6px;font-size:9px;color:var(--muted);white-space:nowrap}
+.table-toolbar input[type=checkbox]{min-width:0;accent-color:var(--purple)}
+.table-meta{font-size:9px;color:var(--faint);margin-left:auto}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:10px}
+th{padding:10px;text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:8px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:11px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+tbody tr:hover{background:var(--purple-faint)}
+.badge{display:inline-flex;border-radius:99px;padding:4px 8px;font-size:8px;font-weight:700;white-space:nowrap}
+.badge-new{background:var(--green-light);color:#0f6e56}
+.badge-promo{background:var(--purple-light);color:var(--purple)}
+.badge-none{background:#f2f0f6;color:var(--faint)}
+.row-actions{display:flex;align-items:center;gap:5px}
+.icon-btn{width:28px;height:28px;border:1px solid var(--purple);border-radius:8px;background:#fff;color:var(--purple);display:grid;place-items:center;cursor:pointer}
+.icon-btn:hover{background:var(--purple-faint)}
+.icon-btn:disabled{opacity:.28;cursor:not-allowed}
+.icon-btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.8;fill:none}
+.holder-intro{font-size:11px;line-height:1.7;margin:-2px 0 14px;max-width:1000px}
+.holder-intro strong{display:block;font-size:14px;margin-bottom:3px}
+.trajectory-prompt{display:flex;align-items:flex-start;gap:10px;margin-bottom:13px}
+.trajectory-prompt .origin-icon{margin-top:1px;background:#fff;color:var(--purple);border:1px solid var(--purple)}
+.trajectory-prompt strong{display:block;font-size:11px;margin-bottom:2px}
+.trajectory-prompt p{font-size:9px;color:var(--muted);line-height:1.55}
+.trajectory-dialog{width:min(720px,calc(100% - 28px));border:0;border-radius:20px;padding:0;box-shadow:0 28px 80px rgba(30,18,48,.34);color:var(--ink)}
+.trajectory-dialog::backdrop{background:rgba(30,18,48,.62)}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 24px 0}
+.dialog-head h2{font-size:17px}
+.dialog-head p{font-size:9px;color:var(--muted)}
+.dialog-close{border:1px solid var(--border);background:#fff;color:var(--purple);width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer}
+.dialog-body{padding:14px 24px 26px}
+.holder-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:23px}
+.holder-fact{background:var(--purple-faint);border-radius:10px;padding:11px}
+.holder-fact span{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:4px}
+.holder-fact strong{font-size:10px;line-height:1.4}
+.journey{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.journey:before{content:'';position:absolute;left:16.6%;right:16.6%;top:14px;height:2px;background:var(--purple-light)}
+.journey-step{position:relative;text-align:center;padding:0 8px}
+.journey-dot{width:28px;height:28px;border-radius:50%;background:var(--purple);border:5px solid var(--purple-light);margin:0 auto 9px;position:relative;z-index:1}
+.journey-step.is-muted .journey-dot{background:#fff;border-color:var(--purple-light)}
+.journey-step strong{display:block;font-size:9px;margin-bottom:3px}
+.journey-step span{font-size:8px;color:var(--muted);line-height:1.4}
+.footer{background:var(--purple-dark);color:#fff;padding:28px 32px;text-align:center}
+.footer .brand{justify-content:center}
+.footer .brand-logo{height:26px}
+.footer p{font-size:9px;color:#fff}
+.empty{padding:30px;text-align:center;color:var(--faint);font-size:11px}
+@media(max-width:1000px){
+  .home-shell{grid-template-columns:1fr;gap:12px}.home-copy{padding-bottom:0}.home-topline{margin-bottom:34px}.home-menu{padding-bottom:28px}
+  .kpi-grid{grid-template-columns:repeat(3,1fr)}
+  .filter-grid{grid-template-columns:repeat(3,1fr)}
+  .dashboard-grid{grid-template-columns:1fr}
+  .insights-grid,.quality-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px) and (min-width:701px){
+  .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filter-actions{grid-column:1/-1}
+}
+@media(max-width:700px){
+  .home-view{padding:22px 18px}.home-shell{min-height:calc(100vh - 44px)}.home-menu{grid-template-columns:1fr 1fr}.home-menu-card{min-height:130px;padding:16px}
+  .hero{padding:28px 18px}.filters-shell{position:static!important;top:auto!important;max-height:none!important;overflow:visible!important;box-shadow:none}.filters{padding:13px 16px}.content{padding:16px 14px 50px}
+  .hero-top{align-items:flex-start}.hero-actions{flex-wrap:wrap;justify-content:flex-end}.brand-logo{height:27px}.demo-pill{display:none}
+  .filters-heading{margin-bottom:11px}.filters-heading-copy{display:block}.filters-heading-copy span{display:block;margin-top:3px}.mobile-filter-toggle{display:inline-flex;align-items:center;justify-content:center}.filters.is-collapsed .filter-panel{display:none}.filters.is-collapsed .filters-heading{margin-bottom:0}
+  .filter-grid{grid-template-columns:1fr 1fr}.filter-actions{grid-column:1/-1}.field select,.field input{min-height:44px;font-size:12px}.filter-actions .btn{flex:1;min-height:42px}.active-filter-summary{align-items:flex-start;flex-direction:column;gap:3px;line-height:1.55}.active-filter-summary strong{align-self:flex-start}.section-label{scroll-margin-top:20px}
+  .card-header{flex-direction:column;gap:9px}.source-chip{align-self:flex-start}
+  .kpi-grid{grid-template-columns:1fr 1fr}.funnel-steps{grid-template-columns:repeat(3,1fr)}
+  .insights-grid,.quality-grid{grid-template-columns:1fr 1fr}.chart-card,.split-card,.funnel{padding:18px}.table-toolbar>*{max-width:100%}.table-toolbar input[type=search],.table-toolbar select{width:100%;flex-basis:100%}.table-meta{margin-left:0;width:100%}
+}
+@media(max-width:560px){
+  .home-menu{grid-template-columns:1fr}.home-copy h1{font-size:36px}.home-proof{align-items:flex-start}.holder-facts,.journey{grid-template-columns:1fr}.journey:before{display:none}.journey-step{display:grid;grid-template-columns:34px 1fr;text-align:left;margin-bottom:12px}.journey-dot{margin:0}
+  .filter-grid,.kpi-grid,.insights-grid,.quality-grid{grid-template-columns:1fr}
+  .funnel-steps{grid-template-columns:1fr 1fr}.filters-heading{align-items:flex-start;flex-direction:column}
+  .mobile-filter-toggle{width:100%}.split-bars{grid-template-columns:1fr}.chart-wrap{height:260px}.hero h1{font-size:29px}
+}
+@media print{
+  .filters-shell,.filter-actions,.table-card,.demo-pill,.language-switch{display:none!important}
+  body{background:#fff}.hero{padding:24px}.content{padding:20px}.card{box-shadow:none;break-inside:avoid}
+  .dashboard-grid{grid-template-columns:1fr 1fr}.section-label{margin-top:18px}
+}
+</style>
+</head>
+<body>
+<section class="home-view" id="homeView" aria-labelledby="homeTitle">
+  <div class="home-shell">
+    <div class="home-copy">
+      <div class="home-topline"><div class="brand home-brand"><svg class="brand-logo" viewBox="0 0 600 197.3" role="img" aria-label="POK"><path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg></div><div class="language-switch" role="group" aria-label="Selecionar idioma"><button class="language-button" type="button" data-language="pt" aria-pressed="true" aria-label="Português">PT</button><button class="language-button" type="button" data-language="es" aria-pressed="false" aria-label="Español">ES</button></div></div>
+      <h1 id="homeTitle">Do diploma às <span>credenciais verificáveis por competências</span>: o que sua instituição entrega ao mercado</h1>
+      <p>Uma leitura interativa da campanha do egresso: participação no LinkedIn, velocidade da transição, destinos profissionais, impacto por curso e evidências individuais em um único painel.</p>
+      <div class="home-actions"><button class="home-primary" id="openDashboard" type="button">Explorar o dashboard</button></div>
+    </div>
+    <nav class="home-menu" aria-label="Acessos do dashboard">
+      <button class="home-menu-card" type="button" data-dashboard-target="impactSection"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><strong>Visão executiva</strong><span>Indicadores de empregabilidade e participação de alunos e egressos.</span></button>
+      <button class="home-menu-card" type="button" data-dashboard-target="timelineSection"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8M17 7h3v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Jornada profissional</strong><span>Linha do tempo, velocidade da transição, cargos e empresas de destino.</span></button>
+      <button class="home-menu-card" type="button" data-dashboard-target="coursesSection"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4Zm3 3v5c3 2 9 2 12 0v-5M21 8v7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Cursos e competências</strong><span>Comparação de mobilidade com transparência do tamanho da amostra.</span></button>
+      <button class="home-menu-card" type="button" data-dashboard-target="holdersSection"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19c.7-3.5 2.5-5.2 5.5-5.2s4.8 1.7 5.5 5.2M16 11l2 2 3-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Portadores individuais</strong><span>Casos demonstrativos que conectam formação, credencial e carreira.</span></button>
+    </nav>
+  </div>
+</section>
+
+<div id="dashboardView" hidden>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="brand"><svg class="brand-logo" viewBox="0 0 600 197.3" role="img" aria-label="POK"><path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg></div>
+      <div class="hero-actions"><button class="home-link" id="backHome" type="button">Início</button><div class="language-switch" role="group" aria-label="Selecionar idioma"><button class="language-button" type="button" data-language="pt" aria-pressed="true" aria-label="Português">PT</button><button class="language-button" type="button" data-language="es" aria-pressed="false" aria-label="Español">ES</button></div></div>
+    </div>
+    <h1>POK Score: trajetórias de <span>Impacto</span></h1>
+    <p>Visão interativa da empregabilidade de egressos por trilha, curso e competência, construída a partir de sinais profissionais observáveis no LinkedIn após a emissão de credenciais POK.</p>
+  </div>
+</header>
+
+<section class="filters-shell" aria-label="Filtros do painel">
+  <div class="filters">
+    <div class="filters-heading">
+      <div class="filters-heading-copy"><strong>Explore o recorte institucional</strong></div>
+      <button class="mobile-filter-toggle" id="mobileFilterToggle" type="button" aria-expanded="true" aria-controls="filterPanel">Ocultar filtros</button>
+    </div>
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-grid">
+        <div class="field"><label for="pathwayFilter">Trilha</label><div class="field-control"><select id="pathwayFilter" data-filter="pathway"><option value="">Todas as trilhas</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Trilha">?<span class="tip">Filtro criado a partir das trilhas criadas na plataforma POK</span></button></div></div>
+        <div class="field"><label for="courseFilter">Curso</label><div class="field-control"><select id="courseFilter" data-filter="course"><option value="">Todos os cursos</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Curso">?<span class="tip">Filtro criado a partir dos designs criados na plataforma POK (orientamos a que tenham o nome do curso)</span></button></div></div>
+        <div class="field"><label for="competencyFilter">Competência</label><div class="field-control"><select id="competencyFilter" data-filter="competency"><option value="">Todas as competências</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Competência">?<span class="tip">Filtro criado a partir das competências criadas nos certificados na plataforma POK (title)</span></button></div></div>
+        <div class="field"><label for="cohortFilter">Ano de emissão</label><div class="field-control"><select id="cohortFilter" data-filter="cohort"><option value="">Todos os anos</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Ano de emissão">?<span class="tip">Filtro criado a partir da data de emissão da credencial na plataforma POK</span></button></div></div>
+        <div class="field"><label for="impactFilter">Mudança profissional</label><div class="field-control"><select id="impactFilter" data-filter="impact"><option value="">Todas as situações</option><option value="novo">Novo emprego</option><option value="promo">Promoção</option><option value="none">Sem mudança detectada</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Mudança profissional">?<span class="tip">Marcos, precisa indicar de onde vem a informação deste filtro</span></button></div></div>
+        <div class="field"><label for="workplaceFilter">Modelo de trabalho</label><div class="field-control"><select id="workplaceFilter" data-filter="workplace"><option value="">Todos os modelos</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Modelo de trabalho">?<span class="tip">Marcos, precisa indicar de onde vem a informação deste filtro</span></button></div></div>
+        <div class="field"><label for="locationFilter">Localização</label><div class="field-control"><select id="locationFilter" data-filter="location"><option value="">Todas as localidades</option></select><button class="help" type="button" aria-label="Nota técnica sobre o filtro Localização">?<span class="tip">Marcos, precisa indicar de onde vem a informação deste filtro</span></button></div></div>
+        <div class="filter-actions"><button class="btn" id="resetFilters" type="button">Limpar filtros</button><button class="btn btn-primary" id="exportCsv" type="button">Exportar CSV</button></div>
+      </div>
+      <div class="active-filter-summary" aria-live="polite"><span id="filterSummary"></span></div>
+    </div>
+  </div>
+</section>
+
+<main class="content">
+
+  <div class="section-label" id="impactSection"><span>Impacto na empregabilidade</span></div>
+  <div class="kpi-grid" id="kpiGrid">
+    <article class="card kpi highlight"><div class="kpi-value" id="kpiTotal">0</div><div class="kpi-label">Credenciais no recorte</div><div class="kpi-context">Base válida para a leitura</div></article>
+    <article class="card kpi"><div class="kpi-value" id="kpiMobility">0%</div><div class="kpi-label">Mobilidade profissional</div><div class="kpi-context">Novo emprego ou promoção</div></article>
+    <article class="card kpi"><div class="kpi-value" id="kpiNewJobs">0</div><div class="kpi-label">Novos empregos</div><div class="kpi-context">Mudança de empresa detectada</div></article>
+    <article class="card kpi"><div class="kpi-value" id="kpiPromotions">0</div><div class="kpi-label">Promoções</div><div class="kpi-context">Progressão na mesma empresa</div></article>
+    <article class="card kpi"><div class="kpi-value" id="kpiMedian">–</div><div class="kpi-label">Média até a mudança</div><div class="kpi-context">Desde a emissão da credencial</div></article>
+    <article class="card kpi"><div class="kpi-value" id="kpiFast">0%</div><div class="kpi-label">Mudanças em até 120 dias</div><div class="kpi-context">Entre as mudanças observadas</div></article>
+  </div>
+
+  <div class="section-label" id="funnelSection"><span>Funil de participação no LinkedIn</span></div>
+  <section class="card funnel">
+    <div class="card-header"><div><h2>Da emissão à mudança observada</h2><p>O funil mostra cobertura, adesão ao LinkedIn e conversão em trajetórias profissionais observáveis no recorte selecionado.</p></div></div>
+    <div class="funnel-steps" id="funnelSteps"></div>
+  </section>
+
+  <div class="section-label" id="timelineSection"><span>Evolução temporal</span></div>
+  <div class="dashboard-grid">
+    <section class="card chart-card">
+      <div class="card-header"><div><h2>Linha do tempo acumulada de transições<button class="help" type="button" aria-label="Nota técnica sobre Linha do tempo acumulada de transições">?<span class="tip">Marcos, precisa indicar de onde vem a informação deste gráfico (do scrape do LinkedIn)</span></button></h2><p>Quantidade acumulada de egressos com novo emprego ou promoção em janelas sucessivas após o recebimento da credencial.</p></div></div>
+      <div class="start-marker">Dia 0 = emissão da credencial</div>
+      <div class="chart-wrap"><canvas id="timelineChart" role="img" aria-label="Gráfico de transições profissionais acumuladas por dias desde a emissão da credencial"></canvas></div>
+      <div class="method-note"><strong>Decisão metodológica:</strong> o dia 0 é a data de emissão de cada credencial, não uma data coletiva de compartilhamento. A leitura dos perfis ocorre a cada dois meses, e as janelas de 60, 120, 180, 240, 300 e 365 dias acompanham essa cadência – cada ponto do gráfico corresponde a uma varredura.<button class="help help-lime" type="button" aria-label="Nota técnica sobre a decisão metodológica">?<span class="tip">Marcos, aqui mudei porque estamos sugerindo um scrape bimestral</span></button></div>
+    </section>
+    <aside class="card split-card">
+      <div class="card-header"><div><h2>Destino profissional<button class="help" type="button" aria-label="Nota técnica sobre Destino profissional">?<span class="tip">Marcos, precisa indicar de onde vem a informação deste gráfico (do scrape do LinkedIn)</span></button></h2><p>Composição das mudanças e principais destinos do grupo.</p></div></div>
+      <div class="split-bars">
+        <div class="split-stat"><strong id="splitNew">0%</strong><span>dos movimentos são novos empregos</span></div>
+        <div class="split-stat"><strong id="splitPromo">0%</strong><span>dos movimentos são promoções</span></div>
+      </div>
+      <div class="rank-group"><h3>Empresas que mais absorvem alunos e egressos</h3><div id="companyRanking"></div></div>
+      <div class="rank-group"><h3>Cargos mais frequentes</h3><div id="roleRanking"></div></div>
+    </aside>
+  </div>
+
+  <div class="section-label" id="coursesSection"><span>Cursos com maior impacto</span></div>
+  <section class="card chart-card">
+    <div class="card-header"><div><h2>Mobilidade profissional por curso<button class="help" type="button" aria-label="Nota técnica sobre Mobilidade profissional por curso">?<span class="tip">Marcos, precisa indicar de onde vem a informação deste gráfico (do scrape do LinkedIn)</span></button></h2><p>Percentual de alunos e egressos com novo emprego ou promoção.</p></div></div>
+    <div class="chart-wrap tall"><canvas id="courseChart" role="img" aria-label="Gráfico de taxa de mobilidade profissional por curso"></canvas></div>
+  </section>
+
+  <div class="section-label" id="insightsSection"><span>Insights estratégicos</span></div>
+  <section class="insights-grid" id="insightsGrid" aria-live="polite"></section>
+
+  <div class="section-label">Cobertura e qualidade dos dados</div>
+  <section class="quality-grid">
+    <article class="card quality"><strong id="qualityProfile">0%</strong><span>Perfis profissionais localizados</span></article>
+    <article class="card quality"><strong id="qualityShared">0%</strong><span>Credenciais compartilhadas no LinkedIn</span></article>
+    <article class="card quality"><strong id="qualityObserved">0%</strong><span>Registros com leitura de trajetória válida</span></article>
+    <article class="card quality"><strong>Bimestral</strong><span>Cadência ilustrativa de atualização</span></article>
+  </section>
+
+  <div class="section-label" id="holdersSection"><span>Portadores individuais</span></div>
+  <div class="holder-intro"><strong>Do agregado ao caso a caso</strong>Para cada aluno ou egresso, consulte a trilha e o curso de origem, a competência certificada, o cargo detectado, o tipo de mudança e o tempo até ela acontecer. A leitura individual ajuda a verificar as histórias que sustentam os indicadores agregados.</div>
+  <div class="trajectory-prompt"><span class="origin-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 13h12M4 11V7m4 4V3m4 8V6"/></svg></span><div><strong>Trajetória do portador</strong><p>Use o último ícone de cada linha para abrir a jornada completa: emissão, compartilhamento e movimento profissional.</p></div></div>
+  <section class="card table-card">
+    <div class="table-toolbar">
+      <input id="holderSearch" type="search" placeholder="Buscar por curso, competência ou portador...">
+      <select id="holderImpactFilter" aria-label="Filtrar mudanças"><option value="">Todas as mudanças</option><option value="novo">Novo emprego</option><option value="promo">Promoção</option><option value="none">Sem mudança ainda</option></select>
+      <label class="check-label" for="holderSharedOnly"><input id="holderSharedOnly" type="checkbox"> Ver só com postagem compartilhada</label>
+      <span class="table-meta" id="holderMeta"></span>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Compartilhamento</th><th>Trilha</th><th>Curso</th><th>Competência</th><th>Portador</th><th>Cargo detectado</th><th>Mudança</th><th>Dias</th><th>LinkedIn</th></tr></thead><tbody id="holderBody"></tbody></table></div>
+    <div class="empty" id="holderEmpty" hidden>Nenhum portador corresponde aos filtros.</div>
+  </section>
+</main>
+
+<footer class="footer"><div class="brand"><svg class="brand-logo" viewBox="0 0 600 197.3" role="img" aria-label="POK"><path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg></div></footer>
+
+<dialog class="trajectory-dialog" id="trajectoryDialog" aria-labelledby="trajectoryTitle">
+  <div class="dialog-head"><div><h2 id="trajectoryTitle">Trajetória do portador</h2></div><button class="dialog-close" id="closeTrajectory" type="button" aria-label="Fechar">×</button></div>
+  <div class="dialog-body" id="trajectoryBody"></div>
+</dialog>
+</div>
+
+<script>
+let currentLanguage='pt';
+const VALUE_ES={
+  'Trilha de Dados':'Ruta de Datos','Trilha de Gestão':'Ruta de Gestión','Trilha Financeira':'Ruta Financiera','Trilha de Tecnologia':'Ruta de Tecnología',
+  'Administração':'Administración','Análise e Desenvolvimento de Sistemas':'Análisis y Desarrollo de Sistemas','Ciências Contábeis':'Ciencias Contables','Gestão de Recursos Humanos':'Gestión de Recursos Humanos','Tecnologia da Informação':'Tecnología de la Información',
+  'Análise de Dados':'Análisis de Datos','Gestão de Projetos':'Gestión de Proyectos','Inteligência de Negócios':'Inteligencia de Negocios','Liderança de Equipes':'Liderazgo de Equipos','Automação de Processos':'Automatización de Procesos',
+  'Nexo Serviços':'Nexo Servicios','Lumina Educação':'Lumina Educación','Orbe Consultoria':'Orbe Consultoría','Atlas Logística':'Atlas Logística',
+  'Analista de Dados':'Analista de Datos','Analista de Negócios':'Analista de Negocios','Coordenador de Projetos':'Coordinador de Proyectos','Especialista de Operações':'Especialista de Operaciones','Assistente Financeiro':'Asistente Financiero','Consultor Comercial':'Consultor Comercial','Supervisor de Equipe':'Supervisor de Equipo',
+  'Remoto':'Remoto','Híbrido':'Híbrido','Presencial':'Presencial'
+};
+const ES={
+  ...VALUE_ES,
+  'POK Score · experiência FNESP':'POK Score · experiencia FNESP',
+  'Do diploma às':'Del diploma a las','credenciais verificáveis por competências':'credenciales verificables por competencias',': o que sua instituição entrega ao mercado':': lo que su institución entrega al mercado',
+  'Uma leitura interativa da campanha do egresso: participação no LinkedIn, velocidade da transição, destinos profissionais, impacto por curso e evidências individuais em um único painel.':'Una lectura interactiva de la campaña de egresados: participación en LinkedIn, velocidad de transición, destinos profesionales, impacto por curso y evidencias individuales en un único panel.',
+  'Explorar o dashboard':'Explorar el dashboard','Protótipo demonstrativo com dados fictícios':'Prototipo demostrativo con datos ficticios',
+  'Acessos do dashboard':'Accesos del dashboard','Visão executiva':'Visión ejecutiva','Indicadores de empregabilidade e participação de alunos e egressos.':'Indicadores de empleabilidad y participación de alumnos y egresados.',
+  'Jornada profissional':'Trayectoria profesional','Linha do tempo, velocidade da transição, cargos e empresas de destino.':'Cronología, velocidad de transición, cargos y empresas de destino.',
+  'Cursos e competências':'Cursos y competencias','Comparação de mobilidade com transparência do tamanho da amostra.':'Comparación de movilidad con transparencia del tamaño de la muestra.',
+  'Portadores individuais':'Portadores individuales','Casos demonstrativos que conectam formação, credencial e carreira.':'Casos demostrativos que conectan formación, credencial y carrera.',
+  'O símbolo identifica módulos já desenvolvidos pela POK em outros projetos e adaptados para esta experiência.':'El símbolo identifica módulos ya desarrollados por POK en otros proyectos y adaptados para esta experiencia.',
+  'Início':'Inicio','Demonstração · dados fictícios':'Demostración · datos ficticios','POK Score · Empregabilidade':'POK Score · Empleabilidad',
+  'POK Score: trajetórias de':'POK Score: trayectorias de','Impacto':'Impacto',
+  'Visão interativa da empregabilidade de egressos por trilha, curso e competência, construída a partir de sinais profissionais observáveis no LinkedIn após a emissão de credenciais POK.':'Visión interactiva de la empleabilidad de egresados por ruta, curso y competencia, construida a partir de señales profesionales observables en LinkedIn después de la emisión de credenciales POK.',
+  'Filtros do painel':'Filtros del panel','Explore o recorte institucional':'Explore el segmento institucional','Todos os componentes abaixo respondem aos filtros':'Todos los componentes siguientes responden a los filtros',
+  'Ocultar filtros':'Ocultar filtros','Ver filtros':'Ver filtros','Trilha':'Ruta','Curso':'Curso','Competência':'Competencia','Ano de emissão':'Año de emisión','Mudança profissional':'Cambio profesional','Modelo de trabalho':'Modalidad de trabajo','Localização':'Ubicación',
+  'Todas as trilhas':'Todas las rutas','Todos os cursos':'Todos los cursos','Todas as competências':'Todas las competencias','Todos os anos':'Todos los años','Todas as situações':'Todas las situaciones','Todos os modelos':'Todas las modalidades','Todas as localidades':'Todas las ubicaciones',
+  'Novo emprego':'Nuevo empleo','Promoção':'Promoción','Sem mudança detectada':'Sin cambio detectado','Nota técnica – preencher com a informação do TI':'Nota técnica – completar con la información de TI','Nota técnica sobre o filtro Trilha':'Nota técnica sobre el filtro Ruta','Nota técnica sobre o filtro Curso':'Nota técnica sobre el filtro Curso','Nota técnica sobre o filtro Competência':'Nota técnica sobre el filtro Competencia','Nota técnica sobre o filtro Ano de emissão':'Nota técnica sobre el filtro Año de emisión','Nota técnica sobre o filtro Mudança profissional':'Nota técnica sobre el filtro Cambio profesional','Nota técnica sobre o filtro Modelo de trabalho':'Nota técnica sobre el filtro Modalidad de trabajo','Nota técnica sobre o filtro Localização':'Nota técnica sobre el filtro Ubicación','Nota técnica sobre Linha do tempo acumulada de transições':'Nota técnica sobre Cronología acumulada de transiciones','Nota técnica sobre Destino profissional':'Nota técnica sobre Destino profesional','Nota técnica sobre Mobilidade profissional por curso':'Nota técnica sobre Movilidad profesional por curso','Nota técnica sobre Perfis localizados':'Nota técnica sobre Perfiles localizados','Nota técnica sobre a decisão metodológica':'Nota técnica sobre la decisión metodológica','Filtro criado a partir das trilhas criadas na plataforma POK':'Filtro creado a partir de las rutas creadas en la plataforma POK','Filtro criado a partir dos designs criados na plataforma POK (orientamos a que tenham o nome do curso)':'Filtro creado a partir de los diseños creados en la plataforma POK (recomendamos que lleven el nombre del curso)','Filtro criado a partir das competências criadas nos certificados na plataforma POK (title)':'Filtro creado a partir de las competencias creadas en los certificados en la plataforma POK (title)','Filtro criado a partir da data de emissão da credencial na plataforma POK':'Filtro creado a partir de la fecha de emisión de la credencial en la plataforma POK','Limpar filtros':'Limpiar filtros','Exportar CSV':'Exportar CSV','Visão geral':'Vista general','Filtros ativos:':'Filtros activos:',
+  'Protótipo demonstrativo.':'Prototipo demostrativo.','Todos os nomes, instituições, empresas e valores deste arquivo são fictícios. O modelo apresenta estrutura analítica e comportamento dos filtros; não representa resultados reais de uma IES.':'Todos los nombres, instituciones, empresas y valores de este archivo son ficticios. El modelo presenta la estructura analítica y el comportamiento de los filtros; no representa resultados reales de una institución de educación superior.',
+  'Módulo já desenvolvido pela POK em outros projetos e adaptado para o painel de empregabilidade.':'Módulo ya desarrollado por POK en otros proyectos y adaptado al panel de empleabilidad.','Módulo já aplicado pela POK':'Módulo ya aplicado por POK',
+  'Credenciais no recorte':'Credenciales en el segmento','Base válida para a leitura':'Base válida para el análisis','Mobilidade profissional':'Movilidad profesional','Novo emprego ou promoção':'Nuevo empleo o promoción','Novos empregos':'Nuevos empleos','Mudança de empresa detectada':'Cambio de empresa detectado','Promoções':'Promociones','Progressão na mesma empresa':'Progresión en la misma empresa','Média até a mudança':'Promedio hasta el cambio','Desde a emissão da credencial':'Desde la emisión de la credencial','Mudanças em até 120 dias':'Cambios en hasta 120 días','Entre as mudanças observadas':'Entre los cambios observados',
+  'Funil de participação no LinkedIn':'Embudo de participación en LinkedIn','Da emissão à mudança observada':'De la emisión al cambio observado','O funil mostra cobertura, adesão ao LinkedIn e conversão em trajetórias profissionais observáveis no recorte selecionado.':'El embudo muestra cobertura, adhesión a LinkedIn y conversión en trayectorias profesionales observables en el segmento seleccionado.',
+  'Evolução temporal':'Evolución temporal','Linha do tempo acumulada de transições':'Cronología acumulada de transiciones','Quantidade acumulada de egressos com novo emprego ou promoção em janelas sucessivas após o recebimento da credencial.':'Cantidad acumulada de egresados con nuevo empleo o promoción en ventanas sucesivas después de recibir la credencial.','Dia 0 = emissão da credencial':'Día 0 = emisión de la credencial',
+  'Gráfico de transições profissionais acumuladas por dias desde a emissão da credencial':'Gráfico de transiciones profesionales acumuladas por días desde la emisión de la credencial','Decisão metodológica:':'Decisión metodológica:','o dia 0 é a data de emissão de cada credencial, não uma data coletiva de compartilhamento. A leitura dos perfis ocorre a cada dois meses, e as janelas de 60, 120, 180, 240, 300 e 365 dias acompanham essa cadência – cada ponto do gráfico corresponde a uma varredura.':'el día 0 es la fecha de emisión de cada credencial, no una fecha colectiva de publicación. La lectura de los perfiles ocurre cada dos meses, y las ventanas de 60, 120, 180, 240, 300 y 365 días acompañan esa cadencia – cada punto del gráfico corresponde a una lectura.',
+  'Destino profissional':'Destino profesional','Composição das mudanças e principais destinos do grupo.':'Composición de los cambios y principales destinos del grupo.','dos movimentos são novos empregos':'de los movimientos son nuevos empleos','dos movimentos são promoções':'de los movimientos son promociones','Empresas que mais absorvem alunos e egressos':'Empresas que más incorporan alumnos y egresados','Cargos mais frequentes':'Cargos más frecuentes',
+  'Impacto na empregabilidade':'Impacto en la empleabilidad','Cursos com maior impacto':'Cursos con mayor impacto','Mobilidade profissional por curso':'Movilidad profesional por curso','Percentual de alunos e egressos com novo emprego ou promoção.':'Porcentaje de alumnos y egresados con nuevo empleo o promoción.','Gráfico de taxa de mobilidade profissional por curso':'Gráfico de la tasa de movilidad profesional por curso','Leitura responsável:':'Lectura responsable:','diferenças entre cursos são associações observadas no recorte. Elas não demonstram, isoladamente, que a credencial causou a mudança profissional.':'las diferencias entre cursos son asociaciones observadas en el segmento. Por sí solas, no demuestran que la credencial haya causado el cambio profesional.',
+  'Insights estratégicos':'Insights estratégicos','Cobertura e qualidade dos dados':'Cobertura y calidad de los datos','Perfis profissionais localizados':'Perfiles profesionales localizados','Credenciais compartilhadas no LinkedIn':'Credenciales compartidas en LinkedIn','Registros com leitura de trajetória válida':'Registros con lectura de trayectoria válida','Bimestral':'Bimestral','Cadência ilustrativa de atualização':'Frecuencia ilustrativa de actualización',
+  'Do agregado ao caso a caso':'Del agregado al caso individual','Para cada aluno ou egresso, consulte a trilha e o curso de origem, a competência certificada, o cargo detectado, o tipo de mudança e o tempo até ela acontecer. A leitura individual ajuda a verificar as histórias que sustentam os indicadores agregados.':'Para cada alumno o egresado, consulte la ruta y el curso de origen, la competencia certificada, el cargo detectado, el tipo de cambio y el tiempo transcurrido hasta que ocurrió. La lectura individual ayuda a verificar las historias que sustentan los indicadores agregados.',
+  'Trajetória do portador':'Trayectoria del portador','Use o último ícone de cada linha para abrir a jornada completa: emissão, compartilhamento e movimento profissional.':'Use el último icono de cada fila para abrir la trayectoria completa: emisión, publicación y movimiento profesional.',
+  'Buscar por curso, competência ou portador...':'Buscar por curso, competencia o portador...','Filtrar mudanças':'Filtrar cambios','Todas as mudanças':'Todos los cambios','Sem mudança ainda':'Sin cambio todavía','Ver só com postagem compartilhada':'Ver solo con publicación compartida',
+  'Compartilhamento':'Publicación','Portador':'Portador','Cargo detectado':'Cargo detectado','Mudança':'Cambio','Dias':'Días','Nenhum portador corresponde aos filtros.':'Ningún portador coincide con los filtros.',
+  'POK Score de Empregabilidade · protótipo com dados fictícios para validação de produto':'POK Score de Empleabilidad · prototipo con datos ficticios para validación del producto','Fechar':'Cerrar',
+  'Credenciais emitidas':'Credenciales emitidas','Perfis localizados':'Perfiles localizados','Compartilhamentos':'Publicaciones','Publicações':'Publicaciones confirmadas','Adicionadas ao perfil':'Añadidas al perfil','Mudanças profissionais':'Cambios profesionales','Sem movimentos no recorte.':'Sin movimientos en el segmento.',
+  'Curso com maior mobilidade':'Curso con mayor movilidad','Recorte sem curso':'Segmento sin curso','Ajuste os filtros para ampliar a base.':'Ajuste los filtros para ampliar la base.','Velocidade da transição':'Velocidad de transición','Não há mudanças observadas neste recorte.':'No hay cambios observados en este segmento.','Principal destino':'Principal destino','Nenhuma empresa aparece no recorte.':'Ninguna empresa aparece en el segmento.','Confiabilidade da leitura':'Confiabilidad del análisis',
+  'Perfil profissional':'Perfil profesional','Compartilhamento no LinkedIn':'Publicación en LinkedIn','Sem mudança observada':'Sin cambio observado','Aguardando nova observação':'A la espera de una nueva observación','Credencial emitida':'Credencial emitida','Não observado':'No observado','Postagem localizada':'Publicación localizada','Sem postagem localizada':'Sin publicación localizada','Leitura ainda aberta':'Análisis todavía abierto',
+  'Portador fictício':'Portador ficticio','Data de emissão':'Fecha de emisión','Data de compartilhamento':'Fecha de publicación','Perfil localizado':'Perfil localizado','Postagem compartilhada':'Publicación compartida','Empresa':'Empresa','Dias até a mudança':'Días hasta el cambio','Sim':'Sí','Não':'No',
+  'Novos empregos':'Nuevos empleos','Mudanças acumuladas':'Cambios acumulados','Taxa de mobilidade (%)':'Tasa de movilidad (%)','Dia 0':'Día 0','dias':'días','egressos':'egresados','portadores':'portadores','linhas':'filas',
+  'Selecionar idioma':'Seleccionar idioma','Português':'Portugués','Español':'Español'
+};
+const trackedTextNodes=new Set(),textOriginals=new WeakMap(),trackedAttributeElements=new Set(),attributeOriginals=new WeakMap();
+function displayValue(value){return currentLanguage==='es'?(VALUE_ES[value]||value):value}
+function translatePtText(value){
+  const exact=ES[value];if(exact)return exact;
+  let match;
+  if((match=value.match(/^(\d+) egressos no recorte$/)))return match[1]+' egresados en el segmento';
+  if((match=value.match(/^Ver filtros · (\d+) ativos$/)))return 'Ver filtros · '+match[1]+' activos';
+  if((match=value.match(/^Exibindo (\d+) de (\d+) portadores$/)))return 'Mostrando '+match[1]+' de '+match[2]+' portadores';
+  if((match=value.match(/^(\d+) dias$/)))return match[1]+' días';
+  if((match=value.match(/^(\d+)% do recorte$/)))return match[1]+'% del segmento';
+  if((match=value.match(/^Base filtrada: (\d+) egressos$/)))return 'Base filtrada: '+match[1]+' egresados';
+  if((match=value.match(/^CSV gerado · (\d+) linhas$/)))return 'CSV generado · '+match[1]+' filas';
+  if((match=value.match(/^Ver perfil de (.+)$/)))return 'Ver perfil de '+match[1];
+  if((match=value.match(/^Ver compartilhamento de (.+)$/)))return 'Ver publicación de '+match[1];
+  if((match=value.match(/^Ver trajetória de (.+)$/)))return 'Ver trayectoria de '+match[1];
+  if((match=value.match(/^Jornada profissional de (.+)$/)))return 'Trayectoria profesional de '+match[1];
+  if((match=value.match(/^(.+) · caso demonstrativo com dados fictícios$/)))return match[1]+' · caso demostrativo con datos ficticios';
+  if((match=value.match(/^Novo emprego em (.+)$/)))return 'Nuevo empleo en '+match[1];
+  if((match=value.match(/^Promoção em (.+)$/)))return 'Promoción en '+match[1];
+  if((match=value.match(/^(\d+) dias após a emissão$/)))return match[1]+' días después de la emisión';
+  if((match=value.match(/^(.+) registra (\d+)% de mobilidade em uma amostra de (\d+) egressos\.$/)))return displayValue(match[1])+' registra un '+match[2]+'% de movilidad en una muestra de '+match[3]+' egresados.';
+  if((match=value.match(/^(\d+)% das mudanças ocorreram em até 120 dias após a emissão da credencial\.$/)))return match[1]+'% de los cambios ocurrieron en hasta 120 días después de la emisión de la credencial.';
+  if((match=value.match(/^(.+) concentra (\d+) das mudanças profissionais observadas\.$/)))return match[1]+' concentra '+match[2]+' de los cambios profesionales observados.';
+  if((match=value.match(/^(\d+)% dos perfis foram localizados\. Interprete resultados junto com cobertura e tamanho da amostra\.$/)))return 'Se localizó el '+match[1]+'% de los perfiles. Interprete los resultados junto con la cobertura y el tamaño de la muestra.';
+  return VALUE_ES[value]||value;
+}
+function restorePortuguese(){
+  trackedTextNodes.forEach(node=>{if(node.isConnected&&textOriginals.has(node))node.nodeValue=textOriginals.get(node)});
+  trackedAttributeElements.forEach(el=>{if(!el.isConnected)return;const attrs=attributeOriginals.get(el)||{};Object.entries(attrs).forEach(([name,value])=>el.setAttribute(name,value))});
+}
+function applyLanguage(){
+  document.documentElement.lang=currentLanguage==='es'?'es':'pt-BR';
+  document.title=currentLanguage==='es'?'POK Score · Empleabilidad':'POK Score · Empregabilidade';
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:node=>/^(SCRIPT|STYLE|NOSCRIPT)$/.test(node.parentElement?.tagName)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  let node;while((node=walker.nextNode())){if(!textOriginals.has(node)){textOriginals.set(node,node.nodeValue);trackedTextNodes.add(node)}const original=textOriginals.get(node),trimmed=original.trim();if(!trimmed)continue;const translated=currentLanguage==='es'?translatePtText(trimmed):trimmed;node.nodeValue=original.replace(trimmed,translated)}
+  document.querySelectorAll('[placeholder],[aria-label],[title]').forEach(el=>{if(!attributeOriginals.has(el)){const attrs={};['placeholder','aria-label','title'].forEach(name=>{if(el.hasAttribute(name))attrs[name]=el.getAttribute(name)});attributeOriginals.set(el,attrs);trackedAttributeElements.add(el)}const attrs=attributeOriginals.get(el);Object.entries(attrs).forEach(([name,value])=>el.setAttribute(name,currentLanguage==='es'?translatePtText(value):value))});
+  document.querySelectorAll('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===currentLanguage)));
+}
+function setLanguage(language,{refresh=true}={}){
+  restorePortuguese();currentLanguage=language==='es'?'es':'pt';
+  try{localStorage.setItem('pok-score-language',currentLanguage)}catch(error){}
+  if(refresh&&typeof dashboardReady!=='undefined'&&dashboardReady)updateDashboard();else{updateMobileFilterToggle();applyLanguage()}
+}
+const DIMENSIONS = {
+  pathways:['Trilha de Dados','Trilha de Gestão','Trilha Financeira','Trilha de Tecnologia'],
+  courses:['Administração','Análise e Desenvolvimento de Sistemas','Ciências Contábeis','Gestão de Recursos Humanos','Marketing Digital','Tecnologia da Informação'],
+  competencies:['Análise de Dados','Gestão de Projetos','Inteligência de Negócios','Liderança de Equipes','Automação de Processos'],
+  companies:['Horizonte Tech','Grupo Aurora','Nexo Serviços','Cooperativa Sul','Lumina Educação','Vértice Digital','Orbe Consultoria','Atlas Logística'],
+  roles:['Analista de Dados','Analista de Negócios','Coordenador de Projetos','Especialista de Operações','Assistente Financeiro','Consultor Comercial','Product Analyst','Supervisor de Equipe'],
+  locations:['São Paulo · SP','Curitiba · PR','Recife · PE','Belo Horizonte · MG','Florianópolis · SC'],
+  workplaces:['Remoto','Híbrido','Presencial']
+};
+const thresholds=[0,60,120,180,240,300,365];
+const dayOptions=[18,29,43,58,74,89,103,119,147,176,214,286,342];
+const FIRST_NAMES=['Ana','Bruno','Camila','Diego','Eduarda','Felipe','Gabriela','Henrique','Isabela','João','Larissa','Mateus'];
+const LAST_NAMES=['Almeida','Barbosa','Carvalho','Duarte','Ferreira','Gomes','Lima','Mendes','Oliveira','Ribeiro'];
+const addDays=(date,days)=>{const copy=new Date(date);copy.setDate(copy.getDate()+days);return copy.toISOString().slice(0,10)};
+const records=Array.from({length:120},(_,i)=>{
+  const course=DIMENSIONS.courses[i%DIMENSIONS.courses.length];
+  const pathway=DIMENSIONS.pathways[(i*3+Math.floor(i/8))%DIMENSIONS.pathways.length];
+  const competency=DIMENSIONS.competencies[(i*2+Math.floor(i/6))%DIMENSIONS.competencies.length];
+  const cohort=2023+(i%4);
+  const issued=new Date(cohort,(i*5)%12,2+(i*7)%25);
+  const profileLocated=i%11!==0;
+  const shared=profileLocated&&i%5!==0;
+  const posted=shared&&i%3!==0;
+  const added=shared&&i%4!==0;
+  const seed=(i*7+DIMENSIONS.courses.indexOf(course)*2)%10;
+  const impact=profileLocated?(seed<4?'novo':seed<6?'promo':'none'):'none';
+  const days=impact==='none'?null:dayOptions[(i*5+DIMENSIONS.competencies.indexOf(competency))%dayOptions.length];
+  const sharedAt=shared?addDays(issued,5+(i%24)):null;
+  return {
+    id:i+1,name:FIRST_NAMES[i%FIRST_NAMES.length]+' '+LAST_NAMES[(i*3+Math.floor(i/10))%LAST_NAMES.length],course,pathway,competency,cohort,
+    issuedAt:issued.toISOString().slice(0,10),sharedAt,profileLocated,shared,posted,added,impact,days,
+    company:impact==='none'?'–':DIMENSIONS.companies[(i*3)%DIMENSIONS.companies.length],
+    role:impact==='none'?'–':DIMENSIONS.roles[(i*5)%DIMENSIONS.roles.length],
+    previousRole:DIMENSIONS.roles[(i*5+3)%DIMENSIONS.roles.length],
+    location:DIMENSIONS.locations[(i*2)%DIMENSIONS.locations.length],
+    workplace:DIMENSIONS.workplaces[(i*4)%DIMENSIONS.workplaces.length],
+    observed:profileLocated&&i%13!==0
+  };
+});
+
+const ids={
+  pathway:document.getElementById('pathwayFilter'),course:document.getElementById('courseFilter'),
+  competency:document.getElementById('competencyFilter'),cohort:document.getElementById('cohortFilter'),
+  impact:document.getElementById('impactFilter'),workplace:document.getElementById('workplaceFilter'),
+  location:document.getElementById('locationFilter')
+};
+function fillSelect(select,values){values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;select.appendChild(o)})}
+fillSelect(ids.pathway,DIMENSIONS.pathways);fillSelect(ids.course,DIMENSIONS.courses);fillSelect(ids.competency,DIMENSIONS.competencies);
+fillSelect(ids.cohort,[2023,2024,2025,2026]);fillSelect(ids.workplace,DIMENSIONS.workplaces);fillSelect(ids.location,DIMENSIONS.locations);
+
+const filtersContainer=document.querySelector('.filters');
+const mobileFilterToggle=document.getElementById('mobileFilterToggle');
+const mobileFilterMedia=window.matchMedia('(max-width:700px)');
+function activeFilterCount(){return Object.values(ids).filter(el=>el.value).length}
+function updateMobileFilterToggle(){
+  const collapsed=filtersContainer.classList.contains('is-collapsed');
+  const count=activeFilterCount();
+  mobileFilterToggle.setAttribute('aria-expanded',String(!collapsed));
+  mobileFilterToggle.textContent=collapsed?(count?'Ver filtros · '+count+' ativos':'Ver filtros'):'Ocultar filtros';
+  if(currentLanguage==='es')applyLanguage();
+}
+function applyResponsiveFilters(isMobile){filtersContainer.classList.toggle('is-collapsed',isMobile);updateMobileFilterToggle()}
+applyResponsiveFilters(mobileFilterMedia.matches);
+if(mobileFilterMedia.addEventListener){mobileFilterMedia.addEventListener('change',event=>applyResponsiveFilters(event.matches))}else{mobileFilterMedia.addListener(event=>applyResponsiveFilters(event.matches))}
+mobileFilterToggle.addEventListener('click',()=>{filtersContainer.classList.toggle('is-collapsed');updateMobileFilterToggle()});
+
+function filteredRecords(){
+  return records.filter(r=>Object.entries(ids).every(([key,el])=>{
+    if(!el.value)return true;
+    if(key==='cohort')return String(r.cohort)===el.value;
+    return r[key]===el.value;
+  }));
+}
+const pct=(n,d)=>d?Math.round((n/d)*100):0;
+const average=values=>{if(!values.length)return null;return Math.round(values.reduce((sum,x)=>sum+x,0)/values.length)};
+const countBy=(list,key)=>list.reduce((acc,r)=>{const v=r[key];if(v&&v!=='–')acc[v]=(acc[v]||0)+1;return acc},{});
+function topEntries(obj,limit=5){return Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,limit)}
+function formatDate(iso){return new Intl.DateTimeFormat('pt-BR').format(new Date(iso+'T12:00:00'))}
+
+Chart.defaults.font.family='Poppins, sans-serif';Chart.defaults.color='#000';
+Chart.defaults.font.size=10;
+Chart.defaults.plugins.legend.labels.font={size:10};
+Chart.defaults.plugins.legend.labels.padding=14;
+Chart.defaults.plugins.tooltip.titleFont={size:11,weight:'700'};
+Chart.defaults.plugins.tooltip.bodyFont={size:10};
+Chart.defaults.plugins.tooltip.padding=9;
+let timelineChart=null,courseChart=null;
+function renderTimeline(list){
+  const cumulative=type=>thresholds.map(t=>t===0?0:list.filter(r=>r.impact===type&&r.days<=t).length);
+  const ctx=document.getElementById('timelineChart');
+  if(timelineChart)timelineChart.destroy();
+  timelineChart=new Chart(ctx,{type:'line',data:{labels:thresholds.map((d,i)=>currentLanguage==='es'?(i===0?'Día 0':d+' días'):(i===0?'Dia 0':d+' dias')),datasets:[
+    {label:currentLanguage==='es'?'Nuevos empleos':'Novos empregos',data:cumulative('novo'),borderColor:'#1d9e75',backgroundColor:'rgba(29,158,117,.10)',pointBackgroundColor:'#1d9e75',pointRadius:4,tension:.25,fill:true},
+    {label:currentLanguage==='es'?'Promociones':'Promoções',data:cumulative('promo'),borderColor:'#5123a4',backgroundColor:'rgba(81,35,164,.08)',pointBackgroundColor:'#5123a4',pointRadius:4,tension:.25,fill:true}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},tooltip:{callbacks:{afterBody:items=>currentLanguage==='es'?'Base filtrada: '+list.length+' egresados':'Base filtrada: '+list.length+' egressos'}}},scales:{y:{beginAtZero:true,title:{display:true,text:currentLanguage==='es'?'Cambios acumulados':'Mudanças acumuladas'},ticks:{precision:0},grid:{color:'rgba(216,206,240,.55)'}},x:{grid:{display:false}}}}});
+}
+function courseStats(list){
+  return DIMENSIONS.courses.map(course=>{const group=list.filter(r=>r.course===course);const moves=group.filter(r=>r.impact!=='none').length;return{course,n:group.length,rate:pct(moves,group.length)}}).filter(x=>x.n>0).sort((a,b)=>b.rate-a.rate);
+}
+function renderCourses(list){
+  const stats=courseStats(list),ctx=document.getElementById('courseChart');
+  if(courseChart)courseChart.destroy();
+  courseChart=new Chart(ctx,{type:'bar',data:{labels:stats.map(x=>displayValue(x.course)),datasets:[{label:currentLanguage==='es'?'Movilidad profesional':'Mobilidade profissional',data:stats.map(x=>x.rate),backgroundColor:stats.map((_,i)=>i===0?'#5123a4':'rgba(81,35,164,.58)'),borderRadius:8,barThickness:22}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'% · n='+stats[c.dataIndex].n}}},scales:{x:{beginAtZero:true,max:100,title:{display:true,text:currentLanguage==='es'?'Tasa de movilidad (%)':'Taxa de mobilidade (%)'},ticks:{callback:v=>v+'%'},grid:{color:'rgba(216,206,240,.55)'}},y:{grid:{display:false}}}}});
+}
+function renderRanking(target,entries,total){
+  const el=document.getElementById(target);
+  if(!entries.length){el.innerHTML='<div class="empty">Sem movimentos no recorte.</div>';return}
+  const max=Math.max(...entries.map(x=>x[1]));
+  el.innerHTML=entries.map(([label,value])=>'<div class="rank-row"><div class="rank-main"><div class="rank-label"><span>'+label+'</span><span>'+pct(value,total)+'%</span></div><div class="rank-track"><div class="rank-fill" style="width:'+pct(value,max)+'%"></div></div></div><div class="rank-value">'+value+'</div></div>').join('');
+}
+function renderFunnel(list){
+  const stages=[
+    ['Credenciais emitidas',list.length,'#3a1878'],
+    ['Perfis localizados',list.filter(r=>r.profileLocated).length,'#5123a4'],
+    ['Compartilhamentos',list.filter(r=>r.shared).length,'#6b45bb'],
+    ['Publicações',list.filter(r=>r.posted).length,'#8f76cc'],
+    ['Adicionadas ao perfil',list.filter(r=>r.added).length,'#1d9e75'],
+    ['Mudanças profissionais',list.filter(r=>r.impact!=='none').length,'#5dcaa5']
+  ];
+  document.getElementById('funnelSteps').innerHTML=stages.map(([label,value,color])=>{const help=label==='Perfis localizados'?'<button class="help help-lime help-up" type="button" aria-label="Nota técnica sobre '+label+'">?<span class="tip">Marcos, de onde vem esta informação?</span></button>':'';return '<div class="funnel-step"><div class="funnel-bar" style="background:'+color+'">'+help+value+'</div><div class="funnel-label">'+label+'</div><div class="funnel-pct">'+pct(value,list.length)+'% do recorte</div></div>'}).join('');
+}
+function renderInsights(list,moves){
+  const stats=courseStats(list);const topCourse=stats[0];
+  const within120=moves.filter(r=>r.days<=120).length;const companies=topEntries(countBy(moves,'company'),1);const coverage=list.filter(r=>r.profileLocated).length;
+  const insights=[
+    ['01',topCourse?'Curso com maior mobilidade':'Recorte sem curso',topCourse?topCourse.course+' registra '+topCourse.rate+'% de mobilidade em uma amostra de '+topCourse.n+' egressos.':'Ajuste os filtros para ampliar a base.'],
+    ['02','Velocidade da transição',moves.length?pct(within120,moves.length)+'% das mudanças ocorreram em até 120 dias após a emissão da credencial.':'Não há mudanças observadas neste recorte.'],
+    ['03','Principal destino',companies.length?companies[0][0]+' concentra '+companies[0][1]+' das mudanças profissionais observadas.':'Nenhuma empresa aparece no recorte.'],
+    ['04','Confiabilidade da leitura',pct(coverage,list.length)+'% dos perfis foram localizados. Interprete resultados junto com cobertura e tamanho da amostra.']
+  ];
+  document.getElementById('insightsGrid').innerHTML=insights.map(([n,title,text])=>'<article class="card insight"><span class="insight-number">'+n+'</span><h3>'+title+'</h3><p>'+text+'</p></article>').join('');
+}
+const ACTION_ICONS={
+  profile:'<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3"/><path d="M4.5 17c.7-3.4 2.5-5 5.5-5s4.8 1.6 5.5 5"/></svg>',
+  post:'<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M6.5 7h7M6.5 10h7M6.5 13h4"/></svg>',
+  journey:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16h14M5 14V9m5 5V4m5 10V7"/></svg>'
+};
+function renderHolderTable(list){
+  const q=document.getElementById('holderSearch').value.trim().toLowerCase();
+  const localImpact=document.getElementById('holderImpactFilter').value;
+  const sharedOnly=document.getElementById('holderSharedOnly').checked;
+  const matching=list.filter(r=>{
+    const values=[r.name,r.course,r.pathway,r.competency,r.company,r.role];
+    const text=values.flatMap(value=>[value,VALUE_ES[value]||value]).join(' ').toLowerCase();
+    return (!q||text.includes(q))&&(!localImpact||r.impact===localImpact)&&(!sharedOnly||r.posted);
+  });
+  const shown=matching.slice(0,14);
+  document.getElementById('holderMeta').textContent='Exibindo '+shown.length+' de '+matching.length+' portadores';
+  document.getElementById('holderEmpty').hidden=shown.length>0;
+  document.getElementById('holderBody').innerHTML=shown.map(r=>{
+    const label=r.impact==='novo'?'Novo emprego':r.impact==='promo'?'Promoção':'Sem mudança ainda';
+    const cls=r.impact==='novo'?'badge-new':r.impact==='promo'?'badge-promo':'badge-none';
+    const actions='<div class="row-actions">'+
+      '<button class="icon-btn" type="button" data-holder-id="'+r.id+'" data-holder-view="profile" aria-label="Ver perfil de '+r.name+'" '+(r.profileLocated?'':'disabled')+'>'+ACTION_ICONS.profile+'</button>'+
+      '<button class="icon-btn" type="button" data-holder-id="'+r.id+'" data-holder-view="post" aria-label="Ver compartilhamento de '+r.name+'" '+(r.posted?'':'disabled')+'>'+ACTION_ICONS.post+'</button>'+
+      '<button class="icon-btn" type="button" data-holder-id="'+r.id+'" data-holder-view="journey" aria-label="Ver trajetória de '+r.name+'">'+ACTION_ICONS.journey+'</button></div>';
+    return '<tr><td>'+(r.sharedAt?formatDate(r.sharedAt):'–')+'</td><td>'+r.pathway+'</td><td>'+r.course+'</td><td>'+r.competency+'</td><td>'+r.name+'</td><td>'+r.role+'</td><td><span class="badge '+cls+'">'+label+'</span></td><td>'+(r.days?r.days+' dias':'–')+'</td><td>'+actions+'</td></tr>';
+  }).join('');
+  applyLanguage();
+}
+function openHolderDetail(id,view){
+  const r=records.find(item=>item.id===Number(id));if(!r)return;
+  const dialog=document.getElementById('trajectoryDialog');
+  const viewLabels={profile:'Perfil profissional',post:'Compartilhamento no LinkedIn',journey:'Trajetória do portador'};
+  document.getElementById('trajectoryTitle').textContent=viewLabels[view]||viewLabels.journey;
+  const movementLabel=r.impact==='novo'?'Novo emprego em '+r.company:r.impact==='promo'?'Promoção em '+r.company:'Sem mudança observada';
+  const movementDate=r.days?formatDate(addDays(new Date(r.issuedAt+'T12:00:00'),r.days)):'Aguardando nova observação';
+  document.getElementById('trajectoryBody').innerHTML='<div class="holder-facts">'+
+    '<div class="holder-fact"><span>Curso</span><strong>'+r.course+'</strong></div>'+
+    '<div class="holder-fact"><span>Competência</span><strong>'+r.competency+'</strong></div>'+
+    '<div class="holder-fact"><span>Cargo detectado</span><strong>'+r.role+'</strong></div></div>'+
+    '<div class="journey" role="list" aria-label="Jornada profissional de '+r.name+'">'+
+      '<div class="journey-step" role="listitem"><div class="journey-dot"></div><strong>Credencial emitida</strong><span>'+formatDate(r.issuedAt)+'<br>'+r.pathway+'</span></div>'+
+      '<div class="journey-step '+(r.shared?'':'is-muted')+'" role="listitem"><div class="journey-dot"></div><strong>Compartilhamento</strong><span>'+(r.sharedAt?formatDate(r.sharedAt):'Não observado')+'<br>'+(r.posted?'Postagem localizada':'Sem postagem localizada')+'</span></div>'+
+      '<div class="journey-step '+(r.impact==='none'?'is-muted':'')+'" role="listitem"><div class="journey-dot"></div><strong>'+movementLabel+'</strong><span>'+movementDate+'<br>'+(r.days?r.days+' dias após a emissão':'Leitura ainda aberta')+'</span></div></div>';
+  applyLanguage();
+  dialog.showModal();
+}
+function csvCell(value){return '"'+String(value??'').replaceAll('"','""')+'"'}
+function exportFilteredCsv(){
+  const list=filteredRecords();
+  const ptHeaders=['Portador fictício','Trilha','Curso','Competência','Ano de emissão','Data de emissão','Data de compartilhamento','Perfil localizado','Postagem compartilhada','Cargo detectado','Empresa','Mudança profissional','Dias até a mudança','Modelo de trabalho','Localização'];
+  const headers=currentLanguage==='es'?ptHeaders.map(translatePtText):ptHeaders;
+  const localize=value=>currentLanguage==='es'?(VALUE_ES[value]||translatePtText(value)):value;
+  const rows=list.map(r=>[r.name,localize(r.pathway),localize(r.course),localize(r.competency),r.cohort,r.issuedAt,r.sharedAt||'',r.profileLocated?localize('Sim'):localize('Não'),r.posted?localize('Sim'):localize('Não'),localize(r.role),localize(r.company),localize(r.impact==='novo'?'Novo emprego':r.impact==='promo'?'Promoção':'Sem mudança detectada'),r.days??'',localize(r.workplace),r.location]);
+  const csv='\uFEFF'+[headers,...rows].map(row=>row.map(csvCell).join(';')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  const link=document.createElement('a');link.href=url;link.download=(currentLanguage==='es'?'pok-score-egresados-':'pok-score-egressos-')+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
+  const button=document.getElementById('exportCsv');const previous=button.textContent;button.textContent=currentLanguage==='es'?'CSV generado · '+list.length+' filas':'CSV gerado · '+list.length+' linhas';setTimeout(()=>button.textContent=previous,1800);
+}
+function updateDashboard(){
+  const list=filteredRecords(),moves=list.filter(r=>r.impact!=='none'),newJobs=list.filter(r=>r.impact==='novo'),promos=list.filter(r=>r.impact==='promo');
+  const moveDays=moves.map(r=>r.days),med=average(moveDays),within120=moves.filter(r=>r.days<=120).length;
+  document.getElementById('kpiTotal').textContent=list.length;
+  document.getElementById('kpiMobility').textContent=pct(moves.length,list.length)+'%';
+  document.getElementById('kpiNewJobs').textContent=newJobs.length;
+  document.getElementById('kpiPromotions').textContent=promos.length;
+  document.getElementById('kpiMedian').textContent=med===null?'–':med+' dias';
+  document.getElementById('kpiFast').textContent=pct(within120,moves.length)+'%';
+  document.getElementById('splitNew').textContent=pct(newJobs.length,moves.length)+'%';
+  document.getElementById('splitPromo').textContent=pct(promos.length,moves.length)+'%';
+  document.getElementById('qualityProfile').textContent=pct(list.filter(r=>r.profileLocated).length,list.length)+'%';
+  document.getElementById('qualityShared').textContent=pct(list.filter(r=>r.shared).length,list.length)+'%';
+  document.getElementById('qualityObserved').textContent=pct(list.filter(r=>r.observed).length,list.length)+'%';
+  const impactLabels={novo:'Novo emprego',promo:'Promoção',none:'Sem mudança detectada'};
+  const active=Object.entries(ids).filter(([,el])=>el.value).map(([key,el])=>key==='impact'?impactLabels[el.value]:el.value);
+  document.getElementById('filterSummary').innerHTML=active.length?'Filtros ativos: <strong>'+active.join(' · ')+'</strong>':'';
+  updateMobileFilterToggle();
+  renderFunnel(list);renderTimeline(list);renderCourses(list);
+  renderRanking('companyRanking',topEntries(countBy(moves,'company'),5),Math.max(1,moves.length));
+  renderRanking('roleRanking',topEntries(countBy(moves,'role'),5),Math.max(1,moves.length));
+  renderInsights(list,moves);renderHolderTable(list);
+  applyLanguage();
+}
+document.querySelectorAll('[data-filter]').forEach(el=>el.addEventListener('change',updateDashboard));
+['holderSearch','holderImpactFilter','holderSharedOnly'].forEach(id=>document.getElementById(id).addEventListener(id==='holderSearch'?'input':'change',()=>renderHolderTable(filteredRecords())));
+document.getElementById('holderBody').addEventListener('click',event=>{const button=event.target.closest('[data-holder-id]');if(button&&!button.disabled)openHolderDetail(button.dataset.holderId,button.dataset.holderView)});
+document.getElementById('closeTrajectory').addEventListener('click',()=>document.getElementById('trajectoryDialog').close());
+document.getElementById('trajectoryDialog').addEventListener('click',event=>{if(event.target===event.currentTarget)event.currentTarget.close()});
+document.getElementById('resetFilters').addEventListener('click',()=>{Object.values(ids).forEach(el=>el.value='');document.getElementById('holderSearch').value='';document.getElementById('holderImpactFilter').value='';document.getElementById('holderSharedOnly').checked=false;updateDashboard()});
+document.getElementById('exportCsv').addEventListener('click',exportFilteredCsv);
+document.addEventListener('click',event=>{const trigger=event.target.closest('.help');document.querySelectorAll('.help.is-open').forEach(el=>{if(el!==trigger)el.classList.remove('is-open')});if(trigger)trigger.classList.toggle('is-open')});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.help.is-open').forEach(el=>el.classList.remove('is-open'))});
+
+const homeView=document.getElementById('homeView'),dashboardView=document.getElementById('dashboardView');
+let dashboardReady=false;
+function showDashboard(targetId){
+  homeView.hidden=true;dashboardView.hidden=false;
+  if(!dashboardReady){updateDashboard();dashboardReady=true}else{timelineChart?.resize();courseChart?.resize()}
+  requestAnimationFrame(()=>{if(targetId){document.getElementById(targetId)?.scrollIntoView({behavior:'smooth',block:'start'})}else{window.scrollTo({top:0,behavior:'smooth'})}});
+}
+function showHome(){dashboardView.hidden=true;homeView.hidden=false;window.scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('openDashboard').addEventListener('click',()=>showDashboard());
+document.querySelectorAll('[data-dashboard-target]').forEach(button=>button.addEventListener('click',()=>showDashboard(button.dataset.dashboardTarget)));
+document.getElementById('backHome').addEventListener('click',showHome);
+document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.language)));
+let savedLanguage='pt';try{savedLanguage=localStorage.getItem('pok-score-language')||'pt'}catch(error){}
+setLanguage(savedLanguage,{refresh:false});
+</script>
+</body>
+</html>
