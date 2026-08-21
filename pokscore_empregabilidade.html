@@ -143,7 +143,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .chart-wrap{position:relative;height:300px;min-width:0;width:100%}
 .chart-wrap canvas{max-width:100%!important}
 .chart-wrap.tall{height:340px}
-.card-header p.filter-applied,.filter-applied{font-size:13px;font-weight:700;line-height:1.4;color:var(--ink);margin-top:9px}
+.card-header p.filter-applied,.filter-applied{font-size:12px;font-weight:700;line-height:1.4;color:var(--ink);margin-top:9px}
 .split-card{padding:26px}
 .split-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
 .split-stat{border:1px solid var(--border);border-radius:var(--radius-md);padding:14px}
@@ -332,7 +332,7 @@ tbody tr:hover{background:var(--purple-faint)}
         <div class="split-stat"><strong id="splitNew">0%</strong><span>dos movimentos são novos empregos</span></div>
         <div class="split-stat"><strong id="splitPromo">0%</strong><span>dos movimentos são promoções</span></div>
       </div>
-      <div class="rank-group"><h3>Empresas que mais absorvem alunos e egressos</h3><div id="companyRanking"></div></div>
+      <div class="rank-group"><h3>Empresas que mais absorvem</h3><div id="companyRanking"></div></div>
       <div class="rank-group"><h3>Cargos mais frequentes</h3><div id="roleRanking"></div></div>
     </aside>
     <section class="card chart-card">
@@ -405,7 +405,7 @@ const ES={
   'Funil de participação no LinkedIn':'Embudo de participación en LinkedIn','Da emissão à mudança observada':'De la emisión al cambio observado','O funil mostra cobertura, adesão ao LinkedIn e conversão em trajetórias profissionais observáveis no recorte selecionado.':'El embudo muestra cobertura, adhesión a LinkedIn y conversión en trayectorias profesionales observables en el segmento seleccionado.',
   'Evolução temporal':'Evolución temporal',
   
-  'Destino profissional':'Destino profesional','O gráfico lê um grupo – uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Olha para quem já registrou movimento profissional. Mostra como essas mudanças se dividem entre novo emprego e promoção, quais empresas mais absorveram os portadores e quais cargos eles passaram a ocupar. Ajuda a entender para onde a trilha, o curso ou a competência levou o profissional.':'El gráfico lee un grupo – una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Mira a quienes ya registraron movimiento profesional. Muestra cómo esos cambios se dividen entre nuevo empleo y promoción, qué empresas absorbieron más a los portadores y qué cargos pasaron a ocupar. Ayuda a entender hacia dónde llevó la ruta, el curso o la competencia al profesional.','dos movimentos são novos empregos':'de los movimientos son nuevos empleos','dos movimentos são promoções':'de los movimientos son promociones','Empresas que mais absorvem alunos e egressos':'Empresas que más incorporan alumnos y egresados','Cargos mais frequentes':'Cargos más frecuentes',
+  'Destino profissional':'Destino profesional','O gráfico lê um grupo – uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Olha para quem já registrou movimento profissional. Mostra como essas mudanças se dividem entre novo emprego e promoção, quais empresas mais absorveram os portadores e quais cargos eles passaram a ocupar. Ajuda a entender para onde a trilha, o curso ou a competência levou o profissional.':'El gráfico lee un grupo – una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Mira a quienes ya registraron movimiento profesional. Muestra cómo esos cambios se dividen entre nuevo empleo y promoción, qué empresas absorbieron más a los portadores y qué cargos pasaron a ocupar. Ayuda a entender hacia dónde llevó la ruta, el curso o la competencia al profesional.','dos movimentos são novos empregos':'de los movimientos son nuevos empleos','dos movimentos são promoções':'de los movimientos son promociones','Empresas que mais absorvem':'Empresas que más incorporan alumnos y egresados','Cargos mais frequentes':'Cargos más frecuentes',
   'Impacto na empregabilidade':'Impacto en la empleabilidad','Trilhas, cursos e competências com maior impacto':'Rutas, cursos y competencias con mayor impacto',
   'Insights estratégicos':'Insights estratégicos',
   'Do agregado ao caso a caso':'Del agregado al caso individual','Para cada aluno ou egresso, consulte a trilha e o curso de origem, a competência certificada, o cargo detectado, o tipo de mudança e o tempo até ela acontecer. A leitura individual ajuda a verificar as histórias que sustentam os indicadores agregados.':'Para cada alumno o egresado, consulte la ruta y el curso de origen, la competencia certificada, el cargo detectado, el tipo de cambio y el tiempo transcurrido hasta que ocurrió. La lectura individual ayuda a verificar las historias que sustentan los indicadores agregados.',
@@ -626,7 +626,7 @@ function renderCourses(){
   const grouped=!selected;
   const dimColors={pathway:'#3a1878',course:'#5123a4',competency:'#8f76cc'};
   const dimNames=es?{pathway:'Rutas',course:'Cursos',competency:'Competencias'}:{pathway:'Trilhas',course:'Cursos',competency:'Competências'};
-  document.getElementById('courseTitle').textContent=(es?'Gráfico profesional comparativo':'Gráfico profissional comparativo')+timelineScopeLabel();
+  document.getElementById('courseTitle').textContent=es?'Gráfico profesional comparativo':'Gráfico profissional comparativo';
   document.getElementById('courseDesc').textContent=es
     ?'El gráfico lee un grupo – una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra qué porcentaje registró movimiento profesional hasta '+courseWindow+' días después de la emisión. El valor filtrado aparece destacado, frente a los demás. Ayuda a comparar rutas, cursos y competencias en cuanto a su aceptación en el mercado de trabajo.'
     :'O gráfico lê um grupo – uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra que percentual registrou movimento profissional em até '+courseWindow+' dias após a emissão. O valor filtrado aparece destacado, em relação aos demais. Ajuda a fazer um comparativo entre trilhas, cursos e competências em relação à aceitação no mercado de trabalho.';
