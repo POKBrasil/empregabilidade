@@ -1445,11 +1445,11 @@ function renderFinInsights(list){
   const ondePt=selected?'Em '+em(selected)+', ':'Na instituição, ';
   const insights=es?[
     ['01','Ocupación registrada',m.nReg?ondeEs+st(Math.round(m.registro)+'%')+' de los portadores aparecen con ocupación formal identificada.':'Ningún portador del recorte aparece con ocupación formal identificada.'],
-    ['02','Apertura de negocio propio',ondeEs+st(dec(auto)+'%')+' de los portadores entraron en cuadro societario después de la emisión de la credencial.'],
+    ['02','Apertura de negocio propio',ondeEs+st(dec(auto)+'%')+' de los portadores entraron en cuadro societario.'],
     ['03','Por debajo del nivel de la formación',m.nReg?ondeEs+st(dec(sub)+'%')+' de quienes tienen ocupación identificada están en ocupación de nivel inferior al de su titulación.':'Sin ocupación identificada para leer el nivel.']
   ]:[
     ['01','Ocupação registrada',m.nReg?ondePt+st(Math.round(m.registro)+'%')+' dos portadores aparecem com ocupação formal identificada.':'Nenhum portador do recorte aparece com ocupação formal identificada.'],
-    ['02','Abertura de negócio próprio',ondePt+st(dec(auto)+'%')+' dos portadores entraram em quadro societário depois da emissão da credencial.'],
+    ['02','Abertura de negócio próprio',ondePt+st(dec(auto)+'%')+' dos portadores entraram em quadro societário.'],
     ['03','Abaixo do nível da formação',m.nReg?ondePt+st(dec(sub)+'%')+' de quem tem ocupação identificada está em ocupação de nível inferior ao da própria titulação.':'Sem ocupação identificada para ler o nível.']
   ];
   document.getElementById('finInsightsGrid').innerHTML=insights.map(([n,title,text])=>'<article class="card insight"><span class="insight-number">'+n+'</span><h3>'+title+'</h3><p>'+text+'</p></article>').join('');
