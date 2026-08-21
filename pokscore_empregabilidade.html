@@ -480,6 +480,7 @@ const courseWindow=180;
 const dayOptions=[18,29,43,58,74,89,103,119,147,176,214,286,342];
 const FIRST_NAMES=['Ana','Bruno','Camila','Diego','Eduarda','Felipe','Gabriela','Henrique','Isabela','João','Larissa','Mateus'];
 const LAST_NAMES=['Almeida','Barbosa','Carvalho','Duarte','Ferreira','Gomes','Lima','Mendes','Oliveira','Ribeiro'];
+const hash=n=>{const x=Math.sin(n*12.9898)*43758.5453;return x-Math.floor(x)};
 const addDays=(date,days)=>{const copy=new Date(date);copy.setDate(copy.getDate()+days);return copy.toISOString().slice(0,10)};
 const records=Array.from({length:600},(_,i)=>{
   const course=DIMENSIONS.courses[i%DIMENSIONS.courses.length];
@@ -495,8 +496,8 @@ const records=Array.from({length:600},(_,i)=>{
   const added=shared&&i%4!==0;
   const shareDelay=shared?5+(i%24):null;
   const sharedAt=shared?addDays(issued,shareDelay):null;
-  const seed=(i*7+DIMENSIONS.courses.indexOf(course)*2)%10;
-  const rawDays=dayOptions[(i*5+DIMENSIONS.competencies.indexOf(competency))%dayOptions.length];
+  const seed=Math.floor(hash(i*3+7)*10);
+  const rawDays=dayOptions[Math.floor(hash(i*5+11)*dayOptions.length)];
   const candidate=monitored?(seed<4?'novo':seed<6?'promo':'none'):'none';
   const observable=candidate!=='none'&&rawDays<=exposure;
   const impact=observable?candidate:'none';
@@ -561,7 +562,6 @@ Chart.defaults.plugins.tooltip.bodyFont={size:10};
 Chart.defaults.plugins.tooltip.padding=9;
 let timelineChart=null,courseChart=null;
 function movementTypes(){return ['novo','promo']}
-function timelineScopeLabel(){const active=Object.entries(ids).filter(([key,el])=>el.value&&key!=='location').map(([,el])=>displayValue(el.value));return active.length?' · '+active.join(' · '):''}
 function isMove(r,types){return types.includes(r.impact)}
 function rateOver(base,types,t){if(base.length<MIN_BASE)return null;const hits=base.filter(r=>isMove(r,types)&&r.days<=t).length;return Math.round(hits/base.length*1000)/10}
 function eligible(list,t){return list.filter(r=>r.monitored&&r.exposure>=t)}
@@ -586,18 +586,19 @@ function renderTimeline(list){
   const appliedDims=Object.entries(ids).filter(([,el])=>el.value).map(([key,el])=>dimLabels[key]+': '+displayValue(el.value));
   const appliedText='Filtro aplicado: '+(appliedDims.length?appliedDims.join(' · '):(es?'toda la institución':'toda a instituição'));
   ['timelineFilter','destinationFilter','courseFilterLine'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=appliedText});
-  document.getElementById('timelineTitle').textContent=(es?'Curva de empleabilidad':'Curva de empregabilidade')+timelineScopeLabel();
+  document.getElementById('timelineTitle').textContent=es?'Curva de empleabilidad':'Curva de empregabilidade';
   document.getElementById('timelineDesc').textContent=es?'El gráfico lee un grupo – una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Para cada ventana de tiempo contada desde la emisión de las credenciales de ese grupo, muestra qué porcentaje de él ya había registrado un nuevo empleo o una promoción. El gráfico ayuda a entender la evolución de la empleabilidad de una ruta formativa, un curso, una competencia o un período de tiempo, y también de toda la institución.':'O gráfico lê um grupo – uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Para cada janela de tempo contada a partir da emissão das credenciais desse grupo, ele mostra que percentual dele já havia registrado novo emprego ou promoção. O gráfico ajuda a entender a evolução da empregabilidade de uma trilha formativa, um curso, uma competência ou um período de tempo, e também de toda a instituição.';
   const labels=thresholds.map((d,i)=>es?(i===0?'Día 0':d+' días'):(i===0?'Dia 0':d+' dias'));
   const colors={novo:'#1d9e75',promo:'#5123a4'};
-  const datasets=types.map(type=>{const rows=maturationData(list,[type]);return{label:typeLabel(type),data:rows.map(r=>r.rate),borderColor:colors[type],backgroundColor:type==='novo'?'rgba(29,158,117,.10)':'rgba(81,35,164,.08)',pointBackgroundColor:colors[type],pointRadius:4,tension:.25,fill:true,spanGaps:false}});
-  const bench=maturationData(records,types);
-  datasets.push({label:es?'Media institucional':'Média institucional',data:bench.map(r=>r.rate),borderColor:'#9b8fb5',borderDash:[5,4],borderWidth:1.5,pointRadius:0,tension:.25,fill:false});
+  const rowsByType=types.map(type=>maturationData(list,[type]).map(r=>r.rate));
+  const datasets=types.map((type,idx)=>{
+    const stacked=rowsByType[0].map((_,i)=>{let sum=null;for(let k=0;k<=idx;k++){const v=rowsByType[k][i];if(v===null)return null;sum=(sum||0)+v}return Math.round(sum*10)/10});
+    return{label:typeLabel(type),data:stacked,raw:rowsByType[idx],borderColor:colors[type],backgroundColor:type==='novo'?'rgba(29,158,117,.10)':'rgba(81,35,164,.08)',pointBackgroundColor:colors[type],pointRadius:4,tension:.25,fill:idx===0?'origin':'-1',spanGaps:false}});
   const bases=maturationData(list,types).map(r=>r.base);
   timelineChart=new Chart(ctx,{type:'line',data:{labels,datasets},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
     plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},
-      tooltip:{callbacks:{label:c=>c.raw===null?c.dataset.label+': '+(es?'base insuficiente':'base insuficiente'):c.dataset.label+': '+c.raw+'%',afterBody:items=>(es?'Base elegible: ':'Base elegível: ')+bases[items[0].dataIndex]+(es?' monitoreados':' monitorados')}}},
+      tooltip:{callbacks:{label:c=>{const own=c.dataset.raw?c.dataset.raw[c.dataIndex]:c.raw;return own===null||own===undefined?c.dataset.label+': '+(es?'base insuficiente':'base insuficiente'):c.dataset.label+': '+own+'%'+(c.dataset.raw&&c.datasetIndex===types.length-1?' · '+(es?'total ':'total ')+c.raw+'%':'')},afterBody:items=>(es?'Base elegible: ':'Base elegível: ')+bases[items[0].dataIndex]+(es?' monitoreados':' monitorados')}}},
     scales:{y:{beginAtZero:true,title:{display:true,text:es?'% de la base monitoreada':'% da base monitorada'},ticks:{callback:v=>v+'%'},grid:{color:'rgba(216,206,240,.55)'}},x:{grid:{display:false}}}}});
 }
 function compareDim(){return ['competency','course','pathway'].find(k=>ids[k].value)||'pathway'}
@@ -659,17 +660,18 @@ function renderFunnel(list){
   document.getElementById('funnelSteps').innerHTML=stages.map(([label,value,color])=>'<div class="funnel-step"><div class="funnel-bar" style="background:'+color+'">'+value+'</div><div class="funnel-label">'+label+'</div><div class="funnel-pct">'+pct(value,list.length)+'% do recorte</div></div>').join('');
 }
 function renderInsights(list,moves){
-  const stats=courseStats();const top=stats[0];const es=currentLanguage==='es';
+  const dim=compareDim(),selected=ids[dim].value,stats=courseStats();
+  const top=selected?stats.find(x=>x.value===selected):stats[0];const es=currentLanguage==='es';
   const within120=moves.filter(r=>r.days<=120).length;const companies=topEntries(countBy(moves,'company'),1);
-  const em=v=>displayValue(v);const st=v=>'<strong>'+v+'</strong>';
+  const st=v=>'<strong>'+v+'</strong>';const em=v=>st(displayValue(v));
   const insights=es?[
-    ['01',top?'Mayor movilidad':'Segmento sin base',top?em(top.value)+' registra '+st(top.rate+'% de movilidad')+' en una muestra de '+st(top.n)+' egresados.':'Ajuste los filtros para ampliar la base.'],
-    ['02','Velocidad de la transición',moves.length?st(pct(within120,moves.length)+'% de los cambios')+' ocurrieron hasta 120 días después de la emisión de la credencial.':'No hay cambios observados en este segmento.'],
-    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1])+' de los cambios profesionales observados.':'Ninguna empresa aparece en el segmento.']
+    ['01',top?(selected?'Movilidad del segmento':'Mayor movilidad'):'Segmento sin base',top?em(top.value)+' registra '+st(top.rate+'% de movilidad')+' en una muestra de '+st(top.n)+' egresados.':'Ajuste los filtros para ampliar la base.'],
+    ['02','Velocidad de la transición',moves.length?st(pct(within120,moves.length)+'% de los cambios')+' ocurrieron hasta '+st('120 días')+' después de la emisión de la credencial'+(selected?' en '+em(selected):'')+'.':'No hay cambios observados en este segmento.'],
+    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1]+' de los cambios')+' profesionales observados'+(selected?' en '+em(selected):'')+'.':'Ninguna empresa aparece en el segmento.']
   ]:[
-    ['01',top?'Maior mobilidade':'Recorte sem base',top?em(top.value)+' registra '+st(top.rate+'% de mobilidade')+' em uma amostra de '+st(top.n)+' egressos.':'Ajuste os filtros para ampliar a base.'],
-    ['02','Velocidade da transição',moves.length?st(pct(within120,moves.length)+'% das mudanças')+' ocorreram em até 120 dias após a emissão da credencial.':'Não há mudanças observadas neste recorte.'],
-    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1])+' das mudanças profissionais observadas.':'Nenhuma empresa aparece no recorte.']
+    ['01',top?(selected?'Mobilidade do recorte':'Maior mobilidade'):'Recorte sem base',top?em(top.value)+' registra '+st(top.rate+'% de mobilidade')+' em uma amostra de '+st(top.n)+' egressos.':'Ajuste os filtros para ampliar a base.'],
+    ['02','Velocidade da transição',moves.length?st(pct(within120,moves.length)+'% das mudanças')+' ocorreram em até '+st('120 dias')+' após a emissão da credencial'+(selected?' em '+em(selected):'')+'.':'Não há mudanças observadas neste recorte.'],
+    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1]+' das mudanças')+' profissionais observadas'+(selected?' em '+em(selected):'')+'.':'Nenhuma empresa aparece no recorte.']
   ];
   document.getElementById('insightsGrid').innerHTML=insights.map(([n,title,text])=>'<article class="card insight"><span class="insight-number">'+n+'</span><h3>'+title+'</h3><p>'+text+'</p></article>').join('');
 }
