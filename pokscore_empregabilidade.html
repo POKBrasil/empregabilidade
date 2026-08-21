@@ -162,11 +162,12 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .footer .brand{justify-content:center}
 .footer .brand-logo{height:26px}
 .insights-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.insight{padding:18px;min-height:170px}
+.insight{padding:18px;min-height:170px;overflow:visible}
 .insight-number{font-size:9px;color:var(--yellow);background:var(--purple);display:inline-flex;border-radius:99px;padding:4px 8px;font-weight:700;margin-bottom:11px}
 .insight h3{font-size:14px;line-height:1.35;margin-bottom:7px}
 .insight p{font-size:13px;color:var(--muted);line-height:1.6}
 .insight p strong{color:var(--purple);font-weight:700}
+.insight p strong.plain{color:var(--ink)}
 .table-card{overflow:hidden}
 .table-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 18px;background:var(--purple-faint);border-bottom:1px solid var(--border)}
 .table-toolbar input{flex:1;min-width:220px;border:1.5px solid var(--border);border-radius:99px;padding:8px 13px;font-size:10px;background:#fff}
@@ -440,7 +441,6 @@ function translatePtText(value){
   if((match=value.match(/^Novo emprego em (.+)$/)))return 'Nuevo empleo en '+match[1];
   if((match=value.match(/^Promoção em (.+)$/)))return 'Promoción en '+match[1];
   if((match=value.match(/^(\d+) dias após a emissão$/)))return match[1]+' días después de la emisión';
-  if((match=value.match(/^(.+) registra (\d+)% de mobilidade em uma amostra de (\d+) egressos\.$/)))return displayValue(match[1])+' registra un '+match[2]+'% de movilidad en una muestra de '+match[3]+' egresados.';
   if((match=value.match(/^(\d+)% das mudanças ocorreram em até 120 dias após a emissão da credencial\.$/)))return match[1]+'% de los cambios ocurrieron en hasta 120 días después de la emisión de la credencial.';
   if((match=value.match(/^(.+) concentra (\d+) das mudanças profissionais observadas\.$/)))return match[1]+' concentra '+match[2]+' de los cambios profesionales observados.';
   if((match=value.match(/^(\d+)% dos perfis foram localizados\. Interprete resultados junto com cobertura e tamanho da amostra\.$/)))return 'Se localizó el '+match[1]+'% de los perfiles. Interprete los resultados junto con la cobertura y el tamaño de la muestra.';
@@ -663,15 +663,17 @@ function renderInsights(list,moves){
   const dim=compareDim(),selected=ids[dim].value,stats=courseStats();
   const top=selected?stats.find(x=>x.value===selected):stats[0];const es=currentLanguage==='es';
   const within120=moves.filter(r=>r.days<=120).length;const companies=topEntries(countBy(moves,'company'),1);
-  const st=v=>'<strong>'+v+'</strong>';const em=v=>st(displayValue(v));
+  const st=v=>'<strong>'+v+'</strong>';const em=v=>'<strong class="plain">'+displayValue(v)+'</strong>';
+  const nameOf=v=>(es?{pathway:'La ruta ',course:'El curso ',competency:'La competencia '}:{pathway:'A trilha ',course:'O curso ',competency:'A competência '})[dim]+em(v);
+  const inOf=v=>(es?{pathway:'en la ruta ',course:'en el curso ',competency:'en la competencia '}:{pathway:'na trilha ',course:'no curso ',competency:'na competência '})[dim]+em(v);
   const insights=es?[
-    ['01',top?(selected?'Movilidad del segmento':'Mayor movilidad'):'Segmento sin base',top?em(top.value)+' registra '+st(top.rate+'% de movilidad')+' en una muestra de '+st(top.n)+' egresados.':'Ajuste los filtros para ampliar la base.'],
-    ['02','Velocidad de la transición',moves.length?st(pct(within120,moves.length)+'% de los cambios')+' ocurrieron hasta '+st('120 días')+' después de la emisión de la credencial'+(selected?' en '+em(selected):'')+'.':'No hay cambios observados en este segmento.'],
-    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1]+' de los cambios')+' profesionales observados'+(selected?' en '+em(selected):'')+'.':'Ninguna empresa aparece en el segmento.']
+    ['01','Movilidad del segmento',!selected?'Seleccione una ruta, un curso o una competencia en los filtros de arriba.':(top?nameOf(top.value)+' registra '+st(top.rate+'% de movilidad')+' en una muestra de '+st(top.n)+' portadores.':'Base insuficiente en este segmento. Ajuste los filtros para ampliar la base.')],
+    ['02','Velocidad de la transición',moves.length?st(pct(within120,moves.length)+'% de los cambios')+' ocurrieron hasta '+st('120 días')+(selected?' después de la emisión de la credencial '+inOf(selected):' después de la emisión de las credenciales por la institución')+'.':'No hay cambios observados en este segmento.'],
+    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1]+' de los cambios')+' profesionales observados'+(selected?' '+inOf(selected):' en la institución')+'.':'Ninguna empresa aparece en el segmento.']
   ]:[
-    ['01',top?(selected?'Mobilidade do recorte':'Maior mobilidade'):'Recorte sem base',top?em(top.value)+' registra '+st(top.rate+'% de mobilidade')+' em uma amostra de '+st(top.n)+' egressos.':'Ajuste os filtros para ampliar a base.'],
-    ['02','Velocidade da transição',moves.length?st(pct(within120,moves.length)+'% das mudanças')+' ocorreram em até '+st('120 dias')+' após a emissão da credencial'+(selected?' em '+em(selected):'')+'.':'Não há mudanças observadas neste recorte.'],
-    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1]+' das mudanças')+' profissionais observadas'+(selected?' em '+em(selected):'')+'.':'Nenhuma empresa aparece no recorte.']
+    ['01','Mobilidade do recorte',!selected?'Selecione uma trilha, um curso ou uma competência nos filtros acima.':(top?nameOf(top.value)+' registra '+st(top.rate+'% de mobilidade')+' em uma amostra de '+st(top.n)+' portadores.':'Base insuficiente neste recorte. Ajuste os filtros para ampliar a base.')],
+    ['02','Velocidade da transição',moves.length?st(pct(within120,moves.length)+'% das mudanças')+' ocorreram em até '+st('120 dias')+(selected?' após a emissão da credencial '+inOf(selected):' após a emissão das credenciais pela instituição')+'.':'Não há mudanças observadas neste recorte.'],
+    ['03','Principal destino',companies.length?em(companies[0][0])+' concentra '+st(companies[0][1]+' das mudanças')+' profissionais observadas'+(selected?' '+inOf(selected):' na instituição')+'.':'Nenhuma empresa aparece no recorte.']
   ];
   document.getElementById('insightsGrid').innerHTML=insights.map(([n,title,text])=>'<article class="card insight"><span class="insight-number">'+n+'</span><h3>'+title+'</h3><p>'+text+'</p></article>').join('');
 }
