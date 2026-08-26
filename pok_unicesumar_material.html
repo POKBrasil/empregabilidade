@@ -221,6 +221,42 @@
     word-break: break-all;
   }
   .file-destino a:hover, .file-destino a:focus-visible { border-bottom-color: var(--accent); }
+  .info-copy {
+    position: relative;
+    padding: 1rem 1.1rem 1.1rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .info-copy-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .info-copy .file-meta { margin-top: 0; }
+  .info-copy-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 11px;
+    margin-top: 0.5rem;
+  }
+  .info-copy-date-label {
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .info-copy-text {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-top: 0.7rem;
+  }
   .file-links { display: flex; gap: 14px; margin-top: 0.6rem; }
   .file-links a {
     font-size: 11px;
@@ -1333,7 +1369,13 @@ var PECAS = [
       { nome: "Banner540x236px-6.png", specs: "540 × 236 px · PNG · RGB", destino: "https://inscricoes.unicesumar.edu.br/pos-graduacao/" },
       { nome: "banner_masterclass_vitru.png", specs: "540 × 236 px · PNG · RGB",
         flags: [{ t: "Rafaela Freire, criar peça gráfica" }],
-        meta: "<strong>Masterclass</strong>" }
+        meta: "<strong>Masterclass</strong>",
+        extra: '<div class="info-copy">' +
+          '<div class="info-copy-head">Masterclass</div>' +
+          '<div class="file-meta"><strong>Carreira 5.0: Competências, Posicionamento, Oportunidades</strong></div>' +
+          '<div class="info-copy-date"><span class="info-copy-date-label">Data</span><span>08/10</span></div>' +
+          '<div class="info-copy-text">O mercado de trabalho está sendo redesenhado por IA, automação e novas formas de trabalho — e isso exige um novo repertório de competências. Nesta masterclass, vamos mostrar como se posicionar com clareza, comunicar suas competências de forma estratégica e identificar as oportunidades que essa transição está abrindo, com um caminho prático para se manter relevante na &quot;Carreira 5.0&quot;.</div>' +
+          '</div>' }
     ]
   },
   {
@@ -1453,7 +1495,8 @@ var PECAS = [
         (arq.meta ? '<div class="file-meta">' + arq.meta + '</div>' : '') +
         '<div class="file-specs">' + esc(arq.specs) + '</div>' +
         (arq.destino ? '<div class="file-destino">Link de destino: <a href="' + arq.destino + '" target="_blank" rel="noopener">' + arq.destino.replace(/^https?:\/\//, '') + '</a></div>' : '') +
-        links + '</div>';
+        links + '</div>' +
+        (arq.extra || '');
     });
 
     html += '</div>' +
