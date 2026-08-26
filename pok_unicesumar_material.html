@@ -129,6 +129,9 @@
   .file--logo .file-frame { max-width: 340px; }
   .file--logo .file-frame--checker { display: flex; justify-content: flex-start; }
   .file--logo .file-frame--checker img { padding: 1.1rem 1.4rem; max-height: 90px; width: auto; }
+  .file--narrow .file-frame { max-width: 300px; margin: 0 auto; }
+  .file--narrow { align-items: center; text-align: center; }
+  .file--narrow .file-links { justify-content: center; }
 
   .file-frame {
     position: relative;
@@ -1048,7 +1051,7 @@
   <!-- ═══ E-mail ═══ -->
   <section class="piece" id="email">
     <div class="piece-head">
-      <span class="piece-tag">Peça 4</span>
+      <span class="piece-tag">Peça 5</span>
       <h2 class="piece-title">E-mails de disparo da POK</h2>
     </div>
 
@@ -1130,7 +1133,7 @@
   <!-- ═══ Textos dos e-mails ═══ -->
   <section class="piece" id="textos-email">
     <div class="piece-head">
-      <span class="piece-tag">Peça 5</span>
+      <span class="piece-tag">Peça 6</span>
       <h2 class="piece-title">E-mails de reforço</h2>
     </div>
 
@@ -1308,8 +1311,17 @@ var PECAS = [
     ]
   },
   {
-    id: "banners",
+    id: "pagina-aceitacao",
     tag: "Peça 3",
+    titulo: "Página de Aceitação",
+    layout: "files files--stack",
+    arquivos: [
+      { nome: "pagina-aceitacao.png", specs: "443 × 604 px · PNG · RGB", narrow: true }
+    ]
+  },
+  {
+    id: "banners",
+    tag: "Peça 4",
     titulo: "Banners cross-sell",
     layout: "files files--two",
     arquivos: [
@@ -1326,7 +1338,7 @@ var PECAS = [
   },
   {
     id: "whatsapp",
-    tag: "Peça 6",
+    tag: "Peça 7",
     titulo: "WhatsApp",
     layout: "files files--two",
     arquivos: [
@@ -1339,7 +1351,7 @@ var PECAS = [
   },
   {
     id: "polos",
-    tag: "Peça 7",
+    tag: "Peça 8",
     titulo: "Polos",
     layout: "files files--two",
     arquivos: [
@@ -1350,7 +1362,7 @@ var PECAS = [
   },
   {
     id: "linkedin",
-    tag: "Peça 8",
+    tag: "Peça 9",
     titulo: "LinkedIn",
     layout: "files files--two",
     arquivos: [
@@ -1412,7 +1424,7 @@ var PECAS = [
     peca.arquivos.forEach(function (arq) {
       var src = arq.src || url(arq.nome);
       var pdf = /\.pdf$/i.test(arq.nome);
-      var classe = 'file' + (arq.logo ? ' file--logo' : '');
+      var classe = 'file' + (arq.logo ? ' file--logo' : '') + (arq.narrow ? ' file--narrow' : '');
       var frame;
 
       if (pdf) {
