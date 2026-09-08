@@ -160,7 +160,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .rank-value{text-align:right;font-size:10px;font-weight:700;color:var(--purple)}
 .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .hero-pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid rgba(81,35,164,.25);color:var(--purple);border-radius:99px;padding:7px 14px;font-size:11px;font-weight:600;line-height:1.2}
-.hero-pill strong{font-weight:800}
+.hero-pill strong{font-weight:800;color:var(--yellow)}
 .footer{background:var(--purple-dark);color:#fff;padding:28px 32px;text-align:center}
 .footer .brand{justify-content:center}
 .footer .brand-logo{height:26px}
@@ -238,12 +238,13 @@ tbody tr:hover{background:var(--purple-faint)}
   .funnel-steps{grid-template-columns:1fr 1fr}.filters-heading{align-items:flex-start;flex-direction:column}
   .mobile-filter-toggle{width:100%}.chart-wrap{height:260px}.hero h1{font-size:23px}
 }
-/* ---- Módulo financeiro (aba nova) ---- */
-.module-tabs{background:var(--purple-dark);padding:0 64px}
+/* ---- Abas do painel ---- */
+.module-tabs{background:var(--lilac);padding:0 64px;border-bottom:1px solid var(--border)}
 .module-tabs-inner{max-width:1180px;margin:0 auto;display:flex;gap:4px}
-.module-tab{position:relative;border:0;background:transparent;color:rgba(255,255,255,.62);padding:11px 16px 12px;font-size:11px;font-weight:700;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border-radius:10px 10px 0 0}
-.module-tab:hover{color:#fff;background:rgba(255,255,255,.07)}
-.module-tab[aria-selected="true"]{color:var(--purple);background:var(--purple-faint)}
+.module-tab{position:relative;border:0;background:transparent;color:var(--purple);opacity:.72;padding:11px 16px 12px;font-size:11px;font-weight:700;letter-spacing:.02em;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border-radius:10px 10px 0 0}
+.module-tab:hover{opacity:1;background:rgba(81,35,164,.07)}
+.module-tab[aria-selected="true"]{opacity:1;color:#fff;background:var(--purple)}
+.module-placeholder{padding:48px 24px;text-align:center;color:var(--purple);font-size:12px;font-weight:600}
 .module-panel>.section-label:first-child{margin-top:0}
 .fin-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-4px 0 16px}
 .fin-toolbar label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--muted)}
@@ -327,6 +328,14 @@ tbody tr:hover{background:var(--purple-faint)}
   </div>
 </header>
 
+<nav class="module-tabs" aria-label="Módulos do painel">
+  <div class="module-tabs-inner" role="tablist">
+    <button class="module-tab" type="button" role="tab" id="tabQuantitativo" data-module="quantitativo" aria-selected="true" aria-controls="panelTrajetoria">Dados Quantitativos</button>
+    <button class="module-tab" type="button" role="tab" id="tabQualitativo" data-module="qualitativo" aria-selected="false" aria-controls="panelQualitativo">Dados Qualitativos</button>
+    <button class="module-tab" type="button" role="tab" id="tabMaterial" data-module="material" aria-selected="false" aria-controls="panelMaterial">Material Produzido</button>
+  </div>
+</nav>
+
 <section class="filters-shell" data-filters="trajetoria" aria-label="Filtros da trajetória profissional">
   <div class="filters">
     <div class="filters-heading">
@@ -349,7 +358,7 @@ tbody tr:hover{background:var(--purple-faint)}
 <div class="scroll-area">
 <main class="content">
 
-<div class="module-panel" id="panelTrajetoria" role="tabpanel" aria-labelledby="tabTrajetoria">
+<div class="module-panel" id="panelTrajetoria" role="tabpanel" aria-labelledby="tabQuantitativo">
 
   <div class="section-label" id="funnelSection"><span>Funil de participação no LinkedIn</span></div>
   <section class="card funnel">
@@ -404,6 +413,14 @@ tbody tr:hover{background:var(--purple-faint)}
     <div class="empty" id="holderEmpty" hidden>Nenhum portador corresponde aos filtros.</div>
   </section>
 
+</div>
+
+<div class="module-panel" id="panelQualitativo" role="tabpanel" aria-labelledby="tabQualitativo" hidden>
+  <section class="card"><div class="module-placeholder">Conteúdo a definir</div></section>
+</div>
+
+<div class="module-panel" id="panelMaterial" role="tabpanel" aria-labelledby="tabMaterial" hidden>
+  <section class="card"><div class="module-placeholder">Conteúdo a definir</div></section>
 </div>
 
 </main>
@@ -1010,6 +1027,7 @@ let cursoPag=0,cursoFiltroAnterior='';
 let dashboardReady=false;
 function showDashboard(targetId){
   homeView.hidden=true;dashboardView.hidden=false;document.body.classList.add('dashboard-open');
+  if(targetId&&document.getElementById('panelTrajetoria').hidden&&typeof setModule==='function')setModule('quantitativo');
   if(!dashboardReady){updateDashboard();dashboardReady=true}else{timelineChart?.resize();courseChart?.resize()}
   requestAnimationFrame(()=>{const scroller=dashboardView.querySelector('.scroll-area');if(targetId){document.getElementById(targetId)?.scrollIntoView({behavior:'smooth',block:'start'})}else{scroller?.scrollTo({top:0,behavior:'smooth'});window.scrollTo({top:0,behavior:'smooth'})}});
 }
@@ -1021,6 +1039,17 @@ document.querySelectorAll('[data-language]').forEach(button=>button.addEventList
 let savedLanguage='pt';try{savedLanguage=localStorage.getItem('pok-score-language')||'pt'}catch(error){}
 setLanguage(savedLanguage,{refresh:false});
 
+const PANELS={quantitativo:'panelTrajetoria',qualitativo:'panelQualitativo',material:'panelMaterial'};
+function setModule(name){
+  if(!PANELS[name])name='quantitativo';
+  Object.entries(PANELS).forEach(([mod,id])=>{document.getElementById(id).hidden=mod!==name});
+  document.querySelectorAll('[data-module]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.module===name)));
+  document.querySelectorAll('.filters-shell').forEach(sh=>{sh.hidden=name!=='quantitativo'});
+  dashboardView.querySelector('.scroll-area')?.scrollTo?.({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='quantitativo')requestAnimationFrame(()=>{timelineChart?.resize();courseChart?.resize()});
+}
+document.querySelectorAll('[data-module]').forEach(button=>button.addEventListener('click',()=>setModule(button.dataset.module)));
 document.querySelectorAll('[data-nav-curso]').forEach(b=>b.addEventListener('click',()=>{cursoPag+=Number(b.dataset.navCurso);renderCourses()}));
 
 Object.assign(VALUE_ES,{
@@ -1048,7 +1077,7 @@ Object.assign(ES,VALUE_ES,{
   'O gráfico lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra, para cada trilha, curso e/ou competência, que percentual dos portadores aparece com ocupação registrada, antes de qualquer avaliação sobre a área em que trabalha.':'El gráfico lee una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra, para cada ruta, curso y/o competencia, qué porcentaje de los portadores aparece con ocupación registrada, antes de cualquier evaluación sobre el área en que trabaja.',
   'O gráfico lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra, para cada trilha, curso e/ou competência, a evolução da renda média estimada dos portadores, em reais.':'El gráfico lee una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra, para cada ruta, curso y/o competencia, la evolución de la renta media estimada de los portadores, en reales.',
   'Leituras por trilha, curso e/ou competência':'Lecturas por ruta, curso y/o competencia','Gráfico profissional comparativo':'Gráfico profesional comparativo','Ocupação abaixo do nível da formação':'Ocupación por debajo del nivel de la formación','Nota técnica sobre ocupação abaixo do nível da formação':'Nota técnica sobre ocupación por debajo del nivel de la formación','Gráfico comparativo de ocupação abaixo do nível da formação':'Gráfico comparativo de ocupación por debajo del nivel de la formación','O gráfico lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra, para cada trilha, curso e/ou competência, que percentual dos portadores com ocupação registrada está em ocupação de nível inferior ao da formação certificada.':'El gráfico lee una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra, para cada ruta, curso y/o competencia, qué porcentaje de los portadores con ocupación registrada está en ocupación de nivel inferior al de la formación certificada.','Ocupação mais frequente':'Ocupación más frecuente','Formação x Ocupação':'Formación x Ocupación','Nota técnica sobre Formação x Ocupação':'Nota técnica sobre Formación x Ocupación','Entre os portadores com ocupação registrada':'Entre los portadores con ocupación registrada','Trilha, curso e/ou competência':'Ruta, curso y/o competencia','2ª mais frequente':'2ª más frecuente','3ª mais frequente':'3ª más frecuente','Base com registro':'Base con registro','A tabela lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra, para cada trilha, curso e/ou competência, as três ocupações em que mais portadores aparecem registrados, com a base de quem tem ocupação registrada.':'La tabla lee una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra, para cada ruta, curso y/o competencia, las tres ocupaciones en que más portadores aparecen registrados, con la base de quienes tienen ocupación registrada.','Progressão de faixa de renda':'Progresión de tramo de ingreso','Nota técnica sobre progressão de faixa de renda':'Nota técnica sobre progresión de tramo de ingreso','O gráfico lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra, para cada trilha, curso e/ou competência, que percentual dos portadores subiu ao menos uma faixa de renda desde a emissão da credencial.':'El gráfico lee una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra, para cada ruta, curso y/o competencia, qué porcentaje de los portadores subió al menos un tramo de ingreso desde la emisión de la credencial.','Gráfico comparativo de progressão de faixa de renda':'Gráfico comparativo de progresión de tramo de ingreso','Abertura de negócio próprio':'Apertura de negocio propio','Nota técnica sobre abertura de negócio próprio':'Nota técnica sobre apertura de negocio propio','O gráfico lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra, para cada trilha, curso e/ou competência, que percentual dos portadores entrou em quadro societário, isto é, abriu o próprio negócio em vez de buscar vínculo empregatício.':'El gráfico lee una ruta, un curso, una competencia o un año de emisión, definido en los filtros de arriba. Muestra, para cada ruta, curso y/o competencia, qué porcentaje de los portadores entró en cuadro societario, es decir, abrió su propio negocio en vez de buscar un vínculo laboral.','Gráfico comparativo de abertura de negócio próprio':'Gráfico comparativo de apertura de negocio propio',
-  'Módulos do painel':'Módulos del panel','Trajetória profissional':'Trayectoria profesional','Ocupação e mobilidade':'Ocupación y movilidad',
+  'Módulos do painel':'Módulos del panel','Dados Quantitativos':'Datos Cuantitativos','Dados Qualitativos':'Datos Cualitativos','Material Produzido':'Material Producido','Conteúdo a definir':'Contenido por definir','Trajetória profissional':'Trayectoria profesional','Ocupação e mobilidade':'Ocupación y movilidad',
   
   'Portadores no recorte':'Portadores en el recorte','Base das leituras abaixo':'Base de las lecturas de abajo','Ocupação registrada':'Ocupación registrada','Com ocupação formal identificada':'Con ocupación formal identificada','Abaixo do nível da formação':'Por debajo del nivel de la formación','Entre os portadores com ocupação registrada':'Entre los portadores con ocupación registrada','Entraram em quadro societário após a emissão':'Entraron en cuadro societario tras la emisión','Maior progressão de renda':'Mayor progresión de ingreso','Progressão do segmento':'Progresión del segmento','Segmento sem base':'Segmento sin base','Progressão de renda':'Progresión de ingreso','Aderência ocupacional':'Adherencia ocupacional','Autonomia':'Autonomía','Destino ocupacional':'Destino ocupacional','Nota técnica sobre destino ocupacional':'Nota técnica sobre destino ocupacional','Perfis de entrada mais frequentes':'Perfiles de entrada más frecuentes',
   'de 100':'de 100',
