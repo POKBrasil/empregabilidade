@@ -111,6 +111,8 @@
 
   /* ── Peça ───────────────────────────────── */
   .piece { margin-bottom: 3rem; scroll-margin-top: 1.5rem; }
+  /* última seção: garante que o link do menu consiga alinhá-la ao topo da tela */
+  #linkedin { min-height: calc(100vh - 1.5rem); }
 
   .fase-head {
     display: flex;
@@ -181,6 +183,9 @@
   .files--single { grid-template-columns: 1fr; }
   .files--two { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .files--stack { grid-template-columns: 1fr; gap: 1.75rem; }
+  .files-caption { grid-column: span 2; margin-top: 0; align-self: start; }
+  .files-caption--half { grid-column: span 1; }
+  @media (max-width: 640px) { .files-caption { grid-column: 1 / -1; } }
   .file--logo .file-frame { max-width: 340px; }
   .file--logo .file-frame--checker { display: flex; justify-content: flex-start; }
   .file--logo .file-frame--checker img { padding: 1.1rem 1.4rem; max-height: 90px; width: auto; }
@@ -346,6 +351,8 @@
   .wpp-text {
     position: relative;
     z-index: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
     font-size: 12.5px;
     line-height: 1.7;
     color: var(--ink);
@@ -1143,43 +1150,43 @@
     <div class="piece-body">
       <div class="cred-grid">
         <a class="cred-card" href="https://view.pok.tech/c/159b8989-aef6-409c-b271-bd29cbdf472d" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática Administrativa e Gestão de Negócios</span>
+          <span class="cred-competencia">Gestão de Organizações, Pessoas e Processos</span>
           <span class="cred-curso">Bacharel em Administração</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
         <a class="cred-card" href="https://view.pok.tech/c/746a243d-4d3f-4fea-b644-2b7fca5939e6" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática em Biodiagnóstico e Biomedicina Estética</span>
+          <span class="cred-competencia">Diagnóstico em Saúde e Investigação Biomédica</span>
           <span class="cred-curso">Bacharel em Biomedicina</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
         <a class="cred-card" href="https://view.pok.tech/c/57290b8a-e022-49f2-98e0-18dc5a194992" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática Farmacêutica e Análises Clínicas</span>
+          <span class="cred-competencia">Gestão de Práticas Farmacêuticas e Cuidados Clínicos</span>
           <span class="cred-curso">Bacharel em Farmácia</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
         <a class="cred-card" href="https://view.pok.tech/c/bddc858b-b198-4529-b4d6-c257086b7215" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática Nutricional Clínica</span>
+          <span class="cred-competencia">Cuidado Nutricional e Gestão em Alimentação e Saúde</span>
           <span class="cred-curso">Bacharel em Nutrição</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
         <a class="cred-card" href="https://view.pok.tech/c/435bd676-5500-40e3-ab87-ede0604e8613" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática em Estética e Cosmetologia</span>
+          <span class="cred-competencia">Tratamento Estético e Cosmetologia Aplicada</span>
           <span class="cred-curso">Tecnólogo em Estética e Cosmética</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
         <a class="cred-card" href="https://view.pok.tech/c/01ca74e6-fbfc-466b-9d7e-67b646b08e4e" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática Podológica</span>
+          <span class="cred-competencia">Saúde e Cuidado Podológico</span>
           <span class="cred-curso">Tecnólogo em Podologia</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
 
         <a class="cred-card" href="https://view.pok.tech/c/85c7f379-6faa-4827-9062-09378aa533ab" target="_blank" rel="noopener">
-          <span class="cred-competencia">Prática em Terapias Integrativas</span>
+          <span class="cred-competencia">Práticas Integrativas em Saúde e Bem-Estar</span>
           <span class="cred-curso">Tecnólogo em Terapias Integrativas e Complementares</span>
           <span class="cred-acao">Ver credencial ↗</span>
         </a>
@@ -1193,11 +1200,7 @@
 
       <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:1.1rem;">
         <a href="https://drive.google.com/drive/folders/1LSojySx8Yo8Cch7rwTD2xCRK41Bmiv2H?usp=drive_link" target="_blank" rel="noopener" class="comms-btn">Ver PPCs Uniasselvi</a>
-        <a href="https://view.pok.tech/c/bd33effc-07f3-4d56-b0cf-8cd14feb1853" target="_blank" rel="noopener" class="comms-btn">Ver exemplo de badge</a>
-        <span class="flag-row">
-          <span class="file-flag file-flag--luciano">Luciano Santana, enviar base de alunos com: nome completo, e-mail e CPF</span>
-          <span class="file-flag file-flag--luciano">Luciano, conferir nome de competências</span>
-        </span>
+        <a href="https://certificados.uniasselvi.com.br/c/b65db4dc-dd57-4d9e-8803-9bb20946d8c6" target="_blank" rel="noopener" class="comms-btn">Ver exemplo de badge</a>
       </div>
 
       <div style="margin-top:12px; font-size:13px; line-height:1.5; color:#000;">
@@ -1580,17 +1583,17 @@
         </div>
 
         <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" data-label="banner_masterclass_vitru.png · banner 5 de 5">
-            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" alt="Banner 5 da landing page Uniasselvi" loading="lazy">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/banner-masterclass.png" data-label="banner-masterclass.png · banner 5 de 5">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/banner-masterclass.png" alt="Banner da masterclass Carreira 5.0 na landing page Uniasselvi" loading="lazy">
           </button>
-          <div class="file-name">banner_masterclass_vitru.png<span class="file-flag">Lídia Fleming, criar peça gráfica</span></div>
+          <div class="file-name">banner-masterclass.png</div>
           <div class="file-meta">
             <strong>Masterclass</strong>
           </div>
           <div class="file-specs">540 × 236 px · PNG · RGB</div>
           <div class="file-links">
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" target="_blank" rel="noopener">Abrir</a>
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner_masterclass_vitru.png" download>Baixar</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner-masterclass.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/banner-masterclass.png" download>Baixar</a>
           </div>
         </div>
 
@@ -1603,7 +1606,7 @@
             <span class="file-dest-label">Data</span>
             <span>22/10</span>
           </div>
-          <div class="wpp-text" style="margin-top:0.7rem;">O mercado de trabalho está sendo redesenhado por IA, automação e novas formas de trabalho — e isso exige um novo repertório de competências. Nesta masterclass, vamos mostrar como se posicionar com clareza, comunicar suas competências de forma estratégica e identificar as oportunidades que essa transição está abrindo, com um caminho prático para se manter relevante na "Carreira 5.0".</div>
+          <div class="wpp-text" style="margin-top:0.7rem;">O mercado de trabalho está sendo redesenhado por IA, automação e novas formas de trabalho, e isso exige um novo repertório de competências. Nesta masterclass, vamos mostrar como se posicionar com clareza, comunicar suas competências de forma estratégica e identificar as oportunidades que essa transição está abrindo, com um caminho prático para se manter relevante na "Carreira 5.0".</div>
         </div>
 
       </div>
@@ -2446,7 +2449,435 @@ Em caso de dúvida, acesse seu e-mail e confira mais informações. 😉</div>
     </div>
 
     <div class="piece-body">
-      <p class="comms-intro" style="margin:0;">Comunicações serão produzidas na fase de lançamento, o time de Social estará responsável por essa parte.</p>
+      <h3 class="comms-head">Carrossel 1 · 7 cards</h3>
+      <div class="files" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-1.png" data-label="carroussel-1-1.png · carrossel, card 1 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-1.png" alt="Card 1 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-1.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-2.png" data-label="carroussel-1-2.png · carrossel, card 2 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-2.png" alt="Card 2 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-2.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-3.png" data-label="carroussel-1-3.png · carrossel, card 3 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-3.png" alt="Card 3 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-3.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-3.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-4.png" data-label="carroussel-1-4.png · carrossel, card 4 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-4.png" alt="Card 4 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-4.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-4.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-4.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-5.png" data-label="carroussel-1-5.png · carrossel, card 5 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-5.png" alt="Card 5 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-5.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-5.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-5.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-6.png" data-label="carroussel-1-6.png · carrossel, card 6 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-6.png" alt="Card 6 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-6.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-6.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-6.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-7.png" data-label="carroussel-1-7.png · carrossel, card 7 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-7.png" alt="Card 7 de 7 do carrossel LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-1-7.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-7.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-1-7.png" download>Baixar</a>
+          </div>
+        </div>
+
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · antes</div>
+          <div class="wpp-text">Imagine que se Graduação fosse um videogame, o diploma seria zerar o jogo.
+Mas e todas as conquistas que fizeram parte do caminho?
+
+A credencial digital valoriza suas conquistas e mostra tudo o que você desenvolveu ao longo da graduação.
+
+Se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, já pode emitir gratuitamente sua credencial digital e dar mais visibilidade às suas conquistas.
+
+E aí, bora fortalecer esse currículo?
+Acesse o link e confira as regras: [LINK]</div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · depois</div>
+          <div class="wpp-text">Imagine que se Graduação fosse um videogame, o diploma seria zerar o jogo.
+Mas e todas as conquistas que fizeram parte do caminho?
+
+A credencial digital valoriza suas conquistas e mostra tudo o que você desenvolveu ao longo da graduação.
+
+Se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, o convite já está a caminho. Fique de olho no seu e-mail: é por lá que você recebe o link para emitir gratuitamente a sua credencial e dar mais visibilidade às suas conquistas.
+
+Quer entender melhor o que é uma credencial verificável e como ela funciona? A gente explica aqui: <a href="https://pokbrasil.github.io/marketing/pok_portal_landing.html" target="_blank" rel="noopener">https://pokbrasil.github.io/marketing/pok_portal_landing.html</a>
+
+E aí, bora fortalecer esse currículo?
+Não achou o e-mail? Vale conferir a caixa de spam e as promoções.</div>
+        </div>
+
+      </div>
+      <h3 class="comms-head" style="margin-top:1.8rem;">Carrossel 2 · 7 cards</h3>
+      <div class="files" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-1.png" data-label="carroussel-2-1.png · carrossel 2, card 1 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-1.png" alt="Card 1 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-1.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-2.png" data-label="carroussel-2-2.png · carrossel 2, card 2 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-2.png" alt="Card 2 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-2.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-3.png" data-label="carroussel-2-3.png · carrossel 2, card 3 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-3.png" alt="Card 3 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-3.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-3.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-4.png" data-label="carroussel-2-4.png · carrossel 2, card 4 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-4.png" alt="Card 4 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-4.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-4.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-4.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-5.png" data-label="carroussel-2-5.png · carrossel 2, card 5 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-5.png" alt="Card 5 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-5.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-5.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-5.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-6.png" data-label="carroussel-2-6.png · carrossel 2, card 6 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-6.png" alt="Card 6 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-6.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-6.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-6.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-7.png" data-label="carroussel-2-7.png · carrossel 2, card 7 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-7.png" alt="Card 7 de 7 do carrossel 2 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-2-7.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-7.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-2-7.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · antes</div>
+          <div class="wpp-text">Diploma você já conhece. Mas já ouviu falar em Credencial Digital?
+
+Em resumo: o diploma é a série inteira e a credencial digital é aquele episódio que todo mundo comenta.
+
+Ela destaca experiências específicas que fazem parte da sua formação, ajudando a mostrar tudo o que você aprendeu até aqui.
+
+Se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, já pode emitir gratuitamente sua credencial digital e exibir suas competências por aí &lt;3 [LINK]</div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · depois</div>
+          <div class="wpp-text">Diploma você já conhece. Mas já ouviu falar em Credencial Digital?
+
+Em resumo: o diploma é a série inteira e a credencial digital é aquele episódio que todo mundo comenta.
+
+Ela destaca experiências específicas que fazem parte da sua formação, ajudando a mostrar tudo o que você aprendeu até aqui.
+
+E o melhor: se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, o convite já está a caminho. Fique de olho no seu e-mail: é por lá que você recebe o link para emitir gratuitamente a sua credencial e exibir suas competências por aí &lt;3
+
+Quer entender melhor o que é uma credencial verificável e como ela funciona? A gente explica aqui: <a href="https://pokbrasil.github.io/marketing/pok_portal_landing.html" target="_blank" rel="noopener">https://pokbrasil.github.io/marketing/pok_portal_landing.html</a>
+
+Não achou o e-mail? Vale conferir a caixa de spam e as promoções.</div>
+        </div>
+
+      </div>
+      <h3 class="comms-head" style="margin-top:1.8rem;">Carrossel 3 · 7 cards</h3>
+      <div class="files" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-1.png" data-label="carroussel-3-1.png · carrossel 3, card 1 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-1.png" alt="Card 1 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-1.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-2.png" data-label="carroussel-3-2.png · carrossel 3, card 2 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-2.png" alt="Card 2 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-2.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-3.png" data-label="carroussel-3-3.png · carrossel 3, card 3 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-3.png" alt="Card 3 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-3.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-3.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-4.png" data-label="carroussel-3-4.png · carrossel 3, card 4 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-4.png" alt="Card 4 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-4.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-4.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-4.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-5.png" data-label="carroussel-3-5.png · carrossel 3, card 5 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-5.png" alt="Card 5 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-5.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-5.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-5.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-6.png" data-label="carroussel-3-6.png · carrossel 3, card 6 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-6.png" alt="Card 6 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-6.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-6.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-6.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-7.png" data-label="carroussel-3-7.png · carrossel 3, card 7 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-7.png" alt="Card 7 de 7 do carrossel 3 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-3-7.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-7.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-3-7.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · antes</div>
+          <div class="wpp-text">Receber a Credencial Digital é gostoso demais, mas exibi-la por aí é melhor ainda!
+
+Se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, já pode emitir gratuitamente sua credencial digital e dar mais visibilidade às suas conquistas.
+
+Depois da emissão, você pode acessar informações sobre sua conquista, consultar sua credencial sempre que precisar e reunir tudo em um só lugar na carteira digital POK Holder.
+
+E aí, bora fortalecer esse currículo?
+Acesse o link e confira as regras: [LINK]</div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · depois</div>
+          <div class="wpp-text">Receber a Credencial Digital é gostoso demais, mas exibi-la por aí é melhor ainda!
+
+Se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, o convite já está a caminho. Fique de olho no seu e-mail: é por lá que você recebe o link para emitir gratuitamente a sua credencial e dar mais visibilidade às suas conquistas.
+
+Depois da emissão, você pode acessar informações sobre sua conquista, consultar sua credencial sempre que precisar e reunir tudo em um só lugar na carteira digital POK Holder.
+
+Quer entender melhor o que é uma credencial verificável e como ela funciona? A gente explica aqui: <a href="https://pokbrasil.github.io/marketing/pok_portal_landing.html" target="_blank" rel="noopener">https://pokbrasil.github.io/marketing/pok_portal_landing.html</a>
+
+E aí, bora fortalecer esse currículo?
+Não achou o e-mail? Vale conferir a caixa de spam e as promoções.</div>
+        </div>
+
+      </div>
+      <h3 class="comms-head" style="margin-top:1.8rem;">Carrossel 4 · 7 cards</h3>
+      <div class="files" style="margin-top:0.9rem;">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-1.png" data-label="carroussel-4-1.png · carrossel 4, card 1 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-1.png" alt="Card 1 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-1.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-1.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-1.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-2.png" data-label="carroussel-4-2.png · carrossel 4, card 2 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-2.png" alt="Card 2 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-2.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-2.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-2.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-3.png" data-label="carroussel-4-3.png · carrossel 4, card 3 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-3.png" alt="Card 3 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-3.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-3.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-3.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-4.png" data-label="carroussel-4-4.png · carrossel 4, card 4 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-4.png" alt="Card 4 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-4.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-4.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-4.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-5.png" data-label="carroussel-4-5.png · carrossel 4, card 5 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-5.png" alt="Card 5 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-5.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-5.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-5.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-6.png" data-label="carroussel-4-6.png · carrossel 4, card 6 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-6.png" alt="Card 6 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-6.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-6.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-6.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-7.png" data-label="carroussel-4-7.png · carrossel 4, card 7 de 7">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-7.png" alt="Card 7 de 7 do carrossel 4 LinkedIn Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">carroussel-4-7.png</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-7.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/carroussel-4-7.png" download>Baixar</a>
+          </div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · antes</div>
+          <div class="wpp-text">Compartilhar sua Credencial Digital no LinkedIn é mostrar suas competências e fortalecer sua marca pessoal para garantir que você seja visto como merece.
+
+Afinal, sua história profissional não precisa começar só no diploma.
+
+Ah, e se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, já pode emitir gratuitamente sua Credencial Digital e dar mais visibilidade às suas conquistas.
+
+Acesse o link e confira as regras: [LINK]</div>
+        </div>
+
+        <div class="wpp-copy files-caption files-caption--half">
+          <div class="wpp-copy-head">Legenda · depois</div>
+          <div class="wpp-text">Compartilhar sua Credencial Digital no LinkedIn é mostrar suas competências e fortalecer sua marca pessoal para garantir que você seja visto como merece.
+
+Afinal, sua história profissional não precisa começar só no diploma.
+
+Ah, e se você é egresso dos cursos das áreas de Saúde ou Administração da UNIASSELVI, o convite já está a caminho. Fique de olho no seu e-mail: é por lá que você recebe o link para emitir gratuitamente a sua Credencial Digital e dar mais visibilidade às suas conquistas.
+
+Quer entender melhor o que é uma credencial verificável e como ela funciona? A gente explica aqui: <a href="https://pokbrasil.github.io/marketing/pok_portal_landing.html" target="_blank" rel="noopener">https://pokbrasil.github.io/marketing/pok_portal_landing.html</a>
+
+Não achou o e-mail? Vale conferir a caixa de spam e as promoções.</div>
+        </div>
+
+      </div>
     </div>
   </section>
 
