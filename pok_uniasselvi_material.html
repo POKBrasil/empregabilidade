@@ -183,6 +183,9 @@
   .files--single { grid-template-columns: 1fr; }
   .files--two { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .files--stack { grid-template-columns: 1fr; gap: 1.75rem; }
+  .files--badge { grid-template-columns: 1fr; justify-items: center; }
+  .files--badge .file { width: 100%; max-width: 560px; align-items: center; text-align: center; }
+  .files--badge .file-frame { background: transparent; border: none; box-shadow: none; }
   .files-caption { grid-column: span 2; margin-top: 0; align-self: start; }
   .files-caption--half { grid-column: span 1; }
   @media (max-width: 640px) { .files-caption { grid-column: 1 / -1; } }
@@ -899,11 +902,6 @@
     padding: 14px 16px;
     transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
   }
-  .cred-card:hover, .cred-card:focus-visible {
-    background: var(--accent-dark);
-    border-color: var(--accent-dark);
-    box-shadow: 0 4px 18px rgba(81,35,164,0.28);
-  }
   .cred-card--pendente {
     background: var(--surface-alt);
     border: 1px dashed var(--border);
@@ -1132,7 +1130,7 @@
     <a href="#cronograma">Cronograma de execução</a>
     <span class="toc-break" aria-hidden="true"></span>
     <span class="toc-label">Materiais:</span>
-    <a href="#certificado">Certificado</a>
+    <a href="#badge">Design do badge</a>
     <a href="#head">Landing Page e POK Holder</a>
     <a href="#pagina-aceitacao">Página de Aceitação</a>
     <a href="#banners">Banners cross-sell</a>
@@ -1157,64 +1155,55 @@
 
     <div class="piece-body">
       <div class="cred-grid">
-        <a class="cred-card" href="https://view.pok.tech/c/159b8989-aef6-409c-b271-bd29cbdf472d" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Gestão de Organizações, Pessoas e Processos</span>
           <span class="cred-curso">Bacharel em Administração</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/746a243d-4d3f-4fea-b644-2b7fca5939e6" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Diagnóstico em Saúde e Investigação Biomédica</span>
           <span class="cred-curso">Bacharel em Biomedicina</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/57290b8a-e022-49f2-98e0-18dc5a194992" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Gestão de Práticas Farmacêuticas e Cuidados Clínicos</span>
           <span class="cred-curso">Bacharel em Farmácia</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/bddc858b-b198-4529-b4d6-c257086b7215" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Cuidado Nutricional e Gestão em Alimentação e Saúde</span>
           <span class="cred-curso">Bacharel em Nutrição</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/435bd676-5500-40e3-ab87-ede0604e8613" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Tratamento Estético e Cosmetologia Aplicada</span>
           <span class="cred-curso">Tecnólogo em Estética e Cosmética</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/01ca74e6-fbfc-466b-9d7e-67b646b08e4e" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Saúde e Cuidado Podológico</span>
           <span class="cred-curso">Tecnólogo em Podologia</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/85c7f379-6faa-4827-9062-09378aa533ab" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Práticas Integrativas em Saúde e Bem-Estar</span>
           <span class="cred-curso">Tecnólogo em Terapias Integrativas e Complementares</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/8abd7293-8f2f-4200-850b-99a7c5516f22" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Prática em Radiologia e Diagnóstico por Imagem</span>
           <span class="cred-curso">Tecnólogo em Radiologia</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="#" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Consultoria em Imagem e Estética Pessoal</span>
           <span class="cred-curso">Tecnólogo em Estética e Imagem Pessoal</span>
-          <span class="cred-acao">Ver credencial ↗</span>
-        </a>
+        </div>
       </div>
 
       <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:1.1rem;">
         <a href="https://drive.google.com/drive/folders/1LSojySx8Yo8Cch7rwTD2xCRK41Bmiv2H?usp=drive_link" target="_blank" rel="noopener" class="comms-btn">Ver PPCs Uniasselvi</a>
-        <a href="https://certificados.uniasselvi.com.br/c/b65db4dc-dd57-4d9e-8803-9bb20946d8c6" target="_blank" rel="noopener" class="comms-btn">Ver exemplo de badge</a>
+        <a href="https://certificados.uniasselvi.com.br/c/729dfd03-29c0-4cf2-bf98-f87f1eea9121" target="_blank" rel="noopener" class="comms-btn">Ver exemplo de credencial</a>
       </div>
 
       <div style="margin-top:12px; font-size:13px; line-height:1.5; color:#000;">
@@ -1329,132 +1318,31 @@
 
     </div>
   </div>
-
-    </div>
-  </section>
-
-  <!-- ═══ Certificado ═══ -->
-  <section class="piece" id="certificado">
-    <div class="piece-head">
-      <span class="piece-tag">Peça 1</span>
-      <h2 class="piece-title">Design do certificado</h2>
-    </div>
-
-    <div class="piece-body">
-      <div class="files">
-
-        <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" data-label="certificado-final-Uniasselvi.png · certificado com arte aplicada">
-            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" alt="Certificado Uniasselvi com arte aplicada" loading="lazy">
-          </button>
-          <div class="file-name">certificado-final-Uniasselvi.png</div>
-          <div class="file-specs">2000 × 1539 px · PNG · RGB</div>
-          <div class="file-links">
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" target="_blank" rel="noopener">Abrir</a>
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/certificado-final-Uniasselvi.png" download>Baixar</a>
-          </div>
-        </div>
-
-        <div class="file">
-          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" data-label="Certificado-Limpo.png · base sem dados variáveis">
-            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" alt="Certificado Uniasselvi em versão limpa, sem dados variáveis" loading="lazy">
-          </button>
-          <div class="file-name">Certificado-Limpo.png</div>
-          <div class="file-specs">2000 × 1539 px · PNG · RGB</div>
-          <div class="file-links">
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" target="_blank" rel="noopener">Abrir</a>
-            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/Certificado-Limpo.png" download>Baixar</a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
   </section>
 
   <!-- ═══ Badge ═══ -->
   <section class="piece" id="badge">
     <div class="piece-head">
-      <span class="piece-tag">Peça 1b</span>
+      <span class="piece-tag">Peça 1</span>
       <h2 class="piece-title">Design do badge</h2>
     </div>
 
     <div class="piece-body">
-      <div class="cert-block">
-        <div class="cert-preview">
-          <div class="cert-preview-label">
-            <span>Modelo do badge</span>
-          </div>
-          <div class="cert-placeholder cert-placeholder--badge cert-placeholder--filled" aria-label="Modelo do badge · quadro 1600 × 1600 px">
-            <svg viewBox="0 0 1000 1000" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display:block; font-family:'Poppins',sans-serif;">
-              <defs>
-                <pattern id="badgeHatchUni" width="16" height="16" patternUnits="userSpaceOnUse">
-                  <path d="M0,16 L16,0 M-4,4 L4,-4 M12,20 L20,12" stroke="#5123a4" stroke-width="0.6" opacity="0.07"/>
-                  <path d="M0,0 L16,16 M-4,12 L4,20 M12,-4 L20,4" stroke="#5123a4" stroke-width="0.6" opacity="0.07"/>
-                </pattern>
-                <clipPath id="badgeClipUni"><circle cx="520" cy="520" r="362"/></clipPath>
-              </defs>
-              <rect x="0" y="0" width="1000" height="1000" fill="#ffffff"/>
-              <line x1="140" y1="90" x2="900" y2="90" stroke="#f03f0f" stroke-width="2"/>
-              <line x1="140" y1="78" x2="140" y2="102" stroke="#f03f0f" stroke-width="2"/>
-              <line x1="900" y1="78" x2="900" y2="102" stroke="#f03f0f" stroke-width="2"/>
-              <rect x="458" y="72" width="124" height="38" rx="9" fill="#f03f0f"/>
-              <text x="520" y="98" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">1600 px</text>
-              <line x1="92" y1="140" x2="92" y2="900" stroke="#f03f0f" stroke-width="2"/>
-              <line x1="80" y1="140" x2="104" y2="140" stroke="#f03f0f" stroke-width="2"/>
-              <line x1="80" y1="900" x2="104" y2="900" stroke="#f03f0f" stroke-width="2"/>
-              <g transform="translate(92,520) rotate(-90)">
-                <rect x="-62" y="-19" width="124" height="38" rx="9" fill="#f03f0f"/>
-                <text x="0" y="7" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">1600 px</text>
-              </g>
-              <rect x="140" y="140" width="760" height="760" fill="url(#badgeHatchUni)" clip-path="url(#badgeClipUni)"/>
-              <circle cx="520" cy="520" r="380" fill="none" stroke="#5123a4" stroke-width="3"/>
-              <circle cx="520" cy="520" r="362" fill="none" stroke="#5123a4" stroke-width="1.5"/>
-              <circle cx="520" cy="300" r="54" fill="#EDE6F6" stroke="#5123a4" stroke-width="1.5"/>
-              <text x="520" y="298" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#5123a4">LOGO</text>
-              <text x="520" y="316" text-anchor="middle" font-size="9" font-weight="600" letter-spacing="1.5" fill="#5123a4">INSTITUIÇÃO</text>
-              <text x="520" y="478" text-anchor="middle" font-size="50" font-weight="800" letter-spacing="9" fill="#5123a4">BADGE</text>
-              <line x1="446" y1="510" x2="496" y2="510" stroke="#5123a4" stroke-width="1.5"/>
-              <circle cx="520" cy="510" r="4" fill="#5123a4"/>
-              <line x1="544" y1="510" x2="594" y2="510" stroke="#5123a4" stroke-width="1.5"/>
-              <text x="520" y="544" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="3" fill="#6b5f86">CERTIFICAMOS QUE</text>
-              <text x="520" y="582" text-anchor="middle" font-size="30" font-weight="700" fill="#1a1530">Nome do Aluno</text>
-              <line x1="375" y1="598" x2="665" y2="598" stroke="#1a1530" stroke-width="1.5"/>
-              <text x="520" y="634" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#6b5f86">concluiu a competência</text>
-              <text x="520" y="676" text-anchor="middle" font-size="36" font-weight="700" fill="#5123a4">Nome da competência</text>
-            </svg>
+      <div class="files files--badge">
+
+        <div class="file">
+          <button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Uniasselvi/badge-uniasselvi.png" data-label="badge-uniasselvi.png · exemplo do badge">
+            <img src="https://pokbrasil.github.io/clientes/Uniasselvi/badge-uniasselvi.png" alt="Exemplo do badge Uniasselvi" loading="lazy">
+          </button>
+          <div class="file-name">badge-uniasselvi.png</div>
+          <div class="file-specs">1600 × 1600 px · PNG · RGB</div>
+          <div class="file-links">
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/badge-uniasselvi.png" target="_blank" rel="noopener">Abrir</a>
+            <a href="https://pokbrasil.github.io/clientes/Uniasselvi/badge-uniasselvi.png" download>Baixar</a>
           </div>
         </div>
 
-        <div class="cert-specs">
-          <div class="cert-specs-label">Especificações técnicas</div>
-          <div class="spec-row">
-            <span class="spec-k">Dimensões</span>
-            <span class="spec-v">1600 × 1600 px</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-k">Formato da arte</span>
-            <span class="spec-v">Livre</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-k">Arquivo</span>
-            <span class="spec-v">PNG</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-k">Resolução</span>
-            <span class="spec-v">150 DPI</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-k">Espaço de cor</span>
-            <span class="spec-v">RGB</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-k">Fundo</span>
-            <span class="spec-v">Transparente</span>
-          </div>
-        </div>
       </div>
-
     </div>
   </section>
 
