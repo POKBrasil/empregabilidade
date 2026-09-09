@@ -124,6 +124,9 @@
   .files--single { grid-template-columns: 1fr; }
   .files--two { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .files--stack { grid-template-columns: 1fr; gap: 1.75rem; }
+  .files--badge { grid-template-columns: 1fr; justify-items: center; }
+  .files--badge .file { width: 100%; max-width: 560px; align-items: center; text-align: center; }
+  .files--badge .file-frame { background: transparent; border: none; box-shadow: none; }
 
   .file { display: flex; flex-direction: column; }
   .file--logo .file-frame { max-width: 340px; }
@@ -703,11 +706,6 @@
     padding: 14px 16px;
     transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
   }
-  .cred-card:hover, .cred-card:focus-visible {
-    background: var(--accent-dark);
-    border-color: var(--accent-dark);
-    box-shadow: 0 4px 18px rgba(81,35,164,0.28);
-  }
   .cred-card--pendente {
     background: var(--surface-alt);
     border: 1px dashed var(--border);
@@ -911,52 +909,45 @@
 
     <div class="piece-body">
       <div class="cred-grid">
-        <a class="cred-card" href="https://view.pok.tech/c/b74e4fd5-fe20-456f-beef-4287ca005967" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Gestão de Organizações, Pessoas e Processos</span>
           <span class="cred-curso">Bacharel em Administração</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/b22ef068-1c61-4a49-a476-95b6a65d0125" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Diagnóstico em Saúde e Investigação Biomédica</span>
           <span class="cred-curso">Bacharel em Biomedicina</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/a8d23930-b384-4c9e-8e45-c642f33e3f41" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Cuidado Nutricional e Gestão em Alimentação e Saúde</span>
           <span class="cred-curso">Bacharel em Nutrição</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/e5af1cec-ab66-49a4-bbd0-e03aa5eeaaef" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Tratamento Estético e Cosmetologia Aplicada</span>
           <span class="cred-curso">Tecnólogo em Estética e Cosmética</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/9a4a48e2-bbde-40d4-90b2-79ad51da42dd" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Cuidado e Gestão Gerontológica</span>
           <span class="cred-curso">Tecnólogo em Gerontologia</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/b3adee2e-2fea-4149-95cc-dcb44df49f73" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Saúde e Cuidado Podológico</span>
           <span class="cred-curso">Tecnólogo em Podologia</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
 
-        <a class="cred-card" href="https://view.pok.tech/c/a60d8904-dba0-4b27-a356-43a12b76bd72" target="_blank" rel="noopener">
+        <div class="cred-card">
           <span class="cred-competencia">Práticas Integrativas em Saúde e Bem-Estar</span>
           <span class="cred-curso">Tecnólogo em Terapias Integrativas e Complementares</span>
-          <span class="cred-acao">Ver certificado ↗</span>
-        </a>
+        </div>
       </div>
 
       <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:1.1rem;">
         <a href="https://drive.google.com/drive/folders/1NmL5DpX3o5yodlV5UShqpRugeDVkVVLc?usp=drive_link" target="_blank" rel="noopener" class="comms-btn">Ver PPCs Unicesumar</a>
-        <a href="https://view.pok.tech/c/bd33effc-07f3-4d56-b0cf-8cd14feb1853" target="_blank" rel="noopener" class="comms-btn">Ver exemplo de badge</a>
+        <a href="https://certificados.unicesumar.edu.br/c/c7a5a1c2-e53e-4403-98b3-d17f5bd3f85a" target="_blank" rel="noopener" class="comms-btn">Ver exemplo da credencial</a>
       </div>
 
       <div style="margin-top:12px; font-size:13px; line-height:1.5; color:#000;">
@@ -1323,16 +1314,6 @@
 /* ── Estrutura das peças ─────────────────────────────────────────── */
 var PECAS = [
   {
-    id: "certificado",
-    tag: "Peça 1",
-    titulo: "Design do Certificado",
-    layout: "files",
-    arquivos: [
-      { nome: "certificado-final-UniCesumar.png",      specs: "PNG · RGB" },
-      { nome: "Certificado-fundo.png", specs: "PNG · RGB" }
-    ]
-  },
-  {
     id: "head",
     tag: "Peça 2",
     titulo: "Landing Page e POK Holder",
@@ -1423,7 +1404,20 @@ var PECAS = [
     });
   }
 
-  var BADGE_HTML = '<section class="piece" id="badge">\n    <div class="piece-head">\n      <span class="piece-tag">Peça 1b</span>\n      <h2 class="piece-title">Design do badge</h2>\n    </div>\n\n    <div class="piece-body">\n      <div class="cert-block">\n        <div class="cert-preview">\n          <div class="cert-preview-label">\n            <span>Modelo do badge</span>\n          </div>\n          <div class="cert-placeholder cert-placeholder--badge cert-placeholder--filled" aria-label="Modelo do badge · quadro 1600 × 1600 px">\n            <svg viewBox="0 0 1000 1000" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display:block; font-family:\'Poppins\',sans-serif;">\n              <defs>\n                <pattern id="badgeHatchUni" width="16" height="16" patternUnits="userSpaceOnUse">\n                  <path d="M0,16 L16,0 M-4,4 L4,-4 M12,20 L20,12" stroke="#5123a4" stroke-width="0.6" opacity="0.07"/>\n                  <path d="M0,0 L16,16 M-4,12 L4,20 M12,-4 L20,4" stroke="#5123a4" stroke-width="0.6" opacity="0.07"/>\n                </pattern>\n                <clipPath id="badgeClipUni"><circle cx="520" cy="520" r="362"/></clipPath>\n              </defs>\n              <rect x="0" y="0" width="1000" height="1000" fill="#ffffff"/>\n              <line x1="140" y1="90" x2="900" y2="90" stroke="#f03f0f" stroke-width="2"/>\n              <line x1="140" y1="78" x2="140" y2="102" stroke="#f03f0f" stroke-width="2"/>\n              <line x1="900" y1="78" x2="900" y2="102" stroke="#f03f0f" stroke-width="2"/>\n              <rect x="458" y="72" width="124" height="38" rx="9" fill="#f03f0f"/>\n              <text x="520" y="98" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">1600 px</text>\n              <line x1="92" y1="140" x2="92" y2="900" stroke="#f03f0f" stroke-width="2"/>\n              <line x1="80" y1="140" x2="104" y2="140" stroke="#f03f0f" stroke-width="2"/>\n              <line x1="80" y1="900" x2="104" y2="900" stroke="#f03f0f" stroke-width="2"/>\n              <g transform="translate(92,520) rotate(-90)">\n                <rect x="-62" y="-19" width="124" height="38" rx="9" fill="#f03f0f"/>\n                <text x="0" y="7" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">1600 px</text>\n              </g>\n              <rect x="140" y="140" width="760" height="760" fill="url(#badgeHatchUni)" clip-path="url(#badgeClipUni)"/>\n              <circle cx="520" cy="520" r="380" fill="none" stroke="#5123a4" stroke-width="3"/>\n              <circle cx="520" cy="520" r="362" fill="none" stroke="#5123a4" stroke-width="1.5"/>\n              <circle cx="520" cy="300" r="54" fill="#EDE6F6" stroke="#5123a4" stroke-width="1.5"/>\n              <text x="520" y="298" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#5123a4">LOGO</text>\n              <text x="520" y="316" text-anchor="middle" font-size="9" font-weight="600" letter-spacing="1.5" fill="#5123a4">INSTITUIÇÃO</text>\n              <text x="520" y="478" text-anchor="middle" font-size="50" font-weight="800" letter-spacing="9" fill="#5123a4">BADGE</text>\n              <line x1="446" y1="510" x2="496" y2="510" stroke="#5123a4" stroke-width="1.5"/>\n              <circle cx="520" cy="510" r="4" fill="#5123a4"/>\n              <line x1="544" y1="510" x2="594" y2="510" stroke="#5123a4" stroke-width="1.5"/>\n              <text x="520" y="544" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="3" fill="#6b5f86">CERTIFICAMOS QUE</text>\n              <text x="520" y="582" text-anchor="middle" font-size="30" font-weight="700" fill="#1a1530">Nome do Aluno</text>\n              <line x1="375" y1="598" x2="665" y2="598" stroke="#1a1530" stroke-width="1.5"/>\n              <text x="520" y="634" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#6b5f86">concluiu a competência</text>\n              <text x="520" y="676" text-anchor="middle" font-size="36" font-weight="700" fill="#5123a4">Nome da competência</text>\n            </svg>\n          </div>\n        </div>\n\n        <div class="cert-specs">\n          <div class="cert-specs-label">Especificações técnicas</div>\n          <div class="spec-row">\n            <span class="spec-k">Dimensões</span>\n            <span class="spec-v">1600 × 1600 px</span>\n          </div>\n          <div class="spec-row">\n            <span class="spec-k">Formato da arte</span>\n            <span class="spec-v">Livre</span>\n          </div>\n          <div class="spec-row">\n            <span class="spec-k">Arquivo</span>\n            <span class="spec-v">PNG</span>\n          </div>\n          <div class="spec-row">\n            <span class="spec-k">Resolução</span>\n            <span class="spec-v">150 DPI</span>\n          </div>\n          <div class="spec-row">\n            <span class="spec-k">Espaço de cor</span>\n            <span class="spec-v">RGB</span>\n          </div>\n          <div class="spec-row">\n            <span class="spec-k">Fundo</span>\n            <span class="spec-v">Transparente</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>';
+  var BADGE_HTML = '<section class="piece" id="badge">' +
+    '<div class="piece-head"><span class="piece-tag">Peça 1</span><h2 class="piece-title">Design do badge</h2></div>' +
+    '<div class="piece-body"><div class="files files--badge">' +
+      '<div class="file">' +
+        '<button class="file-frame" data-src="https://pokbrasil.github.io/clientes/Unicesumar/badge-unicesumar.png" data-label="badge-unicesumar.png · exemplo do badge">' +
+          '<img src="https://pokbrasil.github.io/clientes/Unicesumar/badge-unicesumar.png" alt="Exemplo do badge Unicesumar" loading="lazy"></button>' +
+        '<div class="file-name">badge-unicesumar.png</div>' +
+        '<div class="file-specs">1600 × 1600 px · PNG · RGB</div>' +
+        '<div class="file-links">' +
+          '<a href="https://pokbrasil.github.io/clientes/Unicesumar/badge-unicesumar.png" target="_blank" rel="noopener">Abrir</a>' +
+          '<a href="https://pokbrasil.github.io/clientes/Unicesumar/badge-unicesumar.png" download>Baixar</a>' +
+        '</div>' +
+      '</div>' +
+    '</div></div></section>';
 
   var BASE = 'https://pokbrasil.github.io/clientes/Unicesumar/';
   function url(nome) { return BASE + encodeURIComponent(nome); }
@@ -1432,6 +1426,13 @@ var PECAS = [
   var hostPre = document.getElementById('pieces-pre');
   var hostPost = document.getElementById('pieces-post');
   var POST = ['whatsapp', 'polos', 'linkedin'];
+
+  /* Badge entra como primeira peça */
+  hostPre.insertAdjacentHTML('beforeend', BADGE_HTML);
+  var badgeLink = document.createElement('a');
+  badgeLink.href = '#badge';
+  badgeLink.textContent = 'Design do badge';
+  toc.appendChild(badgeLink);
 
   PECAS.forEach(function (peca) {
     if (peca.id === 'whatsapp') {
@@ -1498,14 +1499,6 @@ var PECAS = [
       (peca.flagPeca ? '<div class="flag-row" style="margin-top:1rem;"><span class="file-flag file-flag--luciano">' + esc(peca.flagPeca) + '</span></div>' : '') +
       '</div></section>';
     (POST.indexOf(peca.id) > -1 ? hostPost : hostPre).insertAdjacentHTML('beforeend', html);
-
-    if (peca.id === 'certificado') {
-      hostPre.insertAdjacentHTML('beforeend', BADGE_HTML);
-      var badgeLink = document.createElement('a');
-      badgeLink.href = '#badge';
-      badgeLink.textContent = 'Design do badge';
-      toc.appendChild(badgeLink);
-    }
   });
 
   /* ── Lightbox ── */
