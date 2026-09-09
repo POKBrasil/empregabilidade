@@ -158,6 +158,16 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .rank-track{height:7px;background:var(--purple-faint);border-radius:99px;overflow:hidden}
 .rank-fill{height:100%;background:var(--purple);border-radius:99px}
 .rank-value{text-align:right;font-size:10px;font-weight:700;color:var(--purple)}
+.share-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.share-item{margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
+.share-item img{width:100%;height:auto;display:block}
+.share-item figcaption{padding:12px 14px 14px;font-size:10px;line-height:1.45;color:var(--ink);border-top:1px solid var(--border)}
+.share-item figcaption strong{display:block;font-size:12px;margin-bottom:4px}
+.share-item .share-kind{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:99px;background:var(--purple-faint);color:var(--purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.share-item .share-from,.share-item .share-to{display:block}
+.share-item .share-from{color:var(--muted)}
+.share-item .share-arrow{display:block;color:var(--yellow);font-weight:800;line-height:1}
+@media(max-width:760px){.share-grid{grid-template-columns:1fr 1fr}}
 .material-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .material-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:18px 14px;border:1px solid var(--border);border-radius:16px;background:var(--purple-faint)}
 .material-item img{width:100%;max-width:220px;height:auto;display:block}
@@ -450,7 +460,14 @@ tbody tr:hover{background:var(--purple-faint)}
 
 <div class="module-panel" id="panelQualitativo" role="tabpanel" aria-labelledby="tabQualitativo" hidden>
   <div class="section-label" id="holdersSection"><span>Portadores individuais</span></div>
-  <div class="holder-intro"><strong>Do agregado ao caso a caso</strong>Para cada portador, consulte a trilha e o curso de origem, a competência certificada, o cargo detectado, o tipo de mudança e o tempo até ela acontecer. A leitura individual ajuda a verificar as histórias que sustentam os indicadores agregados. Dados extraídos do painel de Empregabilidade POK.</div>
+  <div class="holder-intro"><strong>Do agregado ao caso a caso</strong>Exemplos de compartilhamentos no LinkedIn com mudança de emprego:</div>
+  <section class="card split-card">
+    <div class="share-grid" id="shareGrid"></div>
+  </section>
+  <div class="holder-intro" style="margin-top:22px"><p>Exemplos de compartilhamentos no LinkedIn com engajamento:</p></div>
+  <section class="card split-card">
+    <div class="share-grid" id="engageGrid"></div>
+  </section>
 
 </div>
 
@@ -516,7 +533,7 @@ const ES={
   'Empresa e cargo atuais declarados no perfil profissional público, lidos para todos os portadores em varredura – não apenas para quem mudou de emprego. Quem já estava colocado e permaneceu também aparece aqui. O percentual tem como base os portadores que compartilharam a credencial. Ressalva: o perfil envelhece – quem não atualiza há tempos aparece no vínculo antigo, e o cargo é autodeclarado, não verificado.':'Empresa y cargo actuales declarados en el perfil profesional público, leídos para todos los portadores en barrido – no solo para quienes cambiaron de empleo. Quien ya estaba colocado y permaneció también aparece aquí. El porcentaje tiene como base los portadores que compartieron la credencial. Salvedad: el perfil envejece – quien no lo actualiza hace tiempo aparece en el vínculo antiguo, y el cargo es autodeclarado, no verificado.',
   'Impacto na empregabilidade':'Impacto en la empleabilidad','Trilhas, cursos e competências com maior impacto':'Rutas, cursos y competencias con mayor impacto',
   'Insights estratégicos sobre empregabilidade':'Insights estratégicos sobre empleabilidad','Insights estratégicos':'Insights estratégicos',
-  'Do agregado ao caso a caso':'Del agregado al caso individual','Para cada portador, consulte a trilha e o curso de origem, a competência certificada, o cargo detectado, o tipo de mudança e o tempo até ela acontecer. A leitura individual ajuda a verificar as histórias que sustentam os indicadores agregados. Dados extraídos do painel de Empregabilidade POK.':'Para cada portador, consulte la ruta y el curso de origen, la competencia certificada, el cargo detectado, el tipo de cambio y el tiempo transcurrido hasta que ocurrió. La lectura individual ayuda a verificar las historias que sustentan los indicadores agregados. Datos extraídos del panel de Empleabilidad POK.',
+  'Do agregado ao caso a caso':'Del agregado al caso individual','Exemplos de compartilhamentos no LinkedIn com mudança de emprego:':'Ejemplos de publicaciones en LinkedIn con cambio de empleo:','Exemplos de compartilhamentos no LinkedIn com engajamento:':'Ejemplos de publicaciones en LinkedIn con interacción:','Para cada portador, consulte a trilha e o curso de origem, a competência certificada, o cargo detectado, o tipo de mudança e o tempo até ela acontecer. A leitura individual ajuda a verificar as histórias que sustentam os indicadores agregados. Dados extraídos do painel de Empregabilidade POK.':'Para cada portador, consulte la ruta y el curso de origen, la competencia certificada, el cargo detectado, el tipo de cambio y el tiempo transcurrido hasta que ocurrió. La lectura individual ayuda a verificar las historias que sustentan los indicadores agregados. Datos extraídos del panel de Empleabilidad POK.',
   
   'Buscar por curso, competência ou portador...':'Buscar por curso, competencia o portador...','Filtrar mudanças':'Filtrar cambios','Todas as mudanças':'Todos los cambios','Sem mudança ainda':'Sin cambio todavía','Ver só com postagem compartilhada':'Ver solo con publicación compartida',
   'Compartilhamento':'Publicación','Portador':'Portador','Cargo detectado':'Cargo detectado','Mudança':'Cambio','Dias':'Días','Nenhum portador corresponde aos filtros.':'Ningún portador coincide con los filtros.',
@@ -569,7 +586,7 @@ function applyLanguage(){
 }
 function setLanguage(language,{refresh=true}={}){
   restorePortuguese();currentLanguage=language==='es'?'es':'pt';
-  if(typeof MATERIAL_PRONTO!=='undefined'&&MATERIAL_PRONTO)renderMaterial();
+  if(typeof MATERIAL_PRONTO!=='undefined'&&MATERIAL_PRONTO){renderMaterial();renderCompartilhamentos()}
   try{localStorage.setItem('pok-score-language',currentLanguage)}catch(error){}
   if(refresh&&typeof dashboardReady!=='undefined'&&dashboardReady)updateDashboard();else{updateMobileFilterToggle();applyLanguage()}
 }
@@ -979,7 +996,7 @@ function renderBrand(list){
   brandChart=new Chart(ctx,{type:'bar',data:{labels:linhas.map(l=>curto(l.nome)),datasets:[
     {label:'LinkedIn',data:linhas.map(l=>l.li),backgroundColor:'#5123a4',borderRadius:4,barPercentage:.9,categoryPercentage:.55},
     {label:es?'Publicaciones':'Publicações',data:linhas.map(l=>l.posts),backgroundColor:'#f03f0f',borderRadius:4,barPercentage:.9,categoryPercentage:.55}
-  ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:44}},plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},tooltip:{titleFont:{weight:'normal',size:11},bodyFont:{weight:'normal',size:11},callbacks:{title:items=>linhas[items[0].dataIndex].nome,label:c=>c.dataset.label+': '+nfmt(c.raw)}}},scales:{x:{beginAtZero:true,grid:{color:'rgba(81,35,164,.08)'},ticks:{precision:0,font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:11,weight:'600'}}}}},
+  ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:44}},plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},tooltip:{titleFont:{weight:'normal',size:11},bodyFont:{weight:'normal',size:11},callbacks:{title:items=>linhas[items[0].dataIndex].nome,label:c=>c.dataset.label+': '+nfmt(c.raw)}}},scales:{x:{beginAtZero:true,grid:{color:'rgba(81,35,164,.08)'},ticks:{precision:0,font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:11,weight:'normal'}}}}},
   plugins:[{id:'brandLabels',afterDatasetsDraw(chart){const {ctx}=chart;ctx.save();ctx.font='600 10px Poppins, sans-serif';ctx.textBaseline='middle';chart.data.datasets.forEach((ds,di)=>{const meta=chart.getDatasetMeta(di);if(meta.hidden)return;ctx.fillStyle=ds.backgroundColor;meta.data.forEach((bar,i)=>{ctx.fillText(nfmt(ds.data[i]),bar.x+6,bar.y)})});ctx.restore()}}]});
 }
 
@@ -1141,8 +1158,31 @@ function renderMaterial(){
   const el=document.getElementById('materialGrid');if(!el)return;
   el.innerHTML=MATERIAL.map(m=>{const img='<img src="'+PASTA_MATERIAL+m.arquivo+'" alt="'+m.rotulo+' – '+m.nome+'" loading="lazy">';return '<figure class="material-item'+(m.certificado?' certificado':'')+'">'+(m.link?'<a class="material-link" href="'+m.link+'" target="_blank" rel="noopener" title="'+(currentLanguage==='es'?'Ver credencial verificable':'Ver credencial verificável')+'">'+img+'</a>':img)+'<figcaption><span>'+(m.certificado?m.rotulo:(currentLanguage==='es'?'Competencia':'Competência'))+'</span>'+m.nome+(m.link?'<a class="material-cta" href="'+m.link+'" target="_blank" rel="noopener">'+(currentLanguage==='es'?'Ver credencial ↗':'Ver credencial ↗')+'</a>':'')+'</figcaption></figure>'}).join('');
 }
+
+/* ---- Dados qualitativos: exemplos de compartilhamentos no LinkedIn ---- */
+const COMPARTILHAMENTOS=[
+  {arquivo:'Adenilson-Galvao.png',nome:'Adenilson Galvão',de:'Assistente de pesquisa – UNA-SUS/UFMA',para:'Professor Mediador (Pós-Graduação) – Vitru Educação'},
+  {arquivo:'Aline-Lopes.png',nome:'Aline Lopes',de:'Pesquisador – ICETI',para:'Editor-chefe – Revista em Agronegócio e Meio Ambiente'},
+  {arquivo:'Cesar-Braga.png',nome:'Cesar Braga',de:'Copista – Musimed Edições Musicais',para:'Professor Regente – UNIASSELVI'},
+  {arquivo:'Jeferson-Lima.png',nome:'Jeferson Lima',de:'Assessor Chefe de Gestão Educacional – Secretaria Municipal de Educação de Porciúncula',para:'Professor – UNIASSELVI'},
+  {arquivo:'Jorge-Santana.png',nome:'Jorge Santana',de:"Professor de música – Prefeitura Municipal de Itaporanga D'Ajuda",para:'Professor Mediador do Curso de Licenciatura em Música – UNIASSELVI'},
+  {arquivo:'Matheus-Fim.png',nome:'Matheus Fim',de:'Professor Bilíngue – Prefeitura de Joinville',para:'Tradutor Intérprete de Libras – SENAI/SC'}
+];
+function renderCompartilhamentos(){
+  const el=document.getElementById('shareGrid');if(!el)return;const es=currentLanguage==='es';
+  el.innerHTML=COMPARTILHAMENTOS.map(c=>'<figure class="share-item"><img src="'+PASTA_MATERIAL+c.arquivo+'" alt="'+c.nome+'" loading="lazy"><figcaption><strong>'+c.nome+'</strong><span class="share-kind">'+(es?'Nuevo empleo':'Novo emprego')+'</span><span class="share-from">'+c.de+'</span><span class="share-arrow">→</span><span class="share-to">'+c.para+'</span></figcaption></figure>').join('');
+}
+const ENGAJAMENTO=[
+  {arquivo:'Jaciran-Teles.png',nome:'Jaciran Teles'},
+  {arquivo:'Michelle-Brambilla.png',nome:'Michelle Brambilla'},
+  {arquivo:'Claudio-Caldereiro.png',nome:'Claudio Caldereiro'}
+];
+function renderEngajamento(){
+  const el=document.getElementById('engageGrid');if(!el)return;
+  el.innerHTML=ENGAJAMENTO.map(c=>'<figure class="share-item"><img src="'+PASTA_MATERIAL+c.arquivo+'" alt="'+c.nome+'" loading="lazy"><figcaption><strong>'+c.nome+'</strong></figcaption></figure>').join('');
+}
 var MATERIAL_PRONTO=true;
-renderMaterial();
+renderMaterial();renderCompartilhamentos();renderEngajamento();
 const PANELS={quantitativo:'panelTrajetoria',qualitativo:'panelQualitativo',material:'panelMaterial'};
 function setModule(name){
   if(!PANELS[name])name='quantitativo';
