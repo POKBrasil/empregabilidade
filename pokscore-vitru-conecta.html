@@ -1017,7 +1017,7 @@ function renderInsightsFoto(list){
   const liderLi=[...linhas].sort((a,b)=>b.li-a.li)[0];
   const rankTaxa=linhas.filter(l=>l.li>=10).map(l=>({nome:l.nome,taxa:Math.round(l.posts/l.li*100)})).sort((a,b)=>b.taxa-a.taxa);
   const liderTaxa=rankTaxa[0];
-  const i1=noLinkedIn.length?(st(nfmt(noLinkedIn.length))+' credenciais aparecem no LinkedIn, '+st(nfmt(posts.length))+' delas viraram publicação no feed — cada uma levando o nome da instituição à rede profissional do portador.'):'Sem presença no LinkedIn no recorte.';
+  const i1=noLinkedIn.length?(st(nfmt(noLinkedIn.length))+' credenciais aparecem no LinkedIn, '+st(nfmt(posts.length))+' delas viraram publicação no feed – cada uma levando o nome da instituição à rede profissional do portador.'):'Sem presença no LinkedIn no recorte.';
   const i2=liderLi?(em(curto(liderLi.nome))+' é a competência que mais leva a marca ao LinkedIn, com '+st(nfmt(liderLi.li)+' credenciais')+' presentes.'):'Sem presença registrada no recorte.';
   const i3=liderTaxa?(em(curto(liderTaxa.nome))+' é a que mais converte presença em publicação: '+st(liderTaxa.taxa+'%')+' das suas credenciais no LinkedIn viraram post no feed.'):'Base insuficiente para comparar a conversão em publicações.';
   const insights=[['01','Presença no LinkedIn',i1],['02','Competência que mais expõe a marca',i2],['03','Conversão em publicações',i3]];
