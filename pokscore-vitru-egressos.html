@@ -315,6 +315,19 @@ tbody tr:hover{background:var(--purple-faint)}
 .move-kind{display:inline-block;white-space:nowrap;justify-self:start;font-size:8px;font-weight:700;padding:2px 6px;border-radius:99px;background:var(--purple-faint);color:var(--purple);text-transform:uppercase;letter-spacing:.04em}
 .move-kind.promo{background:rgba(29,158,117,.12);color:#1d9e75}
 .move-count{text-align:right;font-size:10px;font-weight:700;color:var(--purple)}
+/* ── Mobilidade geográfica: disposição própria (não afeta outros rankings/moves) ── */
+#geoMobilityCard .rank-cols{grid-template-columns:1fr;gap:8px}
+#geoMobilityCard .rank-group + .rank-group{margin-top:24px}
+#geoMobilityCard .rank-row{grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+#geoMobilityCard .rank-label{font-size:10px;margin-bottom:5px}
+#geoMobilityCard .rank-label span:last-child{font-weight:700;color:var(--purple);white-space:nowrap}
+#geoMobilityCard .rank-value{font-size:12px;align-self:center}
+#geoMobilityCard .rank-track{height:8px}
+/* deslocamentos: largura total, cidades + selo + contagem na mesma linha */
+#geoMobilityCard .move-row{grid-template-columns:minmax(0,1fr) 40px;gap:12px;margin:11px 0;padding-bottom:11px}
+#geoMobilityCard .move-pair{grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr) auto;font-size:12px;align-items:center;column-gap:10px}
+#geoMobilityCard .move-pair .move-kind{grid-column:auto;justify-self:start;margin-top:0}
+#geoMobilityCard .move-count{font-size:14px}
 .kpi-grid.brand-kpis{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:14px}
 .kpi-grid.brand-kpis .kpi{min-height:0}
 .chart-wrap.brand-wrap{height:400px;min-height:240px}
@@ -546,7 +559,7 @@ tbody tr:hover{background:var(--purple-faint)}
     <div class="chart-nav" id="nav_idade" hidden><span id="lbl_idade"></span><div><button type="button" data-nav="idade" data-step="-1" aria-label="Página anterior">&lsaquo;</button><button type="button" data-nav="idade" data-step="1" aria-label="Próxima página">&rsaquo;</button></div></div>
   </section>
 
-  <section class="card split-card">
+  <section class="card split-card" id="geoMobilityCard">
     <div class="card-header"><div><h2>Mobilidade geográfica<button class="help hint" type="button" aria-label="Nota técnica sobre mobilidade geográfica">i<span class="tip">Endereço de cadastro do portador, captado por CPF em cadastros de mercado. Compara o município da leitura feita na emissão da credencial com o da leitura mais recente. Conta quem mudou de município e quem mudou de estado, e lista os deslocamentos mais frequentes. O endereço de cadastro pode demorar a refletir uma mudança real, por isso o indicador tende a subestimar a mobilidade nos primeiros meses.</span></button></h2><p>O gráfico lê uma trilha, um curso, uma competência ou um ano de emissão, definido nos filtros acima. Mostra quantos portadores mudaram de município ou de estado desde a emissão da credencial, onde estão hoje e quais foram os deslocamentos mais frequentes.</p><p class="filter-applied" id="finGeoFilter"></p></div></div>
     <div class="kpi-grid brand-kpis" id="finGeoStats"></div>
     <div class="rank-cols">
