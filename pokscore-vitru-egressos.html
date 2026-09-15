@@ -315,6 +315,10 @@ tbody tr:hover{background:var(--purple-faint)}
 .move-kind{display:inline-block;white-space:nowrap;justify-self:start;font-size:8px;font-weight:700;padding:2px 6px;border-radius:99px;background:var(--purple-faint);color:var(--purple);text-transform:uppercase;letter-spacing:.04em}
 .move-kind.promo{background:rgba(29,158,117,.12);color:#1d9e75}
 .move-count{text-align:right;font-size:10px;font-weight:700;color:var(--purple)}
+.mov-pager{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px}
+.mov-pager button{width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--purple);font-size:14px;font-weight:700;cursor:pointer;line-height:1}
+.mov-pager button:disabled{opacity:.35;cursor:default}
+.mov-pager .mov-pag-label{font-size:11px;color:var(--muted);font-weight:600}
 /* ── Mobilidade geográfica: disposição própria (não afeta outros rankings/moves) ── */
 #geoMobilityCard .rank-cols{grid-template-columns:1fr;gap:8px}
 #geoMobilityCard .rank-group + .rank-group{margin-top:24px}
@@ -463,8 +467,8 @@ tbody tr:hover{background:var(--purple-faint)}
   <section class="card split-card moves-card">
     <div class="card-header"><div><h2>Movimentações após a credencial</h2><p>Para cada mudança profissional observada, o painel registra de onde a pessoa saiu e para onde foi – em empresa e em cargo. É o que permite à instituição saber que tipo de movimento a credencial está acompanhando.</p><p class="filter-applied" id="movesFilterLine"></p></div></div>
     <div class="rank-cols">
-      <div class="rank-group"><h3>Empresas: de onde saíram → para onde foram</h3><div id="companyMoves"></div></div>
-      <div class="rank-group"><h3>Cargos: de onde saíram → para onde foram</h3><div id="roleMoves"></div></div>
+      <div class="rank-group"><h3>Empresas: de onde saíram → para onde foram</h3><div id="companyMoves"></div><div class="mov-pager" id="companyMovesNav"></div></div>
+      <div class="rank-group"><h3>Cargos: de onde saíram → para onde foram</h3><div id="roleMoves"></div><div class="mov-pager" id="roleMovesNav"></div></div>
     </div>
   </section>
 
@@ -597,7 +601,7 @@ const VALUE_ES={
   
   'Bacharel em Administração':'Bachiller en Administración','Bacharel em Biomedicina':'Bachiller en Biomedicina','Bacharel em Farmácia':'Bachiller en Farmacia','Bacharel em Nutrição':'Bachiller en Nutrición','Bacharel em Terapia Ocupacional':'Bachiller en Terapia Ocupacional',
   'Tecnólogo em Estética e Cosmética':'Tecnólogo en Estética y Cosmética','Tecnólogo em Podologia':'Tecnólogo en Podología','Tecnólogo em Terapias Integrativas e Complementares':'Tecnólogo en Terapias Integrativas y Complementarias','Tecnólogo em Radiologia':'Tecnólogo en Radiología','Tecnólogo em Gerontologia':'Tecnólogo en Gerontología','Tecnólogo em Estética e Imagem Pessoal':'Tecnólogo en Estética e Imagen Personal',
-  'Gestão Organizacional':'Gestión Organizacional','Análises Clínicas':'Análisis Clínicos','Assistência Farmacêutica':'Asistencia Farmacéutica','Nutrição Clínica':'Nutrición Clínica','Reabilitação Funcional':'Rehabilitación Funcional','Procedimentos Estéticos':'Procedimientos Estéticos','Cuidados Podológicos':'Cuidados Podológicos','Práticas Integrativas em Saúde':'Prácticas Integrativas en Salud','Diagnóstico por Imagem':'Diagnóstico por Imagen','Cuidado à Pessoa Idosa':'Cuidado a la Persona Mayor','Imagem Pessoal e Estética':'Imagen Personal y Estética',
+  'Gestão de Organizações, Pessoas e Processos':'Gestión de Organizaciones, Personas y Procesos','Diagnóstico em Saúde e Investigação Biomédica':'Diagnóstico en Salud e Investigación Biomédica','Gestão de Práticas Farmacêuticas e Cuidados Clínicos':'Gestión de Prácticas Farmacéuticas y Cuidados Clínicos','Cuidado Nutricional e Gestão em Alimentação e Saúde':'Cuidado Nutricional y Gestión en Alimentación y Salud','Tratamento Estético e Cosmetologia Aplicada':'Tratamiento Estético y Cosmetología Aplicada','Saúde e Cuidado Podológico':'Salud y Cuidado Podológico','Práticas Integrativas em Saúde e Bem-Estar':'Prácticas Integrativas en Salud y Bienestar','Prática em Radiologia e Diagnóstico por Imagem':'Práctica en Radiología y Diagnóstico por Imagen','Cuidado e Gestão Gerontológica':'Cuidado y Gestión Gerontológica','Consultoria em Imagem e Estética Pessoal':'Consultoría en Imagen y Estética Personal',
   'Nexo Serviços':'Nexo Servicios','Lumina Educação':'Lumina Educación','Orbe Consultoria':'Orbe Consultoría','Atlas Logística':'Atlas Logística',
   'Analista de Dados':'Analista de Datos','Analista de Negócios':'Analista de Negocios','Coordenador de Projetos':'Coordinador de Proyectos','Especialista de Operações':'Especialista de Operaciones','Assistente Financeiro':'Asistente Financiero','Consultor Comercial':'Consultor Comercial','Supervisor de Equipe':'Supervisor de Equipo',
   'Remoto':'Remoto','Híbrido':'Híbrido','Presencial':'Presencial'
@@ -736,16 +740,16 @@ const CURSOS=[
   'Tecnólogo em Estética e Imagem Pessoal','Tecnólogo em Gerontologia'
 ];
 const COURSE_COMPETENCY={
-  'Bacharel em Administração':'Gestão Organizacional',
-  'Bacharel em Nutrição':'Nutrição Clínica',
-  'Bacharel em Biomedicina':'Análises Clínicas',
-  'Tecnólogo em Estética e Cosmética':'Procedimentos Estéticos',
-  'Tecnólogo em Podologia':'Cuidados Podológicos',
-  'Bacharel em Farmácia':'Assistência Farmacêutica',
-  'Tecnólogo em Terapias Integrativas e Complementares':'Práticas Integrativas em Saúde',
-  'Tecnólogo em Radiologia':'Diagnóstico por Imagem',
-  'Tecnólogo em Estética e Imagem Pessoal':'Imagem Pessoal e Estética',
-  'Tecnólogo em Gerontologia':'Cuidado à Pessoa Idosa'
+  'Bacharel em Administração':'Gestão de Organizações, Pessoas e Processos',
+  'Bacharel em Nutrição':'Cuidado Nutricional e Gestão em Alimentação e Saúde',
+  'Bacharel em Biomedicina':'Diagnóstico em Saúde e Investigação Biomédica',
+  'Tecnólogo em Estética e Cosmética':'Tratamento Estético e Cosmetologia Aplicada',
+  'Tecnólogo em Podologia':'Saúde e Cuidado Podológico',
+  'Bacharel em Farmácia':'Gestão de Práticas Farmacêuticas e Cuidados Clínicos',
+  'Tecnólogo em Terapias Integrativas e Complementares':'Práticas Integrativas em Saúde e Bem-Estar',
+  'Tecnólogo em Radiologia':'Prática em Radiologia e Diagnóstico por Imagem',
+  'Tecnólogo em Estética e Imagem Pessoal':'Consultoria em Imagem e Estética Pessoal',
+  'Tecnólogo em Gerontologia':'Cuidado e Gestão Gerontológica'
 };
 // ==========================================================================
 // DADOS REAIS DA ABA TRAJETÓRIA (base LinkedIn), etapa 1 (15/09/2026).
@@ -1196,7 +1200,7 @@ function renderFunnel(list){
     [es?'Credenciales emitidas':'Credenciais emitidas', T.emitidas, '#3a1878', 'total'],
     [es?'Credenciales aceptadas':'Credenciais aceitas', T.aceitas, '#4a1f94', 'emitidas'],
     [es?'Credenciales en LinkedIn':'Credenciais no LinkedIn', T.compartilhamentos, '#6b45bb', 'aceitas'],
-    [es?'Publicaciones':'Publicações', T.publicacoes, '#9d87d6', 'linkedin'],
+    [es?'Publicaciones en el feed':'Publicações no feed', T.publicacoes, '#9d87d6', 'linkedin'],
     [es?'Añadidas al perfil':'Adicionadas ao perfil', T.perfil, '#1d9e75', 'linkedin'],
     [es?'Cambios profesionales':'Mudanças profissionais', (typeof MOVIMENTACOES!=='undefined'&&MOVIMENTACOES?MOVIMENTACOES.length:0), '#5dcaa5', 'linkedin']
   ];
@@ -1320,7 +1324,7 @@ function renderBrand(list){
   if(ctx.parentElement)ctx.parentElement.style.height=alturaWrap+'px';
   brandChart=new Chart(ctx,{type:'bar',data:{labels:linhas.map(l=>displayValue(l.nome)),datasets:[
     {label:'LinkedIn',data:linhas.map(l=>l.li),backgroundColor:'#5123a4',borderRadius:4,barThickness:12,maxBarThickness:14},
-    {label:es?'Publicaciones':'Publicações',data:linhas.map(l=>l.posts),backgroundColor:'#f03f0f',borderRadius:4,barThickness:12,maxBarThickness:14}
+    {label:es?'Publicaciones en el feed':'Publicações no feed',data:linhas.map(l=>l.posts),backgroundColor:'#f03f0f',borderRadius:4,barThickness:12,maxBarThickness:14}
   ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:44}},plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},tooltip:{titleFont:{weight:'normal',size:11},bodyFont:{weight:'normal',size:11},callbacks:{title:items=>displayValue(linhas[items[0].dataIndex].nome),label:c=>c.dataset.label+': '+nfmt(c.raw)}}},scales:{x:{beginAtZero:true,grid:{color:'rgba(81,35,164,.08)'},ticks:{precision:0,font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:11,weight:'normal'}}}}},
   plugins:[{id:'brandLabels',afterDatasetsDraw(chart){const {ctx}=chart;ctx.save();ctx.font='600 10px Poppins, sans-serif';ctx.textBaseline='middle';chart.data.datasets.forEach((ds,di)=>{const meta=chart.getDatasetMeta(di);if(meta.hidden)return;ctx.fillStyle=ds.backgroundColor;meta.data.forEach((bar,i)=>{ctx.fillText(nfmt(ds.data[i]),bar.x+6,bar.y)})});ctx.restore()}}]});
 }
@@ -1435,24 +1439,51 @@ function renderInsightsEmpregabilidade(){
 }
 // Movimentações após a credencial: os 2 casos reais de mudança de emprego (Job Generated).
 // Respeita o filtro de curso/trilha/competência. Base pequena (2) – é retrato do que há.
+let movPagEmp=0, movPagCargo=0, movFiltroAnterior='';
 function renderMovimentacoes(){
   const es=currentLanguage==='es';
   const fp=ids.pathway&&ids.pathway.value, fc=ids.course&&ids.course.value, fk=ids.competency&&ids.competency.value;
   const selected=fp||fc||fk||null;
+  const assinatura=[fp,fc,fk].join('|');
+  if(assinatura!==movFiltroAnterior){movFiltroAnterior=assinatura;movPagEmp=0;movPagCargo=0;}
   const casos=MOVIMENTACOES.filter(m=>{
     if(fp&&m.curso!==fp)return false; if(fc&&m.curso!==fc)return false;
     if(fk&&COURSE_COMPETENCY[m.curso]!==fk)return false; return true;
   });
   const linha=document.getElementById('movesFilterLine');
   if(linha)linha.textContent='Filtro aplicado: '+(selected?displayValue(selected):(es?'toda la institución':'toda a instituição'));
-  const kind=es?'Nuevo empleo':'Novo emprego';
-  const monta=(target,de,para)=>{
-    const el=document.getElementById(target);if(!el)return;
-    if(!casos.length){el.innerHTML='<div class="empty">'+(es?'Sin cambios observados en el recorte.':'Sem mudanças observadas no recorte.')+'</div>';return;}
-    el.innerHTML=casos.map(m=>'<div class="move-row"><div class="move-pair"><span title="'+de(m)+'">'+de(m)+'</span><span class="arrow">→</span><span class="to" title="'+para(m)+'">'+para(m)+'</span><span class="move-kind promo">'+kind+'</span></div><div class="move-count">1</div></div>').join('');
+  const PG=10;
+  const agrupa=(deFn,paraFn)=>{
+    const mapa=new Map();
+    casos.forEach(m=>{
+      const de=deFn(m)||'–', para=paraFn(m)||'–', chave=de+' → '+para;
+      let g=mapa.get(chave); if(!g){g={de,para,n:0,promo:0};mapa.set(chave,g);}
+      g.n++; if(!/novo|nuevo/i.test(m.tipo||''))g.promo++;
+    });
+    return [...mapa.values()].sort((a,b)=>b.n-a.n);
   };
-  monta('companyMoves',m=>m.empDe||'–',m=>m.empPara||'–');
-  monta('roleMoves',m=>m.cargoDe||'–',m=>m.cargoPara||'–');
+  const monta=(target,navId,pag,lista)=>{
+    const el=document.getElementById(target);if(!el)return pag;
+    if(!lista.length){el.innerHTML='<div class="empty">'+(es?'Sin cambios observados en el recorte.':'Sem mudanças observadas no recorte.')+'</div>';
+      const nav=document.getElementById(navId);if(nav)nav.innerHTML='';return 0;}
+    const paginas=Math.ceil(lista.length/PG);
+    if(pag>paginas-1)pag=paginas-1; if(pag<0)pag=0;
+    const ini=pag*PG, fim=Math.min(ini+PG,lista.length);
+    el.innerHTML=lista.slice(ini,fim).map(g=>{
+      const kind=g.promo>g.n/2?(es?'Promoción':'Promoção'):(es?'Nuevo empleo':'Novo emprego');
+      const cls=g.promo>g.n/2?'promo':'';
+      return '<div class="move-row"><div class="move-pair"><span title="'+g.de+'">'+g.de+'</span><span class="arrow">→</span><span class="to" title="'+g.para+'">'+g.para+'</span><span class="move-kind '+cls+'">'+kind+'</span></div><div class="move-count">'+g.n+'</div></div>';
+    }).join('');
+    const nav=document.getElementById(navId);
+    if(nav){
+      if(paginas<=1){nav.innerHTML='';}
+      else{nav.innerHTML='<button type="button" data-mov-nav="'+navId+'" data-dir="-1">‹</button><span class="mov-pag-label">'+(pag+1)+'/'+paginas+'</span><button type="button" data-mov-nav="'+navId+'" data-dir="1">›</button>';
+        nav.querySelectorAll('button').forEach(b=>{const d=Number(b.dataset.dir);b.disabled=d<0?pag===0:pag>=paginas-1;});}
+    }
+    return pag;
+  };
+  movPagEmp=monta('companyMoves','companyMovesNav',movPagEmp,agrupa(m=>m.empDe,m=>m.empPara));
+  movPagCargo=monta('roleMoves','roleMovesNav',movPagCargo,agrupa(m=>m.cargoDe,m=>m.cargoPara));
 }
 // Insights em modo fotografia: LinkedIn, publicações, cargos e empresas mais frequentes.
 // Nada de mudança de emprego (isso é mobilidade e segue aguardando dado).
@@ -1682,16 +1713,16 @@ const CBO_GERAIS=['Operador de atendimento','Vendedor no comércio','Auxiliar ad
 const REG_CURSO={'Bacharel em Administração':.83,'Bacharel em Biomedicina':.87,'Bacharel em Farmácia':.91,'Bacharel em Nutrição':.71,'Tecnólogo em Estética e Cosmética':.57,'Tecnólogo em Podologia':.53,'Tecnólogo em Terapias Integrativas e Complementares':.48,'Tecnólogo em Radiologia':.93,'Tecnólogo em Estética e Imagem Pessoal':.55,'Tecnólogo em Gerontologia':.67};
 // Quanto o curso puxa para as ocupacoes tipicas dele – so alimenta a geracao sintetica.
 const FOCO_CURSO={'Bacharel em Administração':.44,'Bacharel em Biomedicina':.78,'Bacharel em Farmácia':.86,'Bacharel em Nutrição':.725,'Tecnólogo em Estética e Cosmética':.635,'Tecnólogo em Podologia':.675,'Tecnólogo em Terapias Integrativas e Complementares':.465,'Tecnólogo em Radiologia':.88,'Tecnólogo em Estética e Imagem Pessoal':.60,'Tecnólogo em Gerontologia':.64};
-const FOCO_COMP={'Gestão Organizacional':-.025,'Análises Clínicas':.035,'Assistência Farmacêutica':.03,'Nutrição Clínica':.015,'Procedimentos Estéticos':.045,'Cuidados Podológicos':.035,'Práticas Integrativas em Saúde':-.045,'Diagnóstico por Imagem':.04,'Imagem Pessoal e Estética':.03,'Cuidado à Pessoa Idosa':.02};
+const FOCO_COMP={'Gestão de Organizações, Pessoas e Processos':-.025,'Diagnóstico em Saúde e Investigação Biomédica':.035,'Gestão de Práticas Farmacêuticas e Cuidados Clínicos':.03,'Cuidado Nutricional e Gestão em Alimentação e Saúde':.015,'Tratamento Estético e Cosmetologia Aplicada':.045,'Saúde e Cuidado Podológico':.035,'Práticas Integrativas em Saúde e Bem-Estar':-.045,'Prática em Radiologia e Diagnóstico por Imagem':.04,'Consultoria em Imagem e Estética Pessoal':.03,'Cuidado e Gestão Gerontológica':.02};
 const SOCIO_CURSO={'Bacharel em Administração':.17,'Bacharel em Biomedicina':.065,'Bacharel em Farmácia':.10,'Bacharel em Nutrição':.235,'Tecnólogo em Estética e Cosmética':.35,'Tecnólogo em Podologia':.365,'Tecnólogo em Terapias Integrativas e Complementares':.31,'Tecnólogo em Radiologia':.05,'Tecnólogo em Estética e Imagem Pessoal':.33,'Tecnólogo em Gerontologia':.26};
-const SOCIO_COMP={'Gestão Organizacional':.02,'Análises Clínicas':-.01,'Assistência Farmacêutica':0,'Nutrição Clínica':.025,'Procedimentos Estéticos':.03,'Cuidados Podológicos':.02,'Práticas Integrativas em Saúde':.04,'Diagnóstico por Imagem':-.01,'Imagem Pessoal e Estética':.03,'Cuidado à Pessoa Idosa':.03};
+const SOCIO_COMP={'Gestão de Organizações, Pessoas e Processos':.02,'Diagnóstico em Saúde e Investigação Biomédica':-.01,'Gestão de Práticas Farmacêuticas e Cuidados Clínicos':0,'Cuidado Nutricional e Gestão em Alimentação e Saúde':.025,'Tratamento Estético e Cosmetologia Aplicada':.03,'Saúde e Cuidado Podológico':.02,'Práticas Integrativas em Saúde e Bem-Estar':.04,'Prática em Radiologia e Diagnóstico por Imagem':-.01,'Consultoria em Imagem e Estética Pessoal':.03,'Cuidado e Gestão Gerontológica':.03};
 const BONUS_CURSO={'Bacharel em Administração':.0285,'Bacharel em Biomedicina':.0525,'Bacharel em Farmácia':.060,'Bacharel em Nutrição':.0415,'Tecnólogo em Estética e Cosmética':.052,'Tecnólogo em Podologia':.0465,'Tecnólogo em Terapias Integrativas e Complementares':.0265,'Tecnólogo em Radiologia':.070,'Tecnólogo em Estética e Imagem Pessoal':.050,'Tecnólogo em Gerontologia':.038};
-const BONUS_COMP={'Gestão Organizacional':.0265,'Análises Clínicas':.048,'Assistência Farmacêutica':.055,'Nutrição Clínica':.0365,'Procedimentos Estéticos':.0465,'Cuidados Podológicos':.041,'Práticas Integrativas em Saúde':.021,'Diagnóstico por Imagem':.065,'Imagem Pessoal e Estética':.045,'Cuidado à Pessoa Idosa':.032};
+const BONUS_COMP={'Gestão de Organizações, Pessoas e Processos':.0265,'Diagnóstico em Saúde e Investigação Biomédica':.048,'Gestão de Práticas Farmacêuticas e Cuidados Clínicos':.055,'Cuidado Nutricional e Gestão em Alimentação e Saúde':.0365,'Tratamento Estético e Cosmetologia Aplicada':.0465,'Saúde e Cuidado Podológico':.041,'Práticas Integrativas em Saúde e Bem-Estar':.021,'Prática em Radiologia e Diagnóstico por Imagem':.065,'Consultoria em Imagem e Estética Pessoal':.045,'Cuidado e Gestão Gerontológica':.032};
 const PORTES=['MEI','Microempresa','Empresa de pequeno porte'];
 const ESCOLARIDADES=['Fundamental','Médio completo','Superior incompleto','Superior completo','Pós-graduação'];
 const FAIXAS_ETARIAS=['18–24','25–34','35–44','45–54','55+'];
 const ESTUDOS_CURSO={'Bacharel em Biomedicina':.18,'Bacharel em Farmácia':.16,'Bacharel em Nutrição':.14,'Tecnólogo em Radiologia':.12,'Tecnólogo em Estética e Cosmética':.06,'Tecnólogo em Podologia':.05};
-const ESTUDOS_COMP={'Análises Clínicas':.05,'Diagnóstico por Imagem':.04};
+const ESTUDOS_COMP={'Diagnóstico em Saúde e Investigação Biomédica':.05,'Prática em Radiologia e Diagnóstico por Imagem':.04};
 const IDADE_CURSO={'Bacharel em Administração':['25–34','18–24','35–44','45–54','55+'],'Tecnólogo em Terapias Integrativas e Complementares':['35–44','45–54','25–34','55+','18–24'],'Tecnólogo em Podologia':['35–44','25–34','45–54','18–24','55+']};
 const GEO_CURSO={'Bacharel em Biomedicina':.14,'Tecnólogo em Radiologia':.12,'Bacharel em Administração':.06};
 // Toda a turma foi emitida no mesmo dia: a extracao de linha de base e o dia 0,
@@ -2096,6 +2127,7 @@ function setModule(name){
 }
 document.querySelectorAll('[data-module]').forEach(button=>button.addEventListener('click',()=>setModule(button.dataset.module)));
 document.querySelectorAll('[data-nav-curso]').forEach(b=>b.addEventListener('click',()=>{cursoPag+=Number(b.dataset.navCurso);renderCourses()}));
+document.addEventListener('click',e=>{const b=e.target.closest('[data-mov-nav]');if(!b)return;const dir=Number(b.dataset.dir);if(b.dataset.movNav==='companyMovesNav')movPagEmp+=dir;else movPagCargo+=dir;renderMovimentacoes();});
 document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>{finPag[b.dataset.nav]+=Number(b.dataset.step);renderFinance(filteredRecords())}));
 
 Object.assign(VALUE_ES,{

@@ -193,9 +193,13 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 .move-kind{display:inline-block;white-space:nowrap;justify-self:start;font-size:8px;font-weight:700;padding:2px 6px;border-radius:99px;background:var(--purple-faint);color:var(--purple);text-transform:uppercase;letter-spacing:.04em}
 .move-kind.promo{background:rgba(29,158,117,.12);color:#1d9e75}
 .move-count{text-align:right;font-size:10px;font-weight:700;color:var(--purple)}
+.mov-pager{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px}
+.mov-pager button{width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--purple);font-size:14px;font-weight:700;cursor:pointer;line-height:1}
+.mov-pager button:disabled{opacity:.35;cursor:default}
+.mov-pager .mov-pag-label{font-size:11px;color:var(--muted);font-weight:600}
 .kpi-grid.brand-kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:14px}
 .kpi-grid.brand-kpis .kpi{min-height:0}
-.chart-wrap.brand-wrap{height:400px}
+.chart-wrap.brand-wrap{height:400px;min-height:240px}
 .chart-note{margin:12px 0 0;font-size:10px;line-height:1.6;color:#9a94a8}
 .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .hero-pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid rgba(255,255,255,.6);color:var(--purple);border-radius:99px;padding:7px 14px;font-size:11px;font-weight:600;line-height:1.2}
@@ -443,8 +447,8 @@ tbody tr:hover{background:var(--purple-faint)}
   <section class="card split-card moves-card">
     <div class="card-header"><div><h2>Movimentações após a credencial</h2><p>Para cada mudança profissional observada, o painel registra de onde a pessoa saiu e para onde foi – em empresa e em cargo. É o que permite à instituição saber que tipo de movimento a credencial está acompanhando.</p><p class="filter-applied" id="movesFilterLine"></p></div></div>
     <div class="rank-cols">
-      <div class="rank-group"><h3>Empresas: de onde saíram → para onde foram</h3><div id="companyMoves"></div></div>
-      <div class="rank-group"><h3>Cargos: de onde saíram → para onde foram</h3><div id="roleMoves"></div></div>
+      <div class="rank-group"><h3>Empresas: de onde saíram → para onde foram</h3><div id="companyMoves"></div><div class="mov-pager" id="companyMovesNav"></div></div>
+      <div class="rank-group"><h3>Cargos: de onde saíram → para onde foram</h3><div id="roleMoves"></div><div class="mov-pager" id="roleMovesNav"></div></div>
     </div>
   </section>
 
@@ -884,7 +888,7 @@ function renderFunnel(list){
     ['Credenciais emitidas',list.length,'#3a1878','recorte'],
     ['Credenciais aceitas',aceitas,'#5123a4','emitidas'],
     ['Credenciais no LinkedIn',list.filter(r=>r.shared).length,'#6b45bb','aceitas'],
-    ['Publicações',list.filter(r=>r.posted).length,'#9d87d6','linkedin'],
+    ['Publicações no feed',list.filter(r=>r.posted).length,'#9d87d6','linkedin'],
     ['Adicionadas ao perfil',list.filter(r=>r.added).length,'#1d9e75','linkedin'],
     ['Mudanças profissionais',list.filter(r=>r.impact!=='none').length,'#5dcaa5','linkedin']
   ];
@@ -997,9 +1001,13 @@ function renderBrand(list){
   const dim=compareDim(),selected=ids[dim].value;
   document.getElementById('brandFilterLine').textContent=(es?'Filtro aplicado: ':'Filtro aplicado: ')+(selected?displayValue(selected):(es?'toda la institución':'toda a instituição'));
   if(brandChart)brandChart.destroy();
+  // Altura proporcional ao nº de competências: cada grupo (2 barras) ganha ~46px + folga,
+  // para as barras não se encavalarem quando há muitas competências no recorte.
+  const alturaWrap=Math.max(240, 70+linhas.length*46);
+  if(ctx.parentElement)ctx.parentElement.style.height=alturaWrap+'px';
   brandChart=new Chart(ctx,{type:'bar',data:{labels:linhas.map(l=>curto(l.nome)),datasets:[
-    {label:'LinkedIn',data:linhas.map(l=>l.li),backgroundColor:'#5123a4',borderRadius:4,barPercentage:.9,categoryPercentage:.55},
-    {label:es?'Publicaciones':'Publicações',data:linhas.map(l=>l.posts),backgroundColor:'#f03f0f',borderRadius:4,barPercentage:.9,categoryPercentage:.55}
+    {label:'LinkedIn',data:linhas.map(l=>l.li),backgroundColor:'#5123a4',borderRadius:4,barThickness:12,maxBarThickness:14},
+    {label:es?'Publicaciones en el feed':'Publicações no feed',data:linhas.map(l=>l.posts),backgroundColor:'#f03f0f',borderRadius:4,barThickness:12,maxBarThickness:14}
   ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:44}},plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},tooltip:{titleFont:{weight:'normal',size:11},bodyFont:{weight:'normal',size:11},callbacks:{title:items=>linhas[items[0].dataIndex].nome,label:c=>c.dataset.label+': '+nfmt(c.raw)}}},scales:{x:{beginAtZero:true,grid:{color:'rgba(81,35,164,.08)'},ticks:{precision:0,font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:11,weight:'normal'}}}}},
   plugins:[{id:'brandLabels',afterDatasetsDraw(chart){const {ctx}=chart;ctx.save();ctx.font='600 10px Poppins, sans-serif';ctx.textBaseline='middle';chart.data.datasets.forEach((ds,di)=>{const meta=chart.getDatasetMeta(di);if(meta.hidden)return;ctx.fillStyle=ds.backgroundColor;meta.data.forEach((bar,i)=>{ctx.fillText(nfmt(ds.data[i]),bar.x+6,bar.y)})});ctx.restore()}}]});
 }
@@ -1026,20 +1034,34 @@ function renderInsightsFoto(list){
 }
 
 /* ---- Movimentações: origem → destino das mudanças observadas ---- */
+let movPagEmp=0, movPagCargo=0, movFiltroAnterior='';
 function renderMoves(moves){
   const es=currentLanguage==='es';
   const dim=compareDim(),selected=ids[dim].value;
+  const assinatura=Object.values(ids).map(el=>el&&el.value).join('|');
+  if(assinatura!==movFiltroAnterior){movFiltroAnterior=assinatura;movPagEmp=0;movPagCargo=0;}
   const linha=document.getElementById('movesFilterLine');if(linha)linha.textContent='Filtro aplicado: '+(selected?displayValue(selected):(es?'toda la institución':'toda a instituição'));
-  const monta=(target,campoDe,campoPara)=>{
-    const el=document.getElementById(target);if(!el)return;
+  const PG=10;
+  const monta=(target,navId,pag,campoDe,campoPara)=>{
+    const el=document.getElementById(target);if(!el)return pag;
     const pares=new Map();
     moves.forEach(r=>{const de=r[campoDe]||'–',para=r[campoPara]||'–';const k=de+'\u0000'+para+'\u0000'+r.impact;const g=pares.get(k)||{de,para,impact:r.impact,n:0};g.n++;pares.set(k,g)});
     const lista=[...pares.values()].sort((a,b)=>b.n-a.n);
-    if(!lista.length){el.innerHTML='<div class="empty">'+(es?'Sin cambios observados en este segmento.':'Sem mudanças observadas neste recorte.')+'</div>';return}
-    el.innerHTML=lista.map(g=>'<div class="move-row"><div class="move-pair"><span title="'+g.de+'">'+g.de+'</span><span class="arrow">→</span><span class="to" title="'+g.para+'">'+g.para+'</span><span class="move-kind'+(g.impact==='promo'?' promo':'')+'">'+(g.impact==='promo'?(es?'Promoción':'Promoção'):(es?'Nuevo empleo':'Novo emprego'))+'</span></div><div class="move-count">'+nfmt(g.n)+'</div></div>').join('');
+    const nav=document.getElementById(navId);
+    if(!lista.length){el.innerHTML='<div class="empty">'+(es?'Sin cambios observados en este segmento.':'Sem mudanças observadas neste recorte.')+'</div>';if(nav)nav.innerHTML='';return 0;}
+    const paginas=Math.ceil(lista.length/PG);
+    if(pag>paginas-1)pag=paginas-1; if(pag<0)pag=0;
+    const ini=pag*PG, fim=Math.min(ini+PG,lista.length);
+    el.innerHTML=lista.slice(ini,fim).map(g=>'<div class="move-row"><div class="move-pair"><span title="'+g.de+'">'+g.de+'</span><span class="arrow">→</span><span class="to" title="'+g.para+'">'+g.para+'</span><span class="move-kind'+(g.impact==='promo'?' promo':'')+'">'+(g.impact==='promo'?(es?'Promoción':'Promoção'):(es?'Nuevo empleo':'Novo emprego'))+'</span></div><div class="move-count">'+nfmt(g.n)+'</div></div>').join('');
+    if(nav){
+      if(paginas<=1){nav.innerHTML='';}
+      else{nav.innerHTML='<button type="button" data-mov-nav="'+navId+'" data-dir="-1">‹</button><span class="mov-pag-label">'+(pag+1)+'/'+paginas+'</span><button type="button" data-mov-nav="'+navId+'" data-dir="1">›</button>';
+        nav.querySelectorAll('button').forEach(b=>{const d=Number(b.dataset.dir);b.disabled=d<0?pag===0:pag>=paginas-1;});}
+    }
+    return pag;
   };
-  monta('companyMoves','previousCompany','company');
-  monta('roleMoves','previousRole','role');
+  movPagEmp=monta('companyMoves','companyMovesNav',movPagEmp,'previousCompany','company');
+  movPagCargo=monta('roleMoves','roleMovesNav',movPagCargo,'previousRole','role');
 }
 function updateDashboard(){
   const list=filteredRecords(),monitoredList=list.filter(r=>r.monitored),moves=list.filter(r=>r.impact!=='none'),newJobs=list.filter(r=>r.impact==='novo'),promos=list.filter(r=>r.impact==='promo');
@@ -1084,6 +1106,7 @@ document.querySelectorAll('[data-filter]').forEach(el=>el.addEventListener('chan
 
 ['holderSearch','holderImpactFilter','holderSharedOnly'].forEach(id=>document.getElementById(id)?.addEventListener(id==='holderSearch'?'input':'change',()=>renderHolderTable(filteredRecords())));
 document.getElementById('holderBody')?.addEventListener('click',event=>{const button=event.target.closest('[data-holder-id]');if(button&&!button.disabled)openHolderDetail(button.dataset.holderId,button.dataset.holderView)});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-mov-nav]');if(!b)return;const dir=Number(b.dataset.dir);if(b.dataset.movNav==='companyMovesNav')movPagEmp+=dir;else movPagCargo+=dir;updateDashboard();});
 document.getElementById('closeTrajectory').addEventListener('click',()=>document.getElementById('trajectoryDialog').close());
 document.getElementById('trajectoryDialog').addEventListener('click',event=>{if(event.target===event.currentTarget)event.currentTarget.close()});
 document.querySelectorAll('.filter-actions .btn:not(.btn-primary)').forEach(b=>b.addEventListener('click',()=>{
