@@ -415,7 +415,7 @@ tbody tr:hover{background:var(--purple-faint)}
 
   <div class="section-label" id="impactSection"><span>Impacto na empregabilidade</span></div>
   <div class="kpi-grid" id="kpiGrid">
-    <article class="card kpi highlight"><div class="kpi-value" id="kpiTotal">0</div><div class="kpi-label">Credenciais compartilhadas</div><div class="kpi-context">Base válida para a leitura</div></article>
+    <article class="card kpi highlight"><div class="kpi-value" id="kpiTotal">0</div><div class="kpi-label">Credenciais no LinkedIn</div><div class="kpi-context">Base válida para a leitura</div></article>
     <article class="card kpi"><div class="kpi-value" id="kpiMobility">0%</div><div class="kpi-label">Mobilidade profissional</div><div class="kpi-context">Novo emprego ou promoção · base monitorada</div></article>
     <article class="card kpi"><div class="kpi-value" id="kpiNewJobs">0</div><div class="kpi-label">Novos empregos</div><div class="kpi-context">Mudança de empresa detectada</div></article>
     <article class="card kpi"><div class="kpi-value" id="kpiPromotions">0</div><div class="kpi-label">Promoções</div><div class="kpi-context">Progressão na mesma empresa</div></article>
@@ -1293,10 +1293,14 @@ function renderBrand(list){
     g.li+=t.li;g.posts+=t.post;
   });
   const linhas=[...grupos.values()].filter(l=>l.li>0||l.posts>0).sort((a,b)=>b.li-a.li);
-  // KPIs coerentes com a quebra por curso.
+  // KPIs: sem filtro, usam os totais oficiais do funil (Credenciais no LinkedIn e Publicações,
+  // números confirmados por Caro). Com filtro por curso, usam a quebra do recorte.
+  const semFiltro=!(fp||fc||fk);
+  const kpiLi=semFiltro?FUNIL_TOTAIS.compartilhamentos:totalLi;
+  const kpiPost=semFiltro?FUNIL_TOTAIS.publicacoes:totalPost;
   const stats=[
-    [nfmt(totalLi),es?'Credenciales en LinkedIn':'Credenciais no LinkedIn',pct(totalLi,Math.max(1,FUNIL_TOTAIS.compartilhamentos))+(es?'% de los compartilhamentos':'% dos compartilhamentos')],
-    [nfmt(totalPost),es?'Publicaciones en el feed':'Publicações no feed',pct(totalPost,Math.max(1,totalLi))+(es?'% de las credenciales en LinkedIn':'% das credenciais no LinkedIn')]
+    [nfmt(kpiLi),es?'Credenciales en LinkedIn':'Credenciais no LinkedIn',pct(kpiLi,Math.max(1,FUNIL_TOTAIS.aceitas))+(es?'% de las aceptadas':'% das aceitas')],
+    [nfmt(kpiPost),es?'Publicaciones en el feed':'Publicações no feed',pct(kpiPost,Math.max(1,kpiLi))+(es?'% de las credenciales en LinkedIn':'% das credenciais no LinkedIn')]
   ];
   document.getElementById('brandStats').innerHTML=stats.map(([v,l,c])=>'<article class="card kpi"><div class="kpi-value">'+v+'</div><div class="kpi-label">'+l+'</div><div class="kpi-context">'+c+'</div></article>').join('');
   document.getElementById('brandFilterLine').textContent='Filtro aplicado: '+(selected?displayValue(selected):(es?'toda la institución':'toda a instituição'));
