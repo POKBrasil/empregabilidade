@@ -450,6 +450,10 @@ tbody tr:hover{background:var(--purple-faint)}
 
   <div class="section-label" id="brandSection"><span>Impacto na exposição de marca institucional</span></div>
   <div class="kpi-grid brand-kpis" id="brandStats"></div>
+
+  <div class="section-label" id="brandInsightsSection"><span>Insights sobre exposição de marca</span></div>
+  <section class="insights-grid" id="brandInsightsGrid" aria-live="polite" style="margin-bottom:26px"></section>
+
   <section class="card chart-card">
     <div class="card-header"><div><h2>Quais experiências do Conecta mais aparecem no LinkedIn?</h2><p>Cada credencial no perfil ou em uma publicação leva o nome da instituição para a rede profissional do portador. O gráfico mostra quantas credenciais estão no LinkedIn e quantas viraram publicação, dentro do recorte selecionado nos filtros.</p><p class="filter-applied" id="brandFilterLine"></p></div></div>
     <div class="chart-wrap brand-wrap"><canvas id="brandChart" role="img" aria-label="Gráfico de presença das credenciais no LinkedIn por competência"></canvas></div>
@@ -999,6 +1003,27 @@ function renderBrand(list){
   ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:44}},plugins:{legend:{position:'bottom',labels:{boxWidth:12,usePointStyle:true}},tooltip:{titleFont:{weight:'normal',size:11},bodyFont:{weight:'normal',size:11},callbacks:{title:items=>linhas[items[0].dataIndex].nome,label:c=>c.dataset.label+': '+nfmt(c.raw)}}},scales:{x:{beginAtZero:true,grid:{color:'rgba(81,35,164,.08)'},ticks:{precision:0,font:{size:10}}},y:{grid:{display:false},ticks:{font:{size:11,weight:'normal'}}}}},
   plugins:[{id:'brandLabels',afterDatasetsDraw(chart){const {ctx}=chart;ctx.save();ctx.font='600 10px Poppins, sans-serif';ctx.textBaseline='middle';chart.data.datasets.forEach((ds,di)=>{const meta=chart.getDatasetMeta(di);if(meta.hidden)return;ctx.fillStyle=ds.backgroundColor;meta.data.forEach((bar,i)=>{ctx.fillText(nfmt(ds.data[i]),bar.x+6,bar.y)})});ctx.restore()}}]});
 }
+// Insights de marca (mesmo modelo do painel de egressos): presença no LinkedIn, competência
+// que mais expõe a marca e conversão em publicações. Respeita o filtro ativo.
+function renderInsightsFoto(list){
+  const es=currentLanguage==='es';
+  const noLinkedIn=list.filter(r=>r.shared),posts=noLinkedIn.filter(r=>r.posted);
+  const st=v=>'<strong>'+v+'</strong>', em=v=>'<strong class="nome">'+displayValue(v)+'</strong>';
+  const curto=nome=>{const badge=Object.keys(BADGE_COMP).find(k=>BADGE_COMP[k]===nome);return badge?ROTULO_CURTO[badge]:nome};
+  // agrupa por competência
+  const grupos=new Map();
+  noLinkedIn.forEach(r=>{const chave=r.competency||r.course;let g=grupos.get(chave);if(!g){g={nome:chave,li:0,posts:0};grupos.set(chave,g)}g.li++;if(r.posted)g.posts++});
+  const linhas=[...grupos.values()];
+  const liderLi=[...linhas].sort((a,b)=>b.li-a.li)[0];
+  const rankTaxa=linhas.filter(l=>l.li>=10).map(l=>({nome:l.nome,taxa:Math.round(l.posts/l.li*100)})).sort((a,b)=>b.taxa-a.taxa);
+  const liderTaxa=rankTaxa[0];
+  const i1=noLinkedIn.length?(st(nfmt(noLinkedIn.length))+' credenciais aparecem no LinkedIn, '+st(nfmt(posts.length))+' delas viraram publicação no feed — cada uma levando o nome da instituição à rede profissional do portador.'):'Sem presença no LinkedIn no recorte.';
+  const i2=liderLi?(em(curto(liderLi.nome))+' é a competência que mais leva a marca ao LinkedIn, com '+st(nfmt(liderLi.li)+' credenciais')+' presentes.'):'Sem presença registrada no recorte.';
+  const i3=liderTaxa?(em(curto(liderTaxa.nome))+' é a que mais converte presença em publicação: '+st(liderTaxa.taxa+'%')+' das suas credenciais no LinkedIn viraram post no feed.'):'Base insuficiente para comparar a conversão em publicações.';
+  const insights=[['01','Presença no LinkedIn',i1],['02','Competência que mais expõe a marca',i2],['03','Conversão em publicações',i3]];
+  const el=document.getElementById('brandInsightsGrid');
+  if(el)el.innerHTML=insights.map(([n,t,txt])=>'<article class="card insight"><span class="insight-number">'+n+'</span><h3>'+t+'</h3><p>'+txt+'</p></article>').join('');
+}
 
 /* ---- Movimentações: origem → destino das mudanças observadas ---- */
 function renderMoves(moves){
@@ -1030,7 +1055,7 @@ function updateDashboard(){
   const resumo=noShell('.active-filter-summary span');
   if(resumo)resumo.innerHTML=active.length?'Filtros ativos: <strong>'+active.join(' · ')+'</strong>':'';
   updateMobileFilterToggle();
-  renderFunnel(list);renderTimeline(list);renderCourses();renderBrand(list);
+  renderFunnel(list);renderTimeline(list);renderCourses();renderBrand(list);renderInsightsFoto(list);
   // Onde os portadores estao, e nao apenas onde foram parar os que trocaram de emprego:
   // quem ja estava bem colocado e ficou tambem conta.
   renderRanking('companyRanking',topEntries(countBy(monitoredList,'company'),5),Math.max(1,monitoredList.length));
