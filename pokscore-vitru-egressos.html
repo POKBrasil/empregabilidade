@@ -197,6 +197,17 @@ tbody tr:hover{background:var(--purple-faint)}
 .icon-btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.8;fill:none}
 .holder-intro{font-size:11px;line-height:1.7;margin:-2px 0 14px;max-width:1000px}
 .holder-intro strong{display:block;font-size:14px;margin-bottom:3px}
+.material-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.material-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:18px 14px;border:1px solid var(--border);border-radius:16px;background:var(--purple-faint)}
+.material-item img{width:100%;max-width:200px;height:auto;display:block}
+.material-item figcaption{font-size:11px;line-height:1.45;color:var(--ink)}
+.material-item figcaption span{display:block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--purple);margin-bottom:3px}
+.material-link{display:block;width:100%;max-width:200px;transition:transform .15s}
+.material-link:hover{transform:translateY(-3px)}
+.material-cta{display:table;margin:10px auto 0;font-size:10px;font-weight:700;color:var(--purple);text-decoration:none;border:1px solid rgba(81,35,164,.3);border-radius:99px;padding:4px 10px}
+.material-cta:hover{background:var(--purple);color:#fff}
+@media(max-width:1000px){.material-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.material-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .share-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .share-item{margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
 .share-item img{width:100%;height:auto;display:block}
@@ -378,6 +389,7 @@ tbody tr:hover{background:var(--purple-faint)}
     <button class="module-tab" type="button" role="tab" id="tabTrajetoria" data-module="trajetoria" aria-selected="true" aria-controls="panelTrajetoria">Trajetória profissional</button>
     <button class="module-tab" type="button" role="tab" id="tabFinanceiro" data-module="financeiro" aria-selected="false" aria-controls="panelFinanceiro">Ocupação e mobilidade</button>
     <button class="module-tab" type="button" role="tab" id="tabPortadores" data-module="portadores" aria-selected="false" aria-controls="panelPortadores">Dados Qualitativos</button>
+    <button class="module-tab" type="button" role="tab" id="tabMaterial" data-module="material" aria-selected="false" aria-controls="panelMaterial">Material Produzido</button>
   </div>
 </nav>
 
@@ -581,6 +593,21 @@ tbody tr:hover{background:var(--purple-faint)}
   </aside>
   </div>
 
+</div>
+
+<div class="module-panel" id="panelMaterial" role="tabpanel" aria-labelledby="tabMaterial" hidden>
+  <div class="section-label" id="materialSection"><span>Material criado para a campanha</span></div>
+  <div class="holder-intro"><strong>Badges por competência emitidos aos egressos</strong>Um badge para cada competência certificada, emitido como credencial verificável em blockchain pela plataforma POK.</div>
+
+  <div class="holder-intro" style="margin-top:6px"><p>Uniasselvi:</p></div>
+  <section class="card split-card">
+    <div class="material-grid" id="materialGridUnia"></div>
+  </section>
+
+  <div class="holder-intro" style="margin-top:22px"><p>Unicesumar:</p></div>
+  <section class="card split-card">
+    <div class="material-grid" id="materialGridUnic"></div>
+  </section>
 </div>
 
 
@@ -2104,18 +2131,57 @@ function renderFinance(list){
   }
 }
 
+// ---- Material Produzido (badges por competência, por instituição) ----
+const PASTA_UNIA='https://pokbrasil.github.io/clientes/Uniasselvi/';
+const PASTA_UNIC='https://pokbrasil.github.io/clientes/Unicesumar/';
+const MATERIAL_UNIA=[
+  {arquivo:'badge-gestao-organizacao.png',nome:'Gestão de Organizações, Pessoas e Processos',link:'https://certificados.uniasselvi.com.br/c/157efff6-67f9-4809-8935-03e7b94a19b8'},
+  {arquivo:'badge-cuidado-nutricional.png',nome:'Cuidado Nutricional e Gestão em Alimentação e Saúde',link:'https://certificados.uniasselvi.com.br/c/9770c0a9-6bb8-484f-b2a1-994843db1390'},
+  {arquivo:'badge-saude-biomedica.png',nome:'Diagnóstico em Saúde e Investigação Biomédica',link:'https://certificados.uniasselvi.com.br/c/d2794cc6-c765-4031-8208-7debc3996780'},
+  {arquivo:'badge-gestau-farmaceutica.png',nome:'Gestão de Práticas Farmacêuticas e Cuidados Clínicos',link:'https://certificados.uniasselvi.com.br/c/b86f3eb9-e658-4dfd-a65a-58dc23c994eb'},
+  {arquivo:'badge-praticas-integrativas.png',nome:'Práticas Integrativas em Saúde e Bem-Estar',link:'https://certificados.uniasselvi.com.br/c/2f19f352-75b1-471f-b0e0-7ca5168d7b57'},
+  {arquivo:'badge-pratica-radiologia.png',nome:'Prática em Radiologia e Diagnóstico por Imagem',link:'https://certificados.uniasselvi.com.br/c/3a8d895a-9536-418f-a519-895cc06f0943'},
+  {arquivo:'badge-saude-podologo.png',nome:'Saúde e Cuidado Podológico',link:'https://certificados.uniasselvi.com.br/c/c2505952-74ee-440d-9149-1a6f7266cddc'},
+  {arquivo:'badge-consultoria-imagem.png',nome:'Consultoria em Imagem e Estética Pessoal',link:'https://certificados.uniasselvi.com.br/c/67dd92df-4cd2-4449-8a91-edb4a916eb66'}
+];
+const MATERIAL_UNIC=[
+  {arquivo:'badge-gestao-organizacoes.png',nome:'Gestão de Organizações, Pessoas e Processos',link:'https://certificados.unicesumar.edu.br/c/648ff6c7-88d4-437a-94ed-554328a82478'},
+  {arquivo:'badge-cuidado-nutricional.png',nome:'Cuidado Nutricional e Gestão em Alimentação e Saúde',link:'https://certificados.unicesumar.edu.br/c/7eb7bf3d-115a-4f61-97cf-a1d92b7c467e'},
+  {arquivo:'badge-diagnostico-biomedica.png',nome:'Diagnóstico em Saúde e Investigação Biomédica',link:'https://certificados.unicesumar.edu.br/c/77af51cb-f093-44bd-9bef-a4725cef5edc'},
+  {arquivo:'badge-tecnico-podologia.png',nome:'Saúde e Cuidado Podológico',link:'https://certificados.unicesumar.edu.br/c/38c45283-13a4-4228-9606-957781e59d2c'},
+  {arquivo:'badge-tecnologo-terapias.png',nome:'Práticas Integrativas em Saúde e Bem-Estar',link:'https://certificados.unicesumar.edu.br/c/70b5437a-bf68-49ac-a7b0-e601d3dcfb63'},
+  {arquivo:'badge-tecnologo-gerontologia.png',nome:'Cuidado e Gestão Gerontológica',link:'https://certificados.unicesumar.edu.br/c/bfba8c1b-dc75-405a-80f7-fe0dc80640fc'},
+  {arquivo:'badge-tratamento-estetico.png',nome:'Tratamento Estético e Cosmetologia Aplicada',link:'https://certificados.unicesumar.edu.br/c/1b9c590c-f0c9-4693-9e3d-a7ec7892642f'}
+];
+function renderMaterialGrid(elId,lista,pasta){
+  const el=document.getElementById(elId);if(!el)return;
+  el.innerHTML=lista.map(m=>{
+    const img='<img src="'+pasta+m.arquivo+'" alt="Badge – '+m.nome+'" loading="lazy">';
+    const inner=m.link?('<a class="material-link" href="'+m.link+'" target="_blank" rel="noopener" title="'+(currentLanguage==='es'?'Ver credencial verificable':'Ver credencial verificável')+'">'+img+'</a>'):img;
+    const rot=currentLanguage==='es'?'Competencia':'Competência';
+    const cta=m.link?('<a class="material-cta" href="'+m.link+'" target="_blank" rel="noopener">'+(currentLanguage==='es'?'Ver credencial ↗':'Ver credencial ↗')+'</a>'):'';
+    return '<figure class="material-item">'+inner+'<figcaption><span>'+rot+'</span>'+m.nome+cta+'</figcaption></figure>';
+  }).join('');
+}
+function renderMaterialEgressos(){
+  renderMaterialGrid('materialGridUnia',MATERIAL_UNIA,PASTA_UNIA);
+  renderMaterialGrid('materialGridUnic',MATERIAL_UNIC,PASTA_UNIC);
+}
 function setModule(name){
-  const isFin=name==='financeiro',isPort=name==='portadores';
+  const isFin=name==='financeiro',isPort=name==='portadores',isMat=name==='material';
   activeModule=isFin?'financeiro':'trajetoria';
   bindIds();
-  document.querySelectorAll('.filters-shell').forEach(sh=>{sh.hidden=sh.dataset.filters!==activeModule});
+  document.querySelectorAll('.filters-shell').forEach(sh=>{sh.hidden=(sh.dataset.filters!==activeModule)||isPort||isMat});
   updateMobileFilterToggle();
-  document.getElementById('panelTrajetoria').hidden=isFin||isPort;
+  document.getElementById('panelTrajetoria').hidden=isFin||isPort||isMat;
   document.getElementById('panelFinanceiro').hidden=!isFin;
   document.getElementById('panelPortadores').hidden=!isPort;
-  document.getElementById('tabTrajetoria').setAttribute('aria-selected',String(!isFin&&!isPort));
+  document.getElementById('panelMaterial').hidden=!isMat;
+  if(isMat)renderMaterialEgressos();
+  document.getElementById('tabTrajetoria').setAttribute('aria-selected',String(!isFin&&!isPort&&!isMat));
   document.getElementById('tabFinanceiro').setAttribute('aria-selected',String(isFin));
   document.getElementById('tabPortadores').setAttribute('aria-selected',String(isPort));
+  document.getElementById('tabMaterial').setAttribute('aria-selected',String(isMat));
   const scroller=dashboardView.querySelector('.scroll-area');
   scroller?.scrollTo?.({top:0,behavior:'smooth'});
   window.scrollTo({top:0,behavior:'smooth'});
