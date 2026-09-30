@@ -380,7 +380,7 @@ tbody tr:hover{background:var(--purple-faint)}
     </div>
     <h1>POK Score: <span>trajetórias de Impacto</span>: Caso Vitru Egressos</h1>
     <p>Visão interativa da empregabilidade por trilha, curso e competência, construída a partir de dados profissionais observáveis após a emissão de credenciais POK.</p>
-    <div class="hero-meta"><span class="hero-pill">Data de envio das credenciais: <strong>09 e 10 de Setembro</strong></span><span class="hero-pill">Data de leitura: <strong>15 de Setembro</strong></span><span class="hero-pill">Tempo entre envio e leitura: <strong>5–6 dias</strong></span></div>
+    <div class="hero-meta"><span class="hero-pill">Data de envio das credenciais: <strong>09 e 10 de Setembro</strong></span><span class="hero-pill">Data de leitura: <strong>30 de Setembro</strong></span><span class="hero-pill">Tempo entre envio e leitura: <strong>20–21 dias</strong></span></div>
   </div>
 </header>
 
@@ -652,7 +652,7 @@ const ES={
   'Início':'Inicio','POK Score · Empregabilidade':'POK Score · Empleabilidad',
   'POK Score: trajetórias de':'POK Score: trayectorias de','Impacto':'Impacto','POK Score: ':'POK Score: ','trajetórias de Impacto':'trayectorias de Impacto',': Caso Vitru Egressos':': Caso Vitru Egressos',
   'Visão interativa da empregabilidade por trilha, curso e competência, construída a partir de dados profissionais observáveis após a emissão de credenciais POK.':'Visión interactiva de la empleabilidad por ruta, curso y competencia, construida a partir de datos profesionales observables después de la emisión de credenciales POK.',
-  'Data de envio das credenciais:':'Fecha de envío de las credenciales:','09 e 10 de Setembro':'09 y 10 de septiembre','Data de leitura:':'Fecha de lectura:','15 de Setembro':'15 de septiembre','Tempo entre envio e leitura:':'Tiempo entre envío y lectura:','5–6 dias':'5–6 días',
+  'Data de envio das credenciais:':'Fecha de envío de las credenciales:','09 e 10 de Setembro':'09 y 10 de septiembre','Data de leitura:':'Fecha de lectura:','30 de Setembro':'30 de septiembre','Tempo entre envio e leitura:':'Tiempo entre envío y lectura:','20–21 dias':'20–21 días',
   'Filtros do painel':'Filtros del panel',
   'Ocultar filtros':'Ocultar filtros','Ver filtros':'Ver filtros','Trilha':'Ruta','Curso':'Curso','Competência':'Competencia','Ano de emissão':'Año de emisión','Mudança profissional':'Cambio profesional','Modelo de trabalho':'Modalidad de trabajo','Localização':'Ubicación',
   'Todas as trilhas':'Todas las rutas','Todos os cursos':'Todos los cursos','Todas as competências':'Todas las competencias','Todos os anos':'Todos los años','Todas as localidades':'Todas las ubicaciones',
@@ -794,15 +794,17 @@ const COURSE_COMPETENCY={
 // mesmo sem filtro visível ainda -- o painel usa o total, mas a origem não se perde.
 // NÃO há cruzamento indivíduo-a-indivíduo entre as etapas: cada uma é uma contagem
 // agregada, que é exatamente o objetivo do painel (leitura por formação, não por pessoa).
-// Números do funil confirmados por Caro em 15/09/2026. As etapas de compartilhamento,
+// Números do funil confirmados por Caro em 15/09/2026 e atualizados em 30/09/2026
+// (aceitas e compartilhamentos da plataforma POK; publicações das planilhas). Emitidas
+// segue a base de 21.121 egressos: os demais envios da plataforma não entram na contagem. As etapas de compartilhamento,
 // publicação e perfil vieram como TOTAIS GERAIS (uni+cesu), não quebrados por curso;
 // por isso o funil mostra sempre o total da instituição, sem recorte por curso nessas
 // três etapas. Emitidas é o total de cada instituição.
 const FUNIL_LINKEDIN={
   emitidas:{uniasselvi:11852,unicesumar:9269},
-  aceitas:{uniasselvi:1380,unicesumar:1041},
-  compartilhamentos:{uniasselvi:308,unicesumar:264},
-  publicacoes:{uniasselvi:131,unicesumar:90},
+  aceitas:{uniasselvi:2295,unicesumar:1961},
+  compartilhamentos:{uniasselvi:448,unicesumar:394},
+  publicacoes:{uniasselvi:194,unicesumar:139},
   perfil:{uniasselvi:16,unicesumar:5}
   // mudancas profissionais: aguardando dado (não vem das planilhas de LinkedIn atuais)
 };
@@ -811,45 +813,47 @@ const FUNIL_LINKEDIN={
 // É retrato do momento da captura, NÃO mudança gerada pela credencial. Linhas internas
 // (POK) removidas; variações de grafia agrupadas. Tem quebra por curso e total geral.
 const SITUACAO_PROF={
-  geral:{cargos:[["Assistente administrativo",7],["Nutricionista",6],["Técnico de laboratório",3],["Atendimento ao cliente",3],["Biomédica",2],["Analista Financeiro",2]],empresas:[["Self-employed",4],["UNIASSELVI",3],["Serviço Social da Indústria",3],["UniCesumar",3],["Jana Ourique",2],["PREFEITURA MUNICIPAL DE JANDAIA DO SUL",1]],n:166},
+  geral:{cargos:[["Assistente administrativo",15],["Nutricionista",8],["Atendimento ao cliente",4],["Estagiária",4],["Assistente financeiro",3],["Técnico de laboratório",3]],empresas:[["Self-employed",14],["UNIASSELVI",5],["UniCesumar",4],["Serviço Social da Indústria",3],["Autónomo",2],["Atacadão",2]],n:265},
   porCurso:{
-    "Bacharel em Administração":{cargos:[["Assistente administrativo",6],["Atendimento ao cliente",2],["Analista Financeiro",2],["Gerente comercial",2],["Supervisor administrativo",2],["Agente comercial",1]],empresas:[["Serviço Social da Indústria",2],["Josj Drogaria ltda",1],["Sicredi",1],["JSL S.A.",1],["IPM Sistemas",1],["Soluti Digital",1]],n:103},
-    "Bacharel em Nutrição":{cargos:[["Nutricionista",6],["Nutricionista clínico",2],["Administrador técnico",1],["Professora",1],["Nutricionista Clínica • Professora • Educação em Saúde • Comportamento Alimentar",1],["Estudante de Graduação",1]],empresas:[["Self-employed",2],["Prefeitura",1],["Harmonisee MedSpa",1],["Prefeitura Municipal de Videira",1],["UNIASSELVI",1],["MedSênior",1]],n:19},
-    "Bacharel em Biomedicina":{cargos:[["Técnico de laboratório",3],["Biomédica",2],["Sócio",1],["Monitor",1],["Técnico de enfermagem",1],["Analista clínico",1]],empresas:[["UniCesumar",2],["PREFEITURA MUNICIPAL DE JANDAIA DO SUL",1],["Engtecsul Construções e Edificações Ltda",1],["Anhanguera Educacional",1],["ESTÂNCIA GRADIVA",1],["Laboratório Biolab",1]],n:24},
-    "Tecnólogo em Estética e Cosmética":{cargos:[["Esteticista",2],["Atendimento ao cliente",1],["Podólogo",1],["Estudante de Terapia Ocupacional 6 período",1]],empresas:[["Rei da brasa",1],["Regiane Penteado Estética & Bem Estar",1],["Jana Ourique",1],["Espaçolaser",1],["Não Aplicavel",1]],n:5},
-    "Tecnólogo em Podologia":{cargos:[["Podólogo",1]],empresas:[["Jana Ourique",1]],n:1},
-    "Bacharel em Farmácia":{cargos:[["Taxis",1],["Atendente de farmácia",1],["Farmacêutica",1],["Analista de desenvolvimento de produtos Pleno",1],["Auxiliar de Laboratório e Digitador",1],["Gerente de farmácia",1]],empresas:[["Self-employed",1],["Drogaria Bom Jesus",1],["Drogaria Jardim Santista",1],["Althaia S.A. Indústria Farmacêutica",1],["Centro de Especialidades Benu Mendes – Prefeitura de Chapadinha-MA",1],["Farmacia Pioneira",1]],n:6},
-    "Tecnólogo em Terapias Integrativas e Complementares":{cargos:[["Speaker e Vendedora",1],["Terapeuta Integrativa - Auriculoterapeuta",1],["Proprietário",1]],empresas:[["Évora Nutricosméticos",1],["Self-employed",1],["HARMONIA CLINICA INTEGRATIVA",1]],n:3},
-    "Tecnólogo em Radiologia":{cargos:[["Auxiliar de produção",1],["Técnica em radiologia",1],["Tecnologo em radiologia - UPA 24H",1]],empresas:[["GSI Brasil",1],["hospital Regional de queimadas patricio leal e melo",1],["Unidade de Pronto Atendimento.",1]],n:3},
-    "Tecnólogo em Estética e Imagem Pessoal":{cargos:[["massoterapeuta Holística",1],["Vendedor",1]],empresas:[["AgroRações",1]],n:2},
+    "Bacharel em Administração":{cargos:[["Assistente administrativo",12],["Assistente financeiro",3],["Auxiliar administrativo",3],["Atendimento ao cliente",2],["Assistente de atendimento ao cliente",2],["Estagiária",2]],empresas:[["Atacadão",2],["Serviço Social da Indústria",2],["Cresol Cooperativa",2],["Self-employed",2],["Unimed Belém",1],["ROMAC FERRAMENTAS",1]],n:158},
+    "Bacharel em Nutrição":{cargos:[["Nutricionista",8],["Nutricionista clínico",3],["Nutricionista Clínica",1],["Gerente administrativo",1],["Science Teacher",1],["Administrador técnico",1]],empresas:[["Self-employed",6],["UNIASSELVI",3],["Prefeitura",1],["Universidade Anhanguera",1],["Harmonisee MedSpa",1],["Prefeitura Municipal de Videira",1]],n:38},
+    "Bacharel em Biomedicina":{cargos:[["Técnico de laboratório",3],["Biomédica",3],["Assistente administrativo",3],["Instrutor",1],["Sócio",1],["Biomedica esteta",1]],empresas:[["UniCesumar",2],["Senac Mato Grosso",1],["PREFEITURA MUNICIPAL DE JANDAIA DO SUL",1],["Engtecsul Construções e Edificações Ltda",1],["Ceo do Elo Longevidade e Saúde",1],["Magrass Franchising",1]],n:35},
+    "Tecnólogo em Estética e Cosmética":{cargos:[["Atendimento ao cliente",2],["Esteticista",2],["Sócio proprietário",1],["Tutor particular",1],["Podólogo",1],["Estudante de Terapia Ocupacional 6 período",1]],empresas:[["Clínica Corpo e Mente Estética e Bem Estar",1],["Rei da brasa",1],["Interlens Laboratório Óptico",1],["Regiane Penteado Estética & Bem Estar",1],["UniCesumar",1],["Jana Ourique",1]],n:8},
+    "Tecnólogo em Podologia":{cargos:[["Podólogo",1],["Assistente de vendas",1],["Podóloga",1]],empresas:[["Jana Ourique",1],["Brasil carrier de comunicação",1],["SALVIONI E CIA LTDA",1]],n:3},
+    "Bacharel em Farmácia":{cargos:[["Farmacêutica",2],["Taxis",1],["Atendente de farmácia",1],["Gerente geral",1],["Analista de desenvolvimento de produtos Pleno",1],["Auxiliar de Laboratório e Digitador",1]],empresas:[["Self-employed",1],["Drogaria Bom Jesus",1],["Drogaria Jardim Santista",1],["Ph Produtos Para saúde",1],["Drogaria SB Farma",1],["Althaia S.A. Indústria Farmacêutica",1]],n:8},
+    "Tecnólogo em Terapias Integrativas e Complementares":{cargos:[["Terapeuta Integrativa",1],["Terapeuta holístico",1],["massoterapeuta Holística",1],["Speaker e Vendedora",1],["Terapeuta Integrativa – Auriculoterapeuta",1],["Professora do Ensino Superior",1]],empresas:[["Self-employed",4],["Évora Nutricosméticos",1],["Centro Universitário Adventista de São Paulo",1],["Adel Coco Brasil",1],["HARMONIA CLINICA INTEGRATIVA",1],["Fercomtec Comércio de Ferragens e Componentes Técnicos Ltda",1]],n:9},
+    "Tecnólogo em Radiologia":{cargos:[["Auxiliar de produção",1],["Técnica em radiologia",1],["Tecnologo em radiologia – UPA 24H",1]],empresas:[["GSI Brasil",1],["hospital Regional de queimadas patricio leal e melo",1],["Unidade de Pronto Atendimento.",1]],n:3},
+    "Tecnólogo em Estética e Imagem Pessoal":{cargos:[["Técnico de enfermagem",1],["massoterapeuta Holística",1],["Vendedor",1]],empresas:[["Autónomo",1],["Self-employed",1],["AgroRações",1]],n:3},
     "Tecnólogo em Gerontologia":{cargos:[],empresas:[],n:0}
   }
 };
 
 // Exposição de marca por curso (fotografia): quantos apareceram no LinkedIn e quantos
 // publicaram, por curso, das planilhas de employability (Renata Rosa e cursos de teste
-// fora). Totais: 263 no LinkedIn, 221 publicações. Origem uni/cesu preservada.
+// fora). Totais (leitura de 30/09): 393 no LinkedIn, 333 publicações. Origem uni/cesu preservada.
 const MARCA_POR_CURSO={
-  "Bacharel em Administração":{uni:{li:56,post:53},cesu:{li:70,post:67}},
-  "Bacharel em Nutrição":{uni:{li:30,post:26},cesu:{li:11,post:7}},
-  "Bacharel em Biomedicina":{uni:{li:31,post:29},cesu:{li:8,post:6}},
-  "Tecnólogo em Estética e Cosmética":{uni:{li:0,post:0},cesu:{li:7,post:6}},
-  "Tecnólogo em Podologia":{uni:{li:1,post:1},cesu:{li:3,post:2}},
-  "Bacharel em Farmácia":{uni:{li:7,post:7},cesu:{li:0,post:0}},
-  "Tecnólogo em Terapias Integrativas e Complementares":{uni:{li:5,post:3},cesu:{li:2,post:1}},
-  "Tecnólogo em Radiologia":{uni:{li:9,post:9},cesu:{li:0,post:0}},
-  "Tecnólogo em Estética e Imagem Pessoal":{uni:{li:6,post:3},cesu:{li:0,post:0}},
-  "Tecnólogo em Gerontologia":{uni:{li:0,post:0},cesu:{li:2,post:1}}
+  "Bacharel em Administração":{uni:{li:89,post:84},cesu:{li:112,post:101}},
+  "Bacharel em Nutrição":{uni:{li:44,post:37},cesu:{li:17,post:12}},
+  "Bacharel em Biomedicina":{uni:{li:43,post:38},cesu:{li:18,post:8}},
+  "Tecnólogo em Estética e Cosmética":{uni:{li:0,post:0},cesu:{li:12,post:10}},
+  "Tecnólogo em Podologia":{uni:{li:2,post:2},cesu:{li:5,post:2}},
+  "Bacharel em Farmácia":{uni:{li:12,post:12},cesu:{li:0,post:0}},
+  "Tecnólogo em Terapias Integrativas e Complementares":{uni:{li:7,post:5},cesu:{li:10,post:4}},
+  "Tecnólogo em Radiologia":{uni:{li:12,post:12},cesu:{li:0,post:0}},
+  "Tecnólogo em Estética e Imagem Pessoal":{uni:{li:7,post:4},cesu:{li:0,post:0}},
+  "Tecnólogo em Gerontologia":{uni:{li:0,post:0},cesu:{li:3,post:2}}
 };
 
-// Movimentações reais (origem→destino): os 2 únicos casos de "Job Generated" das
-// planilhas de employability (1 Uniasselvi, 1 Unicesumar). Só o card de movimentações
+// Movimentações reais (origem→destino): os 4 casos de "Job Generated" das planilhas
+// de employability de 30/09 (2 Uniasselvi, 2 Unicesumar). Só o card de movimentações
 // usa isto; KPIs de mobilidade e curva temporal seguem aguardando dado (base = 2).
 // impactDias = valor do campo "Impact" da planilha de employability (dias entre a emissão e
 // a mudança). Nos 2 casos reais veio 0, então a mudança cai no mês da emissão (setembro).
 // emitidoEm = data de emissão do caso. Usados para calcular changeMonth como no Conecta.
-const MOVIMENTACOES=[{"inst": "uniasselvi", "curso": "Tecnólogo em Radiologia", "cargoDe": "Auxiliar de produção", "empDe": "GSI Brasil", "cargoPara": "Auxiliar de radiografia", "empPara": "METALTEC Não Destrutivos Ltda", "tipo": "Novo emprego", "impactDias":0, "emitidoEm":"2026-09-10"},
-{"inst": "unicesumar", "curso": "Bacharel em Administração", "cargoDe": "Analista Controle de Operações", "empDe": "Mundivox Communications", "cargoPara": "Sales Development Representative", "empPara": "DealerUp - Sistemas para Concessionárias", "tipo": "Novo emprego", "impactDias":0, "emitidoEm":"2026-09-09"}];
+const MOVIMENTACOES=[{"inst": "uniasselvi", "curso": "Bacharel em Administração", "cargoDe": "Assistente administrativo", "empDe": "Vero", "cargoPara": "Analista de processos", "empPara": "Vero", "tipo": "Promoção", "impactDias":0, "emitidoEm":"2026-09-10"},
+{"inst": "uniasselvi", "curso": "Tecnólogo em Radiologia", "cargoDe": "Auxiliar de produção", "empDe": "GSI Brasil", "cargoPara": "Auxiliar de radiografia", "empPara": "METALTEC Não Destrutivos Ltda", "tipo": "Novo emprego", "impactDias":0, "emitidoEm":"2026-09-10"},
+{"inst": "unicesumar", "curso": "Bacharel em Administração", "cargoDe": "Analista Controle de Operações", "empDe": "Mundivox Communications", "cargoPara": "Sales Development Representative", "empPara": "DealerUp – Sistemas para Concessionárias", "tipo": "Novo emprego", "impactDias":0, "emitidoEm":"2026-09-09"},
+{"inst": "unicesumar", "curso": "Bacharel em Administração", "cargoDe": "", "empDe": "", "cargoPara": "Guarda municipal", "empPara": "Prefeitura de Bofete", "tipo": "Novo emprego", "impactDias":0, "emitidoEm":"2026-09-09"}];
 // Mês da mudança: soma impactDias à data de emissão e conta meses desde setembro/2026 (mês 0),
 // mesma regra do Conecta. changeMonth<=1 => mudança em até 1 mês do envio.
 MOVIMENTACOES.forEach(m=>{const dt=new Date(m.emitidoEm);dt.setDate(dt.getDate()+(m.impactDias||0));m.changeMonth=(dt.getFullYear()-2026)*12+dt.getMonth()-8;});
@@ -1167,16 +1171,16 @@ function agrupar(base,dim){
 // n = credenciais no LinkedIn do curso; comVinculo = quantas tinham experiência anterior.
 // Alimenta o "Gráfico profissional comparativo" – não depende de mudança de emprego.
 const VINCULO_POR_CURSO={
-  'Bacharel em Administração':{n:126,comVinculo:103},
-  'Bacharel em Nutrição':{n:41,comVinculo:19},
-  'Bacharel em Biomedicina':{n:39,comVinculo:24},
-  'Tecnólogo em Estética e Cosmética':{n:7,comVinculo:5},
-  'Tecnólogo em Podologia':{n:4,comVinculo:1},
-  'Bacharel em Farmácia':{n:7,comVinculo:6},
-  'Tecnólogo em Terapias Integrativas e Complementares':{n:7,comVinculo:3},
-  'Tecnólogo em Radiologia':{n:9,comVinculo:3},
-  'Tecnólogo em Estética e Imagem Pessoal':{n:6,comVinculo:2},
-  'Tecnólogo em Gerontologia':{n:2,comVinculo:0}
+  'Bacharel em Administração':{n:201,comVinculo:158},
+  'Bacharel em Nutrição':{n:61,comVinculo:38},
+  'Bacharel em Biomedicina':{n:61,comVinculo:35},
+  'Tecnólogo em Estética e Cosmética':{n:12,comVinculo:8},
+  'Tecnólogo em Podologia':{n:7,comVinculo:3},
+  'Bacharel em Farmácia':{n:12,comVinculo:8},
+  'Tecnólogo em Terapias Integrativas e Complementares':{n:17,comVinculo:9},
+  'Tecnólogo em Radiologia':{n:12,comVinculo:3},
+  'Tecnólogo em Estética e Imagem Pessoal':{n:7,comVinculo:3},
+  'Tecnólogo em Gerontologia':{n:3,comVinculo:0}
 };
 function statsForDim(dim,base){
   // Usa dados REAIS de vínculo por curso. Para trilha (=curso 1:1) e competência (mapeada
