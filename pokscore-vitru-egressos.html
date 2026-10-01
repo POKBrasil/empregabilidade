@@ -343,7 +343,7 @@ tbody tr:hover{background:var(--purple-faint)}
 #geoMobilityCard .move-pair{grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr) auto;font-size:12px;align-items:center;column-gap:10px}
 #geoMobilityCard .move-pair .move-kind{grid-column:auto;justify-self:start;margin-top:0}
 #geoMobilityCard .move-count{font-size:14px}
-.kpi-grid.brand-kpis{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:14px}
+.kpi-grid.brand-kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:14px}
 .kpi-grid.brand-kpis .kpi{min-height:0}
 .chart-wrap.brand-wrap{height:400px;min-height:240px}
 .chart-note{margin:12px 0 0;font-size:10px;line-height:1.6;color:#9a94a8}
@@ -795,7 +795,8 @@ const COURSE_COMPETENCY={
 // NÃO há cruzamento indivíduo-a-indivíduo entre as etapas: cada uma é uma contagem
 // agregada, que é exatamente o objetivo do painel (leitura por formação, não por pessoa).
 // Números do funil confirmados por Caro em 15/09/2026 e atualizados em 30/09/2026
-// (aceitas e compartilhamentos da plataforma POK; publicações das planilhas). Emitidas
+// (aceitas e compartilhamentos da plataforma POK; publicações e adicionadas ao perfil das planilhas –
+// perfil = linhas com LinkedIn Profile preenchido, sem credenciais de teste). Emitidas
 // segue a base de 21.121 egressos: os demais envios da plataforma não entram na contagem. As etapas de compartilhamento,
 // publicação e perfil vieram como TOTAIS GERAIS (uni+cesu), não quebrados por curso;
 // por isso o funil mostra sempre o total da instituição, sem recorte por curso nessas
@@ -805,7 +806,7 @@ const FUNIL_LINKEDIN={
   aceitas:{uniasselvi:2295,unicesumar:1961},
   compartilhamentos:{uniasselvi:448,unicesumar:394},
   publicacoes:{uniasselvi:194,unicesumar:139},
-  perfil:{uniasselvi:16,unicesumar:5}
+  perfil:{uniasselvi:209,unicesumar:171}
   // mudancas profissionais: aguardando dado (não vem das planilhas de LinkedIn atuais)
 };
 // Situação profissional (fotografia): cargo e empresa mais frequentes entre quem
@@ -874,6 +875,11 @@ const AREA_CURSO={
 };
 MOVIMENTACOES.forEach(m=>{const rx=AREA_CURSO[m.curso];m.naArea=rx?rx.test(String(m.cargoPara||'')):false;});
 const soma2=o=>o.uniasselvi+o.unicesumar;
+// Visualizações e downloads dos certificados, por instituição (plataforma POK, leitura de 30/09/2026).
+const PLATAFORMA={
+  visualizacoes:{uniasselvi:5279,unicesumar:4498},
+  downloads:{uniasselvi:982,unicesumar:696}
+};
 const FUNIL_TOTAIS={
   emitidas:soma2(FUNIL_LINKEDIN.emitidas),
   aceitas:soma2(FUNIL_LINKEDIN.aceitas),
@@ -1362,7 +1368,13 @@ function renderBrand(list){
   const semFiltro=!(fp||fc||fk);
   const kpiLi=semFiltro?FUNIL_TOTAIS.compartilhamentos:totalLi;
   const kpiPost=semFiltro?FUNIL_TOTAIS.publicacoes:totalPost;
+  // Visualizações e downloads vêm da plataforma POK para a instituição inteira; só aparecem sem filtro (como no Conecta).
+  const visualizacoes=soma2(PLATAFORMA.visualizacoes),downloads=soma2(PLATAFORMA.downloads);
   const stats=[
+    ...(semFiltro?[
+      [nfmt(visualizacoes),es?'Visualizaciones':'Visualizações',es?'De los certificados emitidos':'Dos certificados emitidos'],
+      [nfmt(downloads),es?'Descargas':'Downloads',pct(downloads,Math.max(1,FUNIL_TOTAIS.aceitas))+(es?'% de las aceptadas':'% das aceitas')]
+    ]:[]),
     [nfmt(kpiLi),es?'Credenciales en LinkedIn':'Credenciais no LinkedIn',pct(kpiLi,Math.max(1,FUNIL_TOTAIS.aceitas))+(es?'% de las aceptadas':'% das aceitas')],
     [nfmt(kpiPost),es?'Publicaciones en el feed':'Publicações no feed',pct(kpiPost,Math.max(1,kpiLi))+(es?'% de las credenciales en LinkedIn':'% das credenciais no LinkedIn')]
   ];
