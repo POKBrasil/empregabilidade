@@ -380,7 +380,7 @@ tbody tr:hover{background:var(--purple-faint)}
     </div>
     <h1>POK Score: <span>trajetórias de Impacto</span>: Caso FMU Egressos</h1>
     <p>Visão interativa da empregabilidade por trilha, curso e competência, construída a partir de dados profissionais observáveis após a emissão de credenciais POK.</p>
-    <div class="hero-meta"><span class="hero-pill">Data de envio das credenciais: <strong>18 de agosto</strong></span><span class="hero-pill">Data de leitura: <strong>23 de setembro</strong></span><span class="hero-pill">Tempo entre envio e leitura: <strong>36 dias</strong></span></div>
+    <div class="hero-meta"><span class="hero-pill">Data de envio das credenciais: <strong>18 de agosto</strong></span><span class="hero-pill">Data de leitura: <strong>1º de outubro</strong></span><span class="hero-pill">Tempo entre envio e leitura: <strong>44 dias</strong></span></div>
   </div>
 </header>
 
@@ -647,7 +647,6 @@ function setLanguage(language,{refresh=true}={}){
 const CURSOS=[
   'Administração',
   'Arquitetura e Urbanismo',
-  'Bacharel em Administração',
   'Biomedicina',
   'Ciência da Computação',
   'Ciências Contábeis',
@@ -676,7 +675,6 @@ const CURSOS=[
 const COURSE_COMPETENCY={
   'Administração':'Administração',
   'Arquitetura e Urbanismo':'Arquitetura e Urbanismo',
-  'Bacharel em Administração':'Bacharel em Administração',
   'Biomedicina':'Biomedicina',
   'Ciência da Computação':'Ciência da Computação',
   'Ciências Contábeis':'Ciências Contábeis',
@@ -704,15 +702,15 @@ const COURSE_COMPETENCY={
 // Funil de participação no LinkedIn (totais da instituição), mesma lógica do painel Vitru Egressos:
 // Credenciais no LinkedIn = credenciais compartilhadas no LinkedIn (inclui publicação e adição ao perfil).
 // Emitidas (enviadas), aceitas e compartilhadas no LinkedIn: plataforma POK, 23/09/2026.
-// Publicações: CSV de empregabilidade de 23/09/2026 (linha duplicada descartada).
+// Publicações: CSV de empregabilidade de 01/10/2026 (linha duplicada e credencial de teste descartadas).
 // Adicionadas ao perfil: plataforma POK, leitura de 10/09/2026 (aguardando atualização).
 Object.assign(VALUE_ES,{"Superior de Tecnologia em Estética e Cosmética":"Tecnicatura Superior en Estética y Cosmética","Administração": "Administración", "Arquitetura e Urbanismo": "Arquitectura y Urbanismo", "Bacharel em Administração": "Bachiller en Administración", "Biomedicina": "Biomedicina", "Ciência da Computação": "Ciencias de la Computación", "Ciências Contábeis": "Ciencias Contables", "Ciências Econômicas": "Ciencias Económicas", "Direito": "Derecho", "Educação Física": "Educación Física", "Enfermagem": "Enfermería", "Engenharia Civil": "Ingeniería Civil", "Engenharia Elétrica": "Ingeniería Eléctrica", "Engenharia Mecânica": "Ingeniería Mecánica", "Farmácia": "Farmacia", "Fisioterapia": "Fisioterapia", "Fonoaudiologia": "Fonoaudiología", "Medicina Veterinária": "Medicina Veterinaria", "Nutrição": "Nutrición", "Odontologia": "Odontología", "Psicologia": "Psicología", "Relações Internacionais": "Relaciones Internacionales", "Superior de Tecnologia em Análise e Desenvolvimento de Sistemas": "Tecnicatura Superior en Análisis y Desarrollo de Sistemas", "Superior de Tecnologia em Gestão Comercial": "Tecnicatura Superior en Gestión Comercial", "Superior de Tecnologia em Gestão de Recursos Humanos": "Tecnicatura Superior en Gestión de Recursos Humanos", "Superior de Tecnologia em Gestão Financeira": "Tecnicatura Superior en Gestión Financiera", "Superior de Tecnologia em Marketing Digital": "Tecnicatura Superior en Marketing Digital"});
-Object.assign(ES,{"10 de setembro":"10 de septiembre","23 de setembro":"23 de septiembre","36 dias":"36 días", "23 dias": "23 días", "Credencial LEVEL UP emitida aos egressos": "Credencial LEVEL UP emitida a los egresados", "Cada egresso recebe a credencial do curso concluído, emitida como credencial verificável em blockchain pela plataforma POK.": "Cada egresado recibe la credencial del curso concluido, emitida como credencial verificable en blockchain por la plataforma POK."});
+Object.assign(ES,{"10 de setembro":"10 de septiembre","23 de setembro":"23 de septiembre","36 dias":"36 días","1º de outubro":"1 de octubre","44 dias":"44 días", "23 dias": "23 días", "Credencial LEVEL UP emitida aos egressos": "Credencial LEVEL UP emitida a los egresados", "Cada egresso recebe a credencial do curso concluído, emitida como credencial verificável em blockchain pela plataforma POK.": "Cada egresado recibe la credencial del curso concluido, emitida como credencial verificable en blockchain por la plataforma POK."});
 const FUNIL_LINKEDIN={
   emitidas:4568,
   aceitas:836,
   compartilhamentos:365,
-  publicacoes:141,
+  publicacoes:145,
   perfil:69
 };
 // Situação profissional (fotografia): cargo e empresa mais frequentes entre quem
@@ -721,14 +719,13 @@ const FUNIL_LINKEDIN={
 // porCurso: mesma estrutura, uma entrada por curso. Ex.:
 //   "Bacharel em Direito":{cargos:[["Advogado",4]],empresas:[["Self-employed",2]],n:20}
 const SITUACAO_PROF={
-  geral:{"cargos": [["Auxiliar administrativo", 4], ["Assistente de Departamento Pessoal", 3], ["Técnico de Enfermagem", 3], ["Assistente de recrutamento e seleção", 2], ["Assistente financeiro", 2], ["Chief Revenue Officer (CRO)", 2]], "empresas": [["Bradesco", 2], ["Hapvida NotreDame Intermédica", 2], ["i4H Saúde", 2], ["Raia", 2], ["Self-employed", 2], ["36º Cartório de Vila Maria", 1]], "n": 130},
+  geral:{"cargos": [["Auxiliar administrativo", 4], ["Assistente de Departamento Pessoal", 3], ["Técnico de Enfermagem", 3], ["Analista administrativo", 2], ["Assistente de recrutamento e seleção", 2], ["Assistente financeiro", 2]], "empresas": [["Bradesco", 2], ["Hapvida NotreDame Intermédica", 2], ["i4H Saúde", 2], ["Raia", 2], ["Self-employed", 2], ["36º Cartório de Vila Maria", 1]], "n": 131},
   porCurso:{
-    "Administração":{"cargos": [["Analista administrativa", 1], ["Analista Comercial Pleno", 1], ["Analista de Dados de Operações JR", 1], ["Analista de logística", 1], ["Analista de PCP/Compras", 1], ["Analista de Planejamentos Estratégicos Jr", 1]], "empresas": [["Almeida Imóveis", 1], ["Bradesco", 1], ["BRF", 1], ["Cercadão Supermercados", 1], ["Coleta e entrega-Blumenau, SC, BR", 1], ["Defensoria Pública do Estado de São Paulo", 1]], "n": 23},
+    "Administração":{"cargos": [["Analista administrativa", 1], ["Analista administrativo", 1], ["Analista Comercial Pleno", 1], ["Analista de Dados de Operações JR", 1], ["Analista de logística", 1], ["Analista de PCP/Compras", 1]], "empresas": [["Almeida Imóveis", 1], ["Bradesco", 1], ["BRF", 1], ["Cercadão Supermercados", 1], ["Coleta e entrega-Blumenau, SC, BR", 1], ["Defensoria Pública do Estado de São Paulo", 1]], "n": 24},
     "Arquitetura e Urbanismo":{"cargos": [["Arquiteto júnior", 1], ["Assistente de Projetos e Orçamentos em Arquitetura de Interiores", 1]], "empresas": [["Blaia e Moura Arquitetos", 1], ["BMA Studio", 1]], "n": 2},
-    "Bacharel em Administração":{"cargos": [["Gerente de projetos", 1]], "empresas": [["CONSORCIO STHEM", 1]], "n": 1},
     "Biomedicina":{"cargos": [["Assessoria administrativa", 1], ["Estagiária", 1], ["Técnico de laboratório", 1]], "empresas": [["Dasa", 1], ["IBABC - Instituto de Biomedicina do ABC", 1], ["Maradei DPVAT", 1]], "n": 3},
     "Ciência da Computação":{"cargos": [["Assistente de recrutamento e seleção", 1], ["Auxiliar administrativo", 1], ["Auxiliar de classe", 1], ["Business Intelligence I", 1], ["Day Trader", 1]], "empresas": [["Bradesco", 1], ["Freelancer", 1], ["Projeto Viver - Jardim Colombo", 1], ["Sicoob união", 1], ["You Inc Incorporadora", 1]], "n": 5},
-    "Ciências Contábeis":{"cargos": [["Consultoria empresarial", 1], ["Legal Assistant Paralegal", 1], ["Secretária", 1]], "empresas": [["Bacelli Contabilidade Inteligente", 1], ["Caixa Econômica Federal", 1], ["Consultoria Empresarial", 1]], "n": 3},
+    "Ciências Contábeis":{"cargos": [["Consultoria empresarial", 1], ["Legal Assistant Paralegal", 1], ["Secretária", 1], ["Supervisor de operações", 1]], "empresas": [["Bacelli Contabilidade Inteligente", 1], ["Caixa Econômica Federal", 1], ["Consultoria Empresarial", 1], ["Interfile", 1]], "n": 4},
     "Ciências Econômicas":{"cargos": [["Analista de negócios", 1], ["Analista de Suporte Comercial – Linha Direta Rede (Itaú)", 1], ["Estagiária em Cash & Transformation LATAM | Finance São Paulo – SP", 1]], "empresas": [["Bayer", 1], ["IT4FINANCE", 1], ["Rede", 1]], "n": 3},
     "Direito":{"cargos": [["Advogada júnior", 1]], "empresas": [["Camargo Bento Advogados", 1]], "n": 1},
     "Educação Física":{"cargos": [["Auxiliar administrativo", 2], ["Personal trainer", 1], ["Professor de musculação", 1]], "empresas": [["Bluefit Academia", 1], ["INTS - Instituto Nacional de Tecnologia e Saúde", 1], ["Princesa Marcas E Patentes Ltda", 1], ["Smart Fit", 1]], "n": 4},
@@ -754,12 +751,11 @@ const SITUACAO_PROF={
 // Exposição de marca por curso: li = credenciais no LinkedIn, post = publicações no feed.
 // Ex.: "Bacharel em Direito":{li:40,post:32}
 const MARCA_POR_CURSO={
-  "Administração":{"li": 26, "post": 22},
+  "Administração":{"li": 27, "post": 23},
   "Arquitetura e Urbanismo":{"li": 2, "post": 2},
-  "Bacharel em Administração":{"li": 1, "post": 0},
-  "Biomedicina":{"li": 5, "post": 4},
+  "Biomedicina":{"li": 6, "post": 5},
   "Ciência da Computação":{"li": 6, "post": 6},
-  "Ciências Contábeis":{"li": 4, "post": 3},
+  "Ciências Contábeis":{"li": 5, "post": 4},
   "Ciências Econômicas":{"li": 3, "post": 3},
   "Direito":{"li": 3, "post": 3},
   "Educação Física":{"li": 5, "post": 5},
@@ -778,7 +774,7 @@ const MARCA_POR_CURSO={
   "Superior de Tecnologia em Análise e Desenvolvimento de Sistemas":{"li": 11, "post": 11},
   "Superior de Tecnologia em Gestão Comercial":{"li": 8, "post": 7},
   "Superior de Tecnologia em Gestão de Recursos Humanos":{"li": 11, "post": 11},
-  "Superior de Tecnologia em Gestão Financeira":{"li": 5, "post": 4},
+  "Superior de Tecnologia em Gestão Financeira":{"li": 6, "post": 5},
   "Superior de Tecnologia em Marketing Digital":{"li": 6, "post": 6}
 };
 // Movimentações após a credencial (casos de "Job Generated"). Um objeto por caso:
@@ -799,7 +795,6 @@ MOVIMENTACOES.forEach(m=>{const dt=new Date(m.emitidoEm);dt.setDate(dt.getDate()
 const AREA_CURSO={
   "Administração":/administr|gest[ãa]o|gestor|gerente|analista|coordenador|supervisor|comercial|vendas|sales|financ|neg[óo]cio|business|opera[çc][õo]es|marketing|recursos humanos|personnel|people/i,
   "Arquitetura e Urbanismo":/arquitet|urban|interiores|paisag|projetista/i,
-  "Bacharel em Administração":/administr|gest[ãa]o|gestor|gerente|analista|coordenador|supervisor|comercial|vendas|sales|financ|neg[óo]cio|business|opera[çc][õo]es|marketing|recursos humanos|personnel|people/i,
   "Biomedicina":/biom[ée]dic|laborat|an[áa]lises cl[íi]nicas|analista cl[íi]nico|patolog|citolog/i,
   "Ciência da Computação":/desenvolv|developer|programad|software|sistema|dados|data|tecnologia|infra|suporte t[ée]cnico|business intelligence|\bti\b/i,
   "Ciências Contábeis":/cont[áa]b|fiscal|tribut|audit|controladoria|contas a (pagar|receber)|financ/i,
@@ -1067,12 +1062,11 @@ function agrupar(base,dim){
 // Alimenta o "Gráfico profissional comparativo" – não depende de mudança de emprego.
 // Vínculo declarado no compartilhamento, por curso. Ex.: 'Bacharel em Direito':{n:40,comVinculo:28}
 const VINCULO_POR_CURSO={
-  "Administração":{"n": 26, "comVinculo": 23},
+  "Administração":{"n": 27, "comVinculo": 24},
   "Arquitetura e Urbanismo":{"n": 2, "comVinculo": 2},
-  "Bacharel em Administração":{"n": 1, "comVinculo": 1},
-  "Biomedicina":{"n": 5, "comVinculo": 3},
+  "Biomedicina":{"n": 6, "comVinculo": 3},
   "Ciência da Computação":{"n": 6, "comVinculo": 5},
-  "Ciências Contábeis":{"n": 4, "comVinculo": 3},
+  "Ciências Contábeis":{"n": 5, "comVinculo": 4},
   "Ciências Econômicas":{"n": 3, "comVinculo": 3},
   "Direito":{"n": 3, "comVinculo": 1},
   "Educação Física":{"n": 5, "comVinculo": 4},
@@ -1091,7 +1085,7 @@ const VINCULO_POR_CURSO={
   "Superior de Tecnologia em Análise e Desenvolvimento de Sistemas":{"n": 11, "comVinculo": 11},
   "Superior de Tecnologia em Gestão Comercial":{"n": 8, "comVinculo": 7},
   "Superior de Tecnologia em Gestão de Recursos Humanos":{"n": 11, "comVinculo": 11},
-  "Superior de Tecnologia em Gestão Financeira":{"n": 5, "comVinculo": 5},
+  "Superior de Tecnologia em Gestão Financeira":{"n": 6, "comVinculo": 5},
   "Superior de Tecnologia em Marketing Digital":{"n": 6, "comVinculo": 5}
 };
 function statsForDim(dim,base){
