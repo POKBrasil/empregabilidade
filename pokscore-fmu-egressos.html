@@ -343,7 +343,7 @@ tbody tr:hover{background:var(--purple-faint)}
 #geoMobilityCard .move-pair{grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr) auto;font-size:12px;align-items:center;column-gap:10px}
 #geoMobilityCard .move-pair .move-kind{grid-column:auto;justify-self:start;margin-top:0}
 #geoMobilityCard .move-count{font-size:14px}
-.kpi-grid.brand-kpis{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:14px}
+.kpi-grid.brand-kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:14px}
 .kpi-grid.brand-kpis .kpi{min-height:0}
 .chart-wrap.brand-wrap{height:400px;min-height:240px}
 .chart-note{margin:12px 0 0;font-size:10px;line-height:1.6;color:#9a94a8}
@@ -701,17 +701,17 @@ const COURSE_COMPETENCY={
 };
 // Funil de participação no LinkedIn (totais da instituição), mesma lógica do painel Vitru Egressos:
 // Credenciais no LinkedIn = credenciais compartilhadas no LinkedIn (inclui publicação e adição ao perfil).
-// Emitidas (enviadas), aceitas e compartilhadas no LinkedIn: plataforma POK, 23/09/2026.
-// Publicações: CSV de empregabilidade de 01/10/2026 (linha duplicada e credencial de teste descartadas).
-// Adicionadas ao perfil: plataforma POK, leitura de 10/09/2026 (aguardando atualização).
+// Emitidas (enviadas), aceitas e compartilhadas no LinkedIn: plataforma POK, leitura de 01/10/2026.
+// Publicações (coluna Shared LinkedIn Post) e adicionadas ao perfil (coluna LinkedIn Profile): CSV de
+// empregabilidade de 01/10/2026 (linha duplicada e credencial de teste descartadas).
 Object.assign(VALUE_ES,{"Superior de Tecnologia em Estética e Cosmética":"Tecnicatura Superior en Estética y Cosmética","Administração": "Administración", "Arquitetura e Urbanismo": "Arquitectura y Urbanismo", "Bacharel em Administração": "Bachiller en Administración", "Biomedicina": "Biomedicina", "Ciência da Computação": "Ciencias de la Computación", "Ciências Contábeis": "Ciencias Contables", "Ciências Econômicas": "Ciencias Económicas", "Direito": "Derecho", "Educação Física": "Educación Física", "Enfermagem": "Enfermería", "Engenharia Civil": "Ingeniería Civil", "Engenharia Elétrica": "Ingeniería Eléctrica", "Engenharia Mecânica": "Ingeniería Mecánica", "Farmácia": "Farmacia", "Fisioterapia": "Fisioterapia", "Fonoaudiologia": "Fonoaudiología", "Medicina Veterinária": "Medicina Veterinaria", "Nutrição": "Nutrición", "Odontologia": "Odontología", "Psicologia": "Psicología", "Relações Internacionais": "Relaciones Internacionales", "Superior de Tecnologia em Análise e Desenvolvimento de Sistemas": "Tecnicatura Superior en Análisis y Desarrollo de Sistemas", "Superior de Tecnologia em Gestão Comercial": "Tecnicatura Superior en Gestión Comercial", "Superior de Tecnologia em Gestão de Recursos Humanos": "Tecnicatura Superior en Gestión de Recursos Humanos", "Superior de Tecnologia em Gestão Financeira": "Tecnicatura Superior en Gestión Financiera", "Superior de Tecnologia em Marketing Digital": "Tecnicatura Superior en Marketing Digital"});
 Object.assign(ES,{"10 de setembro":"10 de septiembre","23 de setembro":"23 de septiembre","36 dias":"36 días","1º de outubro":"1 de octubre","44 dias":"44 días", "23 dias": "23 días", "Credencial LEVEL UP emitida aos egressos": "Credencial LEVEL UP emitida a los egresados", "Cada egresso recebe a credencial do curso concluído, emitida como credencial verificável em blockchain pela plataforma POK.": "Cada egresado recibe la credencial del curso concluido, emitida como credencial verificable en blockchain por la plataforma POK."});
 const FUNIL_LINKEDIN={
   emitidas:4568,
-  aceitas:836,
+  aceitas:884,
   compartilhamentos:365,
   publicacoes:145,
-  perfil:69
+  perfil:144
 };
 // Situação profissional (fotografia): cargo e empresa mais frequentes entre quem
 // compartilhou, extraídos da experiência anterior do CSV de empregabilidade (mesma regra da Vitru).
@@ -820,6 +820,11 @@ const AREA_CURSO={
   "Superior de Tecnologia em Marketing Digital":/marketing|m[íi]dia|social media|conte[úu]do|comunica|digital|publicid|growth|brand/i
 };
 MOVIMENTACOES.forEach(m=>{const rx=AREA_CURSO[m.curso];m.naArea=rx?rx.test(String(m.cargoPara||'')):false;});
+// Visualizações e downloads dos certificados (plataforma POK, leitura de 01/10/2026).
+const PLATAFORMA={
+  visualizacoes:2632,
+  downloads:374
+};
 const FUNIL_TOTAIS={...FUNIL_LINKEDIN};
 
 const DIMENSIONS = {
@@ -1262,7 +1267,13 @@ function renderBrand(list){
   const semFiltro=!(fp||fc||fk);
   const kpiLi=semFiltro?FUNIL_TOTAIS.compartilhamentos:totalLi;
   const kpiPost=semFiltro?FUNIL_TOTAIS.publicacoes:totalPost;
+  // Visualizações e downloads vêm da plataforma POK para a instituição inteira; só aparecem sem filtro (como no Conecta).
+  const visualizacoes=PLATAFORMA.visualizacoes,downloads=PLATAFORMA.downloads;
   const stats=[
+    ...(semFiltro?[
+      [nfmt(visualizacoes),es?'Visualizaciones':'Visualizações',es?'De los certificados emitidos':'Dos certificados emitidos'],
+      [nfmt(downloads),es?'Descargas':'Downloads',pct(downloads,Math.max(1,FUNIL_TOTAIS.aceitas))+(es?'% de las aceptadas':'% das aceitas')]
+    ]:[]),
     [nfmt(kpiLi),es?'Credenciales en LinkedIn':'Credenciais no LinkedIn',pct(kpiLi,Math.max(1,FUNIL_TOTAIS.aceitas))+(es?'% de las aceptadas':'% das aceitas')],
     [nfmt(kpiPost),es?'Publicaciones en el feed':'Publicações no feed',pct(kpiPost,Math.max(1,kpiLi))+(es?'% de las credenciales en LinkedIn':'% das credenciais no LinkedIn')]
   ];
